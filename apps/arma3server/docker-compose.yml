@@ -17,6 +17,7 @@ services:
     container_name: ODA036-Arma3-Server
     image: ghcr.io/brettmayson/arma3server/arma3server
     platform: linux/amd64
+    user: root
     ports:
       - 2302:2302
       - 2303:2303
