@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  git_checkout:
+    container_name: git-checkout-arma3
+    image: bitnami/git:latest
+    working_dir: /temp
+    command: >
+      bash -c "
+        find /temp -mindepth 1 -delete && 
+        git clone https://github.com/Securitybits-io/homelab.git &&
+        cp -R ./homelab/apps/arma3server/* /docker/conf/arma3server/
+      "
+    volumes:
+      - /docker:/docker
+
+  arma3:
+    container_name: ODA036-Arma3-Server
+    image: synixebrett/arma3server
+    platform: linux/amd64
+    ports:
+      - 2302:2302
+      - 2303:2303
+      - 2304:2304
+      - 2305:2305
+      - 2306:2306
+    volumes:
+      - /docker/conf/arma3server/missions:/arma3/mpmissions
+      - /docker/conf/arma3server/configs:/arma3/configs
+      - /docker/conf/arma3server/mods:/arma3/mods
+      - /docker/conf/arma3server/servermods:/arma3/servermods
+      - /docker/conf/arma3server/oda036_mods.html:/arma3/oda036_mods.html:ro
+    environment:
+      - ARMA_CONFIG=main.cfg
+      - ARMA_BINARY=./arma3server_x64
+      - MODS_PRESET=/arma3/servermods/oda036_mods.html
+      - STEAM_USER=${STEAM_USER}
+      - STEAM_PASSWORD=${STEAM_PASSWORD}
+    restart: unless-stopped
