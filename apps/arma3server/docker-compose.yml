@@ -15,7 +15,7 @@ services:
 
   arma3:
     container_name: ODA036-Arma3-Server
-    image: synixebrett/arma3server
+    image: ghcr.io/brettmayson/arma3server/arma3server
     platform: linux/amd64
     ports:
       - 2302:2302
@@ -26,6 +26,8 @@ services:
     volumes:
       - /docker/conf/arma3server/missions:/arma3/mpmissions
       - /docker/conf/arma3server/configs:/arma3/configs
+      - /docker/conf/arma3server/mods:/arma3/mods 
+      - /docker/conf/arma3server/servermods:/arma3/servermods 
       - servermods:/arma3/steamapps/workshop/content/107410
     environment:
       - ARMA_CONFIG=main.cfg
