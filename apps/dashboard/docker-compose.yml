@@ -1,0 +1,21 @@
+services:
+  git-checkout:
+    image: bitnami/git:latest
+    working_dir: /temp
+    command: >
+      bash -c "
+        find /temp -mindepth 1 -delete && 
+        git clone https://github.com/Securitybits-io/homelab.git &&
+        cp -R ./homelab/apps/dashboard/* /docker/conf/dashboard/
+      "
+    volumes:
+      - /docker:/docker
+  
+  dashboard:
+    container_name: dashboard
+    image: phntxx/dashboard
+    restart: unless-stopped
+    volumes:
+      - /docker/conf/dashboard/data:/app/data
+    ports:
+      - 8080:8080
