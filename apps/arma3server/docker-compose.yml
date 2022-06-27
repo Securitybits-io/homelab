@@ -26,8 +26,6 @@ services:
     volumes:
       - /docker/conf/arma3server/missions:/arma3/mpmissions
       - /docker/conf/arma3server/configs:/arma3/configs
-      - /docker/conf/arma3server/mods:/arma3/mods
-      - /docker/conf/arma3server/servermods:/arma3/servermods
       - servermods:/arma3/steamapps/workshop/content/107410
     environment:
       - ARMA_CONFIG=main.cfg
