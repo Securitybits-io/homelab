@@ -1,0 +1,11 @@
+services:
+  spiderfoot:
+    image: "ctdc/spiderfoot:latest"
+    container_name: "spiderfoot"
+    ports:
+      - "5001:5001"
+  cyberchef:
+    image: "mpepping/cyberchef:latest"
+    container_name: "cyberchef"
+    ports:
+      - "8000:8000"
