@@ -30,6 +30,8 @@ services:
       - /docker/conf/arma3server/servermods:/arma3/servermods 
       - servermods:/arma3/steamapps/workshop/content/107410
     environment:
+      - BASIC_CONFIG=basic.cfg
+      - ARMA_CONFIG=main.cfg
       - MODS_PRESET=/arma3/mods/oda036_mods.html
       - STEAM_USER=${STEAM_USER}
       - STEAM_PASSWORD=${STEAM_PASSWORD}
