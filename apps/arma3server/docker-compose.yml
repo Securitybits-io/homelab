@@ -8,7 +8,8 @@ services:
       bash -c "
         find /temp -mindepth 1 -delete && 
         git clone https://github.com/Securitybits-io/homelab.git &&
-        cp -R ./homelab/apps/arma3server/* /docker/conf/arma3server/
+        cp -R ./homelab/apps/arma3server/* /docker/conf/arma3server/ &&
+        chown -R 1000:1000 /docker/conf/arma3server
       "
     volumes:
       - /docker:/docker
@@ -16,7 +17,6 @@ services:
   arma3:
     container_name: ODA036-Arma3-Server
     image: ghcr.io/mylesagray/arma3-server
-    user: root
     ports:
       - 2302:2302
       - 2303:2303
