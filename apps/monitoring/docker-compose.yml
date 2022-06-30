@@ -1,0 +1,204 @@
+services:
+  git-checkout:
+    container_name: git-checkout-monitoring
+    image: bitnami/git:latest
+    working_dir: /temp
+    command: >
+      bash -c "
+        find /temp -mindepth 1 -delete && 
+        git clone https://github.com/Securitybits-io/homelab.git &&
+        cp -R ./homelab/apps/monitoring/* /docker/conf/ 
+      "
+    volumes:
+      - /docker:/docker
+
+  influxdb_telegraf:
+    container_name: influxdb-telegraf
+    image: influxdb:1.8
+    volumes:
+      - influxdb_telegraf:/var/lib/influxdb
+      - /docker/conf/influxdb/telegraf:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+    ports:
+      - 8086:8086
+    depends_on:
+      - git-checkout
+
+  influxdb_varken:
+    container_name: influxdb-varken
+    image: influxdb:1.8
+    volumes:
+      - influxdb_varken:/var/lib/influxdb
+      - /docker/conf/influxdb/varken:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+    depends_on:
+      - git-checkout
+
+  influxdb_speedtest:
+    container_name: influxdb-speedtest
+    image: influxdb:1.8
+    volumes:
+      - influxdb_speedtest:/var/lib/influxdb
+      - /docker/conf/influxdb/speedtest:/docker-entrypoint-initdb.d
+    restart: unless-stopped
+    depends_on:
+      - git-checkout
+
+  speedtest:
+    container_name: speedtest
+    image: robinmanuelthiel/speedtest:latest
+    environment:
+      - LOOP=true
+      - LOOP_DELAY=60
+      - DB_SAVE=true
+      - DB_HOST=http://influxdb_speedtest:8086
+      - DB_NAME=speedtest
+    privileged: true
+    restart: unless-stopped
+    depends_on:
+      - influxdb_speedtest
+
+  varken:
+    hostname: varken
+    container_name: varken
+    image: boerderij/varken:develop
+    volumes:
+      - /docker/conf/varken:/config
+    environment:
+      - TZ=Europe/Stockholm
+
+      - VRKN_GLOBAL_SONARR_SERVER_IDS=1
+      - VRKN_GLOBAL_RADARR_SERVER_IDS=1
+      - VRKN_GLOBAL_TAUTULLI_SERVER_IDS=1
+      - VRKN_GLOBAL_OMBI_SERVER_IDS=1
+      - VRKN_GLOBAL_UNIFI_SERVER_IDS=1
+
+      - VRKN_GLOBAL_LIDARR_SERVER_IDS=false
+      - VRKN_GLOBAL_SICKCHILL_SERVER_IDS=false
+      - VRKN_GLOBAL_OVERSEERR_SERVER_IDS=false
+      - VRKN_GLOBAL_MAXMIND_LICENSE_KEY=${VARKEN_MAXMIND_KEY}
+
+      - VRKN_INFLUXDB_URL=influxdb_varken
+      - VRKN_INFLUXDB_PORT=8086
+      - VRKN_INFLUXDB_SSL=false
+      - VRKN_INFLUXDB_VERIFY_SSL=false
+
+      - VRKN_TAUTULLI_1_URL=10.0.40.123:8181
+      - VRKN_TAUTULLI_1_APIKEY=${VARKEN_TAUTULLI_KEY}
+      - VRKN_TAUTULLI_1_SSL=false
+      - VRKN_TAUTULLI_1_VERIFY_SSL=false
+      - VRKN_TAUTULLI_1_GET_ACTIVITY=true
+      - VRKN_TAUTULLI_1_GET_ACTIVITY_RUN_SECONDS=30
+      - VRKN_TAUTULLI_1_GET_STATS=true
+      - VRKN_TAUTULLI_1_GET_STATS_RUN_SECONDS=3600
+
+      - VRKN_SONARR_1_URL=10.0.40.123:8989
+      - VRKN_SONARR_1_APIKEY=${VARKEN_SONARR_KEY}
+      - VRKN_SONARR_1_SSL=false
+      - VRKN_SONARR_1_VERIFY_SSL=false
+      - VRKN_SONARR_1_MISSING_DAYS=7
+      - VRKN_SONARR_1_MISSING_DAYS_RUN_SECONDS=300
+      - VRKN_SONARR_1_FUTURE_DAYS=1
+      - VRKN_SONARR_1_FUTURE_DAYS_RUN_SECONDS=300
+      - VRKN_SONARR_1_QUEUE=true
+      - VRKN_SONARR_1_QUEUE_RUN_SECONDS=300
+
+      - VRKN_RADARR_1_URL=10.0.40.123:7878
+      - VRKN_RADARR_1_APIKEY=${VARKEN_RADARR_KEY}
+      - VRKN_RADARR_1_SSL=false
+      - VRKN_RADARR_1_VERIFY_SSL=false
+      - VRKN_RADARR_1_QUEUE=true
+      - VRKN_RADARR_1_QUEUE_RUN_SECONDS=300
+      - VRKN_RADARR_1_GET_MISSING=true
+      - VRKN_RADARR_1_GET_MISSING_RUN_SECONDS=300
+
+      - VRKN_OMBI_1_URL=ombi.securitybits.io
+      - VRKN_OMBI_1_APIKEY=${VARKEN_OMBI_KEY}
+      - VRKN_OMBI_1_SSL=true
+      - VRKN_OMBI_1_VERIFY_SSL=false
+      - VRKN_OMBI_1_GET_REQUEST_TYPE_COUNTS=true
+      - VRKN_OMBI_1_REQUEST_TYPE_RUN_SECONDS=300
+      - VRKN_OMBI_1_GET_REQUEST_TOTAL_COUNTS=true
+      - VRKN_OMBI_1_REQUEST_TOTAL_RUN_SECONDS=300
+      - VRKN_OMBI_1_GET_ISSUE_STATUS_COUNTS=true
+      - VRKN_OMBI_1_ISSUE_STATUS_RUN_SECONDS=300
+
+      - VRKN_UNIFI_1_URL=10.0.0.10:8443
+      - VRKN_UNIFI_1_USERNAME=${VARKEN_UNIFI_USERNAME}
+      - VRKN_UNIFI_1_PASSWORD=${VARKEN_UNIFI_PASSWORD}
+      - VRKN_UNIFI_1_SITE=${VARKEN_UNIFI_USERNAME}
+      - VRKN_UNIFI_1_USG_NAME=MyRouter
+      - VRKN_UNIFI_1_SSL=false
+      - VRKN_UNIFI_1_VERIFY_SSL=false
+      - VRKN_UNIFI_1_GET_USG_STATS_RUN_SECONDS=300
+    depends_on:
+      - influxdb_varken
+    restart: unless-stopped
+
+  telegraf:
+    container_name: telegraf
+    build: ./telegraf
+    restart: unless-stopped
+    volumes:
+      - /docker/conf/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
+      - /docker/conf/telegraf/MIBs:/usr/share/snmp/mibs
+    depends_on: 
+      - influxdb_telegraf
+      - git-checkout
+
+  loki:
+    container_name: loki
+    image: grafana/loki
+    volumes:
+      - /docker/conf/loki/etc/loki:/etc/loki
+    ports:
+      - 3100:3100
+    restart: unless-stopped
+    command: -config.file=/etc/loki/loki-config.yml
+    depends_on:
+      - git-checkout
+    
+  promtail:
+    container_name: promtail
+    image: grafana/promtail
+    volumes:
+      - /var/log:/var/log
+      - /docker/conf/promtail/etc/promtail:/etc/promtail
+    restart: unless-stopped
+    command: -config.file=/etc/promtail/promtail-config.yml -config.expand-env
+    depends_on:
+      - git-checkout
+    
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:main
+    environment:
+      - GF_SERVER_PROTOCOL="http"
+      - GF_SERVER_HTTP_PORT=3000
+      - GF_SERVER_DOMAIN=dash.securitybits.io
+      - GF_SERVER_ROOT_URL=http://dash.securitybits.io
+      - GF_ANALYTICS_REPORTING_ENABLED=false
+      - GF_SECURITY_ADMIN_USER=${GF_ADMIN_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GF_ADMIN_PASSWORD}
+      - GF_ALLOW_SIGN_UP=false
+      - GF_DEFAULT_THEME=dark
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_NAME=Securitybits.io
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+      - GF_INSTALL_PLUGINS=grafana-worldmap-panel,grafana-piechart-panel,yesoreyeram-boomtable-panel,snuids-radar-panel,grafana-polystat-panel
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    depends_on:
+      - influxdb_telegraf
+      - influxdb_varken
+      - influxdb_speedtest
+    volumes:
+      - /docker/conf/grafana/provisioning:/etc/grafana/provisioning
+      - grafana:/var/lib/grafana
+
+volumes:
+  grafana:
+  influxdb_telegraf:
+  influxdb_varken:
+  influxdb_speedtest:
