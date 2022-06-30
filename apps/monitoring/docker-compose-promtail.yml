@@ -1,0 +1,26 @@
+services:
+  git-checkout:
+    container_name: git-checkout-monitoring
+    image: bitnami/git:latest
+    working_dir: /temp
+    command: >
+      bash -c "
+        find /temp -mindepth 1 -delete && 
+        git clone https://github.com/Securitybits-io/homelab.git &&
+        cp -R ./homelab/apps/monitoring/promtail /docker/conf/promtail
+      "
+    volumes:
+      - /docker:/docker
+
+  promtail:
+    container_name: promtail
+    image: grafana/promtail:2.5.0
+    volumes:
+      - /var/log:/var/log
+      - /docker/conf/promtail/etc/promtail:/etc/promtail
+    restart: unless-stopped
+    command: -config.file=/etc/promtail/promtail-config.yml -config.expand-env
+    environment:
+      - DOCKER_HOST=${HOSTNAME}
+    depends_on:
+      - git-checkout
