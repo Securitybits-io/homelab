@@ -1,0 +1,11 @@
+apiVersion: 1
+datasources:
+- access: proxy
+  database: telegraf
+  isDefault: true
+  name: telegraf
+  type: influxdb
+  url: http://influxdb_telegraf:8086
+deleteDatasources:
+- name: telegraf
+  orgid: 1

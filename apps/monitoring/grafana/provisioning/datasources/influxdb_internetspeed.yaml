@@ -1,0 +1,11 @@
+apiVersion: 1
+datasources:
+- access: proxy
+  database: speedtest
+  isDefault: false
+  name: internetspeed
+  type: influxdb
+  url: http://influxdb_speedtest:8086
+deleteDatasources:
+- name: internetspeed
+  orgid: 1

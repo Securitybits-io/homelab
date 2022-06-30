@@ -1,0 +1,2999 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "links": [],
+    "panels": [
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "decimals": 0,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "timeticks"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "PFSense"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "s"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 6,
+          "x": 0,
+          "y": 0
+        },
+        "id": 36,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.3.0",
+        "targets": [
+          {
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "system",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "D",
+            "resultFormat": "table",
+            "select": [
+              [
+                {
+                  "params": [
+                    "uptime"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "PFSense"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "host",
+                "operator": "=",
+                "value": "Bifrost.securitybits.local"
+              }
+            ]
+          },
+          {
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "QNAP_Nidhoggr",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "table",
+            "select": [
+              [
+                {
+                  "params": [
+                    "SystemUptime"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "QNAP"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": []
+          },
+          {
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "UniFi_Core",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "table",
+            "select": [
+              [
+                {
+                  "params": [
+                    "SystemUptime"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "Unifi Core"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": []
+          },
+          {
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "UniFi_NanoHD_Office",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "C",
+            "resultFormat": "table",
+            "select": [
+              [
+                {
+                  "params": [
+                    "SystemUptime"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "Unifi NanoHD"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Uptime",
+        "type": "stat"
+      },
+      {
+        "circleMaxSize": "5",
+        "circleMinSize": 2,
+        "colors": [
+          "#73BF69",
+          "#FF9830",
+          "#F2495C"
+        ],
+        "datasource": null,
+        "decimals": 0,
+        "esGeoPoint": "geohash",
+        "esLocationName": "url",
+        "esMetric": "metric",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 12,
+          "w": 14,
+          "x": 6,
+          "y": 0
+        },
+        "hideEmpty": false,
+        "hideZero": false,
+        "id": 34,
+        "initialZoom": "3",
+        "locationData": "geohash",
+        "mapCenter": "Europe",
+        "mapCenterLatitude": 46,
+        "mapCenterLongitude": 14,
+        "maxDataPoints": 1,
+        "mouseWheelZoom": false,
+        "pluginVersion": "7.3.0",
+        "showLegend": false,
+        "stickyLabels": false,
+        "tableQueryOptions": {
+          "geohashField": "geohash",
+          "latitudeField": "latitude",
+          "longitudeField": "longitude",
+          "metricField": "metric",
+          "queryType": "geohash"
+        },
+        "targets": [
+          {
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "ping",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT percent_packet_loss AS \"metric\" FROM \"ping\" WHERE (\"geohash\" != '') AND time > now() - 2m GROUP BY \"geohash\", \"url\" LIMIT 1\n",
+            "rawQuery": true,
+            "refId": "A",
+            "resultFormat": "table",
+            "select": [
+              [
+                {
+                  "params": [
+                    "percent_packet_loss"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "geohash",
+                "operator": "!=",
+                "value": "''"
+              }
+            ]
+          }
+        ],
+        "thresholds": "25,100",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "",
+        "type": "grafana-worldmap-panel",
+        "unitPlural": "ms",
+        "unitSingle": "",
+        "unitSingular": "ms",
+        "valueName": "total"
+      },
+      {
+        "colors": [
+          "#299c46",
+          "rgba(237, 129, 40, 0.89)",
+          "#d44a3a",
+          "#4040a0"
+        ],
+        "datasource": "telegraf",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 4,
+          "x": 20,
+          "y": 0
+        },
+        "id": 26,
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "$$hashKey": "object:838",
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "$$hashKey": "object:839",
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "pluginVersion": "7.2.2",
+        "polystat": {
+          "animationSpeed": 2500,
+          "columnAutoSize": true,
+          "columns": "",
+          "defaultClickThrough": "",
+          "defaultClickThroughNewTab": false,
+          "defaultClickThroughSanitize": false,
+          "displayLimit": 150,
+          "fontAutoColor": true,
+          "fontAutoScale": true,
+          "fontSize": 12,
+          "fontType": "Roboto",
+          "globalDecimals": 0,
+          "globalDisplayMode": "all",
+          "globalDisplayTextTriggeredEmpty": "OK",
+          "globalOperatorName": "current",
+          "globalThresholds": [
+            {
+              "$$hashKey": "object:739",
+              "color": "#299c46",
+              "state": 0,
+              "value": 0
+            },
+            {
+              "$$hashKey": "object:746",
+              "color": "rgba(237, 129, 40, 0.89)",
+              "state": 1,
+              "value": 60
+            },
+            {
+              "$$hashKey": "object:749",
+              "color": "#d44a3a",
+              "state": 2,
+              "value": 90
+            }
+          ],
+          "globalUnitFormat": "short",
+          "gradientEnabled": true,
+          "hexagonSortByDirection": 1,
+          "hexagonSortByField": "name",
+          "maxMetrics": 0,
+          "polygonBorderColor": "black",
+          "polygonBorderSize": 2,
+          "polygonGlobalFillColor": "#0a50a1",
+          "radius": "",
+          "radiusAutoSize": true,
+          "rowAutoSize": true,
+          "rows": "",
+          "shape": "hexagon_pointed_top",
+          "tooltipDisplayMode": "all",
+          "tooltipDisplayTextTriggeredEmpty": "OK",
+          "tooltipFontSize": 12,
+          "tooltipFontType": "Roboto",
+          "tooltipPrimarySortDirection": 2,
+          "tooltipPrimarySortField": "thresholdLevel",
+          "tooltipSecondarySortDirection": 2,
+          "tooltipSecondarySortField": "value",
+          "tooltipTimestampEnabled": true,
+          "valueEnabled": true
+        },
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "savedComposites": [],
+        "savedOverrides": [],
+        "targets": [
+          {
+            "alias": "$tag_vmname",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "vmname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "vsphere_vm_mem",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT last(\"usage_average\") FROM \"vsphere_vm_cpu\" AND $timeFilter GROUP BY time($__interval) fill(null)\n",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "usage_average"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "VM Memory Used",
+        "type": "grafana-polystat-panel",
+        "valueMaps": [
+          {
+            "$$hashKey": "object:841",
+            "op": "=",
+            "text": "0",
+            "value": "null"
+          }
+        ]
+      },
+      {
+        "colors": [
+          "#299c46",
+          "rgba(237, 129, 40, 0.89)",
+          "#d44a3a",
+          "#4040a0"
+        ],
+        "datasource": "telegraf",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 4,
+          "x": 20,
+          "y": 3
+        },
+        "id": 30,
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "$$hashKey": "object:838",
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "$$hashKey": "object:839",
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "pluginVersion": "7.2.2",
+        "polystat": {
+          "animationSpeed": 2500,
+          "columnAutoSize": true,
+          "columns": "",
+          "defaultClickThrough": "",
+          "defaultClickThroughNewTab": false,
+          "defaultClickThroughSanitize": false,
+          "displayLimit": 150,
+          "fontAutoColor": true,
+          "fontAutoScale": true,
+          "fontSize": 12,
+          "fontType": "Roboto",
+          "globalDecimals": 0,
+          "globalDisplayMode": "all",
+          "globalDisplayTextTriggeredEmpty": "OK",
+          "globalOperatorName": "current",
+          "globalThresholds": [
+            {
+              "$$hashKey": "object:739",
+              "color": "#299c46",
+              "state": 0,
+              "value": 0
+            },
+            {
+              "$$hashKey": "object:746",
+              "color": "rgba(237, 129, 40, 0.89)",
+              "state": 1,
+              "value": 60
+            },
+            {
+              "$$hashKey": "object:749",
+              "color": "#d44a3a",
+              "state": 2,
+              "value": 80
+            }
+          ],
+          "globalUnitFormat": "short",
+          "gradientEnabled": true,
+          "hexagonSortByDirection": 1,
+          "hexagonSortByField": "name",
+          "maxMetrics": 0,
+          "polygonBorderColor": "black",
+          "polygonBorderSize": 2,
+          "polygonGlobalFillColor": "#0a50a1",
+          "radius": "",
+          "radiusAutoSize": true,
+          "rowAutoSize": true,
+          "rows": "",
+          "shape": "hexagon_pointed_top",
+          "tooltipDisplayMode": "all",
+          "tooltipDisplayTextTriggeredEmpty": "OK",
+          "tooltipFontSize": 12,
+          "tooltipFontType": "Roboto",
+          "tooltipPrimarySortDirection": 2,
+          "tooltipPrimarySortField": "thresholdLevel",
+          "tooltipSecondarySortDirection": 2,
+          "tooltipSecondarySortField": "value",
+          "tooltipTimestampEnabled": true,
+          "valueEnabled": true
+        },
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "savedComposites": [],
+        "savedOverrides": [],
+        "targets": [
+          {
+            "alias": "$tag_host",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "host"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "disk",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "used_percent"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "path",
+                "operator": "=",
+                "value": "/"
+              },
+              {
+                "condition": "OR",
+                "key": "path",
+                "operator": "=",
+                "value": "/var/run"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Disk Used",
+        "type": "grafana-polystat-panel",
+        "valueMaps": [
+          {
+            "$$hashKey": "object:841",
+            "op": "=",
+            "text": "0",
+            "value": "null"
+          }
+        ]
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "decimals": 0,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "orange",
+                  "value": 90
+                },
+                {
+                  "color": "red",
+                  "value": 120
+                }
+              ]
+            },
+            "unit": "watt"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 6,
+          "x": 0,
+          "y": 6
+        },
+        "id": 37,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.3.0",
+        "targets": [
+          {
+            "alias": "$tag_server",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "server"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "ipmi_sensor",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "unit",
+                "operator": "=",
+                "value": "watts"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Power Consumption",
+        "type": "stat"
+      },
+      {
+        "colors": [
+          "#299c46",
+          "rgba(237, 129, 40, 0.89)",
+          "#d44a3a",
+          "#4040a0"
+        ],
+        "datasource": "telegraf",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 4,
+          "x": 20,
+          "y": 6
+        },
+        "id": 25,
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "$$hashKey": "object:838",
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "$$hashKey": "object:839",
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "pluginVersion": "7.2.2",
+        "polystat": {
+          "animationSpeed": 2500,
+          "columnAutoSize": true,
+          "columns": "",
+          "defaultClickThrough": "",
+          "defaultClickThroughNewTab": false,
+          "defaultClickThroughSanitize": false,
+          "displayLimit": 150,
+          "fontAutoColor": true,
+          "fontAutoScale": true,
+          "fontSize": 12,
+          "fontType": "Roboto",
+          "globalDecimals": 0,
+          "globalDisplayMode": "all",
+          "globalDisplayTextTriggeredEmpty": "OK",
+          "globalOperatorName": "current",
+          "globalThresholds": [
+            {
+              "$$hashKey": "object:739",
+              "color": "#299c46",
+              "state": 0,
+              "value": 0
+            },
+            {
+              "$$hashKey": "object:746",
+              "color": "rgba(237, 129, 40, 0.89)",
+              "state": 1,
+              "value": 60
+            },
+            {
+              "$$hashKey": "object:749",
+              "color": "#d44a3a",
+              "state": 2,
+              "value": 90
+            }
+          ],
+          "globalUnitFormat": "short",
+          "gradientEnabled": true,
+          "hexagonSortByDirection": 1,
+          "hexagonSortByField": "name",
+          "maxMetrics": 0,
+          "polygonBorderColor": "black",
+          "polygonBorderSize": 2,
+          "polygonGlobalFillColor": "#0a50a1",
+          "radius": "",
+          "radiusAutoSize": true,
+          "rowAutoSize": true,
+          "rows": "",
+          "shape": "hexagon_pointed_top",
+          "tooltipDisplayMode": "all",
+          "tooltipDisplayTextTriggeredEmpty": "OK",
+          "tooltipFontSize": 12,
+          "tooltipFontType": "Roboto",
+          "tooltipPrimarySortDirection": 2,
+          "tooltipPrimarySortField": "thresholdLevel",
+          "tooltipSecondarySortDirection": 2,
+          "tooltipSecondarySortField": "value",
+          "tooltipTimestampEnabled": true,
+          "valueEnabled": true
+        },
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "savedComposites": [],
+        "savedOverrides": [],
+        "targets": [
+          {
+            "alias": "$tag_vmname",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "vmname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "vsphere_vm_cpu",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT last(\"usage_average\") FROM \"vsphere_vm_cpu\" AND $timeFilter GROUP BY time($__interval) fill(null)\n",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "usage_average"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "VM CPU Load",
+        "type": "grafana-polystat-panel",
+        "valueMaps": [
+          {
+            "$$hashKey": "object:841",
+            "op": "=",
+            "text": "0",
+            "value": "null"
+          }
+        ]
+      },
+      {
+        "colors": [
+          "#299c46",
+          "rgba(237, 129, 40, 0.89)",
+          "#d44a3a",
+          "#4040a0"
+        ],
+        "datasource": "telegraf",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 4,
+          "x": 20,
+          "y": 9
+        },
+        "id": 29,
+        "mappingType": 1,
+        "mappingTypes": [
+          {
+            "$$hashKey": "object:838",
+            "name": "value to text",
+            "value": 1
+          },
+          {
+            "$$hashKey": "object:839",
+            "name": "range to text",
+            "value": 2
+          }
+        ],
+        "maxDataPoints": 100,
+        "pluginVersion": "7.2.2",
+        "polystat": {
+          "animationSpeed": 2500,
+          "columnAutoSize": true,
+          "columns": "",
+          "defaultClickThrough": "",
+          "defaultClickThroughNewTab": false,
+          "defaultClickThroughSanitize": false,
+          "displayLimit": 150,
+          "fontAutoColor": false,
+          "fontAutoScale": true,
+          "fontColor": "black",
+          "fontSize": 4,
+          "fontType": "Roboto",
+          "globalDecimals": 0,
+          "globalDisplayMode": "all",
+          "globalDisplayTextTriggeredEmpty": "OK",
+          "globalOperatorName": "current",
+          "globalThresholds": [
+            {
+              "$$hashKey": "object:739",
+              "color": "#299c46",
+              "state": 0,
+              "value": 0
+            },
+            {
+              "$$hashKey": "object:746",
+              "color": "rgba(237, 129, 40, 0.89)",
+              "state": 1,
+              "value": 60
+            },
+            {
+              "$$hashKey": "object:749",
+              "color": "#d44a3a",
+              "state": 2,
+              "value": 80
+            }
+          ],
+          "globalUnitFormat": "short",
+          "gradientEnabled": true,
+          "hexagonSortByDirection": 1,
+          "hexagonSortByField": "name",
+          "maxMetrics": 0,
+          "polygonBorderColor": "black",
+          "polygonBorderSize": 2,
+          "polygonGlobalFillColor": "#0a50a1",
+          "radius": "",
+          "radiusAutoSize": true,
+          "rowAutoSize": true,
+          "rows": "",
+          "shape": "hexagon_pointed_top",
+          "tooltipDisplayMode": "all",
+          "tooltipDisplayTextTriggeredEmpty": "OK",
+          "tooltipFontSize": 12,
+          "tooltipFontType": "Roboto",
+          "tooltipPrimarySortDirection": 2,
+          "tooltipPrimarySortField": "thresholdLevel",
+          "tooltipSecondarySortDirection": 2,
+          "tooltipSecondarySortField": "value",
+          "tooltipTimestampEnabled": true,
+          "valueEnabled": true
+        },
+        "rangeMaps": [
+          {
+            "from": "null",
+            "text": "N/A",
+            "to": "null"
+          }
+        ],
+        "savedComposites": [],
+        "savedOverrides": [],
+        "targets": [
+          {
+            "alias": "$tag_server",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "server"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "ipmi_sensor",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "unit",
+                "operator": "=",
+                "value": "degrees_c"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Host CPU Temp",
+        "type": "grafana-polystat-panel",
+        "valueMaps": [
+          {
+            "$$hashKey": "object:841",
+            "op": "=",
+            "text": "0",
+            "value": "null"
+          }
+        ]
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "internetspeed",
+        "decimals": 0,
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "unit": "bps"
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 5,
+          "w": 18,
+          "x": 0,
+          "y": 12
+        },
+        "hiddenSeries": false,
+        "id": 31,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": false,
+          "max": false,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.3.0",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "Download",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "none"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "download",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": []
+          },
+          {
+            "alias": "Upload",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "none"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "upload",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [
+          {
+            "$$hashKey": "object:320",
+            "colorMode": "background6",
+            "fill": true,
+            "fillColor": "rgba(234, 112, 112, 0.12)",
+            "line": false,
+            "lineColor": "rgba(237, 46, 24, 0.60)",
+            "op": "time"
+          }
+        ],
+        "timeShift": null,
+        "title": "Speedtest",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:211",
+            "format": "bps",
+            "label": "Speed",
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:212",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "datasource": "internetspeed",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {},
+            "displayName": "Ping Rate",
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 5
+                },
+                {
+                  "color": "orange",
+                  "value": 10
+                },
+                {
+                  "color": "red",
+                  "value": 20
+                }
+              ]
+            },
+            "unit": "ms"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 6,
+          "x": 18,
+          "y": 12
+        },
+        "id": 32,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "mean"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.3.0",
+        "targets": [
+          {
+            "alias": "Ping Rate",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "none"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "ping",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    " / 10"
+                  ],
+                  "type": "math"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "",
+        "type": "stat"
+      },
+      {
+        "datasource": "varken",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 1,
+          "w": 20,
+          "x": 0,
+          "y": 17
+        },
+        "id": 2,
+        "options": {
+          "content": "# Title\n\nFor markdown syntax help: [commonmark.org/help](https://commonmark.org/help/)\n         ",
+          "mode": "markdown"
+        },
+        "pluginVersion": "7.3.0",
+        "targets": [
+          {
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Plex",
+        "type": "text"
+      },
+      {
+        "datasource": "varken",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 1,
+          "w": 4,
+          "x": 20,
+          "y": 17
+        },
+        "id": 3,
+        "options": {
+          "content": "# Title\n\nFor markdown syntax help: [commonmark.org/help](https://commonmark.org/help/)\n         ",
+          "mode": "markdown"
+        },
+        "pluginVersion": "7.3.0",
+        "targets": [
+          {
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Ombi",
+        "type": "text"
+      },
+      {
+        "datasource": "varken",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "Kbits"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 9,
+          "x": 0,
+          "y": 18
+        },
+        "id": 12,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.3.0",
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "Tautulli",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(\"value\") FROM \"Tautulli\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "lan_bandwidth"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "LAN Bandwidth",
+        "type": "stat"
+      },
+      {
+        "datasource": "varken",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "displayName": "Total",
+            "mappings": [
+              {
+                "from": "",
+                "id": 0,
+                "text": "0",
+                "to": "",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "orange",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 5,
+          "x": 9,
+          "y": 18
+        },
+        "id": 14,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "limit": 1,
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.3.0",
+        "targets": [
+          {
+            "groupBy": [],
+            "hide": false,
+            "measurement": "Tautulli",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT last(\"total\") FROM \"Tautulli\" WHERE (\"type\" = 'library_stats' AND \"section_name\" =\"Movies\") AND $timeFilter\n",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "stream_count"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "",
+        "type": "stat"
+      },
+      {
+        "datasource": "varken",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "displayName": "Movies",
+            "mappings": [
+              {
+                "from": "",
+                "id": 0,
+                "text": "0",
+                "to": "",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "light-green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 14,
+          "y": 18
+        },
+        "id": 7,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "limit": 1,
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.3.0",
+        "targets": [
+          {
+            "groupBy": [],
+            "hide": false,
+            "measurement": "Tautulli",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT last(\"total\") FROM \"Tautulli\" WHERE (\"type\" = 'library_stats' AND \"section_name\" =\"Movies\") AND $timeFilter\n",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "total"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "type",
+                "operator": "=",
+                "value": "library_stats"
+              },
+              {
+                "condition": "AND",
+                "key": "section_name",
+                "operator": "=",
+                "value": "Movies"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "",
+        "type": "stat"
+      },
+      {
+        "datasource": "varken",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "displayName": "Missing Movies",
+            "mappings": [
+              {
+                "from": "",
+                "id": 0,
+                "text": "0",
+                "to": "",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "light-green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 17,
+          "y": 18
+        },
+        "id": 9,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "limit": 1,
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.3.0",
+        "targets": [
+          {
+            "groupBy": [],
+            "hide": false,
+            "measurement": "Radarr",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT last(\"total\") FROM \"Tautulli\" WHERE (\"type\" = 'library_stats' AND \"section_name\" =\"Movies\") AND $timeFilter\n",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hash"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "distinct"
+                },
+                {
+                  "params": [],
+                  "type": "count"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "Missing_Available",
+                "operator": "=",
+                "value": "0"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "",
+        "type": "stat"
+      },
+      {
+        "datasource": "varken",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "displayName": "Pending Requests",
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "semi-dark-blue",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 4,
+          "x": 20,
+          "y": 18
+        },
+        "id": 5,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "limit": 1,
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.3.0",
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "Ombi",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "pending"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "type",
+                "operator": "=",
+                "value": "Request_Counts"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "",
+        "type": "stat"
+      },
+      {
+        "datasource": "varken",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "displayName": "Direct Play",
+            "mappings": [
+              {
+                "from": "",
+                "id": 0,
+                "text": "0",
+                "to": "",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "orange",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 5,
+          "x": 9,
+          "y": 20
+        },
+        "id": 15,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "limit": 1,
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.3.0",
+        "targets": [
+          {
+            "groupBy": [],
+            "hide": false,
+            "measurement": "Tautulli",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT last(\"total\") FROM \"Tautulli\" WHERE (\"type\" = 'library_stats' AND \"section_name\" =\"Movies\") AND $timeFilter\n",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "direct_play_streams"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "",
+        "type": "stat"
+      },
+      {
+        "datasource": "varken",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "Kbits"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 9,
+          "x": 0,
+          "y": 21
+        },
+        "id": 13,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "area",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.3.0",
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "Tautulli",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(\"value\") FROM \"Tautulli\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "wan_bandwidth"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "WAN Bandwidth",
+        "type": "stat"
+      },
+      {
+        "datasource": "varken",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "displayName": "TV Shows",
+            "mappings": [
+              {
+                "from": "",
+                "id": 0,
+                "text": "0",
+                "to": "",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "light-blue",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 14,
+          "y": 21
+        },
+        "id": 8,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "limit": 1,
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.3.0",
+        "targets": [
+          {
+            "groupBy": [],
+            "hide": false,
+            "measurement": "Tautulli",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT last(\"total\") FROM \"Tautulli\" WHERE (\"type\" = 'library_stats' AND \"section_name\" =\"Movies\") AND $timeFilter\n",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "total"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "type",
+                "operator": "=",
+                "value": "library_stats"
+              },
+              {
+                "condition": "AND",
+                "key": "section_name",
+                "operator": "=",
+                "value": "TV Shows"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "",
+        "type": "stat"
+      },
+      {
+        "datasource": "varken",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "displayName": "Missing Episodes",
+            "mappings": [
+              {
+                "from": "",
+                "id": 0,
+                "text": "0",
+                "to": "",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "light-blue",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byRegexp"
+              },
+              "properties": []
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 3,
+          "x": 17,
+          "y": 21
+        },
+        "hideTimeOverride": true,
+        "id": 10,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "limit": 1,
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.3.0",
+        "targets": [
+          {
+            "groupBy": [],
+            "hide": false,
+            "measurement": "Sonarr",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT last(\"total\") FROM \"Tautulli\" WHERE (\"type\" = 'library_stats' AND \"section_name\" =\"Movies\") AND $timeFilter\n",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hash"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "count"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "type",
+                "operator": "=",
+                "value": "Missing"
+              }
+            ]
+          }
+        ],
+        "timeFrom": "7d",
+        "timeShift": null,
+        "title": "",
+        "type": "stat"
+      },
+      {
+        "datasource": "varken",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "displayName": "Completed Requests",
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "semi-dark-blue",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 3,
+          "w": 4,
+          "x": 20,
+          "y": 21
+        },
+        "id": 6,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "limit": 1,
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.3.0",
+        "targets": [
+          {
+            "groupBy": [],
+            "measurement": "Ombi",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "available"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "type",
+                "operator": "=",
+                "value": "Request_Counts"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "",
+        "type": "stat"
+      },
+      {
+        "datasource": "varken",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "displayName": "Transcode",
+            "mappings": [
+              {
+                "from": "",
+                "id": 0,
+                "text": "0",
+                "to": "",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "orange",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 2,
+          "w": 5,
+          "x": 9,
+          "y": 22
+        },
+        "id": 16,
+        "options": {
+          "colorMode": "background",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "horizontal",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "limit": 1,
+            "values": false
+          },
+          "textMode": "auto"
+        },
+        "pluginVersion": "7.3.0",
+        "targets": [
+          {
+            "groupBy": [],
+            "hide": false,
+            "measurement": "Tautulli",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT last(\"total\") FROM \"Tautulli\" WHERE (\"type\" = 'library_stats' AND \"section_name\" =\"Movies\") AND $timeFilter\n",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "transcode_streams"
+                  ],
+                  "type": "field"
+                }
+              ]
+            ],
+            "tags": []
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "",
+        "type": "stat"
+      },
+      {
+        "circleMaxSize": "5",
+        "circleMinSize": 2,
+        "colors": [
+          "#73BF69",
+          "#FF9830",
+          "#F2495C"
+        ],
+        "datasource": "varken",
+        "decimals": 0,
+        "esMetric": "Count",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 24
+        },
+        "hideEmpty": false,
+        "hideZero": false,
+        "id": 18,
+        "initialZoom": 1,
+        "locationData": "table",
+        "mapCenter": "Europe",
+        "mapCenterLatitude": 46,
+        "mapCenterLongitude": 14,
+        "maxDataPoints": 1,
+        "mouseWheelZoom": true,
+        "pluginVersion": "7.2.0",
+        "showLegend": true,
+        "stickyLabels": false,
+        "tableQueryOptions": {
+          "geohashField": "geohash",
+          "labelField": "full_location",
+          "latitudeField": "latitude",
+          "longitudeField": "longitude",
+          "metricField": "metric",
+          "queryType": "coordinates"
+        },
+        "targets": [
+          {
+            "groupBy": [
+              {
+                "params": [
+                  "longitude"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "latitude"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "full_location"
+                ],
+                "type": "tag"
+              }
+            ],
+            "measurement": "Tautulli",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "table",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hash"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "distinct"
+                },
+                {
+                  "params": [],
+                  "type": "count"
+                },
+                {
+                  "params": [
+                    "metric"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "type",
+                "operator": "=",
+                "value": "Session"
+              }
+            ]
+          }
+        ],
+        "thresholds": "2,3",
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Location",
+        "type": "grafana-worldmap-panel",
+        "unitPlural": "Streams",
+        "unitSingle": "",
+        "unitSingular": "Stream",
+        "valueName": "current"
+      },
+      {
+        "aliasColors": {},
+        "breakPoint": "50%",
+        "cacheTimeout": null,
+        "combine": {
+          "label": "Others",
+          "threshold": 0
+        },
+        "datasource": "varken",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fontSize": "80%",
+        "format": "none",
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 12,
+          "y": 24
+        },
+        "id": 20,
+        "interval": null,
+        "legend": {
+          "percentage": true,
+          "show": true,
+          "values": true
+        },
+        "legendType": "Under graph",
+        "links": [],
+        "nullPointMode": "connected",
+        "pieType": "donut",
+        "pluginVersion": "7.2.0",
+        "strokeWidth": 1,
+        "targets": [
+          {
+            "alias": "$tag_video_decision",
+            "groupBy": [
+              {
+                "params": [
+                  "1w"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "video_decision"
+                ],
+                "type": "tag"
+              }
+            ],
+            "measurement": "Tautulli",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hash"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "distinct"
+                },
+                {
+                  "params": [],
+                  "type": "count"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "type",
+                "operator": "=",
+                "value": "Session"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Stream Types",
+        "type": "grafana-piechart-panel",
+        "valueName": "total"
+      },
+      {
+        "aliasColors": {},
+        "breakPoint": "50%",
+        "cacheTimeout": null,
+        "combine": {
+          "label": "Others",
+          "threshold": 0
+        },
+        "datasource": "varken",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fontSize": "80%",
+        "format": "none",
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 18,
+          "y": 24
+        },
+        "id": 21,
+        "interval": null,
+        "legend": {
+          "percentage": true,
+          "show": true,
+          "values": true
+        },
+        "legendType": "Under graph",
+        "links": [],
+        "nullPointMode": "connected",
+        "pieType": "donut",
+        "pluginVersion": "7.2.0",
+        "strokeWidth": 1,
+        "targets": [
+          {
+            "alias": "$tag_username",
+            "groupBy": [
+              {
+                "params": [
+                  "username"
+                ],
+                "type": "tag"
+              }
+            ],
+            "measurement": "Tautulli",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hash"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "distinct"
+                },
+                {
+                  "params": [],
+                  "type": "count"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "type",
+                "operator": "=",
+                "value": "Session"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Users",
+        "type": "grafana-piechart-panel",
+        "valueName": "total"
+      },
+      {
+        "datasource": "varken",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "align": null,
+              "filterable": false
+            },
+            "mappings": [
+              {
+                "from": "",
+                "id": 0,
+                "text": "Playing",
+                "to": "",
+                "type": 1,
+                "value": "0"
+              },
+              {
+                "from": "",
+                "id": 1,
+                "text": "Stopped",
+                "to": "",
+                "type": 1,
+                "value": "1"
+              }
+            ],
+            "noValue": "na",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "player_state"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 117
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Time"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Player State"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 136
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Device"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 92
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Quality"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 78
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Location"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 104
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 24,
+          "x": 0,
+          "y": 32
+        },
+        "id": 23,
+        "options": {
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "7.3.0",
+        "targets": [
+          {
+            "groupBy": [
+              {
+                "params": [
+                  "title"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "friendly_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "quality"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "device_type"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "player_state"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "video_decision"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "full_location"
+                ],
+                "type": "tag"
+              }
+            ],
+            "measurement": "Tautulli",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT distinct(\"hash\") FROM \"Tautulli\" WHERE (\"type\" = 'Session') AND $timeFilter GROUP BY \"title\", \"friendly_name\", \"quality\", \"video_decision\", \"quality_profile\", \"platform\", \"product_version\", \"full_location\", \"username\", \"player_state\"",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "table",
+            "select": [
+              [
+                {
+                  "params": [
+                    "hash"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "distinct"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "type",
+                "operator": "=",
+                "value": "Session"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Online Users",
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Time": true,
+                "distinct": true
+              },
+              "indexByName": {
+                "Time": 0,
+                "device_type": 3,
+                "distinct": 8,
+                "friendly_name": 1,
+                "full_location": 2,
+                "player_state": 4,
+                "quality": 5,
+                "title": 6,
+                "video_decision": 7
+              },
+              "renameByName": {
+                "device_type": "Device",
+                "friendly_name": "User",
+                "full_location": "Location",
+                "player_state": "Player State",
+                "quality": "Quality",
+                "title": "Media",
+                "video_decision": "Decision"
+              }
+            }
+          }
+        ],
+        "type": "table"
+      }
+    ],
+    "refresh": "1m",
+    "schemaVersion": 26,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-3h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Homepage",
+    "uid": "Qa795gKGk",
+    "version": 4
+  }
