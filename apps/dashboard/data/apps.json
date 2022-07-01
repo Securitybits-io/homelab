@@ -33,6 +33,12 @@
             "icon": "directions_boat"
           },
           {
+            "name": "Proxmox-1",
+            "displayURL": "Proxmox1.Securitybits.local",
+            "url": "https://Proxmox1.Securitybits.local:8006",
+            "icon": "dns"
+          },
+          {
             "name": "vCenter",
             "displayURL": "vCenter.Securitybits.local",
             "url": "https://sb-vCenter-01.Securitybits.local",
