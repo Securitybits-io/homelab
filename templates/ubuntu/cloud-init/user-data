@@ -1,0 +1,38 @@
+#cloud-config
+autoinstall:
+    version: 1
+    early-commands:
+        # Stop ssh for packer
+        - sudo systemctl stop ssh
+    locale: en_US
+    keyboard:
+        layout: se
+    packages:
+        - qemu-guest-agent
+    identity:
+        hostname: ubuntu-server
+        username: packer
+        password: '$6$hLEXfpKG26Z$baWiA9UbYXBIQTXbMd1.rAiI3PvkcsYhSEQVBve3rVMdM8y2zMHLxQOfTrcxkSYeiElO.Y6OFeQGq3Vt0dy0p.'
+    ssh:
+        install-server: yes
+        allow-pw: yes
+    storage:
+        layout:
+            name: direct
+    apt:
+        primary:
+            - arches: [i386, amd64]
+              uri: "http://ro.archive.ubuntu.com/ubuntu/"
+    user-data:
+        package_upgrade: true
+        disable_root: false
+        timezone: Europe/London
+    late-commands:
+      - sed -i -e 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /target/etc/ssh/sshd_config
+      - sed -i -e 's/^#\?PermitRootLogin.*/PermitRootLogin yes/g' /target/etc/ssh/sshd_config
+      - echo 'packer ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/packer
+      - mkdir /target/root/.ssh
+      - echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrMj8vbm63w15UjwkaEOc1hlRnPDyo6o2tnJ+XeIs5/Vweql/KVsKwrCDW06TvssgY4mPTPLZ7K+a/cY6ioVC5FfMeB9+IPRvjra+MM3BP8Eo0L0wi/znd0aeeUIrBNSQ46kLD71/gZoljN9byQGxYs+eB8QpC73Ncd/LPCwZm17s5fH6cOUZh1wItho3v5pgGmsyRTrJJym+rGrmHbsEwnS0VjWHA6TI1B8B5J/jtQdqw8lSmGwl4EWhXNthVfCianc1OTTuyGCdbNBaPQHCeviY5kDXtQInDssOxh7QQL6D8h37DDDMSkL49uktqM1uRBFNM4lhOm9e9LevJrhyt root@salt' >> /target/root/.ssh/authorized_keys
+      - curtin in-target --target=/target -- chmod 440 /etc/sudoers.d/packer
+      - curtin in-target --target=/target -- apt-get update
+      - curtin in-target --target=/target -- apt-get upgrade --yes
