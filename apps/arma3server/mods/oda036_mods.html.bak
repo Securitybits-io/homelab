@@ -86,6 +86,15 @@ a:hover {
     <div class="mod-list">
       <table>
         <tr data-type="ModContainer">
+          <td data-type="DisplayName">3CB Factions</td>
+          <td>
+            <span class="from-steam">Steam</span>
+          </td>
+          <td>
+            <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=1673456286" data-type="Link">http://steamcommunity.com/sharedfiles/filedetails/?id=1673456286</a>
+          </td>
+        </tr>
+        <tr data-type="ModContainer">
           <td data-type="DisplayName">ace</td>
           <td>
             <span class="from-steam">Steam</span>
@@ -95,12 +104,66 @@ a:hover {
           </td>
         </tr>
         <tr data-type="ModContainer">
+          <td data-type="DisplayName">ACE Compat - RHS AFRF</td>
+          <td>
+            <span class="from-steam">Steam</span>
+          </td>
+          <td>
+            <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=773131200" data-type="Link">http://steamcommunity.com/sharedfiles/filedetails/?id=773131200</a>
+          </td>
+        </tr>
+        <tr data-type="ModContainer">
           <td data-type="DisplayName">ACE Compat - RHS USAF</td>
           <td>
             <span class="from-steam">Steam</span>
           </td>
           <td>
             <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=773125288" data-type="Link">http://steamcommunity.com/sharedfiles/filedetails/?id=773125288</a>
+          </td>
+        </tr>
+        <tr data-type="ModContainer">
+          <td data-type="DisplayName">ACE Compat - RHS: GREF</td>
+          <td>
+            <span class="from-steam">Steam</span>
+          </td>
+          <td>
+            <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=884966711" data-type="Link">http://steamcommunity.com/sharedfiles/filedetails/?id=884966711</a>
+          </td>
+        </tr>
+        <tr data-type="ModContainer">
+          <td data-type="DisplayName">ACE Compat - RHS: SAF</td>
+          <td>
+            <span class="from-steam">Steam</span>
+          </td>
+          <td>
+            <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=2174495332" data-type="Link">http://steamcommunity.com/sharedfiles/filedetails/?id=2174495332</a>
+          </td>
+        </tr>
+        <tr data-type="ModContainer">
+          <td data-type="DisplayName">ACE Interaction Menu Expansion</td>
+          <td>
+            <span class="from-steam">Steam</span>
+          </td>
+          <td>
+            <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=1376867375" data-type="Link">http://steamcommunity.com/sharedfiles/filedetails/?id=1376867375</a>
+          </td>
+        </tr>
+        <tr data-type="ModContainer">
+          <td data-type="DisplayName">ACE3 Arsenal Extended - Core</td>
+          <td>
+            <span class="from-steam">Steam</span>
+          </td>
+          <td>
+            <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=2522638637" data-type="Link">http://steamcommunity.com/sharedfiles/filedetails/?id=2522638637</a>
+          </td>
+        </tr>
+        <tr data-type="ModContainer">
+          <td data-type="DisplayName">ACE3 Arsenal Extended for USP AIO</td>
+          <td>
+            <span class="from-steam">Steam</span>
+          </td>
+          <td>
+            <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=2522642015" data-type="Link">http://steamcommunity.com/sharedfiles/filedetails/?id=2522642015</a>
           </td>
         </tr>
         <tr data-type="ModContainer">
@@ -119,15 +182,6 @@ a:hover {
           </td>
           <td>
             <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=2372036642" data-type="Link">http://steamcommunity.com/sharedfiles/filedetails/?id=2372036642</a>
-          </td>
-        </tr>
-        <tr data-type="ModContainer">
-          <td data-type="DisplayName">Better Inventory</td>
-          <td>
-            <span class="from-steam">Steam</span>
-          </td>
-          <td>
-            <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=2791403093" data-type="Link">http://steamcommunity.com/sharedfiles/filedetails/?id=2791403093</a>
           </td>
         </tr>
         <tr data-type="ModContainer">
@@ -185,12 +239,30 @@ a:hover {
           </td>
         </tr>
         <tr data-type="ModContainer">
+          <td data-type="DisplayName">Drongos Map Population</td>
+          <td>
+            <span class="from-steam">Steam</span>
+          </td>
+          <td>
+            <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=1990653162" data-type="Link">http://steamcommunity.com/sharedfiles/filedetails/?id=1990653162</a>
+          </td>
+        </tr>
+        <tr data-type="ModContainer">
           <td data-type="DisplayName">Enhanced Movement</td>
           <td>
             <span class="from-steam">Steam</span>
           </td>
           <td>
             <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=333310405" data-type="Link">http://steamcommunity.com/sharedfiles/filedetails/?id=333310405</a>
+          </td>
+        </tr>
+        <tr data-type="ModContainer">
+          <td data-type="DisplayName">ODA-036 Modpack</td>
+          <td>
+            <span class="from-steam">Steam</span>
+          </td>
+          <td>
+            <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=2796778751" data-type="Link">http://steamcommunity.com/sharedfiles/filedetails/?id=2796778751</a>
           </td>
         </tr>
         <tr data-type="ModContainer">
@@ -203,6 +275,33 @@ a:hover {
           </td>
         </tr>
         <tr data-type="ModContainer">
+          <td data-type="DisplayName">RHSAFRF</td>
+          <td>
+            <span class="from-steam">Steam</span>
+          </td>
+          <td>
+            <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=843425103" data-type="Link">http://steamcommunity.com/sharedfiles/filedetails/?id=843425103</a>
+          </td>
+        </tr>
+        <tr data-type="ModContainer">
+          <td data-type="DisplayName">RHSGREF</td>
+          <td>
+            <span class="from-steam">Steam</span>
+          </td>
+          <td>
+            <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=843593391" data-type="Link">http://steamcommunity.com/sharedfiles/filedetails/?id=843593391</a>
+          </td>
+        </tr>
+        <tr data-type="ModContainer">
+          <td data-type="DisplayName">RHSSAF</td>
+          <td>
+            <span class="from-steam">Steam</span>
+          </td>
+          <td>
+            <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=843632231" data-type="Link">http://steamcommunity.com/sharedfiles/filedetails/?id=843632231</a>
+          </td>
+        </tr>
+        <tr data-type="ModContainer">
           <td data-type="DisplayName">RHSUSAF</td>
           <td>
             <span class="from-steam">Steam</span>
@@ -212,12 +311,12 @@ a:hover {
           </td>
         </tr>
         <tr data-type="ModContainer">
-          <td data-type="DisplayName">Rosche, Germany</td>
+          <td data-type="DisplayName">Simplex Support Services</td>
           <td>
             <span class="from-steam">Steam</span>
           </td>
           <td>
-            <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=1527410521" data-type="Link">http://steamcommunity.com/sharedfiles/filedetails/?id=1527410521</a>
+            <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=1850026051" data-type="Link">http://steamcommunity.com/sharedfiles/filedetails/?id=1850026051</a>
           </td>
         </tr>
         <tr data-type="ModContainer">
