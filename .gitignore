@@ -1,0 +1,5 @@
+platform/credentials.auto.tfvars
+platform/terraform.tfstate.backup
+platform/terraform.tfstate
+platform/.terraform*
+platform/.terraform/*
