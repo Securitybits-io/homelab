@@ -50,4 +50,18 @@ resource "proxmox_vm_qemu" "host250GB" {
     # sshkeys = <<EOF
     # #PUB SSH KEY
     # EOF
+
+    connection {
+      type      = "ssh"
+      user      = var.SSH_USER
+      password  = var.SSH_PASS
+      host      = self.ssh_host
+    }
+
+    provisioner "remote-exec" {
+      inline = [
+          "sudo hostnamectl set-hostname ${self.name}",
+          "sudo /usr/sbin/shutdown -r 1"
+        ]
+    }
 }

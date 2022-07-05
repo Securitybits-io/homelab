@@ -1,55 +1,31 @@
-resource "proxmox_vm_qemu" "host100GB" {
+resource "proxmox_vm_qemu" "mgmt-docker-01" {
     
     # VM General Settings
     target_node = "proxmox1"
-    name = "name"
+    name = "mgmt-docker-01"
     desc = "Created with Terraform"
-
-    # VM Advanced General Settings
     onboot = true 
-
-    # VM OS Settings
     clone = "Ubuntu-20.04-Template-100GB"
-
-    # VM System Settings
     agent = 1
-    
-    # VM CPU Settings
-    cores = 1
+    cores = 2
     sockets = 1
     cpu = "host"    
+    memory = 2048
     
-    # VM Memory Settings
-    memory = 1024
-    
-    # VM Network Settings
     network {
-        macaddr = "DE:AD:BE:EF:C0:FE"
+        macaddr = "ee:95:66:f2:ca:3e"
         bridge = "vmbr0"
         model  = "virtio"
         tag = 40
     }
 
-    # Set the disk size corresponding to the Template size
     disk {
         storage = "vm"
         type = "scsi"
         size = "100G"
     }
 
-    # VM Cloud-Init Settings
-    os_type = "cloud-init"
-
-    # (Optional) IP Address and Gateway
-    # ipconfig0 = "ip=0.0.0.0/0,gw=0.0.0.0"
-    
-    # (Optional) Default User
-    # ciuser = "christoffer"
-    
-    # (Optional) Add your SSH KEY
-    # sshkeys = <<EOF
-    # #PUB SSH KEY
-    # EOF
+    #os_type = "cloud-init"
 
     connection {
       type      = "ssh"

@@ -1,8 +1,8 @@
-resource "proxmox_vm_qemu" "ansible-host" {
+resource "proxmox_vm_qemu" "ansible" {
     
     # VM General Settings
     target_node = "proxmox1"
-    name = "ansible-host"
+    name = "ansible"
     desc = "Created with Terraform"
 
     # VM Advanced General Settings
@@ -17,14 +17,14 @@ resource "proxmox_vm_qemu" "ansible-host" {
     # VM CPU Settings
     cores = 1
     sockets = 1
-    cpu = "host"    
-    
+    cpu = "host"
+
     # VM Memory Settings
     memory = 2048
 
     # VM Network Settings
     network {
-        macaddr = "DE:AD:BE:EF:C0:FE"
+        macaddr = "06:ea:f7:dc:88:1a"
         bridge = "vmbr0"
         model  = "virtio"
         tag = 40
@@ -38,5 +38,19 @@ resource "proxmox_vm_qemu" "ansible-host" {
     }
 
     # VM Cloud-Init Settings
-    os_type = "cloud-init"
-}
+    #os_type = "cloud-init"
+
+    connection {
+      type      = "ssh"
+      user      = var.SSH_USER
+      password  = var.SSH_PASS
+      host      = self.ssh_host
+    }
+
+    provisioner "remote-exec" {
+      inline = [
+          "sudo hostnamectl set-hostname ${self.name}",
+          "sudo /usr/sbin/shutdown -r 1"
+        ]
+    }
+}   
