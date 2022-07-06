@@ -9,6 +9,7 @@ autoinstall:
         layout: se
     packages:
         - qemu-guest-agent
+        - sudo
     identity:
         hostname: ubuntu-server
         username: packer
@@ -31,8 +32,11 @@ autoinstall:
       - sed -i -e 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /target/etc/ssh/sshd_config
       - sed -i -e 's/^#\?PermitRootLogin.*/PermitRootLogin yes/g' /target/etc/ssh/sshd_config
       - echo 'packer ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/packer
+      - echo 'christoffer ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/christoffer
       - mkdir /target/root/.ssh
       - echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrMj8vbm63w15UjwkaEOc1hlRnPDyo6o2tnJ+XeIs5/Vweql/KVsKwrCDW06TvssgY4mPTPLZ7K+a/cY6ioVC5FfMeB9+IPRvjra+MM3BP8Eo0L0wi/znd0aeeUIrBNSQ46kLD71/gZoljN9byQGxYs+eB8QpC73Ncd/LPCwZm17s5fH6cOUZh1wItho3v5pgGmsyRTrJJym+rGrmHbsEwnS0VjWHA6TI1B8B5J/jtQdqw8lSmGwl4EWhXNthVfCianc1OTTuyGCdbNBaPQHCeviY5kDXtQInDssOxh7QQL6D8h37DDDMSkL49uktqM1uRBFNM4lhOm9e9LevJrhyt root@salt' >> /target/root/.ssh/authorized_keys
+      - echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDig3C10F6R2uEIwWF5c5IHf+oOZbQ10PVkGArm8UaW1BdqVlpF8HEv1zEQ5rNQbmDL10IHk1cm6jWBh0OPg/JYY1/WbDPzwwIA3hUFsGrztAbXsO0ohZ/N+muwPEU5LqCvMXQSHol5TygxPMdBED84M9+Nc0XFzhqzkmMSLC6LM7DIocEHJLpOGxwveaTm0JHa1115jVAL0tEtCYHYElQZ++BK/gY3PuO9Yc81+FllxdFJU/GMcqucVTQMdK/ADG3/hq2+LO9s/f3koT718bpAvJP/JJH7qQaPHpKSMVlyW4ZjX3W4/cT3sR4QY9DU6S/PpAXuSQrmJ0N3DHvpTY3d christoffer@Desktop' >> /target/root/.ssh/authorized_keys
       - curtin in-target --target=/target -- chmod 440 /etc/sudoers.d/packer
+      - curtin in-target --target=/target -- chmod 440 /etc/sudoers.d/christoffer
       - curtin in-target --target=/target -- apt-get update
       - curtin in-target --target=/target -- apt-get upgrade --yes

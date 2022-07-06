@@ -50,6 +50,8 @@ resource "proxmox_vm_qemu" "ansible" {
     provisioner "remote-exec" {
       inline = [
           "sudo hostnamectl set-hostname ${self.name}",
+          "sudo apt update",
+          "sudo apt install ansible -y",
           "sudo /usr/sbin/shutdown -r 1"
         ]
     }
