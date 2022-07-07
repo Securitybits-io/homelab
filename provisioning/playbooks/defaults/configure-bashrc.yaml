@@ -1,8 +1,0 @@
----
-- hosts: all
-  tasks:
-    - name: Enable Color prompts
-      lineinfile:
-        path: /root/.bashrc
-        regexp: '^#\s*force_color_prompt.*$'
-        line: force_color_prompt=yes
