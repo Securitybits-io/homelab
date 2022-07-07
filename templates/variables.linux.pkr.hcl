@@ -4,8 +4,13 @@ variable "vm_name_ubuntu" {
   default = "Ubuntu-20.04-Template"
 }
 
-variable "packer_password" {
+variable "SSH_USER" {
   type    = string
-  default = "${env("PACKER_PASSWORD")}"
+  default = "${env("SSH_USER")}"
+}
+
+variable "SSH_PASS" {
+  type    = string
+  default = "${env("SSH_PASS")}"
   sensitive = true
 }

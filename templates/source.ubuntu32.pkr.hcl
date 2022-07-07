@@ -1,10 +1,10 @@
 source "proxmox" "ubuntu32" {
     # Connection Configuration
-    proxmox_url             = "${var.proxmox_url}"
-    username                = "${var.proxmox_user}"
-    password                = "${var.proxmox_password}"
+    proxmox_url                 = "${var.proxmox_url}"
+    username                    = "${var.proxmox_user}"
+    password                    = "${var.proxmox_password}"
     insecure_skip_tls_verify    = "true"
-    node                    = "${var.proxmox_node}"
+    node                        = "${var.proxmox_node}"
 
     # Location Configuration
     vm_name                 = "${var.vm_name_ubuntu}"
@@ -60,8 +60,8 @@ source "proxmox" "ubuntu32" {
 
     # Communicator Configuration
     communicator           = "ssh"
-    ssh_username           = "packer"
-    ssh_password           = "${var.packer_password}"
+    ssh_username           = "${var.SSH_USER}"
+    ssh_password           = "${var.SSH_PASS}"
     ssh_port               = 22
     ssh_handshake_attempts = "100000"
     ssh_timeout            = "1h30m"

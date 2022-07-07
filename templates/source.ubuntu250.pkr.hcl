@@ -60,8 +60,8 @@ source "proxmox" "ubuntu250" {
 
     # Communicator Configuration
     communicator           = "ssh"
-    ssh_username           = "packer"
-    ssh_password           = "${var.packer_password}"
+    ssh_username           = "${var.SSH_USER}"
+    ssh_password           = "${var.SSH_PASS}"
     ssh_port               = 22
     ssh_handshake_attempts = "100000"
     ssh_timeout            = "1h30m"
