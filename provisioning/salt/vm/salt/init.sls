@@ -1,62 +1,9 @@
-python3:
-  pkg.installed: []
-
-python3-pip:
-  pkg.installed: []
-
-libgit2-dev:
-  pkg.installed: []
-
-python3-pygit2:
-  pkg.installed: []
-
-pywinrm:
-  pip.installed:
-    - name: pywinrm
-    - require:
-      - pkg: python3-pip
-      - pkg: python3
-
-smbprotocol:
-  pip.installed:
-    - name: smbprotocol
-    - require:
-      - pkg: python3-pip
-      - pkg: python3
-
-pypsexec:
-  pip.installed:
-    - name: pypsexec
-    - require:
-      - pkg: python3-pip
-      - pkg: python3
-
-requests:
-  pip.installed:
-    - name: requests
-    - require:
-      - pkg: python3-pip
-      - pkg: python3
-
-IPy:
-  pip.installed:
-    - name: IPy
-    - require:
-      - pkg: python3-pip
-      - pkg: python3
-
-# add salt key
-# install salt-master
-# install salt-minion
-# install salt-ssh
-# install salt-api
-# Clone Homelab Repo
-
-/etc/salt:
-  file.recurse:
-    - source: salt://vm/salt/etc/salt
-    - user: root
-    - group: root
-    - file_mode: 644
-    - dir_mode: 755
-    - include_empty: true
+include:
+  - vm.salt.dependencies
+  - vm.salt.repo
+  # - vm.salt.master
+  # - vm.salt.minion
+  - vm.salt.ssh
+  - vm.salt.cloud
+  - vm.salt.api
+  - vm.salt.config

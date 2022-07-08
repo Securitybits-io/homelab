@@ -19,7 +19,7 @@ secbits:~/ terraform apply
 ```bash
 export SSH_USER="provision"
 export SSH_PASS="pass"
-salt-ssh salt-bak --user=${SSH_USER} --passwd=${SSH_PASS} -i state.apply
+salt-ssh salt-bak --user=${SSH_USER} --passwd=${SSH_PASS} -i state.highstate
 ```
 
 ## Templates

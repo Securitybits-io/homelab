@@ -13,7 +13,7 @@ resource "proxmox_vm_qemu" "atak-docker-01" {
     memory = 2048
 
     network {
-        macaddr = "ca:ac:9e:d0:66:72"
+        macaddr = "00:50:56:b9:ef:15"
         bridge = "vmbr0"
         model  = "virtio"
         tag = 51
