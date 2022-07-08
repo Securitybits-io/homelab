@@ -3,3 +3,5 @@ platform/terraform.tfstate.backup
 platform/terraform.tfstate
 platform/.terraform*
 platform/.terraform/*
+provisioning/etc
+provisioning/var

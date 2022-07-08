@@ -45,9 +45,16 @@ IPy:
       - pkg: python3-pip
       - pkg: python3
 
+# add salt key
+# install salt-master
+# install salt-minion
+# install salt-ssh
+# install salt-api
+# Clone Homelab Repo
+
 /etc/salt:
   file.recurse:
-    - source: salt://vm/salt/deploy_files/salt
+    - source: salt://vm/salt/etc/salt
     - user: root
     - group: root
     - file_mode: 644
