@@ -1,4 +1,4 @@
-salt-bak:
-  host: salt-bak.securitybits.local
+salt:
+  host: salt.securitybits.local
   user: provision
   sudo: True

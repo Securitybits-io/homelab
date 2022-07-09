@@ -1,6 +1,6 @@
 base:
   '*':
     - defaults.enable-color-prompt
-    
-  'salt-bak':
+
+  'salt':
     - vm.salt

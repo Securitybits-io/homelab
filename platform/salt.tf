@@ -2,7 +2,7 @@ resource "proxmox_vm_qemu" "salt" {
     
     # VM General Settings
     target_node = "proxmox1"
-    name = "salt-bak"
+    name = "salt"
     desc = "Created with Terraform"
 
     # VM Advanced General Settings
@@ -24,7 +24,7 @@ resource "proxmox_vm_qemu" "salt" {
 
     # VM Network Settings
     network {
-        macaddr = "06:ea:f7:dc:88:1a"
+        macaddr = "00:50:56:b9:1e:9c"
         bridge = "vmbr0"
         model  = "virtio"
         tag = 40
@@ -45,12 +45,21 @@ resource "proxmox_vm_qemu" "salt" {
       user      = var.SSH_USER
       password  = var.SSH_PASS
       host      = self.ssh_host
+      script_path = "/home/${var.SSH_USER}/provision_salt-minion_%RAND%.sh"
     }
 
     provisioner "remote-exec" {
       inline = [
           "sudo hostnamectl set-hostname ${self.name}",
-          "sudo /usr/sbin/shutdown -r now"
+          "curl -o bootstrap-salt.sh -L https://bootstrap.saltproject.io",
+          "chmod +x bootstrap-salt.sh",
+          "sudo ./bootstrap-salt.sh -I -i ${self.name} -A salt.securitybits.local"
+        ]
+    }
+
+    provisioner "remote-exec" {
+      inline = [
+          "sudo /usr/sbin/shutdown -r 1"
         ]
     }
 }   

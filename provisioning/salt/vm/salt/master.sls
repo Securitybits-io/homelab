@@ -12,4 +12,9 @@ Install Salt-Master:
     - dir_mode: 755
     - include_empty: true
 
-# restart service
+Restart Salt-Master:
+  cmd.run:
+    - name: systemctl restart salt-master
+    - watch: /etc/salt
+    - require:
+      - Install Salt-Master

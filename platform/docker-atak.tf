@@ -32,11 +32,20 @@ resource "proxmox_vm_qemu" "atak-docker-01" {
       user      = var.SSH_USER
       password  = var.SSH_PASS
       host      = self.ssh_host
+      script_path = "/home/${var.SSH_USER}/provision_salt-minion_%RAND%.sh"
     }
 
     provisioner "remote-exec" {
       inline = [
           "sudo hostnamectl set-hostname ${self.name}",
+          "curl -o bootstrap-salt.sh -L https://bootstrap.saltproject.io",
+          "chmod +x bootstrap-salt.sh",
+          "sudo ./bootstrap-salt.sh -I -i ${self.name} -A salt.securitybits.local"
+        ]
+    }
+
+    provisioner "remote-exec" {
+      inline = [
           "sudo /usr/sbin/shutdown -r 1"
         ]
     }
