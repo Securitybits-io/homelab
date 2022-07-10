@@ -1,7 +1,8 @@
 base:
   '*':
     - defaults.enable-color-prompt
-
+    - users
+    
   '* not salt':
     - defaults.master-ssh
 
