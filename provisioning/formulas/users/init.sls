@@ -43,7 +43,7 @@ user_{{user.name}}_sshdir:
 user_{{user.name}}_authkeys:
   ssh_auth.present:
     - user: {{user.name}}
-    - name: {{user.authkey}}
+    - names: {{user.authkey}}
 {% endif %}
 
 {% if 'sshpriv' in user %}
