@@ -14,7 +14,7 @@ Install Salt-Master:
 
 Restart Salt-Master:
   cmd.run:
-    - name: '(sleep 5 && salt-call service.restart salt-minion) &'
+    - name: "(sleep 10 && salt-call service.restart salt-minion) &"
     - watch:
       - /etc/salt
     - require:
