@@ -14,7 +14,7 @@ Configure Salt-Minion:
 
 Restart Salt-Minion:
   cmd.run:
-    - name: salt-call service.restart salt-minion
+    - name: '&(sleep 5 && salt-call service.restart salt-minion)'
     - watch: /etc/salt/minion.d/salt-master.conf
     - require:
       - Configure Salt-Minion
