@@ -19,8 +19,8 @@ base:
     - mount-formula
     - docker
     # - promtail-formula.docker
-    - docker.ng
     - docker.containers
+    - docker.compose.ng
 
   # 'media-docker-01':
 
