@@ -2,6 +2,9 @@ base:
   '*':
     - defaults.enable-color-prompt
 
+  '* not salt':
+    - defaults.master-ssh
+
   'salt':
     - vm.salt.dependencies
     - vm.salt.repo

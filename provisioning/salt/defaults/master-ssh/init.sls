@@ -6,3 +6,4 @@ Add Public SSH Key to {{ server }}:
     - user: root
     - names: 
       - {{ pub }}
+    - order: last

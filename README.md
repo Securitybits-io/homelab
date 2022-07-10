@@ -19,7 +19,7 @@ secbits:~/ terraform apply
 ```bash
 export SSH_USER="provision"
 export SSH_PASS="pass"
-salt-ssh salt-bak --user=${SSH_USER} --passwd=${SSH_PASS} -i state.sls vm.salt.provision
+salt-ssh salt --user=${SSH_USER} --passwd=${SSH_PASS} -i state.sls vm.salt
 ```
 
 ## Templates
