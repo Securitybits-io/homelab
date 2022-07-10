@@ -4,4 +4,5 @@
 Add Public SSH Key to {{ server }}:
   ssh_auth.present:
     - user: root
-    - source: '{{ pub }}'
+    - names: 
+      - {{ pub }}
