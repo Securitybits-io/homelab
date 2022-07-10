@@ -15,7 +15,12 @@ base:
     - vm.salt.api
     - vm.salt.config
 
-  # 'atak-docker-01':
+  'atak-docker-01':
+    - mount-formula
+    - docker
+    # - promtail-formula.docker
+    - docker.ng
+    - docker.containers
 
   # 'media-docker-01':
 
