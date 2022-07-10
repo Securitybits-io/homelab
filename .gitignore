@@ -5,3 +5,4 @@ platform/.terraform*
 platform/.terraform/*
 provisioning/etc
 provisioning/var
+.NOTES.md
