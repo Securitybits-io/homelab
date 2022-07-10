@@ -14,7 +14,7 @@ Install Salt-Master:
 
 Restart Salt-Master:
   cmd.run:
-    - name: systemctl restart salt-master
+    - name: salt-call service.restart salt-master
     - watch:
       - /etc/salt
     - require:
