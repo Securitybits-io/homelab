@@ -42,7 +42,7 @@ export SSH_PASS="pass"
 
 ## Roadmap
 
-### TODO
+### Tasks
 #### Docker Apps to create
 - [ ] Firefly Management
 - [ ] Papertrail-ng
@@ -59,13 +59,13 @@ export SSH_PASS="pass"
 - [ ] Dockers
   - [ ] Mgmt Docker
   - [ ] Public Docker
-  - [ ] Offsec Docker
+  - [x] Offsec Docker
   - [ ] Media Docker
   - [ ] Logging Docker
-  - [ ] ATAK Docker
-  - [ ] Gameserver Docker
+  - [x] ATAK Docker
+  - [ ] Gameserver Docker  
 - [ ] Youtube-DL
-- [ ] Salt-Master
+- [x] Salt-Master  
 - [ ] Plex
 - [ ] Ombi
 - [ ] Nginx
@@ -81,13 +81,13 @@ export SSH_PASS="pass"
   - [ ] Move active projects to Github
 - [ ] Saltstack
   - [ ] Formulas
-    - [ ] Create state to copy public SSH key to all minions
+    - [x] Create state to copy public SSH key to all minions
     - [ ] Set Correct Timezone and NTP Server
-    - [ ] Mount CIFS Share
+    - [x] Mount CIFS Share
     - [ ] CIS Benchmarks
     - [ ] Git runners Docker-in-Docker
     - [ ] Plex installer
-    - [ ] Promtail Logging Binary installer
+    - [x] Promtail Logging Binary installer
     - [ ] Telegraf State for hosts
     - [ ] Youtube-DL State formula
     - [ ] Reverse Proxy formula
