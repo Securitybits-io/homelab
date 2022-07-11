@@ -2,6 +2,7 @@ root_dir: ./
 file_roots:
   base:
     - salt
+    - formulas
 pillar_roots:
   base:
     - pillar
