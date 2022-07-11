@@ -9,7 +9,6 @@ Small Repo for my homelab consisting of Docker and Saltstack
 
 ### Tech stack
 
-
 ## Get started
 
 ### Apps
@@ -41,43 +40,54 @@ export SSH_USER="provision"
 export SSH_PASS="pass"
 ```
 
-
 ## Roadmap
 
+### TODO
+#### Docker Apps to create
+- [ ] Firefly Management
+- [ ] Papertrail-ng
+- [ ] IPAM / Netbox
+- [ ] Reverse Proxy (Nginx/Traefik)
+- [ ] Ombi
+- [ ] Arma3 Server with automatic modlist download
+- [ ] Git Server (Gitlab/Gitea)
+- [ ] Git Runners
+- [ ] Youtube-DL with recurring downloads
+- [ ] Guacamole
 
+#### Migrate form VMware to Proxmox
+- [ ] Dockers
+  - [ ] Mgmt Docker
+  - [ ] Public Docker
+  - [ ] Offsec Docker
+  - [ ] Media Docker
+  - [ ] Logging Docker
+  - [ ] ATAK Docker
+  - [ ] Gameserver Docker
+- [ ] Youtube-DL
+- [ ] Salt-Master
+- [ ] Plex
+- [ ] Ombi
+- [ ] Nginx
+- [ ] IPam
 
+- [ ] Windows
+  - [ ] Cloud Backup
+  - [ ] Arma Server
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#### Homelab Tasks
+- [ ] Migrate deprecated Saltstack to Private Github
+- [ ] Sunset Gitlab
+  - [ ] Move active projects to Github
+- [ ] Saltstack
+  - [ ] Formulas
+    - [ ] Create state to copy public SSH key to all minions
+    - [ ] Set Correct Timezone and NTP Server
+    - [ ] Mount CIFS Share
+    - [ ] CIS Benchmarks
+    - [ ] Git runners Docker-in-Docker
+    - [ ] Plex installer
+    - [ ] Promtail Logging Binary installer
+    - [ ] Telegraf State for hosts
+    - [ ] Youtube-DL State formula
+    - [ ] Reverse Proxy formula
