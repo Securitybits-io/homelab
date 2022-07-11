@@ -16,13 +16,7 @@ base:
     - vm.salt.api
     - vm.salt.config
 
-  'offsec-docker-01':
-    - docker
-    - promtail-formula.docker
-    - docker.containers
-    - docker.compose.ng
-
-  'atak-docker-01':
+  '*-docker-0*':
     - docker
     - promtail-formula.docker
     - docker.containers
