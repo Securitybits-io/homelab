@@ -25,7 +25,7 @@ secbits:~/ terraform apply
 ```
 
 ### Provisioning
-### #Initial provision of the Salt Master
+#### Initial provision of the Salt Master
 ```bash
 export SSH_USER="provision"
 export SSH_PASS="pass"
