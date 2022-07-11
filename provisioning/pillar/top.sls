@@ -5,10 +5,18 @@ base:
   'salt':
     - mine.public-ssh
 
-  'atak-docker-01':
+  '*-docker-0*':
     - default.promtail-docker
+
+  'atak-docker-01':
     - docker.atak-docker-01
   
   'offsec-docker-01':
-    - default.promtail-docker
     - docker.offsec-docker-01
+
+  # 'media-docker-01':
+
+  # 'mgmt-docker-01':
+
+
+  # 'public-docker-01':
