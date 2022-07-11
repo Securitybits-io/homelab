@@ -34,11 +34,11 @@ base:
     # - docker.containers
     # - docker.compose.ng
 
-  # 'offsec-docker-01':
-    # - docker
-    # - promtail-formula.docker
-    # - docker.containers
-    # - docker.compose.ng
+  'offsec-docker-01':
+    - docker
+    - promtail-formula.docker
+    - docker.containers
+    - docker.compose.ng
 
   # 'public-docker-01':
     # - docker
