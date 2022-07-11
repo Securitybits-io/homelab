@@ -1,22 +1,22 @@
-resource "proxmox_vm_qemu" "public-docker-01" {
+resource "proxmox_vm_qemu" "mgmt-docker-01" {
     
     # VM General Settings
-    target_node = "proxmox1"
-    name = "public-docker-01"
+    target_node = "pve-node-01"
+    name = "mgmt-docker-01"
     desc = "Created with Terraform"
-    onboot = true
+    onboot = true 
     clone = "Ubuntu-20.04-Template-100GB"
     agent = 1
     cores = 2
     sockets = 1
-    cpu = "host"
+    cpu = "host"    
     memory = 2048
-
+    
     network {
-        macaddr = "ce:9a:38:1a:a5:63"
+        macaddr = "00:50:56:b9:ef:36"
         bridge = "vmbr0"
         model  = "virtio"
-        tag = 50
+        tag = 40
     }
 
     disk {
@@ -27,16 +27,26 @@ resource "proxmox_vm_qemu" "public-docker-01" {
 
     #os_type = "cloud-init"
 
+
     connection {
       type      = "ssh"
       user      = var.SSH_USER
       password  = var.SSH_PASS
       host      = self.ssh_host
+      script_path = "/home/${var.SSH_USER}/provision_salt-minion_%RAND%.sh"
     }
 
     provisioner "remote-exec" {
       inline = [
           "sudo hostnamectl set-hostname ${self.name}",
+          "curl -o bootstrap-salt.sh -L https://bootstrap.saltproject.io",
+          "chmod +x bootstrap-salt.sh",
+          "sudo ./bootstrap-salt.sh -I -i ${self.name} -A salt.securitybits.local"
+        ]
+    }
+
+    provisioner "remote-exec" {
+      inline = [
           "sudo /usr/sbin/shutdown -r 1"
         ]
     }

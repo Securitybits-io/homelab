@@ -17,7 +17,7 @@ variable "proxmox_password" {
 
 variable "proxmox_node" {
   type    = string
-  default = "proxmox1"
+  default = "pve-node-01"
 }
 
 # VM generic

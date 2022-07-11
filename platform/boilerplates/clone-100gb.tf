@@ -1,7 +1,7 @@
 resource "proxmox_vm_qemu" "host100GB" {
     
     # VM General Settings
-    target_node = "proxmox1"
+    target_node = "pve-node-01"
     name = "name"
     desc = "Created with Terraform"
 

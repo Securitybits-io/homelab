@@ -1,7 +1,7 @@
 resource "proxmox_vm_qemu" "offsec-docker-01" {
     
     # VM General Settings
-    target_node = "proxmox1"
+    target_node = "pve-node-01"
     name = "offsec-docker-01"
     desc = "Created with Terraform"
     onboot = true

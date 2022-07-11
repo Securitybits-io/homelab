@@ -16,7 +16,6 @@ base:
     - vm.salt.api
     - vm.salt.config
 
-
   # 'atak-docker-01':
   # 'media-docker-01':
   # 'mgmt-docker-01':
