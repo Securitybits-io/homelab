@@ -1,6 +1,6 @@
 'base':
-  '*':
-    - users.christoffer
+  # '*':
+  #   - users.christoffer
   
   'salt':
     - mine.public-ssh

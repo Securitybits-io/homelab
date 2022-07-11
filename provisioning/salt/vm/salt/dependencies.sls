@@ -10,6 +10,14 @@ libgit2-dev:
 python3-pygit2:
   pkg.installed: []
 
+
+python-git:
+  pip.installed:
+    - name: python-git
+    - require:
+      - pkg: python3-pip
+      - pkg: python3
+
 pywinrm:
   pip.installed:
     - name: pywinrm
