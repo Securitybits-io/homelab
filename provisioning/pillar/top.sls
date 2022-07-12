@@ -16,7 +16,8 @@ base:
 
   # 'media-docker-01':
 
-  # 'mgmt-docker-01':
+  'mgmt-docker-01':
+    - docker.mgmt-docker-01
 
 
   # 'public-docker-01':
