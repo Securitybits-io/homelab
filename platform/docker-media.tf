@@ -1,4 +1,4 @@
-resource "proxmox_vm_qemu" "media-docker-02" {
+resource "proxmox_vm_qemu" "media-docker-01" {
     
     # VM General Settings
     target_node = "pve-node-01"

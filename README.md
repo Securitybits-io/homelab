@@ -91,3 +91,4 @@ export SSH_PASS="pass"
     - [ ] Telegraf State for hosts
     - [ ] Youtube-DL State formula
     - [ ] Reverse Proxy formula
+- [ ] Add Telegraf Proxmox Plugin

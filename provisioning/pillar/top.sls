@@ -14,11 +14,12 @@ base:
   'offsec-docker-01':
     - docker.offsec-docker-01
 
-  # 'media-docker-01':
+  'media-docker-01':
+    - docker.media-docker-01
 
   'mgmt-docker-01':
     - docker.mgmt-docker-01
-    
+
   'logging-docker-01':
     - docker.logging-docker-01
 
