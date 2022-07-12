@@ -61,7 +61,7 @@ export SSH_PASS="pass"
   - [ ] Public Docker
   - [x] Offsec Docker
   - [ ] Media Docker
-  - [ ] Logging Docker
+  - [x] Logging Docker
   - [x] ATAK Docker
   - [ ] Gameserver Docker  
 - [ ] Youtube-DL
