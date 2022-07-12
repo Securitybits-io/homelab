@@ -1,8 +1,8 @@
-resource "proxmox_vm_qemu" "logging-docker-02" {
+resource "proxmox_vm_qemu" "logging-docker-01" {
     
     # VM General Settings
     target_node = "pve-node-01"
-    name = "logging-docker-02"
+    name = "logging-docker-01"
     desc = "Created with Terraform"
     onboot = true
     clone = "Ubuntu-20.04-Template-100GB"
