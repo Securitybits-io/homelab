@@ -137,7 +137,7 @@ services:
 
   telegraf:
     container_name: telegraf
-    container: securitybits/telegraf-ipmi-snmp
+    image: securitybits/telegraf-ipmi-snmp
     restart: unless-stopped
     volumes:
       - /docker/conf/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
