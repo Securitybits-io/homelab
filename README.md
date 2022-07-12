@@ -55,12 +55,12 @@ export SSH_PASS="pass"
 - [ ] Youtube-DL with recurring downloads
 - [ ] Guacamole
 
-#### Migrate form VMware to Proxmox
+#### Migrate from VMware to Proxmox
 - [x] Dockers
 - [ ] Youtube-DL
 - [x] Salt-Master  
 - [ ] Plex
-- [ ] Ombi
+- [x] Ombi
 - [x] Nginx
 - [ ] IPam
 
@@ -83,5 +83,5 @@ export SSH_PASS="pass"
     - [x] Promtail Logging Binary installer
     - [ ] Telegraf State for hosts
     - [ ] Youtube-DL State formula
-    - [ ] Reverse Proxy formula
+    - [x] Reverse Proxy formula
 - [ ] Add Telegraf Proxmox Plugin
