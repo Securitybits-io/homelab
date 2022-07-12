@@ -56,14 +56,13 @@ export SSH_PASS="pass"
 - [ ] Guacamole
 
 #### Migrate form VMware to Proxmox
-- [ ] Dockers
+- [x] Dockers
   - [x] Mgmt Docker
   - [x] Public Docker
   - [x] Offsec Docker
   - [x] Media Docker
   - [x] Logging Docker
   - [x] ATAK Docker
-  - [ ] Gameserver Docker  
 - [ ] Youtube-DL
 - [x] Salt-Master  
 - [ ] Plex
