@@ -27,12 +27,6 @@
             "icon": "directions_boat"
           },
           {
-            "name": "Portainer",
-            "displayURL": "Docker-01",
-            "url": "http://sb-docker-01:9000",
-            "icon": "directions_boat"
-          },
-          {
             "name": "Proxmox",
             "displayURL": "Pve-Node-01.Securitybits.local",
             "url": "https://Pve-Node-01.Securitybits.local:8006",
