@@ -27,7 +27,7 @@ resource "proxmox_vm_qemu" "nginx" {
         macaddr = "00:05:56:1A:BD:BE"
         bridge = "vmbr0"
         model  = "virtio"
-        tag = 40
+        tag = 50
     }
 
     # Set the disk size corresponding to the Template size
