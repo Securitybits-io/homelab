@@ -22,9 +22,11 @@ base:
     - docker.containers
     - docker.compose.ng
 
+  'media-docker-01':
+    - mount-formula
 
+  # 'logging-docker-01'
   # 'offsec-docker-01':
   # 'atak-docker-01':
-  # 'media-docker-01':
   # 'mgmt-docker-01':
   # 'public-docker-01':

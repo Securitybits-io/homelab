@@ -18,6 +18,8 @@ base:
 
   'mgmt-docker-01':
     - docker.mgmt-docker-01
-
+    
+  'logging-docker-01':
+    - docker.logging-docker-01
 
   # 'public-docker-01':
