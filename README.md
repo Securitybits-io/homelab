@@ -60,7 +60,7 @@ export SSH_PASS="pass"
   - [x] Mgmt Docker
   - [ ] Public Docker
   - [x] Offsec Docker
-  - [ ] Media Docker
+  - [x] Media Docker
   - [x] Logging Docker
   - [x] ATAK Docker
   - [ ] Gameserver Docker  
