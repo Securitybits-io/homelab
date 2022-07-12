@@ -129,3 +129,5 @@ services:
     ports:
       - 3579:3579
     restart: unless-stopped
+    security_opt: # Temp Fix
+      - seccomp=unconfined
