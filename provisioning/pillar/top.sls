@@ -23,4 +23,5 @@ base:
   'logging-docker-01':
     - docker.logging-docker-01
 
-  # 'public-docker-01':
+  'public-docker-01':
+    - docker.public-docker-01

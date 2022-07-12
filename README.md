@@ -58,7 +58,7 @@ export SSH_PASS="pass"
 #### Migrate form VMware to Proxmox
 - [ ] Dockers
   - [x] Mgmt Docker
-  - [ ] Public Docker
+  - [x] Public Docker
   - [x] Offsec Docker
   - [x] Media Docker
   - [x] Logging Docker
