@@ -14,7 +14,7 @@ services:
 
   promtail:
     container_name: promtail
-    image: grafana/promtail:2.5.0
+    image: grafana/promtail
     volumes:
       - /var/log:/var/log
       - /docker/conf/promtail/etc/promtail:/etc/promtail
