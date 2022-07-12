@@ -57,17 +57,11 @@ export SSH_PASS="pass"
 
 #### Migrate form VMware to Proxmox
 - [x] Dockers
-  - [x] Mgmt Docker
-  - [x] Public Docker
-  - [x] Offsec Docker
-  - [x] Media Docker
-  - [x] Logging Docker
-  - [x] ATAK Docker
 - [ ] Youtube-DL
 - [x] Salt-Master  
 - [ ] Plex
 - [ ] Ombi
-- [ ] Nginx
+- [x] Nginx
 - [ ] IPam
 
 - [ ] Windows
