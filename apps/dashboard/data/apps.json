@@ -33,7 +33,7 @@
             "icon": "directions_boat"
           },
           {
-            "name": "Pve-Node-01",
+            "name": "Proxmox",
             "displayURL": "Pve-Node-01.Securitybits.local",
             "url": "https://Pve-Node-01.Securitybits.local:8006",
             "icon": "dns"
