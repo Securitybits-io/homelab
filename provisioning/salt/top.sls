@@ -39,3 +39,5 @@ base:
     - mount-formula
     - youtubedl-formula
     
+  'plex':
+    - plex-formula
