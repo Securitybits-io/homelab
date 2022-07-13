@@ -33,3 +33,6 @@ base:
   # 'atak-docker-01':
   # 'mgmt-docker-01':
   # 'public-docker-01':
+
+  'ytdl-*':
+    youtubedl-formula
