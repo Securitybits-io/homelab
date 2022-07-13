@@ -26,8 +26,8 @@ base:
   'public-docker-01':
     - docker.public-docker-01
 
-  'youtubedl-tactube':
+  'ytdl-tactube':
     - youtubedl.ytdl-tactuvbe
   
-  'youtubedl-youtube':
+  'ytdl-youtube':
     - youtubedl.ytdl-youtube
