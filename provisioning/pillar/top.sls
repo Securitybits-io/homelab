@@ -1,6 +1,7 @@
 base:
   '*':
     - default.promtail-host
+    - default.telegraf
   
   'salt':
     - mine.public-ssh

@@ -3,6 +3,7 @@ base:
     - defaults.enable-color-prompt
     - defaults.user.christoffer
     - promtail-formula.host
+    - telegraf-formula
 
   '* not salt':
     - defaults.master-ssh
