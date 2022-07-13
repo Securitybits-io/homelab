@@ -47,7 +47,7 @@ install_letsencrypt:
 
 install_python_certbot_nginx:
   pkg.installed:
-    - name: python-certbot-nginx
+    - name: python3-certbot-nginx
 
 /var/log/letsencrypt.log:
   file.managed:
