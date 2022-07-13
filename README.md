@@ -70,8 +70,8 @@ export SSH_PASS="pass"
 
 #### Homelab Tasks
 - [x] Migrate deprecated Saltstack to Private Github
-- [ ] Sunset Gitlab
-  - [ ] Move active projects to Github
+- [x] Sunset Gitlab
+  - [x] Move active projects to Github
 - [ ] Saltstack
   - [ ] Formulas
     - [x] Create state to copy public SSH key to all minions
