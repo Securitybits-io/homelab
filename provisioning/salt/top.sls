@@ -35,4 +35,6 @@ base:
   # 'public-docker-01':
 
   'ytdl-*':
-    youtubedl-formula
+    - mount-formula
+    - youtubedl-formula
+    
