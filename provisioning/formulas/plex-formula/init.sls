@@ -1,6 +1,4 @@
 #Package.Plex init.sls
-{% set plex = pillar['plex'] %}
-
 add plex repo:
   pkgrepo.managed:
     - humanname: Plex Repo
@@ -19,7 +17,6 @@ install plex:
 plex enabled:
   service.running:
     - name: plexmediaserver
-    #- restart: {{ plex['restart'] | default(True) }}
-    - enable: {{ plex['enable'] | default(True) }}
+    - enable: True
     - require:
       - pkg: install plex
