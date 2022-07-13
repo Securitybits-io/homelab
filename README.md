@@ -57,7 +57,7 @@ export SSH_PASS="pass"
 
 #### Migrate from VMware to Proxmox
 - [x] Dockers
-- [ ] Youtube-DL
+- [x] Youtube-DL
 - [x] Salt-Master  
 - [ ] Plex
 - [x] Ombi
@@ -82,6 +82,6 @@ export SSH_PASS="pass"
     - [ ] Plex installer
     - [x] Promtail Logging Binary installer
     - [ ] Telegraf State for hosts
-    - [ ] Youtube-DL State formula
+    - [x] Youtube-DL State formula
     - [x] Reverse Proxy formula
 - [ ] Add Telegraf Proxmox Plugin
