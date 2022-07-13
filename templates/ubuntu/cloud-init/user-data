@@ -10,6 +10,7 @@ autoinstall:
     packages:
         - qemu-guest-agent
         - sudo
+        - apt-transport-https
     identity:
         hostname: ubuntu-server
         username: provision
