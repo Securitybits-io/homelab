@@ -69,7 +69,7 @@ export SSH_PASS="pass"
   - [ ] Arma Server
 
 #### Homelab Tasks
-- [ ] Migrate deprecated Saltstack to Private Github
+- [x] Migrate deprecated Saltstack to Private Github
 - [ ] Sunset Gitlab
   - [ ] Move active projects to Github
 - [ ] Saltstack
