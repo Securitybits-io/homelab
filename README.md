@@ -81,7 +81,8 @@ export SSH_PASS="pass"
     - [ ] Git runners Docker-in-Docker
     - [ ] Plex installer
     - [x] Promtail Logging Binary installer
-    - [ ] Telegraf State for hosts
+    - [x] Telegraf State for hosts
     - [x] Youtube-DL State formula
     - [x] Reverse Proxy formula
 - [ ] Add Telegraf Proxmox Plugin
+- [ ] Create Windows templating
