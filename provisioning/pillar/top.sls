@@ -5,6 +5,9 @@ base:
   
   'salt':
     - mine.public-ssh
+  
+  'plex':
+    - media.plex
 
   '*-docker-0*':
     - default.promtail-docker

@@ -41,3 +41,4 @@ base:
     
   'plex':
     - plex-formula
+    - mount-formula
