@@ -15,12 +15,12 @@ resource "proxmox_vm_qemu" "plex" {
     agent = 1
     
     # VM CPU Settings
-    cores = 1
+    cores = 4
     sockets = 1
     cpu = "host"    
     
     # VM Memory Settings
-    memory = 1024
+    memory = 4096
     
     # VM Network Settings
     network {
