@@ -137,12 +137,6 @@
         "icon": "storage"
       },
       {
-        "name": "GitLAB",
-        "displayURL": "GitLab.Securitybits.io",
-        "url": "https://Gitlab.Securitybits.io",
-        "icon": "code"
-      },
-      {
         "name": "Github",
         "displayURL": "Github/Securitybits",
         "url": "https://github.com/",
