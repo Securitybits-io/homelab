@@ -89,3 +89,9 @@ youtubedl:
     OffensiveCon:
       channel: "OffensiveCon"
       url: "https://www.youtube.com/c/OffensiveCon/videos"
+    BosnianBill:
+      channel: "Bosnian Bill"
+      url: "https://www.youtube.com/c/bosnianbill/videos"
+    LockPickingLawyer:
+      channel: "Lock Picking Lawyer"
+      url: "https://www.youtube.com/c/lockpickinglawyer/videos"

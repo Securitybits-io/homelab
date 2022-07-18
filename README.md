@@ -51,7 +51,7 @@ export SSH_PASS="pass"
 - [ ] Ombi
 - [ ] Arma3 Server with automatic modlist download
 - [ ] Git Server (Gitlab/Gitea)
-- [ ] Git Runners
+- [ ] Git Runners (Drone?)
 - [ ] Youtube-DL with recurring downloads
 - [ ] Guacamole
 
