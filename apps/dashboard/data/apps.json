@@ -33,18 +33,6 @@
             "icon": "dns"
           },
           {
-            "name": "vCenter",
-            "displayURL": "vCenter.Securitybits.local",
-            "url": "https://sb-vCenter-01.Securitybits.local",
-            "icon": "dns"
-          },
-          {
-            "name": "VRTX Management",
-            "displayURL": "Aegir-Management",
-            "url": "https://aegir-2-mgmt.securitybits.local/cgi-bin/webcgi/login",
-            "icon": "dns"
-          },
-          {
             "name": "Bifrost iDRAC",
             "displayURL": "Bifrost-Management",
             "url": "https://10.0.0.2/login.html",
@@ -66,12 +54,6 @@
             "displayURL": "Dash.Securitybits.io",
             "url": "https://dash.securitybits.io",
             "icon": "query_stats"
-          }, 
-          {
-            "name": "IPAM",
-            "displayURL":"phpIPAM",
-            "url": "http://sb-ipam-01.securitybits.local/",
-            "icon": "inventory"
           }
         ]
       },
