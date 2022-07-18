@@ -59,14 +59,13 @@ export SSH_PASS="pass"
 - [x] Dockers
 - [x] Youtube-DL
 - [x] Salt-Master  
-- [ ] Plex
+- [x] Plex
 - [x] Ombi
 - [x] Nginx
-- [ ] IPam
 
-- [ ] Windows
-  - [ ] Cloud Backup
-  - [ ] Arma Server
+- [x] Windows
+  - [x] Cloud Backup
+  - [x] Arma Server
 
 #### Homelab Tasks
 - [x] Migrate deprecated Saltstack to Private Github
@@ -79,7 +78,7 @@ export SSH_PASS="pass"
     - [x] Mount CIFS Share
     - [ ] CIS Benchmarks
     - [ ] Git runners Docker-in-Docker
-    - [ ] Plex installer
+    - [x] Plex installer
     - [x] Promtail Logging Binary installer
     - [x] Telegraf State for hosts
     - [x] Youtube-DL State formula
