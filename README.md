@@ -54,23 +54,12 @@ export SSH_PASS="pass"
 - [ ] Git Runners (Drone?)
 - [ ] Youtube-DL with recurring downloads
 - [ ] Guacamole
-
-#### Migrate from VMware to Proxmox
-- [x] Dockers
-- [x] Youtube-DL
-- [x] Salt-Master  
-- [x] Plex
-- [x] Ombi
-- [x] Nginx
-
-- [x] Windows
-  - [x] Cloud Backup
-  - [x] Arma Server
+- [ ] Kavitareader
+- [ ] plausible.io
+- [ ] emulatorjs
+- [ ] TubeSync
 
 #### Homelab Tasks
-- [x] Migrate deprecated Saltstack to Private Github
-- [x] Sunset Gitlab
-  - [x] Move active projects to Github
 - [ ] Saltstack
   - [ ] Formulas
     - [x] Create state to copy public SSH key to all minions

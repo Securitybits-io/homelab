@@ -188,3 +188,6 @@ youtubedl:
     Death Grip:
       channel: "Death Grip"
       url: "https://www.youtube.com/channel/UC4f0KX3Qf9DHSLE8F13AgIw/videos"
+    Blakewater0326:
+      channel: "Blakewater0326"
+      url: "https://www.youtube.com/c/Blakewater0326"
