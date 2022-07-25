@@ -26,14 +26,11 @@ base:
   'media-docker-01':
     - mount-formula
 
+  'gameservers-docker-01':
+    - mount-formula
+
   'nginx':
     - vm.nginx
-
-  # 'logging-docker-01'
-  # 'offsec-docker-01':
-  # 'atak-docker-01':
-  # 'mgmt-docker-01':
-  # 'public-docker-01':
 
   'ytdl-*':
     - mount-formula
