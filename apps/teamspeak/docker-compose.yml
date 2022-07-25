@@ -1,9 +1,10 @@
 services:
   teamspeak:
+    container_name: arma-teamspeak
     image: teamspeak
     restart: unless-stopped
     ports:
-      - 9987:9987/udp
+      - 9987-9999:9987-9999/udp
       - 10011:10011
       - 30033:30033
     environment:
