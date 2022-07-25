@@ -2,7 +2,7 @@ version: '3.8'
 services:
   arma-teamspeak:
     container_name: arma-teamspeak
-    image: teamspeak:latest
+    image: teamspeak:3.13.7
     ports:
       - 9987:9987/udp
       - 10011:10011

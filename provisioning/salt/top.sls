@@ -29,8 +29,6 @@ base:
     - docker.containers
     - docker.compose.ng
 
-
-
   'nginx':
     - vm.nginx
 
