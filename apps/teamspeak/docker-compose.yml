@@ -2,7 +2,7 @@ version: '3.8'
 services:
   arma-teamspeak:
     container_name: arma-teamspeak
-    image: teamspeak:3.13.7
+    image: teamspeak
     user: root
     ports:
       - 9987:9987/udp
@@ -11,4 +11,4 @@ services:
     environment:
       - TS3SERVER_LICENSE=accept
     volumes:
-      - /docker/conf/arma-teamspeak:/var/ts3server/
+      - /docker/conf/arma-teamspeak:/var/ts3server
