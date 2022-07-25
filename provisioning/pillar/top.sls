@@ -30,6 +30,9 @@ base:
   'public-docker-01':
     - docker.public-docker-01
 
+  'gameservers-docker-01':
+    - docker.gameservers-docker-01
+
   'ytdl-tactube':
     - youtubedl.ytdl-tactube
   
