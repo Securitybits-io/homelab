@@ -1,3 +1,15 @@
+mounts:
+  mounted:
+    docker-mount:
+      name: /docker/
+      device: //10.0.11.241/Securitybits.Systems/Docker
+      fstype: cifs
+      mkmnt: True
+      config: /etc/fstab
+      opts: rw,guest,vers=3.0,file_mode=0777,dir_mode=0777
+      persist: True
+      mount: True
+
 docker:
   compose:
     ng:
