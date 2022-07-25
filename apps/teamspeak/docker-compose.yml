@@ -9,3 +9,8 @@ services:
       - 30033:30033
     environment:
       TS3SERVER_LICENSE: accept
+    volumes:
+      - arma-teamspeak:/var/ts3server
+
+volumes:
+  arma-teamspeak:
