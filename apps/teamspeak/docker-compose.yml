@@ -3,6 +3,7 @@ services:
   arma-teamspeak:
     container_name: arma-teamspeak
     image: teamspeak:3.13.7
+    user: root
     ports:
       - 9987:9987/udp
       - 10011:10011
