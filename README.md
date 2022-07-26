@@ -58,6 +58,7 @@ export SSH_PASS="pass"
 - [ ] plausible.io
 - [ ] emulatorjs
 - [ ] TubeSync
+- [ ] Tdarr
 
 #### Homelab Tasks
 - [ ] Saltstack

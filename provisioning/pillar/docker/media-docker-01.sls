@@ -99,6 +99,15 @@ mounts:
       opts: rw,guest,vers=3.0,file_mode=0777,dir_mode=0777,nounix,uid=998
       persist: True
       mount: True
+    TdarrTranscode:
+      name: /docker/mnt/TdarrTest
+      device: //10.0.11.241/PlexMedia/testTdarr
+      fstype: cifs
+      mkmnt: True
+      config: /etc/fstab
+      opts: rw,guest,vers=3.0,file_mode=0777,dir_mode=0777
+      persist: True
+      mount: True
 
 docker:
   compose:
