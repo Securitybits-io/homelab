@@ -1,0 +1,29 @@
+services:
+  git-checkout:
+    container_name: git-checkout-monitoring
+    image: bitnami/git:latest
+    working_dir: /temp
+    command: >
+      bash -c "
+        find /temp -mindepth 1 -delete && 
+        git clone https://github.com/Securitybits-io/homelab.git &&
+        cp -R ./homelab/apps/youtube-dl/* /docker/conf/ 
+      "
+    volumes:
+      - /docker:/docker
+
+  tactube:
+    image: securitybits/ytdl
+    container_name: ytdl-tactube
+    volumes:
+      - /docker/conf/tactube:/config
+      - /docker/mount/Tactube:/ytdl1
+    restart: unless-stopped
+  
+  youtube:
+    image: securitybits/ytdl
+    container_name: ytdl-youtube
+    volumes:
+      - /docker/conf/youtube:/config
+      - /docker/mount/Youtube:/ytdl1
+    restart: unless-stopped

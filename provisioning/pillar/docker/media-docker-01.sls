@@ -63,6 +63,25 @@ mounts:
       opts: rw,guest,vers=3.0,file_mode=0777,dir_mode=0777
       persist: True
       mount: True
+    YoutubeTactube:
+      name: /docker/mnt/Tactube
+      device: //10.0.11.241/PlexMedia/Youtube-DL/TacTube
+      fstype: cifs
+      mkmnt: True
+      config: /etc/fstab
+      opts: rw,guest,vers=3.0,file_mode=0777,dir_mode=0777
+      persist: True
+      mount: True
+    Youtube:
+      name: /docker/mnt/Youtube
+      device: //10.0.11.241/PlexMedia/Youtube-DL/Youtube
+      fstype: cifs
+      mkmnt: True
+      config: /etc/fstab
+      opts: rw,guest,vers=3.0,file_mode=0777,dir_mode=0777
+      persist: True
+      mount: True
+
     readarr-backup:
       name: /docker/backup/readarr
       device: //10.0.11.241/Securitybits.Systems/Readarr
@@ -99,15 +118,7 @@ mounts:
       opts: rw,guest,vers=3.0,file_mode=0777,dir_mode=0777,nounix,uid=998
       persist: True
       mount: True
-    TdarrTranscode:
-      name: /docker/mnt/TdarrTest
-      device: //10.0.11.241/PlexMedia/testTdarr
-      fstype: cifs
-      mkmnt: True
-      config: /etc/fstab
-      opts: rw,guest,vers=3.0,file_mode=0777,dir_mode=0777
-      persist: True
-      mount: True
+
 
 docker:
   compose:
