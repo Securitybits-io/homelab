@@ -52,7 +52,6 @@ export SSH_PASS="pass"
 - [ ] Arma3 Server with automatic modlist download
 - [ ] Git Server (Gitlab/Gitea)
 - [ ] Git Runners (Drone?)
-- [ ] Youtube-DL with recurring downloads
 - [ ] Guacamole
 - [ ] Kavitareader
 - [ ] plausible.io
@@ -63,15 +62,8 @@ export SSH_PASS="pass"
 #### Homelab Tasks
 - [ ] Saltstack
   - [ ] Formulas
-    - [x] Create state to copy public SSH key to all minions
     - [ ] Set Correct Timezone and NTP Server
-    - [x] Mount CIFS Share
     - [ ] CIS Benchmarks
     - [ ] Git runners Docker-in-Docker
-    - [x] Plex installer
-    - [x] Promtail Logging Binary installer
-    - [x] Telegraf State for hosts
-    - [x] Youtube-DL State formula
-    - [x] Reverse Proxy formula
 - [ ] Add Telegraf Proxmox Plugin
 - [ ] Create Windows templating
