@@ -123,6 +123,12 @@
         "displayURL": "Github/Securitybits",
         "url": "https://github.com/",
         "icon": "code"
+      },
+      {
+        "name": "DockerHub",
+        "displayURL": "DockerHub/Securitybits",
+        "url": "https://hub.docker.com",
+        "icon": "code"
       }
     ]
   }
