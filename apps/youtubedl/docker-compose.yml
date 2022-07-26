@@ -1,6 +1,6 @@
 services:
   git-checkout:
-    container_name: git-checkout-monitoring
+    container_name: git-checkout-youtubedl
     image: bitnami/git:latest
     working_dir: /temp
     command: >
@@ -19,6 +19,8 @@ services:
       - /docker/conf/tactube:/config
       - /docker/mnt/Tactube:/ytdl
     restart: unless-stopped
+    depends_on:
+      - git-checkout
   
   youtube:
     image: securitybits/ytdl
@@ -27,3 +29,5 @@ services:
       - /docker/conf/youtube:/config
       - /docker/mnt/Youtube:/ytdl
     restart: unless-stopped
+    depends_on:
+      - git-checkout
