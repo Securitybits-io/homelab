@@ -142,6 +142,10 @@ services:
     volumes:
       - /docker/conf/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf
       - /docker/conf/telegraf/MIBs:/usr/share/snmp/mibs
+    environment:
+      - TELEGRAF_IPMI_USERNAME=${TELEGRAF_IPMI_USERNAME}
+      - TELEGRAF_IPMI_PASSWORD=${TELEGRAF_IPMI_PASSWORD}
+      - TELEGRAF_PROXMOX_TOKEN=${TELEGRAF_PROXMOX_TOKEN}
     depends_on: 
       - influxdb_telegraf
       - git-checkout
