@@ -2,6 +2,7 @@ base:
   '*':
     - defaults.enable-color-prompt
     - defaults.user.christoffer
+    - defaults.timezone
     - promtail-formula.host
     - telegraf-formula
 

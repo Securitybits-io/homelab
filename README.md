@@ -62,8 +62,8 @@ export SSH_PASS="pass"
 #### Homelab Tasks
 - [ ] Saltstack
   - [ ] Formulas
-    - [ ] Set Correct Timezone and NTP Server
+    - [x] Set Correct Timezone and NTP Server
     - [ ] CIS Benchmarks
     - [ ] Git runners Docker-in-Docker
-- [ ] Add Telegraf Proxmox Plugin
+- [x] Add Telegraf Proxmox Plugin
 - [ ] Create Windows templating
