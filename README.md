@@ -48,7 +48,7 @@ export SSH_PASS="pass"
 - [ ] Papertrail-ng
 - [ ] IPAM / Netbox
 - [ ] Reverse Proxy (Nginx/Traefik)
-- [ ] Ombi
+- [x] Ombi
 - [ ] Arma3 Server with automatic modlist download
 - [ ] Git Server (Gitlab/Gitea)
 - [ ] Git Runners (Drone?)
