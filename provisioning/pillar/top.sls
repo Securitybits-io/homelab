@@ -32,9 +32,3 @@ base:
 
   'gameservers-docker-01':
     - docker.gameservers-docker-01
-
-  'ytdl-tactube':
-    - youtubedl.ytdl-tactube
-  
-  'ytdl-youtube':
-    - youtubedl.ytdl-youtube

@@ -32,10 +32,6 @@ base:
 
   'nginx':
     - vm.nginx
-
-  'ytdl-*':
-    - mount-formula
-    - youtubedl-formula
     
   'plex':
     - plex-formula
