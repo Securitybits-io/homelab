@@ -12,5 +12,3 @@ daemon-reload:
 wazuh-agent:
   service.running:
     - enable: true
-    - watch:
-      - pkg: wazuh-agent
