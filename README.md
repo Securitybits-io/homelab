@@ -57,7 +57,7 @@ export SSH_PASS="pass"
 - [ ] plausible.io
 - [ ] emulatorjs
 - [ ] Tdarr
-- [ ] Wazuh
+- [x] Wazuh
 
 #### Homelab Tasks
 - [ ] Saltstack
