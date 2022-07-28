@@ -18,7 +18,7 @@ services:
     image: wazuh/wazuh-certs-generator:0.0.1
     hostname: wazuh-certs-generator
     volumes:
-      - /docker/conf/wazuh/wazuh_indexer_ssl_certs/:/certificates/
-      - /docker/conf/wazuh/certs.yml:/config/certs.yml
+      - /docker/conf/wazuh/conf/wazuh_indexer_ssl_certs/:/certificates/
+      - /docker/conf/wazuh/conf/certs.yml:/config/certs.yml
     depends_on:
       - git-checkout
