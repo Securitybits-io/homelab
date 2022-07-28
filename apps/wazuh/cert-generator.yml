@@ -8,7 +8,8 @@ services:
       bash -c "
         find /temp -mindepth 1 -delete && 
         git clone https://github.com/Securitybits-io/homelab.git &&
-        cp -R ./homelab/apps/wazuh/* /docker/conf/ 
+        mkdir -p /docker/conf/wazuh/ &&
+        cp -R ./homelab/apps/wazuh/* /docker/conf/wazuh/ 
       "
     volumes:
       - /docker:/docker
