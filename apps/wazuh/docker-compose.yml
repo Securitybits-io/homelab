@@ -14,7 +14,7 @@ services:
       - /docker:/docker
 
   wazuh.manager:
-    image: wazuh/wazuh-manager:4.5.0
+    image: wazuh/wazuh-manager
     hostname: wazuh.manager
     restart: always
     ports:
@@ -52,7 +52,7 @@ services:
       - git-checkout
 
   wazuh.indexer:
-    image: wazuh/wazuh-indexer:4.5.0
+    image: wazuh/wazuh-indexer
     hostname: wazuh.indexer
     restart: always
     ports:
@@ -79,7 +79,7 @@ services:
       - git-checkout
 
   wazuh.dashboard:
-    image: wazuh/wazuh-dashboard:4.5.0
+    image: wazuh/wazuh-dashboard
     hostname: wazuh.dashboard
     restart: always
     ports:
