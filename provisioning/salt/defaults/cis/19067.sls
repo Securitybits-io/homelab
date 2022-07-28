@@ -1,3 +1,3 @@
 CIS Benchmark remove Rsync:
-  pkg.absent:
+  pkg.removed:
     - name: rsync

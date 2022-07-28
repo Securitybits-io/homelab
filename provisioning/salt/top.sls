@@ -3,6 +3,8 @@ base:
     - defaults.enable-color-prompt
     - defaults.user.christoffer
     - defaults.timezone
+    - defaults.wazuh-agent
+    - defaults.cis
     - promtail-formula.host
     - telegraf-formula
 
