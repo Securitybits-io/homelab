@@ -54,6 +54,13 @@
             "displayURL": "Dash.Securitybits.io",
             "url": "https://dash.securitybits.io",
             "icon": "query_stats"
+          },
+          {
+            "name": "Wazuh",
+            "displayURL": "Wazuh.Securitybits.local",
+            "url": "https://10.0.40.6/",
+            "icon": "security"
+
           }
         ]
       },
