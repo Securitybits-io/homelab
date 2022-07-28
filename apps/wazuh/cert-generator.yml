@@ -1,9 +1,23 @@
 version: '3'
-
 services:
+  git-checkout:
+    container_name: git-checkout-wazuh-generator
+    image: bitnami/git:latest
+    working_dir: /temp
+    command: >
+      bash -c "
+        find /temp -mindepth 1 -delete && 
+        git clone https://github.com/Securitybits-io/homelab.git &&
+        cp -R ./homelab/apps/wazuh/* /docker/conf/ 
+      "
+    volumes:
+      - /docker:/docker
+
   generator:
     image: wazuh/wazuh-certs-generator:0.0.1
     hostname: wazuh-certs-generator
     volumes:
       - /docker/conf/wazuh/wazuh_indexer_ssl_certs/:/certificates/
       - /docker/conf/wazuh/certs.yml:/config/certs.yml
+    depends_on:
+      - git-checkout
