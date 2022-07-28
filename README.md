@@ -56,8 +56,8 @@ export SSH_PASS="pass"
 - [ ] Kavitareader
 - [ ] plausible.io
 - [ ] emulatorjs
-- [ ] TubeSync
 - [ ] Tdarr
+- [ ] Wazuh
 
 #### Homelab Tasks
 - [ ] Saltstack
