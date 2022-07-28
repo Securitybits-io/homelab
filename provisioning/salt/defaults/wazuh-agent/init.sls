@@ -1,6 +1,6 @@
 install wazuh-agent:
   pkg.installed:
-    - sources: https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.3.6-1_amd64.deb
+    - source: https://packages.wazuh.com/4.x/apt/pool/main/w/wazuh-agent/wazuh-agent_4.3.6-1_amd64.deb
     - env:
       - WAZUH_MANAGER: 'mgmt-docker-01'
       - WAZUH_AGENT_GROUP: 'default'
