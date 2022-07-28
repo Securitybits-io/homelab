@@ -67,3 +67,4 @@ export SSH_PASS="pass"
     - [ ] Git runners Docker-in-Docker
 - [x] Add Telegraf Proxmox Plugin
 - [ ] Create Windows templating
+- [x] Install and configfure agent on Windows Hosts
