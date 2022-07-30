@@ -1,0 +1,54 @@
+services:
+  taky-cot:
+    image: skadakar/taky:0.8.3
+    container_name: taky-cot
+    user: root
+    ports:
+      - 8089:8089
+    restart: unless-stopped
+    environment:
+      - ssl_enabled=true
+      - client_cert_required=true
+      - mode=cot
+      - bind_ip=${BIND_IP}
+      - public_ip=${IP}
+      - hostname=${ID}
+      - redis=${REDIS}
+    volumes:
+      - /docker/data/taky-data:/data
+    
+  taky-data:
+    image: skadakar/taky:0.8.3
+    container_name: taky-data
+    user: root
+    ports:
+      - 8443:8443
+    restart: unless-stopped
+    environment:
+      - ssl_enabled=true
+      - client_cert_required=true
+      - mode=data
+      - bind_ip=${BIND_IP}
+      - public_ip=${IP}
+      - hostname=${ID}
+    volumes:
+      - /docker/data/taky-data:/data
+    depends_on:
+      - taky-cot
+
+  taky-sidecar:
+    container_name: taky-sidecar
+    image: skadakar/taky-rtsp-sidecar:latest
+    ports:
+      - "1880:1880"
+    environment:
+      - COT_IP=${IP}
+      - COT_PORT=8089
+    volumes:
+      - /docker/data/taky-data/ssl/ca.crt:/data/certs/ca.pem:ro
+      - /docker/data/taky-data/ssl/server.crt:/data/certs/server.pem:ro
+      - /docker/data/taky-data/ssl/server.key:/data/certs/server.key:ro
+    restart: unless-stopped
+    depends_on:
+      - taky-rtsp
+      - taky-cot
