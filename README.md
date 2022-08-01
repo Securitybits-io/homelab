@@ -58,6 +58,7 @@ export SSH_PASS="pass"
 - [ ] emulatorjs
 - [ ] Tdarr
 - [x] Wazuh
+- [ ] Piwigo for Military Reference images
 
 #### Homelab Tasks
 - [ ] Saltstack
