@@ -1,0 +1,15 @@
+version: "2.1"
+services:
+  piwigo:
+    image: linuxserver/piwigo:latest
+    container_name: piwigo
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Stockholm
+    volumes:
+      - /docker/conf/piwigo:/config
+      - /docker/data/piwigo:/gallery
+    ports:
+      - 80:80
+    restart: unless-stopped
