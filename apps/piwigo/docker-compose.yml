@@ -1,24 +1,25 @@
-mysqlpiwigo:
-   image: mariadb:latest
-   volumes:
-      - /docker/conf/piwigo/mysql/:/var/lib/mysql
-   environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_PIWIGO_ROOT_PASSWORD}
-      - MYSQL_DATABASE=piwigo
-      - MYSQL_USER=piwigo
-      - MYSQL_PASSWORD=${MYSQL_PIWIGO_PASSWORD}
-piwigo:
-   image: mathieuruellan/piwigo
-   links:
-      - mysqlpiwigo:mysql
-   volumes:
-      - /docker/data/piwigo/data/galleries:/var/www/galleries
-      - /docker/data/piwigo/data/local:/var/www/local
-      - /docker/data/piwigo/data/plugins:/var/www/plugins
-      - /docker/data/piwigo/data/themes:/var/www/themes
-      - /docker/data/piwigo/cache:/var/www/_data/i
-      - /docker/data/piwigo/upload:/var/www/upload
-   ports:
-      - "80:80"
-   hostname: piwigo
-   domainname: securitybits.io
+services:
+  mysqlpiwigo:
+    image: mariadb:latest
+    volumes:
+        - /docker/conf/piwigo/mysql/:/var/lib/mysql
+    environment:
+        - MYSQL_ROOT_PASSWORD=${MYSQL_PIWIGO_ROOT_PASSWORD}
+        - MYSQL_DATABASE=piwigo
+        - MYSQL_USER=piwigo
+        - MYSQL_PASSWORD=${MYSQL_PIWIGO_PASSWORD}
+  piwigo:
+    image: mathieuruellan/piwigo
+    links:
+        - mysqlpiwigo:mysql
+    volumes:
+        - /docker/data/piwigo/data/galleries:/var/www/galleries
+        - /docker/data/piwigo/data/local:/var/www/local
+        - /docker/data/piwigo/data/plugins:/var/www/plugins
+        - /docker/data/piwigo/data/themes:/var/www/themes
+        - /docker/data/piwigo/cache:/var/www/_data/i
+        - /docker/data/piwigo/upload:/var/www/upload
+    ports:
+        - "80:80"
+    hostname: piwigo
+    domainname: securitybits.io
