@@ -10,7 +10,7 @@ services:
       - /docker/backup/radarr:/backups
       - /docker/conf/radarr/data:/config
       - /docker/mnt/Movies:/movies 
-      - /docker/mnt/downloads/complete:/downloads/complete
+      - /docker/mnt/downloads/completed:/downloads/complete
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -26,7 +26,7 @@ services:
       - /docker/backup/sonarr:/backups
       - /docker/conf/sonarr/data:/config
       - /docker/mnt/Series:/tv 
-      - /docker/mnt/downloads/complete:/downloads/complete
+      - /docker/mnt/downloads/completed:/downloads/complete
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -47,29 +47,59 @@ services:
       - 6767:6767
     restart: unless-stopped
 
-  transmission:
-    image: linuxserver/transmission:latest
-    container_name: transmission
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Stockholm
-      - TRANSMISSION_WEB_HOME=/combustion-release/
-      - USER=${MEDIA_TRANSMISSION_USERNAME}
-      - PASS=${MEDIA_TRANSMISSION_PASSWORD}
-      - PREALLOCATION=1
-      - RATIO_LIMIT=0
-      - RATIO_LIMIT_ENABLED=true
-    volumes:
-      - /docker/conf/transmission:/config
-      - /docker/mnt/downloads:/downloads
-      - /docker/conf/transmission/watch:/watch
-    ports:
-      - 9091:9091
-      - 51413:51413
-      - 51413:51413/udp
-    restart: unless-stopped
+  # transmission:
+  #   image: linuxserver/transmission:latest
+  #   container_name: transmission
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Europe/Stockholm
+  #     - TRANSMISSION_WEB_HOME=/combustion-release/
+  #     - USER=${MEDIA_TRANSMISSION_USERNAME}
+  #     - PASS=${MEDIA_TRANSMISSION_PASSWORD}
+  #     - PREALLOCATION=1
+  #     - RATIO_LIMIT=0
+  #     - RATIO_LIMIT_ENABLED=true
+  #   volumes:
+  #     - /docker/conf/transmission:/config
+  #     - /docker/mnt/downloads:/downloads
+  #     - /docker/conf/transmission/watch:/watch
+  #   ports:
+  #     - 9091:9091
+  #     - 51413:51413
+  #     - 51413:51413/udp
+  #   restart: unless-stopped
 
+  transmission-openvpn:
+    image: haugene/transmission-openvpn
+    container_name: transmission-openvpn
+    ports:
+      - '9091:9091'
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - /docker/conf/transmission-openvpn:/data
+      - /docker/mnt/downloads/completed:/data/completed
+      - /docker/mnt/downloads/incomplete:/data/incomplete
+    environment:
+      - TZ=Europe/Stockholm
+      - OPENVPN_PROVIDER=NORDVPN
+      - OPENVPN_USERNAME=${NORDVPN_USER}
+      - OPENVPN_PASSWORD=${NORDVPN_PASS}
+      - NORDVPN_COUNTRY=NL
+      - NORDVPN_CATEGORY=legacy_p2p
+      - NORDVPN_PROTOCOL=udp
+      - LOCAL_NETWORK=10.0.0.0/16
+      - TRANSMISSION_WEB_UI=combustion
+      - TRANSMISSION_PREALLOCATION=1
+      - TRANSMISSION_RATIO_LIMIT=0
+      - TRANSMISSION_RATIO_LIMIT_ENABLED=True
+    logging:
+      driver: json-file
+      options:
+          max-size: 10m
+
+        
   readarr:
     image: linuxserver/readarr:develop
     container_name: readarr
@@ -81,7 +111,7 @@ services:
       - /docker/backup/readarr:/backup
       - /docker/conf/readarr/data:/config
       - /docker/mnt/Books:/books 
-      - /docker/mnt/downloads/complete:/downloads/complete
+      - /docker/mnt/downloads/completed:/downloads/complete
     ports:
       - 8787:8787
     restart: unless-stopped
