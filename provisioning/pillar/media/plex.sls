@@ -6,7 +6,7 @@ mounts:
       fstype: cifs
       mkmnt: True         # Default is False, True used for testing
       config: /etc/fstab
-      opts: rw,guest,vers=3.0,file_mode=0777,dir_mode=0777
+      opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777
       persist: True
       mount: True
     plexbackup:
@@ -15,6 +15,6 @@ mounts:
       fstype: cifs
       mkmnt: True
       config: /etc/fstab
-      opts: rw,guest,vers=3.0,uid=996,file_mode=0777,dir_mode=0777
+      opts: rw,vers=3.0,uid=996,file_mode=0777,dir_mode=0777
       persist: True
       mount: True
