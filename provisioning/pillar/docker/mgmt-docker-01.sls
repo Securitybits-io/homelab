@@ -6,7 +6,7 @@ mounts:
       fstype: cifs
       mkmnt: True
       config: /etc/fstab
-      opts: rw,guest,vers=3.0,file_mode=0660,dir_mode=0660
+      opts: rw,username=guest,password="",vers=3.0,file_mode=0660,dir_mode=0660
       persist: True
       mount: True
 

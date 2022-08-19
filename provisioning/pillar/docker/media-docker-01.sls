@@ -6,7 +6,7 @@ mounts:
       fstype: cifs
       mkmnt: True         # Default is False, True used for testing
       config: /etc/fstab
-      opts: rw,guest,vers=3.0,file_mode=0660,dir_mode=0660
+      opts: rw,username=guest,password="",vers=3.0,file_mode=0660,dir_mode=0660
       persist: True
       mount: True
     RadarrMovies:
@@ -15,7 +15,7 @@ mounts:
       fstype: cifs
       mkmnt: True
       config: /etc/fstab
-      opts: rw,guest,vers=3.0,file_mode=0777,dir_mode=0777
+      opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777
       persist: True
       mount: True
     downloads:
@@ -24,7 +24,7 @@ mounts:
       fstype: cifs
       mkmnt: True
       config: /etc/fstab
-      opts: rw,guest,vers=3.0,file_mode=0777,dir_mode=0777
+      opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777
       persist: True
       mount: True
     radarr-backup:
@@ -33,7 +33,7 @@ mounts:
       fstype: cifs
       mkmnt: True         # Default is False, True used for testing
       config: /etc/fstab
-      opts: rw,guest,vers=3.0,file_mode=0777,dir_mode=0777,nounix,uid=1000
+      opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777,nounix,uid=1000
       persist: True
       mount: True
     SonarrSeries:
@@ -42,7 +42,7 @@ mounts:
       fstype: cifs
       mkmnt: True
       config: /etc/fstab
-      opts: rw,guest,vers=3.0,file_mode=0777,dir_mode=0777
+      opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777
       persist: True
       mount: True
     sonarr-backup:
@@ -51,7 +51,7 @@ mounts:
       fstype: cifs
       mkmnt: True         # Default is False, True used for testing
       config: /etc/fstab
-      opts: rw,guest,vers=3.0,file_mode=0777,dir_mode=0777,nounix,uid=1000
+      opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777,nounix,uid=1000
       persist: True
       mount: True
     ReadarrBooks:
@@ -60,7 +60,7 @@ mounts:
       fstype: cifs
       mkmnt: True
       config: /etc/fstab
-      opts: rw,guest,vers=3.0,file_mode=0777,dir_mode=0777
+      opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777
       persist: True
       mount: True
     YoutubeTactube:
@@ -69,7 +69,7 @@ mounts:
       fstype: cifs
       mkmnt: True
       config: /etc/fstab
-      opts: rw,guest,vers=3.0,file_mode=0777,dir_mode=0777
+      opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777
       persist: True
       mount: True
     Youtube:
@@ -78,7 +78,7 @@ mounts:
       fstype: cifs
       mkmnt: True
       config: /etc/fstab
-      opts: rw,guest,vers=3.0,file_mode=0777,dir_mode=0777
+      opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777
       persist: True
       mount: True
 
@@ -88,7 +88,7 @@ mounts:
       fstype: cifs
       mkmnt: True         # Default is False, True used for testing
       config: /etc/fstab
-      opts: rw,guest,vers=3.0,file_mode=0777,dir_mode=0777,nounix,uid=1000
+      opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777,nounix,uid=1000
       persist: True
       mount: True
     prowlarr-backup:
@@ -97,7 +97,7 @@ mounts:
       fstype: cifs
       mkmnt: True         # Default is False, True used for testing
       config: /etc/fstab
-      opts: rw,guest,vers=3.0,file_mode=0777,dir_mode=0777,nounix,uid=1000
+      opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777,nounix,uid=1000
       persist: True
       mount: True
     bazarr-backup:
@@ -106,7 +106,7 @@ mounts:
       fstype: cifs
       mkmnt: True         # Default is False, True used for testing
       config: /etc/fstab
-      opts: rw,guest,vers=3.0,file_mode=0777,dir_mode=0777,nounix,uid=1000
+      opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777,nounix,uid=1000
       persist: True
       mount: True
     tautulli backup:
@@ -115,7 +115,7 @@ mounts:
       fstype: cifs
       mkmnt: True         # Default is False, True used for testing
       config: /etc/fstab
-      opts: rw,guest,vers=3.0,file_mode=0777,dir_mode=0777,nounix,uid=998
+      opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777,nounix,uid=998
       persist: True
       mount: True
 
