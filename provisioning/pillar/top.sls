@@ -32,3 +32,6 @@ base:
 
   'gameservers-docker-01':
     - docker.gameservers-docker-01
+
+  'ytdl-tactube':
+    - media.tactube

@@ -38,3 +38,6 @@ base:
   'plex':
     - plex-formula
     - mount-formula
+
+  'ytdl-tactube':
+    - youtubedl-formula
