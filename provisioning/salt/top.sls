@@ -41,3 +41,4 @@ base:
 
   'ytdl-tactube':
     - youtubedl-formula
+    - mount-formula
