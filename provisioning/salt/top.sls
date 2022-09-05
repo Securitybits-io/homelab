@@ -39,6 +39,6 @@ base:
     - plex-formula
     - mount-formula
 
-  'ytdl-tactube':
+  'ytdl-*':
     - youtubedl-formula
     - mount-formula

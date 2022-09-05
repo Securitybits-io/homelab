@@ -35,3 +35,6 @@ base:
 
   'ytdl-tactube':
     - media.tactube
+  
+  'ytdl-tactube':
+    - media.youtube
