@@ -97,6 +97,7 @@ services:
       - TRANSMISSION_DOWNLOAD_QUEUE_SIZE=200
       - TRANSMISSION_DOWNLOAD_DIR=/downloads/complete
       - TRANSMISSION_INCOMPLETE_DIR=/downloads/incomplete
+    restart: unless-stopped
     logging:
       driver: json-file
       options:
