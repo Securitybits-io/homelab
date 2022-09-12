@@ -1,6 +1,7 @@
 services:
   taky-cot:
-    image: skadakar/taky:0.8.3
+    #image: skadakar/taky:0.8.3
+    image: skadakar/taky:debug
     container_name: taky-cot
     user: root
     ports:
@@ -18,7 +19,8 @@ services:
       - /docker/data/taky-data:/data
     
   taky-data:
-    image: skadakar/taky:0.8.3
+    # image: skadakar/taky:0.8.3
+    image: skadakar/taky:debug
     container_name: taky-data
     user: root
     ports:
