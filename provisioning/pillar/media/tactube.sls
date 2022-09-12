@@ -146,9 +146,6 @@ youtubedl:
     TREXARMS:
       channel: "TREXARMS"
       url: "https://www.youtube.com/c/TREXARMS"
-    ITSTactical:
-      channel: "ITSTactical"
-      url: "https://www.youtube.com/user/ITStactical"
     TNVCINC:
       channel: "TNVCINC"
       url: "https://www.youtube.com/user/TNVCINC/videos"
