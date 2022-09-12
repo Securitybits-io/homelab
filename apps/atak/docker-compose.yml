@@ -15,6 +15,7 @@ services:
       - public_ip=${IP}
       - hostname=${ID}
       - redis=${REDIS}
+      - key_pw=${KEY_PW}
     volumes:
       - /docker/data/taky-data:/data
     
@@ -33,6 +34,7 @@ services:
       - bind_ip=${BIND_IP}
       - public_ip=${IP}
       - hostname=${ID}
+      - key_pw=${KEY_PW}
     volumes:
       - /docker/data/taky-data:/data
     depends_on:
