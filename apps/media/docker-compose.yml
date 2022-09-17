@@ -79,8 +79,9 @@ services:
       - NET_ADMIN
     volumes:
       - /docker/conf/transmission-openvpn:/data
-      - /docker/mnt/downloads/complete:/downloads/complete
-      - /docker/mnt/downloads/incomplete:/downloads/incomplete
+      - /docker/mnt/downloads:/downloads
+      # - /docker/mnt/downloads/complete:/downloads/complete
+      # - /docker/mnt/downloads/incomplete:/downloads/incomplete
     environment:
       - TZ=Europe/Stockholm
       - OPENVPN_PROVIDER=NORDVPN
@@ -98,10 +99,6 @@ services:
       - TRANSMISSION_DOWNLOAD_DIR=/downloads/complete
       - TRANSMISSION_INCOMPLETE_DIR=/downloads/incomplete
     restart: unless-stopped
-    logging:
-      driver: json-file
-      options:
-          max-size: 10m
         
   readarr:
     image: linuxserver/readarr:develop
