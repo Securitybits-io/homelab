@@ -206,3 +206,6 @@ youtubedl:
     Black Mountain Milsim:
       channel: "Black Mountain Milsim"
       url: "https://www.youtube.com/user/Samw1121/videos"
+    ROKSEAL:
+      channel: "ROKSEAL"
+      url: "https://www.youtube.com/c/ROKSEAL/videos"

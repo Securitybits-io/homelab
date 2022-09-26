@@ -98,3 +98,6 @@ youtubedl:
     BPSSpace:
       channel: "BPS.Space"
       url: "https://www.youtube.com/c/BPSspace/videos"
+    TechWorldWithNana:
+      channel: "TechWorld with Nana"
+      url: "https://www.youtube.com/c/TechWorldwithNana/videos"
