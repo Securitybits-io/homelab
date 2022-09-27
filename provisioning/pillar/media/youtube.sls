@@ -101,3 +101,9 @@ youtubedl:
     TechWorldWithNana:
       channel: "TechWorld with Nana"
       url: "https://www.youtube.com/c/TechWorldwithNana/videos"
+    IBMTechnology:
+      channel: "IBM Technology"
+      url: "https://www.youtube.com/c/IBMTechnology/videos"
+    HashiCorp:
+      channel: "HashiCorp"
+      url: "https://www.youtube.com/c/HashiCorp/videos"
