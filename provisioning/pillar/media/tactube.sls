@@ -17,9 +17,6 @@ cron:
 youtubedl:
   folder: TacTube
   channels:
-    Tein:
-      channel: "Tein"
-      url: https://www.youtube.com/user/0simme0/videos
     GBRSGroup:
       channel: "GBRSGroup"
       url: "https://www.youtube.com/c/GBRSGroup/videos"
@@ -209,3 +206,6 @@ youtubedl:
     ROKSEAL:
       channel: "ROKSEAL"
       url: "https://www.youtube.com/c/ROKSEAL/videos"
+    Ripperkon:
+      channel: "Ripperkon"
+      url: "https://www.youtube.com/user/ripperkon/videos"
