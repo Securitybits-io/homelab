@@ -50,27 +50,24 @@ export SSH_PASS="pass"
 - [ ] Reverse Proxy (Nginx/Traefik)
 - [x] Ombi
 - [ ] Arma3 Server with automatic modlist download
-- [ ] Git Server (Gitlab/Gitea)
-- [ ] Git Runners (Drone?)
 - [ ] Guacamole
 - [ ] Kavitareader
 - [ ] plausible.io
 - [ ] emulatorjs
-- [ ] Tdarr
 - [x] Wazuh
-- [ ] Piwigo for Military Reference images
+- [ ] Piwigo/GoGallery for Military Reference images
 - [ ] Shlink
 - [ ] Taskwarrior
 - [ ] Activitywatch https://activitywatch.net/
 - [ ] uptime-kuma https://github.com/louislam/uptime-kuma
 - [ ] WGer Workout https://wger.de/en/software/features
+- [ ] Microbin https://hub.docker.com/r/danielszabo99/microbin
 
 #### Homelab Tasks
 - [ ] Saltstack
   - [ ] Formulas
     - [x] Set Correct Timezone and NTP Server
     - [ ] CIS Benchmarks
-    - [ ] Git runners Docker-in-Docker
 - [x] Add Telegraf Proxmox Plugin
 - [ ] Create Windows templating
 - [x] Install and configfure agent on Windows Hosts

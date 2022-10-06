@@ -107,3 +107,6 @@ youtubedl:
     HashiCorp:
       channel: "HashiCorp"
       url: "https://www.youtube.com/c/HashiCorp/videos"
+    MakeMeHack:
+      channel: "Make Me Hack"
+      url: "https://www.youtube.com/c/MakeMeHack/videos"
