@@ -209,3 +209,6 @@ youtubedl:
     Ripperkon:
       channel: "Ripperkon"
       url: "https://www.youtube.com/user/ripperkon/videos"
+    PrepairedAirman:
+      channel: "Prepaired Airman"
+      url: "https://www.youtube.com/c/PreparedAirman/videos"

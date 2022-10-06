@@ -59,6 +59,11 @@ export SSH_PASS="pass"
 - [ ] Tdarr
 - [x] Wazuh
 - [ ] Piwigo for Military Reference images
+- [ ] Shlink
+- [ ] Taskwarrior
+- [ ] Activitywatch https://activitywatch.net/
+- [ ] uptime-kuma https://github.com/louislam/uptime-kuma
+- [ ] WGer Workout https://wger.de/en/software/features
 
 #### Homelab Tasks
 - [ ] Saltstack
