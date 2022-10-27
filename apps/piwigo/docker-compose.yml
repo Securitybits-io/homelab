@@ -1,16 +1,6 @@
 services:
-  mysqlpiwigo:
-    image: mariadb:latest
-    container_name: piwigo-reference-mariadb
-    volumes:
-        - /docker/conf/piwigo/mysql/:/var/lib/mysql
-    environment:
-        - MYSQL_ROOT_PASSWORD=${MYSQL_PIWIGO_ROOT_PASSWORD}
-        - MYSQL_DATABASE=piwigo
-        - MYSQL_USER=piwigo
-        - MYSQL_PASSWORD=${MYSQL_PIWIGO_PASSWORD}
   piwigo:
-    image: lscr.io/linuxserver/piwigo:latest
+    image: linuxserver/piwigo:latest
     container_name: piwigo-reference-gallery
     environment:
       - PUID=1000
@@ -21,4 +11,20 @@ services:
       - /docker/data/piwigo-reference:/gallery
     ports:
       - 8080:80
+    restart: unless-stopped
+  mariadb:
+    image: linuxserver/mariadb:latest
+    container_name: piwigo-reference-mariadb
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - MYSQL_ROOT_PASSWORD=${MYSQL_PIWIGO_ROOT_PASSWORD}
+      - MYSQL_DATABASE=piwigo
+      - MYSQL_USER=piwigo
+      - MYSQL_PASSWORD=${MYSQL_PIWIGO_PASSWORD}
+    volumes:
+      - /docker/conf/piwigo-reference/mariadb:/config
+    depends_on:
+      - git-checkout
     restart: unless-stopped
