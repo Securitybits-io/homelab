@@ -1,6 +1,7 @@
 services:
   mysqlpiwigo:
     image: mariadb:latest
+    container_name: piwigo-reference-mariadb
     volumes:
         - /docker/conf/piwigo/mysql/:/var/lib/mysql
     environment:
@@ -9,17 +10,15 @@ services:
         - MYSQL_USER=piwigo
         - MYSQL_PASSWORD=${MYSQL_PIWIGO_PASSWORD}
   piwigo:
-    image: mathieuruellan/piwigo
-    links:
-        - mysqlpiwigo:mysql
+    image: lscr.io/linuxserver/piwigo:latest
+    container_name: piwigo-reference-gallery
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
     volumes:
-        - /docker/data/piwigo/data/galleries:/var/www/galleries
-        - /docker/data/piwigo/data/local:/var/www/local
-        - /docker/data/piwigo/data/plugins:/var/www/plugins
-        - /docker/data/piwigo/data/themes:/var/www/themes
-        - /docker/data/piwigo/cache:/var/www/_data/i
-        - /docker/data/piwigo/upload:/var/www/upload
+      - /docker/conf/piwigo-reference:/config
+      - /docker/data/piwigo-reference:/gallery
     ports:
-        - "80:80"
-    hostname: piwigo
-    domainname: securitybits.io
+      - 80:80
+    restart: unless-stopped
