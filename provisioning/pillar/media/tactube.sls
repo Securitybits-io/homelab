@@ -37,7 +37,7 @@ youtubedl:
       url: "https://www.youtube.com/channel/UCWcq7YsS5kFVU9uMcAc0fmA"
     ForwardObservationsGroup:
       channel: "ForwardObservationsGroup"
-      url: "https://www.youtube.com/channel/UCA2BX6VwUnaOhxzrxgwK0Ag"
+      url: "https://www.youtube.com/@ForwardObservations/videos"
     ForwardObservationsGroupArchive:
       channel: "ForwardObservationsGroupArchive"
       url: "https://www.youtube.com/c/ForwardObservationsArchives/videos"
@@ -212,3 +212,6 @@ youtubedl:
     PrepairedAirman:
       channel: "Prepaired Airman"
       url: "https://www.youtube.com/c/PreparedAirman/videos"
+    IowaROTC:
+      channel: "University of Iowa Army ROTC"
+      url: "https://www.youtube.com/@universityofiowaarmyrotc2439/videos"
