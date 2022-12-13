@@ -215,3 +215,6 @@ youtubedl:
     IowaROTC:
       channel: "University of Iowa Army ROTC"
       url: "https://www.youtube.com/@universityofiowaarmyrotc2439/videos"
+    EndEX:
+      channel: "EndEx"
+      url: "https://www.youtube.com/@endex_kr/videos"
