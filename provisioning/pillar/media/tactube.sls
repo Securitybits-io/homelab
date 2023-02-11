@@ -218,3 +218,9 @@ youtubedl:
     EndEX:
       channel: "EndEx"
       url: "https://www.youtube.com/@endex_kr/videos"
+    INEEDABREN2:
+      channel: "INEEDABREN2"
+      url: "https://www.youtube.com/@INEEDABREN2/videos"
+    One7Six247:
+      channel: "One7Six247"
+      url: "https://www.youtube.com/@one7six247/videos"
