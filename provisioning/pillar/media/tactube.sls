@@ -224,3 +224,6 @@ youtubedl:
     One7Six247:
       channel: "One7Six247"
       url: "https://www.youtube.com/@one7six247/videos"
+    BlitheConcets:
+      channel: "BlitheConceptsGroup"
+      url: "https://www.youtube.com/@Blitheconceptgroup/videos"
