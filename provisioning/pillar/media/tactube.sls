@@ -227,3 +227,6 @@ youtubedl:
     BlitheConcets:
       channel: "BlitheConceptsGroup"
       url: "https://www.youtube.com/@Blitheconceptgroup/videos"
+    Inbusrian:
+      channel: "Inbusrian"
+      url: "https://www.youtube.com/@Inbusrian"
