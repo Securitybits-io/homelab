@@ -230,3 +230,6 @@ youtubedl:
     Inbusrian:
       channel: "Inbusrian"
       url: "https://www.youtube.com/@Inbusrian"
+    FreeRangeAmerican:
+      channel: "FreeRangeAmerican"
+      url: "https://www.youtube.com/@FreeRangeAmerican/videos"
