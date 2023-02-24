@@ -233,3 +233,6 @@ youtubedl:
     FreeRangeAmerican:
       channel: "FreeRangeAmerican"
       url: "https://www.youtube.com/@FreeRangeAmerican/videos"
+    ForgeConcepts:
+      channel: "ForgeConcepts"
+      url: "https://www.youtube.com/@forge-concepts/videos"
