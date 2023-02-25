@@ -236,3 +236,6 @@ youtubedl:
     ForgeConcepts:
       channel: "ForgeConcepts"
       url: "https://www.youtube.com/@forge-concepts/videos"
+    DirtyCivilian:
+      channel: "Dirty-Civilian"
+      url: "https://www.youtube.com/@dirty-civilian/videos"
