@@ -239,3 +239,6 @@ youtubedl:
     DirtyCivilian:
       channel: "Dirty-Civilian"
       url: "https://www.youtube.com/@dirty-civilian/videos"
+    TaskForce41:
+      channel: "Task Force 41"
+      url: "https://www.youtube.com/@taskforce41/videos"
