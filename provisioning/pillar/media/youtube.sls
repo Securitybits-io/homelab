@@ -110,3 +110,6 @@ youtubedl:
     MakeMeHack:
       channel: "Make Me Hack"
       url: "https://www.youtube.com/c/MakeMeHack/videos"
+    AlexisOutdoors:
+      channel: "Alexis Outdoors"
+      url: "https://www.youtube.com/@AlexisOutdoors"
