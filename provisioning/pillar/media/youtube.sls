@@ -113,3 +113,6 @@ youtubedl:
     AlexisOutdoors:
       channel: "Alexis Outdoors"
       url: "https://www.youtube.com/@AlexisOutdoors"
+    JohanGartner:
+      channel: "Johan Gärtner"
+      url: "https://www.youtube.com/@JohanGartner/videos"
