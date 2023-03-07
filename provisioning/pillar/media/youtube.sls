@@ -116,3 +116,6 @@ youtubedl:
     JohanGartner:
       channel: "Johan Gärtner"
       url: "https://www.youtube.com/@JohanGartner/videos"
+    LowByteProductions:
+      channel: "Low Byte Productions"
+      url: "https://www.youtube.com/@LowByteProductions"
