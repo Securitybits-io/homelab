@@ -67,19 +67,19 @@ youtubedl:
       url: "https://www.youtube.com/c/SeanTuckerphoto/videos"
     ippsec:
       channel: "Ippsec"
-      url: "https://www.youtube.com/c/ippsec"
+      url: "https://www.youtube.com/c/ippsec/videos"
     Rook:
       channel: "Rook"
-      url: "https://www.youtube.com/c/DerekRook"
+      url: "https://www.youtube.com/c/DerekRook/videos"
     LiveOverflow:
       channel: "liveoverflow"
-      url: "https://www.youtube.com/channel/UClcE-kVhqyiHCcjYwcpfj9w"
+      url: "https://www.youtube.com/channel/UClcE-kVhqyiHCcjYwcpfj9w/videos"
     StackSmashing:
       channel: "StackSmashing"
-      url: "https://www.youtube.com/c/stacksmashing"
+      url: "https://www.youtube.com/c/stacksmashing/videos"
     DUST:
       channel: "DUST"
-      url: "https://www.youtube.com/c/watchdust"
+      url: "https://www.youtube.com/c/watchdust/videos"
     EvanRoyalty:
       channel: "EvanRoyalty"
       url: "https://www.youtube.com/c/EvanRoyalty/videos"
@@ -112,10 +112,10 @@ youtubedl:
       url: "https://www.youtube.com/c/MakeMeHack/videos"
     AlexisOutdoors:
       channel: "Alexis Outdoors"
-      url: "https://www.youtube.com/@AlexisOutdoors"
+      url: "https://www.youtube.com/@AlexisOutdoors/videos"
     JohanGartner:
       channel: "Johan Gärtner"
       url: "https://www.youtube.com/@JohanGartner/videos"
     LowByteProductions:
       channel: "Low Byte Productions"
-      url: "https://www.youtube.com/@LowByteProductions"
+      url: "https://www.youtube.com/@LowByteProductions/videos"
