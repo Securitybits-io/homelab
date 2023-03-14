@@ -242,3 +242,6 @@ youtubedl:
     TaskForce41:
       channel: "Task Force 41"
       url: "https://www.youtube.com/@taskforce41/videos"
+    RiskyChrisky:
+      channel: "Risky Chrisky"
+      url: "https://www.youtube.com/@RiskyChrisky/videos"
