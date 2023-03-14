@@ -245,3 +245,6 @@ youtubedl:
     RiskyChrisky:
       channel: "Risky Chrisky"
       url: "https://www.youtube.com/@RiskyChrisky/videos"
+    MojaveRepeater:
+      channel: "Mojave Repeater"
+      url: "https://www.youtube.com/@MojaveRepeater/videos"
