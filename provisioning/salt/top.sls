@@ -42,3 +42,6 @@ base:
   'ytdl-*':
     - youtubedl-formula
     - mount-formula
+
+  'takserver':
+    - docker
