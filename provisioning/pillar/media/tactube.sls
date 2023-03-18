@@ -248,3 +248,6 @@ youtubedl:
     MojaveRepeater:
       channel: "Mojave Repeater"
       url: "https://www.youtube.com/@MojaveRepeater/videos"
+    Soileater:
+      channel: "Soileater"
+      url: "https://www.youtube.com/@SoileaterYT/videos"
