@@ -1,4 +1,4 @@
-{% if grains['oscodename'] ='focal' %}
+{% if grains['oscodename'] == 'focal' %}
 Add Salt 20.04 Repo:
   pkgrepo.managed:
     - humanname: Saltstack Repo
@@ -6,7 +6,7 @@ Add Salt 20.04 Repo:
     - file: /etc/apt/sources.list.d/salt.list
     - key_url: https://repo.saltproject.io/py3/ubuntu/20.04/amd64/latest/salt-archive-keyring.gpg
 
-{% elif grains['oscodename'] = 'jammy' %}
+{% elif grains['oscodename'] == 'jammy' %}
 Add Salt 22.04 Repo:
   pkgrepo.managed:
     - humanname: Saltstack Repo

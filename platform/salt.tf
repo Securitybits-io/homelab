@@ -9,7 +9,7 @@ resource "proxmox_vm_qemu" "salt" {
     onboot = true 
 
     # VM OS Settings
-    clone = "Ubuntu-20.04-Template-32GB"
+    clone = "Ubuntu-22.04-Template-32GB"
 
     # VM System Settings
     agent = 1
