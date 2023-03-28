@@ -51,11 +51,24 @@ resource "proxmox_vm_qemu" "salt" {
     provisioner "remote-exec" {
       inline = [
           "sudo hostnamectl set-hostname ${self.name}",
-          "curl -o bootstrap-salt.sh -L https://bootstrap.saltproject.io",
-          "chmod +x bootstrap-salt.sh",
-          "sudo ./bootstrap-salt.sh -I -i ${self.name} -A salt.securitybits.local"
+          "sudo curl -fsSL -o /etc/apt/keyrings/salt-archive-keyring.gpg https://repo.saltproject.io/salt/py3/ubuntu/22.04/amd64/latest/salt-archive-keyring.gpg",
+          "echo 'deb [signed-by=/etc/apt/keyrings/salt-archive-keyring.gpg arch=amd64] https://repo.saltproject.io/salt/py3/ubuntu/22.04/amd64/latest jammy main' | sudo tee /etc/apt/sources.list.d/salt.list",
+          "sudo apt update",
+          "sudo apt install -y salt-minion",
         ]
     }
+
+    # provisioner "file" {
+    #   content = self.name
+    #   destination = "/etc/salt/minion.d/id.conf"
+    # }
+
+    # provisioner "file" {
+    #   content = "salt.securitybits.local"
+    #   destination = "/etc/salt/minion.d/id.conf"
+    # }
+
+# "sudo ./bootstrap-salt.sh -I -i ${self.name} -A salt.securitybits.local"
 
     provisioner "remote-exec" {
       inline = [
