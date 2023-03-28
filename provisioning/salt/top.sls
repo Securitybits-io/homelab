@@ -5,7 +5,7 @@ base:
     - defaults.timezone
     #- defaults.wazuh-agent
     - defaults.cis
-    - promtail-formula.host
+    #- promtail-formula.host
     #- telegraf-formula
 
   '* not salt':
@@ -28,7 +28,7 @@ base:
 
   '*-docker-0*':
     - docker
-    - promtail-formula.docker
+    #- promtail-formula.docker
     - docker.containers
     - docker.compose.ng
 
