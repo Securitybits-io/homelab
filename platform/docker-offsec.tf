@@ -5,7 +5,7 @@ resource "proxmox_vm_qemu" "offsec-docker-01" {
     name = "offsec-docker-01"
     desc = "Created with Terraform"
     onboot = true
-    clone = "Ubuntu-20.04-Template-100GB"
+    clone = "Ubuntu-22.04-Template-32GB"
     agent = 1
     cores = 2
     sockets = 1
@@ -39,10 +39,29 @@ resource "proxmox_vm_qemu" "offsec-docker-01" {
     provisioner "remote-exec" {
       inline = [
           "sudo hostnamectl set-hostname ${self.name}",
-          "curl -o bootstrap-salt.sh -L https://bootstrap.saltproject.io",
-          "chmod +x bootstrap-salt.sh",
-          "sudo ./bootstrap-salt.sh -I -i ${self.name} -A salt.securitybits.local"
+          "sudo curl -fsSL -o /etc/apt/keyrings/salt-archive-keyring.gpg https://repo.saltproject.io/salt/py3/ubuntu/22.04/amd64/latest/salt-archive-keyring.gpg",
+          "echo 'deb [signed-by=/etc/apt/keyrings/salt-archive-keyring.gpg arch=amd64] https://repo.saltproject.io/salt/py3/ubuntu/22.04/amd64/latest jammy main' | sudo tee /etc/apt/sources.list.d/salt.list",
+          "sudo apt update",
+          "sudo apt install -y salt-minion",
+          "sudo systemctl stop salt-minion"
         ]
+    }
+
+    provisioner "remote-exec" {
+      inline = [
+        "sudo chown provision: /etc/salt/minion_id"
+      ]
+    }
+
+    provisioner "file" {
+      content = "${self.name}"
+      destination = "/etc/salt/minion_id"
+    }
+
+    provisioner "remote-exec" {
+      inline = [
+        "sudo chown -R root: /etc/salt/minion_id"
+      ]
     }
 
     provisioner "remote-exec" {

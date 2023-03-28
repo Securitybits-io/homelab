@@ -11,3 +11,7 @@ Install Salt-Master:
     - file_mode: 644
     - dir_mode: 755
     - include_empty: true
+
+salt pygit2:
+  cmd.run:
+    - name: salt pip install pygit2

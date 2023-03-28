@@ -58,15 +58,27 @@ resource "proxmox_vm_qemu" "salt" {
         ]
     }
 
-    # provisioner "file" {
-    #   content = self.name
-    #   destination = "/etc/salt/minion.d/id.conf"
-    # }
+    provisioner "remote-exec" {
+      inline = [
+        "sudo chown provision:root /etc/salt/minion.d"
+      ]
+    }
 
-    # provisioner "file" {
-    #   content = "salt.securitybits.local"
-    #   destination = "/etc/salt/minion.d/id.conf"
-    # }
+    provisioner "file" {
+      content = "id: ${self.name}"
+      destination = "/etc/salt/minion.d/id.conf"
+    }
+
+    provisioner "file" {
+      content = "master: salt.securitybits.local"
+      destination = "/etc/salt/minion.d/master.conf"
+    }
+
+    provisioner "remote-exec" {
+      inline = [
+        "sudo chown -R root: /etc/salt/minion.d"
+      ]
+    }
 
 # "sudo ./bootstrap-salt.sh -I -i ${self.name} -A salt.securitybits.local"
 
