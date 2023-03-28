@@ -1,3 +1,0 @@
-[submodule "provisioning/formulas/docker-formula"]
-	path = provisioning/formulas/docker-formula
-	url = https://github.com/saltstack-formulas/docker-formula.git
