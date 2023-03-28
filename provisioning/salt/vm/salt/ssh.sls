@@ -3,6 +3,11 @@ Install Salt-SSH:
     - name: salt-ssh
     - refresh: True
 
+Refresh pillar:
+  module.run:
+    - name: saltutil.refresh_pillar
+    - refresh: True
+
 #Create Private SSH Key if missing
 Generate Salt master Private SSH Key:
   cmd.run:
