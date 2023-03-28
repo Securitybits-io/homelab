@@ -58,5 +58,5 @@ variable "vm_network_adapters_bridge" {
 
 variable "http_server_interface" {
   type    = string
-  default = "Wi-Fi"
+  default = "Ethernet"
 }

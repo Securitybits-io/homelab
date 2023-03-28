@@ -54,6 +54,7 @@ export SSH_PASS="pass"
 - [ ] Kavitareader
 - [ ] plausible.io
 - [ ] emulatorjs
+- [ ] SocioBoard
 - [x] Wazuh
 - [ ] Piwigo/GoGallery for Military Reference images
 - [ ] Shlink

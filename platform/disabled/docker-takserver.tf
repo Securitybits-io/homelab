@@ -5,7 +5,7 @@ resource "proxmox_vm_qemu" "takserver" {
     name = "takserver"
     desc = "Created with Terraform"
     onboot = true
-    clone = "Ubuntu-20.04-Template-100GB"
+    clone = "Ubuntu-22.04-Template-100GB"
     agent = 1
     cores = 2
     sockets = 1
