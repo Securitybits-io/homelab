@@ -1,4 +1,5 @@
 # file: Inventory File 
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 
 ansible
 offsec-docker-01
