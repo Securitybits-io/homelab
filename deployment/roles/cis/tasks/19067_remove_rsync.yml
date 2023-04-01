@@ -1,0 +1,6 @@
+---
+- name: CIS | Remove RSync
+  apt:
+    pkg: rsync
+    state: absent
+  become: True

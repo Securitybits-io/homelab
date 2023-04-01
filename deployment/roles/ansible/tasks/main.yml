@@ -1,0 +1,5 @@
+---
+# tasks file for installing and configuring ansible
+- import_tasks: ansible.yml
+- import_tasks: ansible_galaxy.yml
+- import_tasks: clone_homelab.yml

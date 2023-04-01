@@ -1,0 +1,7 @@
+---
+- name: Enable color prompt
+  lineinfile:
+    path: /root/.bashrc
+    line: force_color_prompt=yes
+    regexp: '#force_color_prompt.*'
+  become: True

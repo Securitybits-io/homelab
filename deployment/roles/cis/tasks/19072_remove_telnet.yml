@@ -1,0 +1,6 @@
+---
+- name: CIS | Remove Telnet
+  apt:
+    pkg: telnet
+    state: absent
+  become: True

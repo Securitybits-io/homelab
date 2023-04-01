@@ -1,0 +1,8 @@
+---
+- hosts: offsec-docker-01
+  gather_facts: no
+  
+  roles:
+    - common
+    - cis
+    - ssh

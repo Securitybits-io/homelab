@@ -1,0 +1,6 @@
+---
+# defaults file for cis
+ansible_dependencies:
+- python3-pip
+- ssh
+- sshpass

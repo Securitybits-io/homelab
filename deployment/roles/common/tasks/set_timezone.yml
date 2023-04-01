@@ -1,0 +1,5 @@
+---
+- name: Set TimeZone to EU/Stockholm
+  timezone:
+    name: Europe/Stockholm
+  become: True

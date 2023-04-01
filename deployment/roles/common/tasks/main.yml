@@ -1,0 +1,4 @@
+---
+- import_tasks: ping.yml
+- import_tasks: enable_color_prompt.yml
+- import_tasks: set_timezone.yml

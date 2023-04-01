@@ -1,0 +1,17 @@
+---
+- name: Only run "update_cache=yes" if the last one is more than 36000 seconds ago
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 36000
+
+- name: Install Ansible Dependencies
+  apt:
+    name: "{{ ansible_dependencies }}"
+    state: present
+  become: True
+
+- name: Install Ansible with pip
+  pip:
+    name: ansible
+    state: present
+  become: true

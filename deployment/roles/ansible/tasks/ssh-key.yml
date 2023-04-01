@@ -1,0 +1,2 @@
+---
+- name: Create root SSH private and Pub key

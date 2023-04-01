@@ -1,0 +1,32 @@
+---
+# tasks file for ssh
+  - include_vars: users.yml
+
+  - name: Create Users with Home Directory
+    user: 
+      name: '{{ item.username }}' 
+      shell: '/bin/bash'
+      createhome: True 
+      comment: 'Created with Ansible'
+    become: True
+    with_items: '{{ users }}'
+
+  - name: Setup | Authorized Keys
+    authorized_key: 
+      user: '{{ item.username }}'
+      key: '{{ lookup("file", "files/keys/{{ item.username }}.pub") }}'
+    become: True
+    when: 'item.use_sudo|bool'
+    with_items: '{{ users }}'
+
+  - name: Sudoers | Add user to sudo
+    lineinfile:
+      path: /etc/sudoers.d/'{{ item.username }}'
+      line: '{{ item.username }} ALL=(ALL) NOPASSWD: ALL'
+      state: present
+      mode: 0440
+      create: yes
+      validate: 'visudo -cf %s'
+    become: True
+    when: 'item.use_sudo|bool'
+    with_items: '{{ users }}'

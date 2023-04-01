@@ -1,0 +1,9 @@
+---
+- hosts: ansible
+  gather_facts: no
+  
+  roles:
+    - common
+    - cis
+    - ssh
+    - ansible

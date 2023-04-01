@@ -1,0 +1,4 @@
+---
+#- import_tasks: reconfigure.yml
+- import_tasks: 19067_remove_rsync.yml
+- import_tasks: 19072_remove_telnet.yml

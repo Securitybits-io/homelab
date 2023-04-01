@@ -1,0 +1,10 @@
+---
+- name: Install Galaxy Collection community.general
+  community.general.ansible_galaxy_install:
+    type: collection
+    name: community.general
+
+- name: Install Galaxy Collection community.docker
+  community.general.ansible_galaxy_install:
+    type: collection
+    name: community.docker

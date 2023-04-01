@@ -56,6 +56,7 @@ export SSH_PASS="pass"
 - [ ] emulatorjs
 - [ ] SocioBoard
 - [x] Wazuh
+- [ ] Immich Photo Backup tool
 - [ ] Piwigo/GoGallery for Military Reference images
 - [ ] Shlink
 - [ ] Taskwarrior
