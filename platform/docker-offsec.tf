@@ -1,6 +1,5 @@
 resource "proxmox_vm_qemu" "offsec-docker-01" {
     
-    # VM General Settings
     target_node = "pve-node-01"
     name = "offsec-docker-01"
     desc = "Created with Terraform"
@@ -26,25 +25,23 @@ resource "proxmox_vm_qemu" "offsec-docker-01" {
     }
 
     #os_type = "cloud-init"
-
-
     connection {
       type      = "ssh"
       user      = var.SSH_USER
       password  = var.SSH_PASS
       host      = self.ssh_host
-      script_path = "/home/${var.SSH_USER}/provision_salt-minion_%RAND%.sh"
+      script_path = "/home/${var.SSH_USER}/provision_%RAND%.sh"
     }
 
     provisioner "remote-exec" {
       inline = [
           "sudo hostnamectl set-hostname ${self.name}"
-          ]
+        ]
     }
 
     provisioner "remote-exec" {
       inline = [
-          "sudo /usr/sbin/shutdown -r 1"
+          "sudo reboot"
         ]
     }
 }
