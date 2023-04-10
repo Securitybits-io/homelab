@@ -16,3 +16,11 @@
 - name: run certificate getter
   script: 
     cmd: files/letsencrypt/certificate_get.sh
+
+- name: create certbot renew cron job
+  cron:
+    name: "SECBITS_RENEW_SSL"
+    job: /usr/bin/certbot renew --quiet
+    minute: "15"
+    hour: "03"
+    user: root

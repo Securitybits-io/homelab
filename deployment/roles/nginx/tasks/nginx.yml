@@ -42,3 +42,8 @@
       src: "/etc/nginx/sites-available/{{ item }}.conf"
       dest: "/etc/nginx/sites-enabled/{{ item }}.conf"
     with_items: "{{ sites }}"
+  
+  - name: Start the NGINX service
+    service:
+      name: nginx
+      state: started
