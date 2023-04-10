@@ -22,4 +22,9 @@
     mode: "0644"
 
 - name: Manage Sites Avalible
-  
+  copy:
+    src: files/sites/
+    dest: /etc/nginx/sites-available/
+    owner: root
+    group: root
+    mode: "0644"
