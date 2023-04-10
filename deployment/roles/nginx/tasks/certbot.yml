@@ -1,5 +1,5 @@
 ---
 - name: install certbot
   apt:
-    name: {{ certbot_dependencies }}
+    name: "{{ certbot_dependencies }}"
     state: present
