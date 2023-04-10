@@ -15,4 +15,4 @@
 
 - name: run certificate getter
   script: 
-    cmd: /etc/letsencrypt/certificate_get.sh
+    cmd: files/letsencrypt/certificate_get.sh
