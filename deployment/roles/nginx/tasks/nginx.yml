@@ -2,7 +2,7 @@
 # tasks file for nginx
 - name: install nginx
   apt:
-    name: nginx
+    name: "{{ nginx_dependencies }}"
     state: present
 
 - name: Manage nginx.conf

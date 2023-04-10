@@ -1,5 +1,18 @@
 ---
+# Task file for certbopt
 - name: install certbot
   apt:
     name: "{{ certbot_dependencies }}"
     state: present
+
+- name: create certificate getter script
+  copy:
+    src: files/letsencrypt/certificate_get.sh
+    dest: /etc/letsencrypt/certificate_get.sh
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: run certificate getter
+  script: 
+    cmd: /etc/letsencrypt/certificate_get.sh
