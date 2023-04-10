@@ -1,0 +1,7 @@
+---
+# vars file for nginx
+sites:
+  - dash.securitybits.io
+  - ombi.securitybits.io
+  - default.securitybits.io
+  - default.northernphotography.se

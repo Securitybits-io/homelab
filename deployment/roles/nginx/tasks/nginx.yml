@@ -1,30 +1,44 @@
 ---
-# tasks file for nginx
-- name: install nginx
-  apt:
-    name: "{{ nginx_dependencies }}"
-    state: present
+  - include_vars: nginx.yml
 
-- name: Manage nginx.conf
-  copy:
-    src: files/nginx.conf
-    dest: /etc/nginx/nginx.conf
-    owner: root
-    group: root
-    mode: "0640"
+  # tasks file for nginx
+  - name: install nginx
+    apt:
+      name: "{{ nginx_dependencies }}"
+      state: present
 
-- name: Manage nginx conf.d
-  copy:
-    src: files/conf.d/
-    dest: /etc/nginx/conf.d/
-    owner: root
-    group: root
-    mode: "0644"
+  - name: Manage nginx.conf
+    copy:
+      src: files/nginx.conf
+      dest: /etc/nginx/nginx.conf
+      owner: root
+      group: root
+      mode: "0640"
 
-- name: Manage Sites Avalible
-  copy:
-    src: files/sites/
-    dest: /etc/nginx/sites-available/
-    owner: root
-    group: root
-    mode: "0644"
+  - name: Manage nginx conf.d
+    copy:
+      src: files/conf.d/
+      dest: /etc/nginx/conf.d/
+      owner: root
+      group: root
+      mode: "0644"
+
+  - name: Manage Sites Available
+    copy:
+      src: files/sites/
+      dest: /etc/nginx/sites-available/
+      owner: root
+      group: root
+      mode: "0644"
+
+  - name: remove default site config
+    file:
+      state: absent
+      name: /etc/nginx/sites-enabled/default
+    
+  - name: Create symlinks for each site in sites Available
+    file:
+      state: link
+      src: "/etc/nginx/sites-available/{{ item }}.conf"
+      dest: "/etc/nginx/sites-enabled/{{ item }}.conf"
+    with_items: "{{ sites }}"
