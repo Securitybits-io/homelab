@@ -1,2 +1,8 @@
 ---
 # defaults file for nginx
+nginx_dependencies:
+- nginx
+
+certbot_dependencies:
+- certbot
+- python3-certbot-nginx
