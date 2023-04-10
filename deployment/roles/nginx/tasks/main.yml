@@ -1,0 +1,25 @@
+---
+# tasks file for nginx
+- name: install nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Manage nginx.conf
+  copy:
+    src: files/nginx.conf
+    dest: /etc/nginx/nginx.conf
+    owner: root
+    group: root
+    mode: "0640"
+
+- name: Manage nginx conf.d
+  copy:
+    src: files/conf.d/
+    dest: /etc/nginx/conf.d/
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Manage Sites Avalible
+  

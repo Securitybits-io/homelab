@@ -2,3 +2,7 @@
 
 ansible
 offsec-docker-01
+nginx
+
+[docker_hosts]
+offsec-docker-01
