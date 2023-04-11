@@ -1,0 +1,20 @@
+---
+# tasks file for ytdl
+  # - name: install YT-DLP dependencies
+  #   apt:
+  #     name: '{{ ytdl_dependencies }}'
+  #     state: present
+
+  # - name: install YT-DLP
+  #   pip:
+  #     name: yt-dlp
+  #     state: present
+
+  - name: create channel file
+    copy:
+      dest: "/opt/channel.list"
+      state: present
+      content: |
+        # {{ item.channel }}
+        {{ item.url }}
+    with_items: '{{ channels }}'
