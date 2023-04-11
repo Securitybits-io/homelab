@@ -17,7 +17,7 @@
 
   - name: create ytdl shellscript
     copy:
-      name: /opt/youtube-dl.sh
+      dest: /opt/youtube-dl.sh
       mode: "0744"
       content: |
         #!/bin/bash
