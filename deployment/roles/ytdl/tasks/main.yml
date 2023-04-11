@@ -13,7 +13,6 @@
   - name: create channel file
     copy:
       dest: "/opt/channel.list"
-      state: present
       content: |
         # {{ item.channel }}
         {{ item.url }}
