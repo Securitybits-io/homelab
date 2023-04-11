@@ -1,5 +1,5 @@
 ---
-- hosts: offsec-docker-01
+- hosts: ytdl-tactube
   become: True
   gather_facts: no
   
@@ -7,4 +7,5 @@
     - common
     - cis
     - ssh
+    - smb-mount
     - ytdl

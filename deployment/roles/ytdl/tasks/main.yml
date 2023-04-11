@@ -1,14 +1,14 @@
 ---
 # tasks file for ytdl
-  # - name: install YT-DLP dependencies
-  #   apt:
-  #     name: '{{ ytdl_dependencies }}'
-  #     state: present
+  - name: install YT-DLP dependencies
+    apt:
+      name: '{{ ytdl_dependencies }}'
+      state: present
 
-  # - name: install YT-DLP
-  #   pip:
-  #     name: yt-dlp
-  #     state: present
+  - name: install YT-DLP
+    pip:
+      name: yt-dlp
+      state: present
 
   - name: create channel file
     template:
@@ -23,3 +23,10 @@
         #!/bin/bash
         /usr/local/bin/yt-dlp -N 5 --playlist-reverse --download-archive /youtube-dl/{{ item }}/downloaded.txt -i -o "/youtube-dl/{{ item }}/%(uploader)s/%(playlist)s/%(upload_date>%Y)s/%(playlist)s - S%(upload_date>%Y)sE%(playlist_index)s - %(title)s.%(ext)s" -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]" -S vcodec:h264 --merge-output-format mkv --add-metadata --write-thumbnail --write-description --write-auto-subs --sub-langs en,sv,-live_chat --convert-subs srt --batch-file=/opt/channel.list --compat-options playlist-index
     with_items: '{{ ytdl_folder }}'
+
+  - name: create cronjob for /opt/youtube-dl
+    cron:
+      name: SECBITS_YOUTUBE_DOWNLOAD
+      job: /usr/bin/sh /opt/youtube-dl.sh
+      minute: "2"
+      hour: "0"
