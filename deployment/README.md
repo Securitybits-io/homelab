@@ -2,7 +2,6 @@
 
 ## TODO
 - Machines:
-  - offsec-docker-01
   - Media-docker-01
   - ATAK-Docker-01
   - mgmt-docker-01
