@@ -12,4 +12,5 @@
       path: '{{ item.path }}'
       opts: '{{ item.opts }}'
       fstype: '{{ item.type }}'
+      state: mounted
     with_items: '{{ mounts }}'
