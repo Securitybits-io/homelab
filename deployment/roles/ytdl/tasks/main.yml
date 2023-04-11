@@ -1,11 +1,11 @@
 ---
 # tasks file for ytdl
-  - name: install YT-DLP dependencies
+  - name: install yt-dlp dependencies
     apt:
       name: '{{ ytdl_dependencies }}'
       state: present
 
-  - name: install YT-DLP
+  - name: install yt-dlp
     pip:
       name: yt-dlp
       state: present
