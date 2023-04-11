@@ -35,12 +35,7 @@ resource "proxmox_vm_qemu" "offsec-docker-01" {
 
     provisioner "remote-exec" {
       inline = [
-          "sudo hostnamectl set-hostname ${self.name}"
-        ]
-    }
-
-    provisioner "remote-exec" {
-      inline = [
+          "sudo hostnamectl set-hostname ${self.name}",
           "sudo reboot"
         ]
     }
