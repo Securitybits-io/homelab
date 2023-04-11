@@ -8,3 +8,17 @@
     - cis
     - ssh
     - docker
+
+  tasks:
+    - name: copy docker-compose to /opt
+      copy:
+        src: "../apps/offsec/{{ item }}"
+        dest: "/opt/offsec/{{ item }}"
+      loop:
+        - docker-compose.yml
+
+    - name: docker compose up
+      community.docker.docker_compose:
+        project_src: /opt/offsec
+        files:
+          - docker-compose.yml
