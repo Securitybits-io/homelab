@@ -23,7 +23,15 @@
       loop:
         - docker-compose.yml
 
-    - name: docker compose up
+    - name: docker-compose pull
+      community.docker.docker_compose:
+        project_src: /opt/offsec
+        pull: true
+        files:
+          - docker-compose.yml
+
+
+    - name: docker-compose up
       community.docker.docker_compose:
         project_src: /opt/offsec
         files:
