@@ -1,5 +1,10 @@
 ---
 # tasks file for smb-mount
+  - name: Only run "update_cache=yes" if the last one is more than 36000 seconds ago
+    ansible.builtin.apt:
+      update_cache: yes
+      cache_valid_time: 36000
+    become: True
 
   - name: Install mount Dependencies
     apt:
