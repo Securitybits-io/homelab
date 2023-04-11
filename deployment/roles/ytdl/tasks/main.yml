@@ -10,10 +10,15 @@
   #     name: yt-dlp
   #     state: present
 
+  # - name: create channel file
+  #   copy:
+  #     dest: "/opt/channel.list"
+  #     content: |
+  #       # {{ item.channel }}
+  #       {{ item.url }}
+  #   loop: '{{ channels }}'
+
   - name: create channel file
-    copy:
+    template:
+      src: channel.list
       dest: "/opt/channel.list"
-      content: |
-        # {{ item.channel }}
-        {{ item.url }}
-    loop: '{{ channels }}'

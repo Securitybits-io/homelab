@@ -1,0 +1,5 @@
+{% for channel in channels %}
+# {{ channel.channel }}
+{{ channel.url }}
+
+{% endfor %}
