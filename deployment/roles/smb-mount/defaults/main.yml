@@ -1,0 +1,6 @@
+---
+# defaults file for smb-mount
+smb_dependencies:
+- nfs-common
+- cifs-utils
+

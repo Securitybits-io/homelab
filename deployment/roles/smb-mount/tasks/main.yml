@@ -1,0 +1,15 @@
+---
+# tasks file for smb-mount
+
+  - name: Install mount Dependencies
+    apt:
+      name: "{{ smb_dependencies }}"
+      state: present
+
+  - name: Mount folders
+    mount:
+      src: '{{ item.src }}'
+      path: '{{ item.path }}'
+      opts: '{{ item.opts }}'
+      fstype: '{{ item.type }}'
+    with_items: '{{ mounts }}'
