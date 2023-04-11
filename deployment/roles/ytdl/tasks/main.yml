@@ -16,4 +16,4 @@
       content: |
         # {{ item.channel }}
         {{ item.url }}
-    with_items: '{{ channels }}'
+    loop: '{{ channels }}'
