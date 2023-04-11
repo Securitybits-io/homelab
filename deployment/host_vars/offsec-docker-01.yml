@@ -1,3 +1,6 @@
+
+ytdl_folder: TacTube
+
 channels:
   - channel: "GBRSGroup"
     url: "https://www.youtube.com/c/GBRSGroup/videos"

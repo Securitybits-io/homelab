@@ -10,15 +10,16 @@
   #     name: yt-dlp
   #     state: present
 
-  # - name: create channel file
-  #   copy:
-  #     dest: "/opt/channel.list"
-  #     content: |
-  #       # {{ item.channel }}
-  #       {{ item.url }}
-  #   loop: '{{ channels }}'
-
   - name: create channel file
     template:
       src: channel.list
       dest: "/opt/channel.list"
+
+  - name: create ytdl shellscript
+    copy:
+      - name: /opt/youtube-dl.sh
+      - mode: "0744"
+      - content: |
+          #!/bin/bash
+          /usr/local/bin/yt-dlp -N 5 --playlist-reverse --download-archive /youtube-dl/{{ folder }}/downloaded.txt -i -o "/youtube-dl/{{ item }}/%(uploader)s/%(playlist)s/%(upload_date>%Y)s/%(playlist)s - S%(upload_date>%Y)sE%(playlist_index)s - %(title)s.%(ext)s" -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]" -S vcodec:h264 --merge-output-format mkv --add-metadata --write-thumbnail --write-description --write-auto-subs --sub-langs en,sv,-live_chat --convert-subs srt --batch-file=/opt/channel.list --compat-options playlist-index
+    with_items: '{{ ytdl_folder }}'
