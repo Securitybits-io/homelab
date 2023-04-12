@@ -6,10 +6,12 @@ ytdl-tactube
 ytdl-youtube
 offsec-docker-01
 public-docker-01
+atak-docker-01
 
 [docker_hosts]
 offsec-docker-01
 public-docker-01
+atak-docker-01
 
 [ytdl]
 ytdl-tactube

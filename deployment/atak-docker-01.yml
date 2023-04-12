@@ -21,6 +21,11 @@
         src: "../apps/atak"
         dest: "/opt/"
 
+    - name: copy docker env file from secrets
+      copy:
+        src: "/opt/homelab-secrets/atak/secrets.env"
+        dest: "/opt/atak/.env"
+
     - name: docker-compose pull
       community.docker.docker_compose:
         project_src: /opt/atak
