@@ -18,10 +18,8 @@
 
     - name: copy docker-compose to /opt
       copy:
-        src: "../apps/offsec/{{ item }}"
-        dest: "/opt/offsec/{{ item }}"
-      loop:
-        - docker-compose.yml
+        src: "../apps/offsec"
+        dest: "/opt/"
 
     - name: docker-compose pull
       community.docker.docker_compose:
