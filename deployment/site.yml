@@ -1,7 +1,7 @@
 --- 
 - import_playbook: ansible.yml
 - import_playbook: offsec-docker-01.yml
-- import_playbook: public-docker-01
+- import_playbook: public-docker-01.yml
 - import_playbook: nginx.yml
 - import_playbook: ytdl-tactube.yml
 - import_playbook: ytdl-youtube.yml
