@@ -1,0 +1,10 @@
+---
+- hosts: public-docker-01
+  become: True
+  gather_facts: no
+  
+  roles:
+    - common
+    - cis
+    - ssh
+    - docker
