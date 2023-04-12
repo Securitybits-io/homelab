@@ -4,3 +4,9 @@
     repo: https://github.com/Securitybits-io/homelab.git
     dest: /opt/homelab
   become: True
+
+- name: Clone Homelab repo to root
+  git:
+    repo: git@github.com:Securitybits-io/homelab-secrets.git
+    dest: /opt/homelab-secrets
+  become: True

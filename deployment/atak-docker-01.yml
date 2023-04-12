@@ -1,0 +1,35 @@
+---
+- hosts: offsec-docker-01
+  become: True
+  gather_facts: no
+  
+  roles:
+    - common
+    - cis
+    - ssh
+    - docker
+
+  tasks:
+    - name: create /opt/atak
+      file:
+        path: /opt/offsec
+        state: directory
+        mode: "0755"
+
+    - name: copy docker-compose to /opt
+      copy:
+        src: "../apps/atak"
+        dest: "/opt/"
+
+    - name: docker-compose pull
+      community.docker.docker_compose:
+        project_src: /opt/atak
+        pull: true
+        files:
+          - docker-compose.yml
+
+    - name: docker-compose up
+      community.docker.docker_compose:
+        project_src: /opt/atak
+        files:
+          - docker-compose.yml

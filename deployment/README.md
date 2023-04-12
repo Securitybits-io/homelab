@@ -6,3 +6,7 @@
   - mgmt-docker-01
   - Media-docker-01
   - plex
+
+apps:
+  - promtail logging
+  - portainer agent
