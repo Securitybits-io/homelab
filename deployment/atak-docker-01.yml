@@ -23,7 +23,7 @@
 
     - name: ATAK copy docker env file from secrets
       copy:
-        src: "/opt/homelab-secrets/atak/secrets.env"
+        src: "/opt/homelab-secrets/apps/atak/secrets.env"
         dest: "/opt/atak/.env"
 
     - name: ATAK docker-compose pull
