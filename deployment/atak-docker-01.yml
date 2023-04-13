@@ -1,5 +1,5 @@
 ---
-- hosts: offsec-docker-01
+- hosts: atak-docker-01
   become: True
   gather_facts: no
   
@@ -12,28 +12,28 @@
   tasks:
     - name: create /opt/atak
       file:
-        path: /opt/offsec
+        path: /opt/atak
         state: directory
         mode: "0755"
 
-    - name: copy docker-compose to /opt
+    - name: ATAK copy docker-compose to /opt
       copy:
         src: "../apps/atak"
         dest: "/opt/"
 
-    - name: copy docker env file from secrets
+    - name: ATAK copy docker env file from secrets
       copy:
         src: "/opt/homelab-secrets/atak/secrets.env"
         dest: "/opt/atak/.env"
 
-    - name: docker-compose pull
+    - name: ATAK docker-compose pull
       community.docker.docker_compose:
         project_src: /opt/atak
         pull: true
         files:
           - docker-compose.yml
 
-    - name: docker-compose up
+    - name: ATAK docker-compose up
       community.docker.docker_compose:
         project_src: /opt/atak
         files:
