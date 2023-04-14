@@ -9,7 +9,7 @@ resource "proxmox_vm_qemu" "plex" {
     onboot = true 
 
     # VM OS Settings
-    clone = "Ubuntu-20.04-Template-250GB"
+    clone = "Ubuntu-22.04-Template-250GB"
 
     # VM System Settings
     agent = 1
