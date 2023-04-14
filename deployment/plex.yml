@@ -1,0 +1,11 @@
+---
+- hosts: plex
+  become: True
+  gather_facts: no
+  
+  roles:
+    - common
+    - cis
+    - ssh
+    - smb-mount
+    - plex

@@ -2,11 +2,14 @@
 
 ## TODO
 - Machines:
-  - ATAK-Docker-01
   - mgmt-docker-01
+  - logging-docker-01
   - Media-docker-01
   - plex
 
-apps:
+- Apps:
   - promtail logging
   - portainer agent
+  - portainer
+  - telegraf
+  - wazuh

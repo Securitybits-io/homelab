@@ -1,0 +1,24 @@
+---
+# tasks file for plex
+  - name: Add Plex Repo Key
+    apt_key:
+      url: https://downloads.plex.tv/plex-keys/PlexSign.key
+      state: present
+
+  - name: Add repo for PlexMediaServer
+    apt_repository:
+      repo: deb https://downloads.plex.tv/repo/deb public main
+      state: present
+      filename: plex
+
+  - name: install PlexMediaServer
+    apt:
+      name: plexmediaserver
+      state: present
+      update_cache: True
+
+  - name: Enable PlexMediaServer
+    service:
+      name: plexmediaserver
+      state: started
+      enabled: true
