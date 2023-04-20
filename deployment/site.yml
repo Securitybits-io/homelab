@@ -1,5 +1,6 @@
 --- 
 - import_playbook: ansible.yml
+- import_playbook: logging-docker-01.yml
 - import_playbook: offsec-docker-01.yml
 - import_playbook: public-docker-01.yml
 - import_playbook: atak-docker-01.yml

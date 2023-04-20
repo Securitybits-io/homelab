@@ -5,11 +5,13 @@ nginx
 plex
 ytdl-tactube
 ytdl-youtube
+logging-docker-01 
 offsec-docker-01
 public-docker-01
 atak-docker-01
 
 [docker_hosts]
+logging-docker-01
 offsec-docker-01
 public-docker-01
 atak-docker-01
