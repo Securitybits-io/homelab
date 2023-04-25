@@ -5,6 +5,7 @@ nginx
 plex
 ytdl-tactube
 ytdl-youtube
+media-docker-01
 logging-docker-01 
 offsec-docker-01
 public-docker-01
@@ -15,6 +16,7 @@ logging-docker-01
 offsec-docker-01
 public-docker-01
 atak-docker-01
+media-docker-01
 
 [ytdl]
 ytdl-tactube

@@ -1,0 +1,41 @@
+---
+- hosts: media-docker-01
+  become: True
+  gather_facts: no
+  
+  roles:
+    - common
+    - cis
+    - ssh
+    - smb-mount
+    - docker
+
+  tasks:
+    - name: create /opt/media
+      file:
+        path: /opt/media
+        state: directory
+        mode: "0755"
+
+    - name: ATAK copy docker-compose to /opt
+      copy:
+        src: "../apps/media"
+        dest: "/opt/"
+
+    - name: ATAK copy docker env file from secrets
+      copy:
+        src: "/opt/homelab-secrets/apps/media/secrets.env"
+        dest: "/opt/media/.env"
+
+    - name: Media docker-compose pull
+      community.docker.docker_compose:
+        project_src: /opt/media
+        pull: true
+        files:
+          - docker-compose.yml
+
+    - name: Monitoring docker-compose up
+      community.docker.docker_compose:
+        project_src: /opt/media
+        files:
+          - docker-compose.yml

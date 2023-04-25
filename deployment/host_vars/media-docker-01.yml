@@ -1,0 +1,68 @@
+mounts:
+  - name: backup
+    src: //10.0.11.241/Securitybits.Systems/Docker
+    path: /backup
+    opts: rw,username=guest,password="",vers=3.0,file_mode=0660,dir_mode=0660
+    type: cifs
+
+  - name: RadarrMovies
+    src: //10.0.11.241/PlexMedia/Movies
+    path: /docker/mnt/Movies
+    opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777
+    type: cifs
+
+  - name: Downloads
+    src: //10.0.11.241/PlexMedia/Downloads
+    path: /docker/mnt/downloads
+    opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777
+    type: cifs
+
+
+  - name: Radarr-Backup
+    src: //10.0.11.241/Securitybits.Systems/Radarr
+    path: /docker/backup/radarr
+    opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777,nounix,uid=1000
+    type: cifs
+
+  - name: SonarrSeries
+    src: //10.0.11.241/PlexMedia/Series
+    path: /docker/mnt/Series
+    opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777
+    type: cifs
+
+  - name: Sonarr-Backup
+    src: //10.0.11.241/Securitybits.Systems/Sonarr
+    path: /docker/backup/sonarr
+    opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777,nounix,uid=1000
+    type: cifs
+
+  - name: ReadarrBooks
+    src: //10.0.11.241/PlexMedia/Books
+    path: /docker/mnt/Books
+    opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777
+    type: cifs
+
+  - name: Readarr-Backup
+    src: //10.0.11.241/Securitybits.Systems/Readarr
+    path: /docker/backup/readarr
+    opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777,nounix,uid=1000
+    type: cifs
+
+  - name: Prowlarr-Backup
+    src: //10.0.11.241/Securitybits.Systems/Prowlarr
+    path: /docker/backup/prowlarr
+    opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777,nounix,uid=1000
+    type: cifs
+
+  - name: Bazarr-Backup
+    src: //10.0.11.241/Securitybits.Systems/Bazarr
+    path: /docker/backup/bazarr
+    opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777,nounix,uid=1000
+    type: cifs
+
+  - name: Tautilli-Backup
+    src: //10.0.11.241/Securitybits.Systems/Tautulli
+    path: /docker/backup/tautulli
+    opts: rw,username=guest,password="",vers=3.0,file_mode=0777,dir_mode=0777,nounix,uid=998
+    type: cifs
+
