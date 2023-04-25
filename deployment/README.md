@@ -3,7 +3,6 @@
 ## TODO
 - Machines:
   - mgmt-docker-01
-  - Media-docker-01
 
 - Apps:
   - promtail logging
