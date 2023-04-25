@@ -5,7 +5,7 @@ resource "proxmox_vm_qemu" "mgmt-docker-01" {
     name = "mgmt-docker-01"
     desc = "Created with Terraform"
     onboot = true 
-    clone = "Ubuntu-20.04-Template-100GB"
+    clone = "Ubuntu-22.04-Template-100GB"
     agent = 1
     cores = 2
     sockets = 1
@@ -25,29 +25,21 @@ resource "proxmox_vm_qemu" "mgmt-docker-01" {
         size = "100G"
     }
 
+
     #os_type = "cloud-init"
-
-
     connection {
       type      = "ssh"
       user      = var.SSH_USER
       password  = var.SSH_PASS
       host      = self.ssh_host
-      script_path = "/home/${var.SSH_USER}/provision_salt-minion_%RAND%.sh"
+      script_path = "/home/${var.SSH_USER}/provision_%RAND%.sh"
     }
 
     provisioner "remote-exec" {
       inline = [
+          "sleep 10",
           "sudo hostnamectl set-hostname ${self.name}",
-          "curl -o bootstrap-salt.sh -L https://bootstrap.saltproject.io",
-          "chmod +x bootstrap-salt.sh",
-          "sudo ./bootstrap-salt.sh -I -i ${self.name} -A salt.securitybits.local"
-        ]
-    }
-
-    provisioner "remote-exec" {
-      inline = [
-          "sudo /usr/sbin/shutdown -r 1"
+          "sudo reboot"
         ]
     }
 }
