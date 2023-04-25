@@ -11,15 +11,15 @@
     - docker
 
   tasks:
-    - name: create /opt/mgmt
+    - name: create /opt/dashboard
       file:
-        path: /opt/mgmt
+        path: /opt/dashboard
         state: directory
         mode: "0755"
 
-    - name: mgmt copy docker-compose to /opt
+    - name: dashboard copy docker-compose to /opt
       copy:
-        src: "../apps/mgmt"
+        src: "../apps/dashboard"
         dest: "/opt/"
 
     # - name: ATAK copy docker env file from secrets
@@ -27,15 +27,15 @@
     #     src: "/opt/homelab-secrets/apps/mgmt/secrets.env"
     #     dest: "/opt/mgmt/.env"
 
-    - name: MGMT docker-compose pull
+    - name: dashboard docker-compose pull
       community.docker.docker_compose:
-        project_src: /opt/mgmt
+        project_src: /opt/dashboard
         pull: true
         files:
           - docker-compose.yml
 
-    - name: MGMT docker-compose up
+    - name: dashboard docker-compose up
       community.docker.docker_compose:
-        project_src: /opt/mgmt
+        project_src: /opt/dashboard
         files:
           - docker-compose.yml
