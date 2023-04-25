@@ -1,0 +1,41 @@
+---
+- hosts: mgmt-docker-01
+  become: True
+  gather_facts: no
+  
+  roles:
+    - common
+    - cis
+    - ssh
+    - smb-mount
+    - docker
+
+  tasks:
+    - name: create /opt/mgmt
+      file:
+        path: /opt/mgmt
+        state: directory
+        mode: "0755"
+
+    - name: mgmt copy docker-compose to /opt
+      copy:
+        src: "../apps/mgmt"
+        dest: "/opt/"
+
+    # - name: ATAK copy docker env file from secrets
+    #   copy:
+    #     src: "/opt/homelab-secrets/apps/mgmt/secrets.env"
+    #     dest: "/opt/mgmt/.env"
+
+    - name: MGMT docker-compose pull
+      community.docker.docker_compose:
+        project_src: /opt/mgmt
+        pull: true
+        files:
+          - docker-compose.yml
+
+    - name: MGMT docker-compose up
+      community.docker.docker_compose:
+        project_src: /opt/mgmt
+        files:
+          - docker-compose.yml
