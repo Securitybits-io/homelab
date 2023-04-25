@@ -22,11 +22,6 @@
         src: "../apps/dashboard"
         dest: "/opt/"
 
-    # - name: ATAK copy docker env file from secrets
-    #   copy:
-    #     src: "/opt/homelab-secrets/apps/mgmt/secrets.env"
-    #     dest: "/opt/mgmt/.env"
-
     - name: dashboard docker-compose pull
       community.docker.docker_compose:
         project_src: /opt/dashboard
