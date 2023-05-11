@@ -92,6 +92,24 @@ services:
     depends_on:
       - immich-server
     restart: always
+  
+  backup:
+    container_name: immich_db_dumper
+    image: prodrigestivill/postgres-backup-local
+    env_file:
+      - .env
+    environment:
+      POSTGRES_HOST: database
+      POSTGRES_DB: ${DB_DATABASE_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      SCHEDULE: "@daily"
+      BACKUP_NUM_KEEP: 14
+      BACKUP_DIR: /db_dumps
+    volumes:
+      - /docker/backup/Immich/db_dumps:/db_dumps
+    depends_on:
+      - database
 
 volumes:
   pgdata:
