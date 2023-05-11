@@ -1,3 +1,4 @@
+deployment/.vault_pass
 platform/credentials.auto.tfvars
 platform/terraform.tfstate.backup
 platform/terraform.tfstate
