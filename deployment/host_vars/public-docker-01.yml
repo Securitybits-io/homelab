@@ -1,0 +1,6 @@
+mounts:
+  - name: immich backup
+    src: //10.0.11.241/Christofer-Backup/Media Pictures/Iphone-Backup
+    path: /backup
+    opts: rw,username=guest,password="",vers=3.0,file_mode=0660,dir_mode=0660
+    type: cifs
