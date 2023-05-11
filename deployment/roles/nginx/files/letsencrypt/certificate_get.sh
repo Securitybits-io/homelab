@@ -8,7 +8,8 @@ certbot --agree-tos --email christoffer.claesson@securitybits.io \
 --post-hook "service nginx start" \
 --expand \
 -d dash.securitybits.io \
--d ombi.securitybits.io 
+-d ombi.securitybits.io \
+-d immich.securitybits.io
 
 #-d securitybits.io \
 if [ $? -ne 0 ]
