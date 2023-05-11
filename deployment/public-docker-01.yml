@@ -10,8 +10,7 @@
     - smb-mount
     - docker
 
-### Immich
-   tasks:
+  tasks:
     - name: create /opt/immich
       file:
         path: /opt/immich
