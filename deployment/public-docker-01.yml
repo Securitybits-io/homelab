@@ -10,33 +10,33 @@
     - smb-mount
     - docker
 
-# ### Immich
-#    tasks:
-#     - name: create /opt/immich
-#       file:
-#         path: /opt/immich
-#         state: directory
-#         mode: "0755"
+### Immich
+   tasks:
+    - name: create /opt/immich
+      file:
+        path: /opt/immich
+        state: directory
+        mode: "0755"
 
-#     - name: Immich copy docker-compose to /opt
-#       copy:
-#         src: "../apps/immich"
-#         dest: "/opt/"
+    - name: Immich copy docker-compose to /opt
+      copy:
+        src: "../apps/immich"
+        dest: "/opt/"
 
-#     - name: Immich copy docker env file from secrets
-#       copy:
-#         src: "/opt/homelab-secrets/apps/immich/secrets.env"
-#         dest: "/opt/immich/.env"
+    - name: Immich copy docker env file from secrets
+      copy:
+        src: "/opt/homelab-secrets/apps/immich/secrets.env"
+        dest: "/opt/immich/.env"
 
-#     - name: Immich docker-compose pull
-#       community.docker.docker_compose:
-#         project_src: /opt/immich
-#         pull: true
-#         files:
-#           - docker-compose.yml
+    - name: Immich docker-compose pull
+      community.docker.docker_compose:
+        project_src: /opt/immich
+        pull: true
+        files:
+          - docker-compose.yml
 
-#     - name: Immich docker-compose up
-#       community.docker.docker_compose:
-#         project_src: /opt/immich
-#         files:
-#           - docker-compose.yml
+    - name: Immich docker-compose up
+      community.docker.docker_compose:
+        project_src: /opt/immich
+        files:
+          - docker-compose.yml
