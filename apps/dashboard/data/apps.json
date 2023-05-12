@@ -21,12 +21,6 @@
         "name": "Management",
         "items": [
           {
-            "name": "Portainer",
-            "displayURL": "Management",
-            "url": "http://securitybits.io:9000",
-            "icon": "directions_boat"
-          },
-          {
             "name": "Proxmox",
             "displayURL": "Pve-Node-01.Securitybits.local",
             "url": "https://Pve-Node-01.Securitybits.local:8006",
@@ -118,6 +112,12 @@
         "displayURL": "Plex.com",
         "url": "https://app.plex.tv/",
         "icon": "tv"
+      },
+      {
+        "name": "Immich",
+        "displayURL": "Immich.Securitybits.io",
+        "url": "https://Immich.Securitybits.io/",
+        "icon": "dashboard"
       },
       {
         "name": "QNAP",

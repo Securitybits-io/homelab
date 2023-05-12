@@ -49,15 +49,13 @@ export SSH_PASS="pass"
 - [ ] IPAM / Netbox
 - [ ] Reverse Proxy (Nginx/Traefik)
 - [x] Ombi
-- [ ] Arma3 Server with automatic modlist download
 - [ ] Guacamole
 - [ ] Kavitareader
 - [ ] plausible.io
 - [ ] emulatorjs
 - [ ] SocioBoard
 - [x] Wazuh
-- [ ] Immich Photo Backup tool
-- [ ] Piwigo/GoGallery for Military Reference images
+- [x] Immich Photo Backup tool
 - [ ] Shlink
 - [ ] Taskwarrior
 - [ ] Activitywatch https://activitywatch.net/
