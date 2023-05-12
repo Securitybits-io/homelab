@@ -61,13 +61,4 @@ export SSH_PASS="pass"
 - [ ] Activitywatch https://activitywatch.net/
 - [ ] uptime-kuma https://github.com/louislam/uptime-kuma
 - [ ] WGer Workout https://wger.de/en/software/features
-- [ ] Microbin https://hub.docker.com/r/danielszabo99/microbin
-
-#### Homelab Tasks
-- [ ] Saltstack
-  - [ ] Formulas
-    - [x] Set Correct Timezone and NTP Server
-    - [ ] CIS Benchmarks
-- [x] Add Telegraf Proxmox Plugin
-- [ ] Create Windows templating
-- [x] Install and configfure agent on Windows Hosts
+- [x] Microbin https://hub.docker.com/r/danielszabo99/microbin
