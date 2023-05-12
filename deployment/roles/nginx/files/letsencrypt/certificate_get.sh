@@ -9,7 +9,8 @@ certbot --agree-tos --email christoffer.claesson@securitybits.io \
 --expand \
 -d dash.securitybits.io \
 -d ombi.securitybits.io \
--d immich.securitybits.io
+-d immich.securitybits.io \
+-d microbin.securitybits.io
 
 #-d securitybits.io \
 if [ $? -ne 0 ]

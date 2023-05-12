@@ -39,3 +39,27 @@
         project_src: /opt/immich
         files:
           - docker-compose.yml
+
+    - name: create /opt/microbin
+      file:
+        path: /opt/microbin
+        state: directory
+        mode: "0755"
+
+    - name: microbin copy docker-compose to /opt
+      copy:
+        src: "../apps/microbin"
+        dest: "/opt/"
+
+    - name: microbin docker-compose pull
+      community.docker.docker_compose:
+        project_src: /opt/microbin
+        pull: true
+        files:
+          - docker-compose.yml
+
+    - name: microbin docker-compose up
+      community.docker.docker_compose:
+        project_src: /opt/microbin
+        files:
+          - docker-compose.yml
