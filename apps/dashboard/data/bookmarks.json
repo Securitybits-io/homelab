@@ -45,6 +45,10 @@
           {
             "name": "Spotify",
             "url": "https://open.spotify.com/"
+          },
+          {
+            "name": "Saltedge API",
+            "url": "https://www.saltedge.com/clients/dashboard"
           }
         ]
       },
