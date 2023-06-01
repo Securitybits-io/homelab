@@ -1,5 +1,5 @@
 ---
-- hosts: public-docker-01
+- hosts: private-docker-01
   become: True
   gather_facts: no
   
