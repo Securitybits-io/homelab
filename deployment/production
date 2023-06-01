@@ -11,6 +11,8 @@ logging-docker-01
 offsec-docker-01
 public-docker-01
 atak-docker-01
+private-docker-01
+private-plex
 
 [docker_hosts]
 mgmt-docker-01
@@ -19,7 +21,12 @@ offsec-docker-01
 public-docker-01
 atak-docker-01
 media-docker-01
+private-docker-01
 
 [ytdl]
 ytdl-tactube
 ytdl-youtube
+
+[private]
+private-docker-01
+private-plex

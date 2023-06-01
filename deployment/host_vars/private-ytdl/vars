@@ -1,0 +1,8 @@
+mounts:
+  - name: private-ytdl
+    src: //10.0.11.241/Securitybits.Private
+    path: /youtube-dl
+    opts: rw,username=private,password={{ vault_private_nidhoggr }},vers=3.0,file_mode=0660,dir_mode=0660
+    type: cifs
+
+opts: -N 5 --playlist-reverse --download-archive /youtube-dl/p/downloaded.txt -i -o "/youtube-dl/p/%(uploader)s/%(upload_date>%Y)s/%(uploader)s - S%(upload_date>%Y)sE%(playlist_index)s - %(title)s.%(ext)s" -f best --merge-output-format mkv --add-metadata --write-thumbnail --write-description --batch-file=/opt/channel2.list --compat-options playlist-index

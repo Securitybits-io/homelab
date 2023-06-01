@@ -1,0 +1,11 @@
+---
+- hosts: ytdl-tactube
+  become: True
+  gather_facts: no
+  
+  roles:
+    - common
+    - cis
+    - ssh
+    - smb-mount
+    - ytdl
