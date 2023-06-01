@@ -1,6 +1,6 @@
 mounts:
   - name: private-ytdl
     src: //10.0.11.241/Securitybits.Private
-    path: /youtube-dl
+    path: /docker/data/stash
     opts: rw,username=private,password={{ vault_private_nidhoggr }},vers=3.0,file_mode=0660,dir_mode=0660
     type: cifs

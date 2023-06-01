@@ -20,14 +20,14 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       ## Keep configs, scrapers, and plugins here.
-      - /youtube-dl/config:/root/.stash
+      - /docker/data/stash/config:/root/.stash
       ## Point this at your collection.
-      - /youtube-dl/videos:/data
+      - /docker/data/stash/videos:/data
       ## This is where your stash's metadata lives
-      - /youtube-dl/metadata:/metadata
+      - /docker/data/stash/metadata:/metadata
       ## Any other cache content.
-      - /youtube-dl/cache:/cache
+      - /docker/data/stash/cache:/cache
       ## Where to store binary blob data (scene covers, images)
-      - /youtube-dl/blobs:/blobs
+      - /docker/data/stash/blobs:/blobs
       ## Where to store generated content (screenshots,previews,transcodes,sprites)
-      - /youtube-dl/generated:/generated
+      - /docker/data/stash/generated:/generated
