@@ -1,0 +1,36 @@
+---
+- hosts: public-docker-01
+  become: True
+  gather_facts: no
+  
+  roles:
+    - common
+    - cis
+    - ssh
+    - smb-mount
+    - docker
+  
+  tasks:
+    - name: create /opt/stash
+      file:
+        path: /opt/stash
+        state: directory
+        mode: "0755"
+
+    - name: copy docker-compose to /opt
+      copy:
+        src: "../apps/stash"
+        dest: "/opt/"
+
+    - name: docker-compose pull
+      community.docker.docker_compose:
+        project_src: /opt/stash
+        pull: true
+        files:
+          - docker-compose.yml
+
+    - name: docker-compose up
+      community.docker.docker_compose:
+        project_src: /opt/stash
+        files:
+          - docker-compose.yml
