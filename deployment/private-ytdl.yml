@@ -1,5 +1,5 @@
 ---
-- hosts: ytdl-tactube
+- hosts: private-ytdl
   become: True
   gather_facts: no
   

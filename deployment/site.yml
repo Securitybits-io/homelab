@@ -10,3 +10,4 @@
 - import_playbook: nginx.yml
 - import_playbook: ytdl-tactube.yml
 - import_playbook: ytdl-youtube.yml
+- import_playbook: private-ytdl.yml
