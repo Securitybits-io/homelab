@@ -9,3 +9,9 @@
     - ssh
     - smb-mount
     - ytdl
+
+    
+  tasks:
+    - name: install yt-dlp stash
+      pip:
+        name: https://github.com/schmoaaaaah/yt-dlp-stash/archive/master.zip
