@@ -14,4 +14,6 @@
   tasks:
     - name: install yt-dlp stash
       pip:
-        name: https://github.com/schmoaaaaah/yt-dlp-stash/archive/master.zip
+        name: 
+          - stashapp-tools
+          - https://github.com/schmoaaaaah/yt-dlp-stash/archive/master.zip
