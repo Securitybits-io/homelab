@@ -13,7 +13,6 @@ public-docker-01
 atak-docker-01
 private-ytdl
 private-docker-01
-private-plex
 
 [docker_hosts]
 mgmt-docker-01
@@ -31,4 +30,3 @@ ytdl-youtube
 [private]
 private-ytdl
 private-docker-01
-private-plex
