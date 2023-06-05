@@ -6,4 +6,4 @@ mounts:
     type: cifs
 
 # --use-postprocessor Stash:stashurl="http:private-docker-01:9999"\;when=after_video
-opts: -N 5 --playlist-reverse --download-archive /youtube-dl/videos/downloaded.txt -i -o "/youtube-dl/videos/%(uploader)s/%(title)s.%(ext)s" --merge-output-format mkv --add-metadata --write-thumbnail --write-description --batch-file=/opt/channel.list --compat-options playlist-index --write-info-json --embed-metadata --embed-thumbnail
+opts: -N 10 --playlist-reverse --download-archive /youtube-dl/videos/downloaded.txt -i -o "/youtube-dl/videos/%(webpage_url_domain)s/%(playlist)s/%(title)s.%(ext)s" --merge-output-format mkv --add-metadata --write-thumbnail --write-description --batch-file=/opt/channel.list --compat-options playlist-index --write-info-json --embed-metadata --embed-thumbnail
