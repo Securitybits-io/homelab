@@ -7,7 +7,7 @@ resource "proxmox_vm_qemu" "private-docker-01" {
     onboot = true
     clone = "Ubuntu-22.04-Template-100GB"
     agent = 1
-    cores = 2
+    cores = 4
     sockets = 1
     cpu = "host"
     memory = 2048
