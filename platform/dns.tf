@@ -5,6 +5,7 @@ data "http" "public_ip" {
 resource "namecheap_domain_records" "securitybits" {
   domain = "securitybits.io"
   mode = "OVERWRITE"
+  email_type = "MX"
 
   record {
     hostname = "*"
@@ -16,6 +17,24 @@ resource "namecheap_domain_records" "securitybits" {
     hostname = "@"
     type = "A"
     address = "${chomp(data.http.public_ip.body)}"
+  }
+
+  record {
+    hostname = "@"
+    type = "MX"
+    address = "mx1.privateemail.com"
+  }
+  
+  record {
+    hostname = "@"
+    type = "MX"
+    address = "mx2.privateemail.com"
+  }
+
+  record {
+    hostname = "@"
+    type = "TXT"
+    address = "v=spf1 include:spf.privateemail.com ~all"
   }
 
   record {
