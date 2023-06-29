@@ -80,8 +80,6 @@ services:
     volumes:
       - /docker/conf/transmission-openvpn:/data
       - /docker/mnt/downloads:/downloads
-      # - /docker/mnt/downloads/complete:/downloads/complete
-      # - /docker/mnt/downloads/incomplete:/downloads/incomplete
     environment:
       - TZ=Europe/Stockholm
       - OPENVPN_PROVIDER=NORDVPN
