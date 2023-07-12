@@ -63,3 +63,27 @@
         project_src: /opt/microbin
         files:
           - docker-compose.yml
+
+    - name: create /opt/maptilesdownloader
+      file:
+        path: /opt/maptilesdownloader
+        state: directory
+        mode: "0755"
+
+    - name: maptilesdownloader copy docker-compose to /opt
+      copy:
+        src: "../apps/maptilesdownloader"
+        dest: "/opt/"
+
+    - name: maptilesdownloader docker-compose pull
+      community.docker.docker_compose:
+        project_src: /opt/maptilesdownloader
+        pull: true
+        files:
+          - docker-compose.yml
+
+    - name: maptilesdownloader docker-compose up
+      community.docker.docker_compose:
+        project_src: /opt/maptilesdownloader
+        files:
+          - docker-compose.yml
