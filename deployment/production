@@ -13,6 +13,7 @@ public-docker-01
 atak-docker-01
 private-ytdl
 private-docker-01
+takserver
 
 [docker_hosts]
 mgmt-docker-01
@@ -22,6 +23,7 @@ public-docker-01
 atak-docker-01
 media-docker-01
 private-docker-01
+takserver
 
 [ytdl]
 ytdl-tactube

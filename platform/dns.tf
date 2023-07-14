@@ -20,6 +20,12 @@ resource "namecheap_domain_records" "securitybits" {
   }
 
   record {
+    hostname = "atak"
+    type = "A"
+    address = "${chomp(data.http.public_ip.body)}"
+  }
+
+  record {
     hostname = "@"
     type = "MX"
     address = "mx1.privateemail.com"
