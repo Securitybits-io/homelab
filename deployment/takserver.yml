@@ -17,7 +17,13 @@
         state: present
         update_cache: True
 
-    - name: Install netstat
+    - name: Install zip
+      apt:
+        name: zip
+        state: present
+        update_cache: True
+
+    - name: Install unzip
       apt:
         name: unzip
         state: present
