@@ -11,24 +11,16 @@
     - docker
 
   tasks:
-    - name: Install netstat
+    - name: Install dependencies
       apt:
-        name: net-tools
+        name:
+          - net-tools
+          - zip
+          - unzip
+          - openjdk-11-jre-headless
         state: present
         update_cache: True
 
-    - name: Install zip
-      apt:
-        name: zip
-        state: present
-        update_cache: True
-
-    - name: Install unzip
-      apt:
-        name: unzip
-        state: present
-        update_cache: True
-    
     - name: create /opt/takserver
       file:
         path: /opt/takserver
