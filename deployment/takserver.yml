@@ -1,0 +1,41 @@
+---
+- hosts: takserver
+  become: True
+  gather_facts: no
+  
+  roles:
+    - common
+    - cis
+    - ssh
+    - smb-mount
+    - docker
+
+  tasks:
+    - name: Install netstat
+      apt:
+        name: net-tools
+        state: present
+        update_cache: True
+
+    - name: Install netstat
+      apt:
+        name: unzip
+        state: present
+        update_cache: True
+    
+    - name: create /opt/takserver
+      file:
+        path: /opt/takserver
+        state: directory
+        mode: "0755"
+
+    - name: Clone Cloud-RF TAKServer
+      git:
+        repo: https://github.com/Cloud-RF/tak-server.git
+        dest: /opt/takserver
+      become: True
+
+    - name: Copy TAKServer 4.8 to /opt/takserver
+      copy:
+        src: "/tak/TAK-Software/TAKServer/4.8.0/takserver-docker-4.8-RELEASE-31.zip"
+        dest: "/opt/takserver/takserver-docker-4.8-RELEASE-31.zip"

@@ -1,0 +1,6 @@
+mounts:
+  - name: tak
+    src: //10.0.11.241/Securitybits.TAK/
+    path: /tak
+    opts: rw,username=christofer,password={{ vault_christoffer_nidhoggr }},vers=3.0,file_mode=0660,dir_mode=0660
+    type: cifs
