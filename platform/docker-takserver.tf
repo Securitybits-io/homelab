@@ -7,10 +7,10 @@ resource "proxmox_vm_qemu" "takserver" {
     onboot = true
     clone = "Ubuntu-22.04-Template-100GB"
     agent = 1
-    cores = 2
+    cores = 4
     sockets = 1
     cpu = "host"
-    memory = 6000
+    memory = 8192
 
     network {
         macaddr = "00:50:56:b9:ef:16"
@@ -37,8 +37,13 @@ resource "proxmox_vm_qemu" "takserver" {
     provisioner "remote-exec" {
       inline = [
           "sleep 20",
-          "sudo hostnamectl set-hostname ${self.name}",
-          "sudo reboot"
+          "sudo hostnamectl set-hostname ${self.name}"
+        ]
+    }
+
+    provisioner "remote-exec" {
+      inline = [
+          "(sudo sleep 10; reboot ) &"
         ]
     }
 }
