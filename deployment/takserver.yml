@@ -33,8 +33,14 @@
         dest: /opt/takserver
       become: True
 
-    - name: Copy TAKServer 4.8 to /opt/takserver
+    - name: Copy TAKServer 4.9 to /opt/takserver
       copy:
         remote_src: True
-        src: "/tak/TAK-Software/TAKServer/4.8.0/takserver-docker-4.8-RELEASE-31.zip"
-        dest: "/opt/takserver/takserver-docker-4.8-RELEASE-31.zip"
+        src: "/tak/TAK-Software/TAKServer/4.9.0/takserver-docker-4.9-RELEASE-23.zip"
+        dest: "/opt/takserver/takserver-docker-4.9-RELEASE-23.zip"
+
+    # - name: Copy TAKServer 4.8 to /opt/takserver
+    #   copy:
+    #     remote_src: True
+    #     src: "/tak/TAK-Software/TAKServer/4.8.0/takserver-docker-4.8-RELEASE-31.zip"
+    #     dest: "/opt/takserver/takserver-docker-4.8-RELEASE-31.zip"
