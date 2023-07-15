@@ -10,7 +10,7 @@ resource "proxmox_vm_qemu" "takserver" {
     cores = 2
     sockets = 1
     cpu = "host"
-    memory = 2048
+    memory = 6000
 
     network {
         macaddr = "00:50:56:b9:ef:16"
@@ -36,7 +36,7 @@ resource "proxmox_vm_qemu" "takserver" {
 
     provisioner "remote-exec" {
       inline = [
-          "sleep 10",
+          "sleep 20",
           "sudo hostnamectl set-hostname ${self.name}",
           "sudo reboot"
         ]
