@@ -38,3 +38,20 @@
         project_src: /opt/atak
         files:
           - docker-compose.yml
+
+    # MQTT Setup
+    - name: Create /opt/mqtt
+      file:
+        path: /opt/mestastic
+        state: directory
+        mode: "0755"
+
+    - name: MQTT copy files to /opt
+      copy:
+        src: "../apps/meshtastic"
+        dest: "/opt/"
+    
+    - name: MQTT copy pwfile file from secrets
+      copy:
+        src: "/opt/homelab-secrets/apps/meshtastic/pwfile"
+        dest: "/opt/meshtastic/config/pwfile"
