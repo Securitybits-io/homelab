@@ -10,7 +10,7 @@ media-docker-01
 #logging-docker-01 
 #offsec-docker-01
 public-docker-01
-#atak-docker-01
+atak-docker-01
 private-ytdl
 private-docker-01
 #takserver
@@ -20,7 +20,7 @@ mgmt-docker-01
 #logging-docker-01
 #offsec-docker-01
 public-docker-01
-#atak-docker-01
+atak-docker-01
 media-docker-01
 private-docker-01
 #takserver
