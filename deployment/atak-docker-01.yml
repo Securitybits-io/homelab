@@ -40,9 +40,9 @@
           - docker-compose.yml
 
     # MQTT Setup
-    - name: Create /opt/mqtt
+    - name: Create /opt/meshtastic
       file:
-        path: /opt/mestastic
+        path: /opt/meshtastic
         state: directory
         mode: "0755"
 
