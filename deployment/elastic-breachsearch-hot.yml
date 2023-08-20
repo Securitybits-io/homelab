@@ -1,5 +1,5 @@
 ---
-- hosts: elastic_breasearch_hot
+- hosts: elastic_breachsearch
   become: True
   gather_facts: no
   
