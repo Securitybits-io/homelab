@@ -1,0 +1,26 @@
+---
+- hosts: elastic_breachsearch
+  become: True
+  gather_facts: no
+  
+  roles:
+    - common
+    - cis
+    - ssh
+    - elasticsearch
+
+  tasks: 
+    - name: Configure elasticsearch
+      copy:
+        dest: /etc/elasticsearch/elasticsearch.yml
+        content: |
+          cluster.name: breachsearch
+          node.name: ${HOSTNAME}
+          path.data: /var/lib/elasticsearch
+          path.logs: /var/log/elasticsearch
+          discovery.seed_hosts: ["elasticsearch-breachsearch-hot-01", "elasticsearch-breachsearch-hot-02"]
+          cluster.initial_master_nodes: ["elasticsearch-breachsearch-hot-01", "elasticsearch-breachsearch-hot-02"]
+          xpack.security.enabled: false
+          xpack.security.transport.ssl.enabled: false
+          xpack.security.http.ssl.enabled: false
+      notify: restart elasticsearch

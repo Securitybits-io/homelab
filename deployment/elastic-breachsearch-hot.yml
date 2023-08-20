@@ -15,6 +15,7 @@
         dest: /etc/elasticsearch/elasticsearch.yml
         content: |
           cluster.name: breachsearch
+          node.name: ${HOSTNAME}
           path.data: /var/lib/elasticsearch
           path.logs: /var/log/elasticsearch
           discovery.seed_hosts: ["elasticsearch-breachsearch-hot-01", "elasticsearch-breachsearch-hot-02"]
