@@ -3,7 +3,6 @@
   - name: update cache and ignore errors in case of problems
     apt: 
       update_cache: yes
-      ignore_errors: yes
     become: True
 
   - name: Install required system packages
@@ -31,7 +30,6 @@
   - name: update cache and ignore errors in case of problems
     apt: 
       update_cache: yes
-      ignore_errors: yes
     become: True
 
   - name: install elasticsearch
