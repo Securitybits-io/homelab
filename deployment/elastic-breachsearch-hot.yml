@@ -19,7 +19,6 @@
           path.data: /var/lib/elasticsearch
           path.logs: /var/log/elasticsearch
           discovery.seed_hosts: ["elastic-breachsearch-hot-01", "elastic-breachsearch-hot-02"]
-          cluster.initial_master_nodes: ["elastic-breachsearch-hot-01", "elastic-breachsearch-hot-02"]
           network.host: 0.0.0.0
           xpack.security.enabled: false
           xpack.security.transport.ssl.enabled: false
