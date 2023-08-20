@@ -18,8 +18,8 @@
           node.name: ${HOSTNAME}
           path.data: /var/lib/elasticsearch
           path.logs: /var/log/elasticsearch
-          discovery.seed_hosts: ["elasticsearch-breachsearch-hot-01", "elasticsearch-breachsearch-hot-02"]
-          cluster.initial_master_nodes: ["elasticsearch-breachsearch-hot-01", "elasticsearch-breachsearch-hot-02"]
+          discovery.seed_hosts: ["elastic-breachsearch-hot-01", "elastic-breachsearch-hot-02"]
+          cluster.initial_master_nodes: ["elastic-breachsearch-hot-01", "elastic-breachsearch-hot-02"]
           xpack.security.enabled: false
           xpack.security.transport.ssl.enabled: false
           xpack.security.http.ssl.enabled: false
