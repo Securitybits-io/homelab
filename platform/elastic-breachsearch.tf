@@ -109,9 +109,10 @@ resource "proxmox_vm_qemu" "elastic-breachsearch-hot-02" {
 
     provisioner "remote-exec" {
       inline = [
-          "sleep 10",
+          "sleep 20",
           "sudo hostnamectl set-hostname ${self.name}",
-          "sudo reboot"
+          "(sleep 5; sudo reboot) &",
+          "exit 0"
       ]
     }
 }

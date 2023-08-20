@@ -30,12 +30,12 @@ media-docker-01
 private-docker-01
 #takserver
 
-[breachsearch-elastic]
+[elastic_breachsearch_kibana]
+elastic-breachsearch-kibana-01
+
+[elastic_breacsearch]
 elastic-breachsearch-hot-01
 elastic-breachsearch-hot-02
-
-[breachsearch-kibana]
-elastic-breachsearch-kibana-01
 
 [ytdl]
 ytdl-tactube

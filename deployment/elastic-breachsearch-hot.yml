@@ -1,0 +1,10 @@
+---
+- hosts: elastic_breasearch_hot
+  become: True
+  gather_facts: no
+  
+  roles:
+    - common
+    - cis
+    - ssh
+    - elasticsearch
