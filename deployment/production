@@ -33,7 +33,7 @@ private-docker-01
 [elastic_breachsearch_kibana]
 elastic-breachsearch-kibana-01
 
-[elastic_breacsearch]
+[elastic_breachsearch]
 elastic-breachsearch-hot-01
 elastic-breachsearch-hot-02
 
