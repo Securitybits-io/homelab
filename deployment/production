@@ -14,6 +14,11 @@ atak-docker-01
 private-ytdl
 private-docker-01
 #takserver
+elastic-breachsearch-kibana-01
+elastic-breachsearch-hot-01
+elastic-breachsearch-hot-02
+
+
 
 [docker_hosts]
 mgmt-docker-01
@@ -24,6 +29,13 @@ atak-docker-01
 media-docker-01
 private-docker-01
 #takserver
+
+[breachsearch-elastic]
+elastic-breachsearch-hot-01
+elastic-breachsearch-hot-02
+
+[breachsearch-kibana]
+elastic-breachsearch-kibana-01
 
 [ytdl]
 ytdl-tactube
