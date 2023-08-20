@@ -19,3 +19,4 @@
           path.logs: /var/log/elasticsearch
           discovery.seed_hosts: ["elasticsearch-breachsearch-hot-01", "elasticsearch-breachsearch-hot-02"]
           cluster.initial_master_nodes: ["elasticsearch-breachsearch-hot-01", "elasticsearch-breachsearch-hot-02"]
+      notify: restart elasticsearch
