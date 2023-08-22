@@ -14,3 +14,4 @@
 - import_playbook: takserver.yml
 - import_playbook: elastic-breachsearch-hot.yml
 - import_playbook: elastic-breachsearch-kibana.yml
+- import_palybook: elastic-breachsearch-logstash.yml

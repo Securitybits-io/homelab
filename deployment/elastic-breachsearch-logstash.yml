@@ -1,0 +1,11 @@
+---
+- hosts: elastic_breachsearch_logstash
+  become: True
+  gather_facts: no
+  
+  roles:
+    - common
+    - cis
+    - ssh
+    - logstash
+  

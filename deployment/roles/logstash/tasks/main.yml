@@ -1,2 +1,41 @@
 ---
 # tasks file for logstash
+  - name: update cache and ignore errors in case of problems
+    apt: 
+      update_cache: yes
+    become: True
+
+  - name: Install required system packages
+    apt:
+      pkg:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - openjdk-11-jdk
+      state: latest
+      lock_timeout: 180
+  
+  - name: Set Java home
+    shell: sudo echo "JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> /etc/environment
+
+  - name: export Java home
+    shell: export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd6  
+
+  - name: Download ElasticSearch package
+    shell: wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+
+  - name: check package list
+    shell: echo "deb https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-8.x.list
+
+  - name: update cache and ignore errors in case of problems
+    apt: 
+      update_cache: yes
+    become: True
+
+  - name: install logstash
+    apt: 
+      name: logstash
+      purge: yes
+      state: present
+    notify: restart logstash
+    become: True
