@@ -24,8 +24,6 @@
           path.logs: /var/log/elasticsearch
           discovery.seed_hosts: 
             - elastic-breachsearch-kibana-01
-          cluster.initial_master_nodes:
-            - elastic-breachsearch-kibana-01
           network.host: 0.0.0.0
           http.port: 9200
           xpack.security.enabled: false
