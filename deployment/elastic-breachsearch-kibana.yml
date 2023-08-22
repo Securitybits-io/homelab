@@ -23,9 +23,7 @@
           path.data: /var/lib/elasticsearch
           path.logs: /var/log/elasticsearch
           discovery.seed_hosts: 
-            - elastic-breachsearch-hot-01
-            - elastic-breachsearch-hot-02
-            - elastic-breachsearch-hot-03
+            - elastic-breachsearch-kibana-01
           cluster.initial_master_nodes:
             - elastic-breachsearch-kibana-01
           network.host: 0.0.0.0
