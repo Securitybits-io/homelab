@@ -12,6 +12,8 @@
         - ca-certificates
         - curl
         - openjdk-11-jdk
+        - jq
+        - net-tools
       state: latest
       lock_timeout: 180
   
