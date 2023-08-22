@@ -9,3 +9,60 @@
     - ssh
     - logstash
   
+  tasks: 
+    - name: Configure Logstash
+      copy:
+        dest: /etc/logstash/logstash.yml
+        content: |
+          path.data: /var/lib/logstash
+          path.logs: /var/log/logstash
+          pipeline.workers: 4
+          pipeline.batch.size: 6400
+      notify: restart logstash
+
+    - name: Configure Logstash Input
+      copy:
+        dest: /etc/logstash/conf.d/01-breachsearch-input.conf
+        content: |
+          input {
+            tcp {
+              port   => 3515
+              codec  => line
+            }
+          }
+      notify: restart logstash
+
+    - name: Configure Logstash Filter
+      copy:
+        dest: /etc/logstash/conf.d/20-breachsearch-filter.conf
+        content: |
+          filter{
+            dissect {
+              mapping => { "message" => "%{DumpName} %{Username} %{Password} %{Hash} %{Hashformat} %{Cracked} %{Domain}" }
+            }
+            mutate{
+              remove_field => [ "host", "port" ]
+            }
+          }
+      notify: restart logstash
+
+    - name: Configure Logstash Output
+      copy:
+        dest: /etc/logstash/conf.d/90-breachsearch-output.conf
+        content: |
+          output {
+            if "_dissectfailure" in [tags] {
+              file {
+                path => "/var/log/logstash/logstash-import-failure-%{+YYYY-MM-dd}.log"
+                codec => rubydebug
+              }
+            } else {
+              elasticsearch{
+                hosts => [ "sb-breachsearch-elasticsearch-hot-01:9200","sb-breachsearch-elasticsearch-hot-02:9200" ]
+                index => "breachsearch-%{+YYYY.MM.dd}"
+              }
+            }
+          }
+      notify: restart logstash
+
+    
