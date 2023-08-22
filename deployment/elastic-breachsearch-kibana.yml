@@ -16,10 +16,20 @@
         content: |
           cluster.name: breachsearch
           node.name: ${HOSTNAME}
+          node.master: true
+          node.data: false
+          node.attr.rack: husqvarna
+          node.attr.box_type: master
           path.data: /var/lib/elasticsearch
           path.logs: /var/log/elasticsearch
-          discovery.seed_hosts: ["elastic-breachsearch-hot-01", "elastic-breachsearch-hot-02"]
+          discovery.seed_hosts: 
+            - elastic-breachsearch-hot-01
+            - elastic-breachsearch-hot-02
+            - elastic-breachsearch-hot-03
+          cluster.initial_master_nodes:
+            - elastic-breachsearch-kibana-01
           network.host: 0.0.0.0
+          http.port: 9200
           xpack.security.enabled: false
           xpack.security.transport.ssl.enabled: false
           xpack.security.http.ssl.enabled: false
