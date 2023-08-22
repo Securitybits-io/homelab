@@ -32,3 +32,30 @@
           xpack.security.http.ssl.enabled: false
       notify: restart elasticsearch
 
+  tasks: 
+    - name: Configure kibana
+      copy:
+        dest: /etc/kibana/kibana.yml
+        content: |
+          server.port: 5601
+          server.host: 0.0.0.0
+          server.name: "Breachsearch Kibana"
+          server.ssl.enabled: false
+          elasticsearch.hosts: ["http://localhost:9200"]
+          #logging.root.level: debug
+          logging:
+            appenders:
+              file:
+                type: file
+                fileName: /var/log/kibana/kibana.log
+                layout:
+                  type: json
+            root:
+              appenders:
+                - default
+                - file
+          #  layout:
+          #    type: json
+          pid.file: /run/kibana/kibana.pid
+      notify: restart kibana
+
