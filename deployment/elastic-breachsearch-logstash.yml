@@ -38,7 +38,7 @@
         content: |
           filter{
             dissect {
-              mapping => { "message" => "%{DumpName} %{Username} %{Password} %{Hash} %{Hashformat} %{Cracked} %{Domain}" }
+              mapping => { "message" => "%{DumpName} %{Username} %{Email} %{Password} %{Hash} %{Hashformat} %{Cracked} %{Domain}" }
             }
             mutate{
               remove_field => [ "host", "port" ]
