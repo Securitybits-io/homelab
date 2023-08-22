@@ -1,5 +1,5 @@
 ---
-- hosts: elastic_breachsearch
+- hosts: elastic_breachsearch_kibana
   become: True
   gather_facts: no
   
