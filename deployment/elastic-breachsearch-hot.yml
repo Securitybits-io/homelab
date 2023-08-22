@@ -16,8 +16,8 @@
         content: |
           cluster.name: breachsearch
           node.name: ${HOSTNAME}
-          node.master: false
-          node.data: True
+          node.roles:
+            - data
           node.attr.rack: husqvarna
           node.attr.box_type: hot
           path.data: /var/lib/elasticsearch
