@@ -32,7 +32,6 @@
           xpack.security.http.ssl.enabled: false
       notify: restart elasticsearch
 
-  tasks: 
     - name: Configure kibana
       copy:
         dest: /etc/kibana/kibana.yml
