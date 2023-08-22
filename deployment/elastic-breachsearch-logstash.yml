@@ -58,7 +58,7 @@
               }
             } else {
               elasticsearch{
-                hosts => [ "sb-breachsearch-elasticsearch-hot-01:9200","sb-breachsearch-elasticsearch-hot-02:9200" ]
+                hosts => [ "elastic-breachsearch-hot-01:9200","elastic-breachsearch-hot-02:9200","elastic-breachsearch-hot-03:9200", ]
                 index => "breachsearch-%{+YYYY.MM.dd}"
               }
             }
