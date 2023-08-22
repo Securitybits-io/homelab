@@ -19,6 +19,7 @@
           node.name: ${HOSTNAME}
           node.roles:
             - master
+            - remote_cluster_client
           node.attr.rack: husqvarna
           node.attr.box_type: master
           path.data: /var/lib/elasticsearch
