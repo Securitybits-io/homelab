@@ -17,7 +17,7 @@ private-docker-01
 elastic-breachsearch-kibana-01
 elastic-breachsearch-hot-01
 elastic-breachsearch-hot-02
-
+elastic-breachsearch-hot-03
 
 
 [docker_hosts]
