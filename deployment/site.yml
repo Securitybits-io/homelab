@@ -13,3 +13,4 @@
 - import_playbook: private-ytdl.yml
 - import_playbook: takserver.yml
 - import_playbook: elastic-breachsearch-hot.yml
+- import_playbook: elastic-breachsearch-kibana.yml
