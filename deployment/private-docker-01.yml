@@ -22,6 +22,11 @@
         src: "../apps/stash"
         dest: "/opt/"
 
+    - name: ATAK copy docker env file from secrets
+      copy:
+        src: "/opt/homelab-secrets/apps/media/secrets.env"
+        dest: "/opt/stash/.env"
+
     - name: docker-compose pull
       community.docker.docker_compose:
         project_src: /opt/stash
