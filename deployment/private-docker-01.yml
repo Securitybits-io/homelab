@@ -27,6 +27,17 @@
         src: "/opt/homelab-secrets/apps/media/secrets.env"
         dest: "/opt/stash/.env"
 
+    - name: create /opt/stash
+      file:
+        path: /docker/conf/openvpn
+        state: directory
+        mode: "0755"
+
+    - name: ATAK copy docker env file from secrets
+      copy:
+        src: "/opt/homelab-secrets/apps/media/airvpn.ovpn"
+        dest: "/docker/conf/openvpn/airvpn.ovpn"
+
     - name: docker-compose pull
       community.docker.docker_compose:
         project_src: /opt/stash

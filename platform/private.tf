@@ -10,7 +10,7 @@ resource "proxmox_vm_qemu" "private-docker-01" {
     cores = 4
     sockets = 1
     cpu = "host"
-    memory = 2048
+    memory = 4096
 
     network {
         macaddr = "00:50:56:b9:ef:60"
