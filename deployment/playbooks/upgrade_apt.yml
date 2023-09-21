@@ -1,0 +1,10 @@
+---
+  - hosts: all
+    become: yes
+    gather_facts: no
+
+    tasks:
+    - name: update and upgrade
+      apt:
+        upgrade: yes
+        update_cache: yes
