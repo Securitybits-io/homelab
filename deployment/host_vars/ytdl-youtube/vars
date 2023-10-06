@@ -78,3 +78,5 @@ channels:
   #   url: "https://www.youtube.com/@LowByteProductions/videos"
   - channel: "Fables & Fells"
     url: "https://www.youtube.com/@FablesandFells/videos"
+  - channel: "Harmen Hoek"
+    url: "https://www.youtube.com/@HarmenHoek/videos"
