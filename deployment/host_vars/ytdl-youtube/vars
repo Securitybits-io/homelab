@@ -80,3 +80,5 @@ channels:
     url: "https://www.youtube.com/@FablesandFells/videos"
   - channel: "Harmen Hoek"
     url: "https://www.youtube.com/@HarmenHoek/videos"
+  - channel: "DEFCONConference"
+    url: "https://www.youtube.com/@DEFCONConference/videos"
