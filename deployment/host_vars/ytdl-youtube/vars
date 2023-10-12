@@ -82,3 +82,5 @@ channels:
     url: "https://www.youtube.com/@HarmenHoek/videos"
   - channel: "DEFCONConference"
     url: "https://www.youtube.com/@DEFCONConference/videos"
+  - channel: "Olle Nilsson"
+    url: "https://www.youtube.com/@ollenilssonen/videos"
