@@ -39,3 +39,9 @@
       state: present
     notify: restart kibana
     become: True
+  
+  - name: enable kibana
+    service:
+      name: kibana
+      state: started
+      enabled: yes
