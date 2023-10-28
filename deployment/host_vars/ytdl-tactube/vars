@@ -152,3 +152,5 @@ channels:
   #   url: "https://www.youtube.com/@p.o.channel4455/videos"
   - channel: "West Coast Kinetic Solutions"
     url: "https://www.youtube.com/@West_coast_kinetic_solutions/videos"
+  - channel: "Sector Seven Solutions"
+    url: "https://www.youtube.com/@sector7solutions186/videos"
