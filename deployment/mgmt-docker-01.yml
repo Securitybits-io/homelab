@@ -34,3 +34,40 @@
         project_src: /opt/dashboard
         files:
           - docker-compose.yml
+
+    - name: create /opt/actual
+      file:
+        path: /opt/actual
+        state: directory
+        mode: "0755"
+
+    - name: create /docker/data/actual-data
+      file:
+        path: /docker/data/actual-data
+        state: directory
+        mode: "0755"
+
+    - name: Generate a Self Signed OpenSSL certificate
+      openssl_certificate:
+        path: /docker/data/actual-data/actual.crt
+        privatekey_path: /docker/data/actual-data/actual.pem
+        csr_path: /docker/data/actual-data/actual.csr
+        provider: selfsigned
+
+    - name: actual copy docker-compose to /opt
+      copy:
+        src: "../apps/actual"
+        dest: "/opt/"
+
+    - name: actual docker-compose pull
+      community.docker.docker_compose:
+        project_src: /opt/actual
+        pull: true
+        files:
+          - docker-compose.yml
+
+    - name: actual docker-compose up
+      community.docker.docker_compose:
+        project_src: /opt/actual
+        files:
+          - docker-compose.yml

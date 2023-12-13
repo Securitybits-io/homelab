@@ -1,0 +1,13 @@
+version: '3'
+services:
+  actual_server:
+    container_name: actual
+    image: docker.io/actualbudget/actual-server:latest
+    ports:
+      - 5006:5006
+    environment:
+      - ACTUAL_HTTPS_KEY=/data/actual.pem
+      - ACTUAL_HTTPS_CERT=/data/actual.crt
+    volumes:
+      - /docker/data/actual-data:/data
+    restart: unless-stopped
