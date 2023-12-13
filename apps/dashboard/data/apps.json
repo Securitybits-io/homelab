@@ -124,6 +124,12 @@
         "displayURL": "Nidhoggr",
         "url": "https://10.0.11.241",
         "icon": "storage"
+      },      
+      {
+        "name": "Actual",
+        "displayURL": "Actual Budget",
+        "url": "http://10.0.40.6:5006",
+        "icon": "query_stats"
       },
       {
         "name": "Github",
