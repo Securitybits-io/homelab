@@ -47,13 +47,6 @@
         state: directory
         mode: "0755"
 
-    - name: Generate a Self Signed OpenSSL certificate
-      openssl_certificate:
-        path: /docker/data/actual-data/actual.crt
-        privatekey_path: /docker/data/actual-data/actual.pem
-        csr_path: /docker/data/actual-data/actual.csr
-        provider: selfsigned
-
     - name: actual copy docker-compose to /opt
       copy:
         src: "../apps/actual"
