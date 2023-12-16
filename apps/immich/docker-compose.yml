@@ -1,22 +1,30 @@
 version: "3.8"
 
-name: immich
+#
+# WARNING: Make sure to use the docker-compose.yml of the current release:
+#
+# https://github.com/immich-app/immich/releases/latest/download/docker-compose.yml
+#
+# The compose file on main may not be compatible with the latest release.
+#
+
+#name: immich
 
 services:
   immich-server:
     container_name: immich_server
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     command: [ "start.sh", "immich" ]
-    ports:
-      - 2283:3001
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - /etc/localtime:/etc/localtime:ro
     env_file:
       - .env
+    ports:
+      - 2283:3001
     depends_on:
       - redis
       - database
-      - typesense
     restart: always
 
   immich-microservices:
@@ -28,12 +36,12 @@ services:
     command: [ "start.sh", "microservices" ]
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - /etc/localtime:/etc/localtime:ro
     env_file:
       - .env
     depends_on:
       - redis
       - database
-      - typesense
     restart: always
 
   immich-machine-learning:
@@ -45,31 +53,14 @@ services:
       - .env
     restart: always
 
-  # immich-web:
-  #   container_name: immich_web
-  #   image: ghcr.io/immich-app/immich-web:${IMMICH_VERSION:-release}
-  #   env_file:
-  #     - .env
-  #   restart: always
-
-  typesense:
-    container_name: immich_typesense
-    image: typesense/typesense:0.24.1@sha256:9bcff2b829f12074426ca044b56160ca9d777a0c488303469143dd9f8259d4dd
-    environment:
-      - TYPESENSE_API_KEY=${TYPESENSE_API_KEY}
-      - TYPESENSE_DATA_DIR=/data
-    volumes:
-      - tsdata:/data
-    restart: always
-
   redis:
     container_name: immich_redis
-    image: redis:6.2-alpine@sha256:70a7a5b641117670beae0d80658430853896b5ef269ccf00d1827427e3263fa3
+    image: redis:6.2-alpine@sha256:b6124ab2e45cc332e16398022a411d7e37181f21ff7874835e0180f56a09e82a
     restart: always
 
   database:
     container_name: immich_postgres
-    image: postgres:14-alpine@sha256:28407a9961e76f2d285dc6991e8e48893503cc3836a4755bbc2d40bcc272a441
+    image: tensorchord/pgvecto-rs:pg14-v0.1.11@sha256:0335a1a22f8c5dd1b697f14f079934f5152eaaa216c09b61e293be285491f8ee
     env_file:
       - .env
     environment:
@@ -80,39 +71,6 @@ services:
       - pgdata:/var/lib/postgresql/data
     restart: always
 
-  # immich-proxy:
-  #   container_name: immich_proxy
-  #   image: ghcr.io/immich-app/immich-proxy:${IMMICH_VERSION:-release}
-  #   environment:
-  #     # Make sure these values get passed through from the env file
-  #     - IMMICH_SERVER_URL
-  #     - IMMICH_WEB_URL
-  #   ports:
-  #     - 2283:8080
-  #   depends_on:
-  #     - immich-server
-  #     - immich-web
-  #   restart: always
-  
-  backup:
-    container_name: immich_db_dumper
-    image: prodrigestivill/postgres-backup-local
-    env_file:
-      - .env
-    environment:
-      POSTGRES_HOST: database
-      POSTGRES_DB: ${DB_DATABASE_NAME}
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      SCHEDULE: "@daily"
-      BACKUP_NUM_KEEP: 14
-      BACKUP_DIR: /db_dumps
-    volumes:
-      - /docker/backup/Immich/db_dumps:/db_dumps
-    depends_on:
-      - database
-
 volumes:
   pgdata:
   model-cache:
-  tsdata:
