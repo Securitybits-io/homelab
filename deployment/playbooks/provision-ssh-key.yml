@@ -3,8 +3,8 @@
 
 ---
 - hosts: ansible
-  become: True
-  gather_facts: no
+  become: true
+  gather_facts: false
   vars:
     public_key: |
       ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCiuk/CSB3//1AH1QWaDOoZzeaxIEn9LfXP41vrKtqRrV1fiHRfYSul2C8M9ReJyHWGasHhEf57Mf+9Hrdg4Kdi+aIgqh4m5SfarMmSfO4LL1SBUBoopr/egClDQAy9hNKTdSC1IjVxOQKZzJGMFJ26aKkHgiQGT2hPVB1p+YbcYgsQmAQgZ763IVkHyeYwuSnSijQRNwbj/etqyp4hpyAFQ11rqczqO385AuZERxagvb39Gp0N334mg4ASitgmssNeAKBSVbACXDN62eXekX1B+UBIPDJ1e7X1ViyyQXidD5DRHM/4XF2i/XWvGWwgMo4DfNaFVvjy5hQorvvnmcJO/8RDIcAKviw/PIY729+Ci7AZ8YOEOD3QeB8swaZjyn/+MNFaYiXY2z7kat3Ut4GWDxdKMMxFaDrSB0vnnNIvxNidZ/nI5TPrTBa9H3FkrJCYcq2e8oOv1cmqcYRw+Xt9UuDZL+wyTUUpvaAM3ABJW1CkmsLy7mMh9mlBVrEcKls= root@ansible
@@ -147,7 +147,7 @@
       646261386631393661393765323033643139
 
   tasks:
-  
+
   - name: Ensure that /root/.ssh exists
     file:
       dest: "/root/.ssh"
