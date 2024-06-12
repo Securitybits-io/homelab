@@ -162,3 +162,5 @@ channels:
     url: "https://www.youtube.com/@warrior_studio/videos"
   - channel: "Eotech Inc."
     url: "https://www.youtube.com/@eotechinc/videos"
+  - channel: "StrikeWithoutWarning"
+    url: "https://www.youtube.com/@strikewithoutwarning/videos"
