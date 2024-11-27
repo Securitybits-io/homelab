@@ -63,27 +63,3 @@
         project_src: /opt/microbin
         files:
           - docker-compose.yml
-
-    - name: create /opt/njssk
-      file:
-        path: /opt/njssk
-        state: directory
-        mode: "0755"
-
-    - name: njssk copy docker-compose to /opt
-      copy:
-        src: "../apps/njssk"
-        dest: "/opt/"
-
-    - name: njssk docker-compose pull
-      community.docker.docker_compose:
-        project_src: /opt/njssk
-        pull: true
-        files:
-          - docker-compose.yml
-
-    - name: njssk docker-compose up
-      community.docker.docker_compose:
-        project_src: /opt/njssk
-        files:
-          - docker-compose.yml
