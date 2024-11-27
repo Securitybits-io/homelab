@@ -24,6 +24,7 @@ resource "proxmox_vm_qemu" "nginx" {
     
     # VM Network Settings
     network {
+        id = 0
         macaddr = "00:05:56:1A:BD:BE"
         bridge = "vmbr0"
         model  = "virtio"
@@ -33,7 +34,8 @@ resource "proxmox_vm_qemu" "nginx" {
     # Set the disk size corresponding to the Template size
     disk {
         storage = "vm"
-        type = "scsi"
+        slot = "scsi0"
+        type = "disk"
         size = "32G"
     }
 

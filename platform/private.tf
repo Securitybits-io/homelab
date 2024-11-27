@@ -13,6 +13,7 @@ resource "proxmox_vm_qemu" "private-docker-01" {
     memory = 4096
 
     network {
+        id = 0
         macaddr = "00:50:56:b9:ef:60"
         bridge = "vmbr0"
         model  = "virtio"
@@ -21,7 +22,8 @@ resource "proxmox_vm_qemu" "private-docker-01" {
 
     disk {
         storage = "vm"
-        type = "scsi"
+        slot = "scsi0"
+        type = "disk"
         size = "100G"
     }
 
@@ -69,6 +71,7 @@ resource "proxmox_vm_qemu" "private-ytdl" {
     
     # VM Network Settings
     network {
+        id = 0
         macaddr = "00:50:56:b9:ef:62"
         bridge = "vmbr0"
         model  = "virtio"
@@ -78,7 +81,8 @@ resource "proxmox_vm_qemu" "private-ytdl" {
     # Set the disk size corresponding to the Template size
     disk {
         storage = "vm"
-        type = "scsi"
+        slot = "scsi0"
+        type = "disk"
         size = "32G"
     }
 

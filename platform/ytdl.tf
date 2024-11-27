@@ -24,6 +24,7 @@ resource "proxmox_vm_qemu" "ytdl-tactube" {
     
     # VM Network Settings
     network {
+        id = 0
         macaddr = "00:50:56:ab:d5:11"
         bridge = "vmbr0"
         model  = "virtio"
@@ -33,7 +34,8 @@ resource "proxmox_vm_qemu" "ytdl-tactube" {
     # Set the disk size corresponding to the Template size
     disk {
         storage = "vm"
-        type = "scsi"
+        slot = "scsi0"
+        type = "disk"
         size = "32G"
     }
 
@@ -82,6 +84,7 @@ resource "proxmox_vm_qemu" "ytdl-youtube" {
     
     # VM Network Settings
     network {
+        id = 0
         macaddr = "00:50:56:ab:d5:12"
         bridge = "vmbr0"
         model  = "virtio"
@@ -91,7 +94,8 @@ resource "proxmox_vm_qemu" "ytdl-youtube" {
     # Set the disk size corresponding to the Template size
     disk {
         storage = "vm"
-        type = "scsi"
+        slot = "scsi0"
+        type = "disk"
         size = "32G"
     }
 

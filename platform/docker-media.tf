@@ -13,6 +13,7 @@ resource "proxmox_vm_qemu" "media-docker-01" {
     memory = 2048
 
     network {
+        id = 0
         macaddr = "00:50:56:b9:ef:45"
         bridge = "vmbr0"
         model  = "virtio"
@@ -21,7 +22,8 @@ resource "proxmox_vm_qemu" "media-docker-01" {
 
     disk {
         storage = "vm"
-        type = "scsi"
+        slot = "scsi0"
+        type = "disk"
         size = "100G"
     }
 

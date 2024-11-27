@@ -24,6 +24,7 @@ resource "proxmox_vm_qemu" "plex" {
     
     # VM Network Settings
     network {
+        id = 0
         macaddr = "00:50:56:ab:dd:d1"
         bridge = "vmbr0"
         model  = "virtio"
@@ -33,7 +34,8 @@ resource "proxmox_vm_qemu" "plex" {
     # Set the disk size corresponding to the Template size
     disk {
         storage = "vm"
-        type = "scsi"
+        slot = "scsi0"
+        type = "disk"
         size = "250G"
     }
 

@@ -12,6 +12,7 @@ resource "proxmox_vm_qemu" "ansible" {
     memory = 2048
 
     network {
+        id = 0
         macaddr = "00:50:56:b9:1e:9d"
         bridge = "vmbr0"
         model  = "virtio"
@@ -19,8 +20,10 @@ resource "proxmox_vm_qemu" "ansible" {
     }
 
     disk {
+        backup = false
+        slot = "scsi0"
         storage = "vm"
-        type = "scsi"
+        type = "disk"
         size = "32G"
     }
 
