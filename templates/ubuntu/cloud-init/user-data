@@ -32,7 +32,9 @@ autoinstall:
     late-commands:
       - sed -i -e 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /target/etc/ssh/sshd_config
       - sed -i -e 's/^#\?PermitRootLogin.*/PermitRootLogin yes/g' /target/etc/ssh/sshd_config
+      - sed -i -e 's/^#\?DefaultTimeoutStopSec.*/DefaultTimeoutStopSec=30s/g' /target/etc/systemd/system.conf
       - echo 'provision ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/provision
       - curtin in-target --target=/target -- chmod 440 /etc/sudoers.d/provision
       - curtin in-target --target=/target -- apt-get update
       - curtin in-target --target=/target -- apt-get upgrade --yes
+      - curtin in-target --target=/target -- systemctl enable qemu-guest-agent
