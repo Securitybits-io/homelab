@@ -21,6 +21,8 @@ source "proxmox" "ubuntu-2204-100" {
         "c",
         "linux /casper/vmlinuz --- autoinstall ds='nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/' ",
         "<enter><wait3>",
+        "acpi=off",
+        "<enter><wait3>",
         "initrd /casper/initrd",
         "<enter><wait5>",
         "boot",
