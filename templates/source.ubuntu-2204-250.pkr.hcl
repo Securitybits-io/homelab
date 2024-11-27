@@ -20,9 +20,9 @@ source "proxmox" "ubuntu-2204-250" {
     boot_command = [
         "c",
         "linux /casper/vmlinuz --- autoinstall ds='nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/' ",
-        "<enter><wait>",
+        "<enter><wait3>",
         "initrd /casper/initrd",
-        "<enter><wait>",
+        "<enter><wait5>",
         "boot",
         "<enter>"
     ]
