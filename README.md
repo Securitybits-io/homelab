@@ -68,3 +68,6 @@ export SSH_PASS="pass"
 - [ ] uptime-kuma https://github.com/louislam/uptime-kuma
 - [ ] WGer Workout https://wger.de/en/software/features
 - [x] Microbin https://hub.docker.com/r/danielszabo99/microbin
+
+### Links
+https://www.plexopedia.com/plex-media-server/general/claim-server/#claimservermanually
