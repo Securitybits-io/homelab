@@ -28,14 +28,14 @@
         dest: "/opt/immich/.env"
 
     - name: Immich docker-compose pull
-      community.docker.docker_compose:
+      community.docker.docker_compose_v2:
         project_src: /opt/immich
-        pull: true
+        pull: "always"
         files:
           - docker-compose.yml
 
     - name: Immich docker-compose up
-      community.docker.docker_compose:
+      community.docker.docker_compose_v2:
         project_src: /opt/immich
         files:
           - docker-compose.yml
@@ -52,14 +52,14 @@
         dest: "/opt/"
 
     - name: microbin docker-compose pull
-      community.docker.docker_compose:
+      community.docker.docker_compose_v2:
         project_src: /opt/microbin
-        pull: true
+        pull: "always"
         files:
           - docker-compose.yml
 
     - name: microbin docker-compose up
-      community.docker.docker_compose:
+      community.docker.docker_compose_v2:
         project_src: /opt/microbin
         files:
           - docker-compose.yml

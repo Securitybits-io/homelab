@@ -22,15 +22,15 @@
         dest: "/opt/"
 
     - name: docker-compose pull
-      community.docker.docker_compose:
+      community.docker.docker_compose_v2:
         project_src: /opt/offsec
-        pull: true
+        pull: "always"
         files:
           - docker-compose.yml
 
 
     - name: docker-compose up
-      community.docker.docker_compose:
+      community.docker.docker_compose_v2:
         project_src: /opt/offsec
         files:
           - docker-compose.yml

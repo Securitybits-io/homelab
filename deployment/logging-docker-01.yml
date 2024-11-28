@@ -28,14 +28,14 @@
         dest: "/opt/monitoring/.env"
 
     - name: Monitoring docker-compose pull
-      community.docker.docker_compose:
+      community.docker.docker_compose_v2:
         project_src: /opt/monitoring
-        pull: true
+        pull: "always"
         files:
           - docker-compose.yml
 
     - name: Monitoring docker-compose up
-      community.docker.docker_compose:
+      community.docker.docker_compose_v2:
         project_src: /opt/monitoring
         files:
           - docker-compose.yml

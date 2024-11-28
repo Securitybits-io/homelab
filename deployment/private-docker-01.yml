@@ -39,14 +39,14 @@
         dest: "/docker/conf/openvpn/airvpn.ovpn"
 
     - name: docker-compose pull
-      community.docker.docker_compose:
+      community.docker.docker_compose_v2:
         project_src: /opt/stash
-        pull: true
+        pull: "always"
         files:
           - docker-compose.yml
 
     - name: docker-compose up
-      community.docker.docker_compose:
+      community.docker.docker_compose_v2:
         project_src: /opt/stash
         files:
           - docker-compose.yml

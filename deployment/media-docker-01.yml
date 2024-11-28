@@ -28,14 +28,14 @@
         dest: "/opt/media/.env"
 
     - name: Media docker-compose pull
-      community.docker.docker_compose:
+      community.docker.docker_compose_v2:
         project_src: /opt/media
-        pull: true
+        pull: "always"
         files:
           - docker-compose.yml
 
     - name: Monitoring docker-compose up
-      community.docker.docker_compose:
+      community.docker.docker_compose_v2:
         project_src: /opt/media
         files:
           - docker-compose.yml
