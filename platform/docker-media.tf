@@ -4,12 +4,13 @@ resource "proxmox_vm_qemu" "media-docker-01" {
     target_node = "pve-node-01"
     name = "media-docker-01"
     desc = "Created with Terraform"
+    tags = "terraform,linux,docker"
     onboot = true
     clone = "Ubuntu-22.04-Template-100GB"
     agent = 1
     cores = 2
     sockets = 1
-    cpu = "host"
+    cpu_type = "host"
     memory = 2048
 
     network {
@@ -25,6 +26,7 @@ resource "proxmox_vm_qemu" "media-docker-01" {
         slot = "scsi0"
         type = "disk"
         size = "100G"
+        format = "raw"
     }
 
     #os_type = "cloud-init"

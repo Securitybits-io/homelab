@@ -4,6 +4,7 @@ resource "proxmox_vm_qemu" "nginx" {
     target_node = "pve-node-01"
     name = "nginx"
     desc = "Created with Terraform"
+    tags = "terraform,linux"
 
     # VM Advanced General Settings
     onboot = true 
@@ -17,7 +18,7 @@ resource "proxmox_vm_qemu" "nginx" {
     # VM CPU Settings
     cores = 1
     sockets = 1
-    cpu = "host"    
+    cpu_type = "host"    
     
     # VM Memory Settings
     memory = 1024

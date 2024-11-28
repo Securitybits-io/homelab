@@ -26,6 +26,7 @@ resource "proxmox_vm_qemu" "ansible" {
         storage = "vm"
         type = "disk"
         size = "32G"
+        format = "raw"
     }
 
     #os_type = "cloud-init"

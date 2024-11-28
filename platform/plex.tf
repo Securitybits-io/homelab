@@ -4,6 +4,7 @@ resource "proxmox_vm_qemu" "plex" {
     target_node = "pve-node-01"
     name = "plex"
     desc = "Created with Terraform"
+    tags = "terraform,linux"
 
     # VM Advanced General Settings
     onboot = true 
@@ -17,7 +18,7 @@ resource "proxmox_vm_qemu" "plex" {
     # VM CPU Settings
     cores = 4
     sockets = 1
-    cpu = "host"    
+    cpu_type = "host"    
     
     # VM Memory Settings
     memory = 4096
@@ -37,31 +38,25 @@ resource "proxmox_vm_qemu" "plex" {
         slot = "scsi0"
         type = "disk"
         size = "250G"
+        format = "raw"
     }
 
     # VM Cloud-Init Settings
     os_type = "cloud-init"
 
+    #os_type = "cloud-init"
     connection {
       type      = "ssh"
       user      = var.SSH_USER
       password  = var.SSH_PASS
       host      = self.ssh_host
-      script_path = "/home/${var.SSH_USER}/provision_salt-minion_%RAND%.sh"
+      script_path = "/home/${var.SSH_USER}/provision_%RAND%.sh"
     }
-
+    
     provisioner "remote-exec" {
       inline = [
-          "sudo hostnamectl set-hostname ${self.name}",
-          "curl -o bootstrap-salt.sh -L https://bootstrap.saltproject.io",
-          "chmod +x bootstrap-salt.sh",
-          "sudo ./bootstrap-salt.sh -I -i ${self.name} -A salt.securitybits.local"
-        ]
-    }
-
-    provisioner "remote-exec" {
-      inline = [
-          "sudo /usr/sbin/shutdown -r 1"
+          "sleep 10",
+          "sudo hostnamectl set-hostname ${self.name}"
         ]
     }
 }

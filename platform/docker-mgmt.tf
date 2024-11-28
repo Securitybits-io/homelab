@@ -26,6 +26,7 @@ resource "proxmox_vm_qemu" "mgmt-docker-01" {
         slot = "scsi0"
         type = "disk"
         size = "100G"
+        format = "raw"
     }
 
 

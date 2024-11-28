@@ -38,6 +38,7 @@ resource "proxmox_vm_qemu" "ytdl-tactube" {
         slot = "scsi0"
         type = "disk"
         size = "32G"
+        format = "raw"
     }
 
     # VM Cloud-Init Settings
@@ -99,6 +100,7 @@ resource "proxmox_vm_qemu" "ytdl-youtube" {
         slot = "scsi0"
         type = "disk"
         size = "32G"
+        format = "raw"
     }
 
     # VM Cloud-Init Settings

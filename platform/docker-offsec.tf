@@ -25,6 +25,7 @@ resource "proxmox_vm_qemu" "offsec-docker-01" {
         slot = "scsi0"
         type = "disk"
         size = "100G"
+        format = "raw"
     }
 
     #os_type = "cloud-init"

@@ -4,12 +4,13 @@ resource "proxmox_vm_qemu" "private-docker-01" {
     target_node = "pve-node-01"
     name = "private-docker-01"
     desc = "Created with Terraform"
+    tags = "terraform,linux,docker"
     onboot = true
     clone = "Ubuntu-22.04-Template-100GB"
     agent = 1
     cores = 4
     sockets = 1
-    cpu = "host"
+    cpu_type = "host"
     memory = 4096
 
     network {
@@ -25,6 +26,7 @@ resource "proxmox_vm_qemu" "private-docker-01" {
         slot = "scsi0"
         type = "disk"
         size = "100G"
+        format = "raw"
     }
 
     #os_type = "cloud-init"
@@ -51,6 +53,7 @@ resource "proxmox_vm_qemu" "private-ytdl" {
     target_node = "pve-node-01"
     name = "private-ytdl"
     desc = "Created with Terraform"
+    tags = "terraform,linux"
 
     # VM Advanced General Settings
     onboot = true 
@@ -64,7 +67,7 @@ resource "proxmox_vm_qemu" "private-ytdl" {
     # VM CPU Settings
     cores = 1
     sockets = 1
-    cpu = "host"    
+    cpu_type = "host"    
     
     # VM Memory Settings
     memory = 1024
@@ -84,6 +87,7 @@ resource "proxmox_vm_qemu" "private-ytdl" {
         slot = "scsi0"
         type = "disk"
         size = "32G"
+        format = "raw"
     }
 
     # VM Cloud-Init Settings
