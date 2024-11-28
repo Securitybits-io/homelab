@@ -25,7 +25,7 @@
     - name: dashboard docker-compose pull
       community.docker.docker_compose_v2:
         project_src: /opt/dashboard
-        pull: true
+        pull: "always"
         files:
           - docker-compose.yml
 
