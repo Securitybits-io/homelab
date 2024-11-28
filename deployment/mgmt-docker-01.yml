@@ -23,14 +23,14 @@
         dest: "/opt/"
 
     - name: dashboard docker-compose pull
-      community.docker.docker_compose:
+      community.docker.docker_compose_v2:
         project_src: /opt/dashboard
         pull: true
         files:
           - docker-compose.yml
 
     - name: dashboard docker-compose up
-      community.docker.docker_compose:
+      community.docker.docker_compose_v2:
         project_src: /opt/dashboard
         files:
           - docker-compose.yml

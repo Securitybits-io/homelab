@@ -3,10 +3,12 @@
   git:
     repo: https://github.com/Securitybits-io/homelab.git
     dest: /opt/homelab
+    accept_hostkey: true
   become: True
 
 - name: Clone Homelab-Secrets repo to root
   git:
     repo: git@github.com:Securitybits-io/homelab-secrets.git
     dest: /opt/homelab-secrets
+    accept_hostkey: true
   become: True
