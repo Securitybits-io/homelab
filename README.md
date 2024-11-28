@@ -32,6 +32,12 @@ export SSH_PASS="pass"
 salt-ssh salt --user=${SSH_USER} --passwd=${SSH_PASS} -i state.sls vm.salt
 ```
 
+#### Initial provision of Ansible
+```bash
+ansible-playbook -i production --limit=ansible playbooks/provision-ssh-key.yml --ask-vault-pass --user=provision --ask-pass
+ansible-playbook -i production --limit=ansible site.yml --ask-vault-pass --user=provision --ask-pass
+```
+
 ### Templates
 ```bash
 export PROXMOX_USERNAME="ProxmoxUser@pam"
