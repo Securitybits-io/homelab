@@ -17,7 +17,7 @@ resource "proxmox_vm_qemu" "salt" {
     # VM CPU Settings
     cores = 1
     sockets = 1
-    cpu = "host"
+    cpu_type = "host"
 
     # VM Memory Settings
     memory = 2048

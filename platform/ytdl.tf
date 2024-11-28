@@ -4,6 +4,7 @@ resource "proxmox_vm_qemu" "ytdl-tactube" {
     target_node = "pve-node-01"
     name = "ytdl-tactube"
     desc = "Created with Terraform"
+    tags = "terraform,linux"
 
     # VM Advanced General Settings
     onboot = true 
@@ -17,7 +18,7 @@ resource "proxmox_vm_qemu" "ytdl-tactube" {
     # VM CPU Settings
     cores = 1
     sockets = 1
-    cpu = "host"    
+    cpu_type = "host"    
     
     # VM Memory Settings
     memory = 1024
@@ -64,6 +65,7 @@ resource "proxmox_vm_qemu" "ytdl-youtube" {
     target_node = "pve-node-01"
     name = "ytdl-youtube"
     desc = "Created with Terraform"
+    tags = "terraform,linux"
 
     # VM Advanced General Settings
     onboot = true 
@@ -77,7 +79,7 @@ resource "proxmox_vm_qemu" "ytdl-youtube" {
     # VM CPU Settings
     cores = 1
     sockets = 1
-    cpu = "host"    
+    cpu_type = "host"    
     
     # VM Memory Settings
     memory = 1024

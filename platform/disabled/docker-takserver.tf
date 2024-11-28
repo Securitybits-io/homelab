@@ -9,7 +9,7 @@ resource "proxmox_vm_qemu" "takserver" {
     agent = 1
     cores = 4
     sockets = 1
-    cpu = "host"
+    cpu_type = "host"
     memory = 8192
 
     network {

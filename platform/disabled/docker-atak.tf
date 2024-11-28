@@ -9,7 +9,7 @@ resource "proxmox_vm_qemu" "atak-docker-01" {
     agent = 1
     cores = 2
     sockets = 1
-    cpu = "host"
+    cpu_type = "host"
     memory = 2048
 
     network {

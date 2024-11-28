@@ -9,7 +9,7 @@ resource "proxmox_vm_qemu" "gameservers-docker-01" {
     agent = 1
     cores = 4
     sockets = 1
-    cpu = "host"
+    cpu_type = "host"
     memory = 4096
 
     network {

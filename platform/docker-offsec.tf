@@ -3,15 +3,17 @@ resource "proxmox_vm_qemu" "offsec-docker-01" {
     target_node = "pve-node-01"
     name = "offsec-docker-01"
     desc = "Created with Terraform"
+    tags = "terraform,linux,docker"
     onboot = true
     clone = "Ubuntu-22.04-Template-32GB"
     agent = 1
     cores = 2
     sockets = 1
-    cpu = "host"
+    cpu_type = "host"
     memory = 2048
 
     network {
+        id = 0
         macaddr = "00:50:56:b9:ef:56"
         bridge = "vmbr0"
         model  = "virtio"
@@ -20,7 +22,8 @@ resource "proxmox_vm_qemu" "offsec-docker-01" {
 
     disk {
         storage = "vm"
-        type = "scsi"
+        slot = "scsi0"
+        type = "disk"
         size = "100G"
     }
 
@@ -35,6 +38,7 @@ resource "proxmox_vm_qemu" "offsec-docker-01" {
 
     provisioner "remote-exec" {
       inline = [
+          "sleep 10",
           "sudo hostnamectl set-hostname ${self.name}",
           "sudo reboot"
         ]

@@ -4,12 +4,13 @@ resource "proxmox_vm_qemu" "mgmt-docker-01" {
     target_node = "pve-node-01"
     name = "mgmt-docker-01"
     desc = "Created with Terraform"
+    tags = "terraform,linux,docker"
     onboot = true 
     clone = "Ubuntu-22.04-Template-100GB"
     agent = 1
     cores = 2
     sockets = 1
-    cpu = "host"    
+    cpu_type = "host"    
     memory = 2048
     
     network {

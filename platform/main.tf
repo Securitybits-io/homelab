@@ -16,7 +16,6 @@ terraform {
 
 provider "proxmox" {
     pm_tls_insecure = true
-    pm_parallel = 3
 }
 
 provider "namecheap" {

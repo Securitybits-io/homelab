@@ -17,7 +17,7 @@ resource "proxmox_vm_qemu" "elastic-breachsearch-hot-01" {
     # VM CPU Settings
     cores = 2
     sockets = 2
-    cpu = "host"    
+    cpu_type = "host"    
     
     # VM Memory Settings
     memory = 4096
@@ -77,7 +77,7 @@ resource "proxmox_vm_qemu" "elastic-breachsearch-hot-02" {
     # VM CPU Settings
     cores = 2
     sockets = 2
-    cpu = "host"    
+    cpu_type = "host"    
     
     # VM Memory Settings
     memory = 4096
@@ -137,7 +137,7 @@ resource "proxmox_vm_qemu" "elastic-breachsearch-hot-03" {
     # VM CPU Settings
     cores = 2
     sockets = 2
-    cpu = "host"    
+    cpu_type = "host"    
     
     # VM Memory Settings
     memory = 4096
@@ -197,7 +197,7 @@ resource "proxmox_vm_qemu" "elastic-breachsearch-kibana-01" {
     # VM CPU Settings
     cores = 1
     sockets = 1
-    cpu = "host"    
+    cpu_type = "host"    
     
     # VM Memory Settings
     memory = 2048
@@ -257,7 +257,7 @@ resource "proxmox_vm_qemu" "elastic-breachsearch-logstash" {
     # VM CPU Settings
     cores = 1
     sockets = 2
-    cpu = "host"    
+    cpu_type = "host"    
     
     # VM Memory Settings
     memory = 1024

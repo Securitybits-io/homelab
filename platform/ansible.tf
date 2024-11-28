@@ -8,8 +8,9 @@ resource "proxmox_vm_qemu" "ansible" {
     agent = 1
     cores = 1
     sockets = 1
-    cpu = "host"
+    cpu_type = "host"
     memory = 2048
+    tags = "terraform,linux"
 
     network {
         id = 0
