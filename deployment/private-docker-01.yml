@@ -35,7 +35,7 @@
 
     - name: ATAK copy docker env file from secrets
       copy:
-        src: "/opt/homelab-secrets/apps/media/airvpn.ovpn"
+        src: "/opt/homelab-secrets/apps/stash/airvpn.ovpn"
         dest: "/docker/conf/openvpn/airvpn.ovpn"
 
     - name: docker-compose pull
