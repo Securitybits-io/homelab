@@ -53,6 +53,7 @@ resource "proxmox_vm_qemu" "nginx" {
 
     provisioner "remote-exec" {
       inline = [
+          "sleep 10",
           "sudo hostnamectl set-hostname ${self.name}",
           "sudo reboot"
         ]
