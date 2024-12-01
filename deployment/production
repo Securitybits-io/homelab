@@ -42,6 +42,11 @@ private-docker-01
 # elastic-breachsearch-hot-02
 # elastic-breachsearch-hot-03
 
+[hashistack]
+consul
+nomad
+vault
+
 [ytdl]
 ytdl-tactube
 ytdl-youtube
