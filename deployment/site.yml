@@ -15,3 +15,6 @@
 - import_playbook: elastic-breachsearch-hot.yml
 - import_playbook: elastic-breachsearch-kibana.yml
 - import_playbook: elastic-breachsearch-logstash.yml
+- import_playbook: nomad.yml
+- import_playbook: consul.yml
+- import_playbook: vault.yml
