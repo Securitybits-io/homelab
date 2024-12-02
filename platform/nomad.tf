@@ -18,7 +18,7 @@ resource "proxmox_vm_qemu" "nomad" {
         macaddr = "00:50:56:d9:ef:57"
         bridge = "vmbr0"
         model  = "virtio"
-        tag = 50
+        tag = 40
     }
 
     disk {

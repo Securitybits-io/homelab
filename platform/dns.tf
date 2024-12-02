@@ -10,19 +10,19 @@ resource "namecheap_domain_records" "securitybits" {
   record {
     hostname = "*"
     type = "A"
-    address = "${chomp(data.http.public_ip.body)}"
+    address = "${chomp(data.http.public_ip.response_body)}"
   }
 
   record {
     hostname = "@"
     type = "A"
-    address = "${chomp(data.http.public_ip.body)}"
+    address = "${chomp(data.http.public_ip.response_body)}"
   }
 
   record {
     hostname = "atak"
     type = "A"
-    address = "${chomp(data.http.public_ip.body)}"
+    address = "${chomp(data.http.public_ip.response_body)}"
   }
 
   record {
@@ -53,17 +53,5 @@ resource "namecheap_domain_records" "securitybits" {
     hostname = "www"
     type = "CNAME"
     address = "blog.securitybits.io"
-  }
-
-  record {
-    hostname = "arma"
-    type = "A"
-    address = "45.92.36.102"
-  }
-
-  record {
-    hostname = "ts"
-    type = "CNAME"
-    address = "ts3.logicserver.eu"
   }
 }
