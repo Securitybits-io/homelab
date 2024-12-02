@@ -38,6 +38,7 @@ resource "proxmox_vm_qemu" "nginx" {
         slot = "scsi0"
         type = "disk"
         size = "32G"
+        format = "raw"
     }
 
     # VM Cloud-Init Settings
