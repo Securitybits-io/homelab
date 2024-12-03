@@ -7,4 +7,5 @@
     - common
     - cis
     - ssh
+    - docker
     - nomad
