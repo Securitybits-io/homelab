@@ -1,12 +1,12 @@
 ---
-# - name: Add Nomad Server Configuration File
-#   template:
-#     src: "files/nomad_server.hcl.j2"
-#     dest: "/etc/nomad.d/nomad.hcl"
-#     owner: nomad
-#   tags:
-#     - install-nomad
-#     - configure
+- name: Add Nomad Server Configuration File
+  template:
+    src: "files/nomad.hcl.j2"
+    dest: "/etc/nomad.d/nomad.hcl"
+    owner: nomad
+  tags:
+    - install-nomad
+    - configure
 
 - name: Restart Nomad
   ansible.builtin.service:

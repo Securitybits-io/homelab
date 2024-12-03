@@ -1,0 +1,27 @@
+name = "nomad"
+
+# Logging Configurations
+log_level = "INFO"
+log_file  = "/etc/nomad.d/nomad.log"
+
+data_dir  = "/opt/nomad/data"
+bind_addr = "0.0.0.0"
+
+datacenter = "dc"
+
+server {
+  enabled          = true
+  bootstrap_expect = 1
+}
+
+client {
+  enabled = true
+  servers = ["127.0.0.1"]
+}
+
+# consul {
+#   address = "consul:8500"
+#   auto_advertise      = true
+#   ssl = false
+#   checks_use_advertise = true
+# }
