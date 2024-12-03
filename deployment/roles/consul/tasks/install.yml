@@ -1,0 +1,65 @@
+---
+- name: Install aptitude
+  apt:
+    name: aptitude
+    state: present
+    update_cache: true
+  tags:
+    install-consul
+
+- name: Install required system packages
+  apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - python3-pip
+      - virtualenv
+      - python3-setuptools
+      - wget
+      - coreutils
+      - gpg
+    state: latest
+    # update_cache: true
+  tags:
+    install-consul
+
+
+- name: Get Hashicorp GPG key
+  ansible.builtin.get_url:
+    url: https://apt.releases.hashicorp.com/gpg
+    dest: /etc/apt/keyrings/hashicorp-archive-keyring.asc
+    mode: '0644'
+    force: true    
+  tags:
+    - install-consul
+    - get-gpg-key
+    
+- name: Add Hashicorp consul repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/hashicorp-archive-keyring.asc] https://apt.releases.hashicorp.com jammy main"
+    state: present
+  tags:
+    - install-consul
+    - update-repository
+
+- name: Update packages
+  ansible.builtin.apt: update_cache=yes force_apt_get=yes 
+  tags: 
+    - install-consul
+    - update
+
+- name: Update Cache And Install consul packages
+  apt:
+    name: consul
+    state: latest
+  tags:
+    install-consul   
+    install-package 
+
+- name: Install Additional Python Libraries
+  pip:
+    name: python-consul
+  tags:
+    install-consul
