@@ -53,7 +53,7 @@ consul
 [vault_servers]
 vault
 
-[hashistack]
+[hashistack:children]
 nomad_servers
 consul_servers
 vault_servers
