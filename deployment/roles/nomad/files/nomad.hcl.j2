@@ -8,10 +8,16 @@ data_dir  = "/opt/nomad/data"
 bind_addr = "0.0.0.0"
 
 datacenter = "dc"
+region = "se-hva"
 
 server {
   enabled          = true
-  bootstrap_expect = 1
+  bootstrap_expect = 3
+  server_join {
+    retry_join  = [ "nomad-01", "nomad-02", "nomad-03", ]
+    retry_max = 5
+    retry_interval = "30s"
+  }
 }
 
 client {
