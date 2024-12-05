@@ -1,5 +1,5 @@
 ---
-- hosts: nomad
+- hosts: nomad_servers
   gather_facts: no
   become: yes
   

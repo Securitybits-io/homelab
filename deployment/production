@@ -42,10 +42,21 @@ private-docker-01
 # elastic-breachsearch-hot-02
 # elastic-breachsearch-hot-03
 
-[hashistack]
+[nomad_servers]
+nomad-01
+nomad-02
+nomad-03
+
+[consul_servers]
 consul
-nomad
+
+[vault_servers]
 vault
+
+[hashistack]
+nomad_servers
+consul_servers
+vault_servers
 
 [ytdl]
 ytdl-tactube
