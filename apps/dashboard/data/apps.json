@@ -31,6 +31,24 @@
             "displayURL": "Bifrost-Management",
             "url": "https://10.0.0.2/login.html",
             "icon": "dns"
+          },
+          {
+            "name": "Nomad",
+            "displayURL": "Nomad-Cluster",
+            "url": "http://nomad-01:4646/",
+            "icon": "dns"
+          },
+          {
+            "name": "Consul",
+            "displayURL": "Consul-Cluster",
+            "url": "http://consul:8500/",
+            "icon": "dns"
+          },
+          {
+            "name": "Vault",
+            "displayURL": "Vault-Cluster",
+            "url": "http://vault:8200/",
+            "icon": "dns"
           }
         ]
       },
@@ -125,12 +143,6 @@
         "url": "https://10.0.11.241",
         "icon": "storage"
       },      
-      {
-        "name": "Actual",
-        "displayURL": "Actual Budget",
-        "url": "http://10.0.40.6:5006",
-        "icon": "query_stats"
-      },
       {
         "name": "Github",
         "displayURL": "Github/Securitybits",
