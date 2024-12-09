@@ -57,20 +57,20 @@ services:
     volumes:
       - /docker/conf/transmission-openvpn:/data
       - /docker/mnt/downloads:/downloads
+      - /docker/conf/openvpn/:/etc/openvpn/custom/
     environment:
       - TZ=Europe/Stockholm
-      - OPENVPN_PROVIDER=NORDVPN
-      - OPENVPN_USERNAME=${NORDVPN_USER}
-      - OPENVPN_PASSWORD=${NORDVPN_PASS}
-      - NORDVPN_COUNTRY=SI
-      - NORDVPN_CATEGORY=legacy_p2p
-      - NORDVPN_PROTOCOL=udp
+      - OPENVPN_PROVIDER=custom
+      - OPENVPN_CONFIG=airvpn
+      - OPENVPN_USERNAME=${OPENVPN_USER}
+      - OPENVPN_PASSWORD=${OPENVPN_PASS}
       - LOCAL_NETWORK=10.0.0.0/16
-      - TRANSMISSION_WEB_UI=combustion
+      - TRANSMISSION_WEB_UI=flood-for-transmission
       - TRANSMISSION_PREALLOCATION=1
-      - TRANSMISSION_RATIO_LIMIT=0
+      - TRANSMISSION_RATIO_LIMIT=2
       - TRANSMISSION_RATIO_LIMIT_ENABLED=True
       - TRANSMISSION_DOWNLOAD_QUEUE_SIZE=200
+      - TRANSMISSION_PEER_PORT=60074
       - TRANSMISSION_DOWNLOAD_DIR=/downloads/complete
       - TRANSMISSION_INCOMPLETE_DIR=/downloads/incomplete
     restart: unless-stopped
