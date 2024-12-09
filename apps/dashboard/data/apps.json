@@ -36,19 +36,19 @@
             "name": "Nomad",
             "displayURL": "Nomad-Cluster",
             "url": "http://nomad-01:4646/",
-            "icon": "dns"
+            "icon": "host"
           },
           {
             "name": "Consul",
             "displayURL": "Consul-Cluster",
             "url": "http://consul:8500/",
-            "icon": "dns"
+            "icon": "package"
           },
           {
             "name": "Vault",
             "displayURL": "Vault-Cluster",
             "url": "http://vault:8200/",
-            "icon": "dns"
+            "icon": "encrypted"
           }
         ]
       },
