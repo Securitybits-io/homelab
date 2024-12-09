@@ -27,6 +27,11 @@
         src: "/opt/homelab-secrets/apps/media/secrets.env"
         dest: "/opt/media/.env"
 
+    - name: Media copy airvpn file from secrets
+      copy:
+        src: "/opt/homelab-secrets/apps/media/airvpn.ovpn"
+        dest: "/docker/conf/openvpn/airvpn.ovpn"
+
     - name: Media docker-compose pull
       community.docker.docker_compose_v2:
         project_src: /opt/media
