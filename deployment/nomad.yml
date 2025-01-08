@@ -3,7 +3,7 @@
   gather_facts: no
   become: yes
   vars:
-    - nomad_type: client #So far it only controls Consul server/client
+    - consul_type: client #So far it only controls Consul server/client
   roles:
     - common
     - cis
