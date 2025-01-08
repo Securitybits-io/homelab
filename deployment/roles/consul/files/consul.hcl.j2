@@ -6,9 +6,10 @@
 datacenter = "dc"
 data_dir = "/opt/consul"
 log_level = "INFO"
+log_file = "/etc/consul.d/"
 
 
-{% if nomad_type == 'client' %}
+{% if consul_type == 'client' %}
 server = false
 ui_config {
   enabled = false
@@ -22,14 +23,14 @@ ui_config{
 {% endif %}
 
 client_addr = "127.0.0.1"
-bind_addr = "{{ GetPrivateInterfaces | include 'network' '10.0.0.0/8' | attr 'address' }}" # Listen on all IPv4
+bind_addr = "{{ ansible_facts['ansible_default_ipv4"']['address'] }}" #Local IP
 #advertise_addr = "127.0.0.1"
 
 retry_join = ["consul"]
 
-# ports {
-#   grpc = 8502
-# }
+ports {
+  grpc = 8502
+}
 
 connect {
   enabled = true
