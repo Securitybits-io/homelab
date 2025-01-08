@@ -2,11 +2,13 @@
 - hosts: nomad_servers
   gather_facts: no
   become: yes
-  
+  vars:
+    - nomad_type: client #So far it only controls Consul server/client
   roles:
     - common
     - cis
     - ssh
+    - consul
     - docker
     - nomad
     - nomad_cni_plugins
