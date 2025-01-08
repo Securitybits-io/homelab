@@ -9,7 +9,7 @@ log_level = "INFO"
 
 
 {% if nomad_type == 'client' %}
-server = fale
+server = false
 ui_config {
   enabled = false
 }
@@ -21,8 +21,8 @@ ui_config{
 }
 {% endif %}
 
-client_addr = "0.0.0.0"
-bind_addr = "0.0.0.0" # Listen on all IPv4
+client_addr = "127.0.0.1"
+bind_addr = "127.0.0.1" # Listen on all IPv4
 #advertise_addr = "127.0.0.1"
 
 retry_join = ["consul"]
