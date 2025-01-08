@@ -9,3 +9,4 @@
     - ssh
     - docker
     - nomad
+    - nomad_cni_plugins
