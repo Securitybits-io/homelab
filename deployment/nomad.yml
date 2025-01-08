@@ -1,6 +1,6 @@
 ---
 - hosts: nomad_servers
-  gather_facts: no
+  gather_facts: yes
   become: yes
   vars:
     - consul_type: client #So far it only controls Consul server/client
