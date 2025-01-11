@@ -3,7 +3,8 @@
   gather_facts: yes
   become: yes
   vars:
-    - nomad_type: server
+    nomad_type: server
+    use_consul: true
   roles:
     - common
     - cis
@@ -16,8 +17,9 @@
   gather_facts: yes
   become: yes
   vars:
-    - nomad_type: client  # Nomad server/client
-    - consul_type: client # Consul server/client
+    nomad_type: client  # Nomad server/client
+    consul_type: client # Consul server/client
+    use_consul: true
   roles:
     - common
     - cis

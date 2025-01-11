@@ -10,24 +10,46 @@ bind_addr = "0.0.0.0"
 datacenter  = "dc"
 region      = "se-hva"
 
+{% if nomad_type == 'client' %}}
 server {
-  enabled          = true
-  bootstrap_expect = 3
-  server_join {
-    retry_join     = [ "nomad-01", "nomad-02", "nomad-03", ]
-    retry_max      = 5
-    retry_interval = "30s"
-  }
+  enabled = false  
 }
 
 client {
   enabled = true
-  servers = ["127.0.0.1"]
+  servers = ["nomad"]
 }
 
+ui {
+  enabled = true
+}
+
+{% else %}}
+server {
+  enabled          = true
+  bootstrap_expect = 1
+  server_join {
+    retry_join     = [ "nomad", ]
+    retry_max      = 5
+    retry_interval = "15s"
+  }
+}
+
+client {
+  enabled = false
+}
+
+ui {
+  enabled = true
+}
+
+{% endif %}
+
+{% if use_consul %}
 consul {
   address               = "127.0.0.1:8500"
   auto_advertise        = true
   ssl                   = false
   checks_use_advertise  = true
 }
+{% endif %}
