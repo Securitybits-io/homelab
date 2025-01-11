@@ -9,6 +9,7 @@
     - common
     - cis
     - ssh
+    - consul
     - docker
     - nomad
     - nomad_cni_plugins
