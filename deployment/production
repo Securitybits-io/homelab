@@ -20,7 +20,6 @@ private-docker-01
 # elastic-breachsearch-hot-02
 # elastic-breachsearch-hot-03
 
-
 [docker_hosts]
 mgmt-docker-01
 #logging-docker-01
@@ -43,6 +42,9 @@ private-docker-01
 # elastic-breachsearch-hot-03
 
 [nomad_servers]
+nomad
+
+[nomad_clients]
 nomad-01
 nomad-02
 nomad-03
@@ -55,6 +57,7 @@ vault
 
 [hashistack:children]
 nomad_servers
+nomad_clients
 consul_servers
 vault_servers
 
