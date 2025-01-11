@@ -4,6 +4,7 @@
   become: yes
   vars:
     nomad_type: server
+    consul_type: client
     use_consul: true
   roles:
     - common
