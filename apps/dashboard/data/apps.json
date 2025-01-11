@@ -35,7 +35,7 @@
           {
             "name": "Nomad",
             "displayURL": "Nomad-Cluster",
-            "url": "http://nomad-01:4646/",
+            "url": "http://nomad:4646/",
             "icon": "dns"
           },
           {
