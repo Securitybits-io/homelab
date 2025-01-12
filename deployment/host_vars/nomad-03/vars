@@ -1,1 +1,2 @@
-node_class: "private"
+node_metadata:
+    - node_class: "public"
