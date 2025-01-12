@@ -18,6 +18,7 @@ server {
 client {
   enabled = true
   servers = ["nomad"]
+  
   {% if node_metadata is defined %}
   meta {
 {% for metadata in node_metadata %}

@@ -14,6 +14,15 @@
     - docker
     - nomad
     - nomad_cni_plugins
+  tasks:
+    - name: Copy folder to /opt/jobs
+      ansible.builtin.copy:
+        src: ../jobs  # Local folder on the Ansible controller
+        dest: /opt/jobs            # Target directory on the node
+        owner: root
+        group: root
+        mode: '0755'
+
 
 - hosts: nomad_clients
   gather_facts: yes
