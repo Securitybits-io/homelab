@@ -1,13 +1,12 @@
 job "traefik" {
   datacenters = ["*"]
-  type        = "system"
+  type        = "service"
   
-  constraints = [
-  {
-    attribute = "${meta.node_roles}"
-    value     = "ingress"
-    operator  = "contains"
-  }
+  constraint {
+        attribute = "${meta.node_roles}"
+        value     = "ingress"
+        operator  = "contains"
+    }
 
   group "traefik" {
 
