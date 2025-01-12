@@ -1,12 +1,6 @@
 job "whoami" {
   datacenters = ["*"]
-  affinity {
-    attribute = "${meta.node_class}"
-    operator  = "="
-    value     = "ingress"
-    #weight    = "50" # The higher the weight, the stronger the preference
-  }
-
+  
   type = "service"
 
   group "demo" {
