@@ -18,11 +18,11 @@ server {
 client {
   enabled = true
   servers = ["nomad"]
-  {% if node_class is defined %}
+  {% if node_class is defined ~%}
   meta {
     "node_class" = "{{ node_class }}"
   }
-  {% endif %}
+  {% endif ~%}
 
 }
 
