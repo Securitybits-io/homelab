@@ -1,2 +1,3 @@
 node_metadata:
     - node_class: "public"
+    - node_roles: "ingress, web"

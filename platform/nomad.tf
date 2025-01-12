@@ -150,7 +150,7 @@ resource "proxmox_vm_qemu" "nomad-03" {
     target_node = "pve-node-01"
     name = "nomad-03"
     desc = "Created with Terraform"
-    tags = "terraform,linux,hashistack"
+    tags = "terraform,linux,hashistack,public"
     onboot = true
     clone = "Ubuntu-22.04-Template-100GB"
     agent = 1
@@ -164,7 +164,7 @@ resource "proxmox_vm_qemu" "nomad-03" {
         macaddr = "00:50:56:6D:C7:88"
         bridge = "vmbr0"
         model  = "virtio"
-        tag = 40
+        tag = 50
     }
 
     disk {
