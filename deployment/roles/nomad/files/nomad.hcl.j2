@@ -20,11 +20,11 @@ client {
   servers = ["nomad"]
   {% if node_metadata is defined %}
   meta {
-    {% for metadata in node_metadata %}
-      {% for key, value in metadata.items() %}
-    {{ key }} = {{ value }}
-      {% endfor %}
-    {% endfor %}
+{% for metadata in node_metadata %}
+  {% for key, value in metadata.items() %}
+    "{{ key }}" = "{{ value }}"
+  {% endfor %}
+{% endfor %}
   }
   {% endif %}
 }
