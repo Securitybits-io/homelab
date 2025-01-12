@@ -18,10 +18,12 @@
     - name: Copy folder to /opt/jobs
       ansible.builtin.copy:
         src: ../jobs  # Local folder on the Ansible controller
-        dest: /opt/jobs            # Target directory on the node
+        dest: /opt            # Target directory on the node
         owner: root
         group: root
         mode: '0755'
+      tags:
+        jobs
 
 
 - hosts: nomad_clients
