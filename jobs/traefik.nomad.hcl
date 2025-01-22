@@ -1,16 +1,15 @@
 job "traefik" {
   datacenters = ["*"]
   type        = "service"
+   
+  group "traefik" {
   
   constraint {
         attribute = "${meta.node_roles}"
         value     = "ingress"
-        operator  = "contains"
+        operator  = "set_contains_any"
     }
-
-  group "traefik" {
-
-    service {
+  service {
       name 			= "traefik-http"
       port 			= "http"
       
@@ -38,8 +37,22 @@ job "traefik" {
           "--entrypoints.traefik.address=:${NOMAD_PORT_admin}",
           #"--providers.nomad=true",
           #"--providers.nomad.endpoint.address=http://<nomad server ip>:4646" 
-          "--providers.consulcatalog.endpoint.address=http://consul:8500"
+          "--providers.consulcatalog=true",
+          "--providers.consulcatalog.endpoint.address=http://consul:8500",
+          "--providers.file.filename=./config.yml",
+          "--providers.file.watch=true"
         ]
+      }
+
+      template {
+        data        = <<-EOF
+                      http:
+                      	routers:
+                        	dashboard-router:
+                            rule: Path(`/dashboard`)
+                            service: http://10.0.40.6:8080
+                      EOF
+        destination = "./config.yml"
       }
 
       resources {
