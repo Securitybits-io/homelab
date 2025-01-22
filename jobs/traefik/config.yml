@@ -1,0 +1,27 @@
+ 
+http:
+  routers:
+    dashboard-router:
+      rule: "PathPrefix(`/dashboard`)"
+      service: dashboard-service
+      entryPoints:
+        - web
+      middlewares:
+        - strip-dashboard-prefix
+        - ip-whitelist
+
+  services:
+    dashboard-service:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.40.6:8080"
+
+  middlewares:
+    strip-dashboard-prefix:
+      stripPrefix:
+        prefixes:
+          - "/dashboard"
+    ip-whitelist:
+      ipWhiteList:
+        sourceRange:
+          - "10.0.0.0/8"
