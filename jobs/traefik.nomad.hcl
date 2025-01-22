@@ -49,19 +49,19 @@ job "traefik" {
       }
 
       template {
-        data        = <<-EOF
-                      http:
-                      	routers:
-                        	dashboard-router:
-                            rule: Path(`/dashboard`)
-                            service: internal-dashboard
-                        
-                        services:
-                          internal-dashboard:
-                            loadBalancer:
-                              servers:
-                                - url: http://10.0.40.6:8080
-                      EOF
+      data =  <<-EOF
+              http:
+                routers:
+                  dashboard-router:
+                    rule: Path(`/dashboard`)
+                    service: internal-dashboard
+
+                services:
+                  internal-dashboard:
+                    loadBalancer:
+                      servers:
+                        - url: http://10.0.40.6:8080
+              EOF
         destination = "local/config.yml"
       }
 
