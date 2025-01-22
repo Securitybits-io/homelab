@@ -45,31 +45,47 @@ job "traefik" {
           #"--providers.nomad.endpoint.address=http://<nomad server ip>:4646" 
           "--providers.consulcatalog=true",
           "--providers.consulcatalog.endpoint.address=http://consul:8500",
-          "--providers.file.filename=./config.yml",
+          "--providers.file.filename=/local/config.yml",
           "--providers.file.watch=true"
         ]
-        volumes = [
-          "/opt/jobs/traefik/config.yml:/local/config.yml",
-        ]
+        # volumes = [
+        #   "/opt/jobs/traefik/config.yml:/local/config.yml",
+        # ]
       }
       
 
-      # template {
-      # data =  <<-EOF
-      #         http:
-      #           routers:
-      #             dashboard-router:
-      #               rule: Path(`/dashboard`)
-      #               service: internal-dashboard
+      template {
+      data =  <<-EOF
+http:
+  routers:
+    dashboard-router:
+      rule: "PathPrefix(`/dashboard`)"
+      service: dashboard-service
+      entryPoints:
+        - web
+        - websecure
+      middlewares:
+        - strip-prefix-dashboard
+        - ip-whitelist
 
-      #           services:
-      #             internal-dashboard:
-      #               loadBalancer:
-      #                 servers:
-      #                   - url: http://10.0.40.6:8080
-      #         EOF
-      #   destination = "local/config.yml"
-      # }
+  services:
+    dashboard-service:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.40.6:8080"
+
+  middlewares:
+    strip-prefix-dashboard:
+      stripPrefix:
+        prefixes:
+          - "/dashboard"
+    ip-whitelist:
+      ipWhiteList:
+        sourceRange:
+          - "10.0.0.0/8"
+              EOF
+        destination = "local/config.yml"
+      }
 
       resources {
         cpu    = 100 # Mhz
