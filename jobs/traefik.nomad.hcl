@@ -18,10 +18,13 @@ job "traefik" {
     network {
       mode = "host"
       port  "http" {
-         static = 80
+        static = 80
+      }
+      port "https" {
+        static = 443
       }
       port  "admin" {
-         static = 8080
+        static = 8080
       }
     }
 
@@ -34,6 +37,7 @@ job "traefik" {
           "--api.dashboard=true",
           "--api.insecure=true", # not for production
           "--entrypoints.web.address=:${NOMAD_PORT_http}",
+          "--entrypoints.websecure.address=:${NOMAD_PORT_https}",
           "--entrypoints.traefik.address=:${NOMAD_PORT_admin}",
           #"--providers.nomad=true",
           #"--providers.nomad.endpoint.address=http://<nomad server ip>:4646" 
@@ -50,9 +54,15 @@ job "traefik" {
                       	routers:
                         	dashboard-router:
                             rule: Path(`/dashboard`)
-                            service: http://10.0.40.6:8080
+                            service: internal-dashboard
+                        
+                        services:
+                          internal-dashboard:
+                            loadBalancer:
+                              servers:
+                                - url: http://10.0.40.6:8080
                       EOF
-        destination = "./config.yml"
+        destination = "local/config.yml"
       }
 
       resources {
