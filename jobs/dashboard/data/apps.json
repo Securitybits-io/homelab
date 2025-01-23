@@ -1,0 +1,159 @@
+{
+    "categories": [
+      {
+        "name": "Networking",
+        "items": [
+          {
+            "name": "pfSense",
+            "displayURL": "Bifrost",
+            "url": "https://10.0.0.1:444",
+            "icon": "admin_panel_settings"
+          },
+          {
+            "name": "Unifi Controller",
+            "displayURL": "Securitybits",
+            "url": "https://unificontroller:8443",
+            "icon": "podcasts"
+          }
+        ]
+      },
+      {
+        "name": "Management",
+        "items": [
+          {
+            "name": "Proxmox",
+            "displayURL": "Pve-Node-01.Securitybits.local",
+            "url": "https://Pve-Node-01.Securitybits.local:8006",
+            "icon": "dns"
+          },
+          {
+            "name": "Bifrost iDRAC",
+            "displayURL": "Bifrost-Management",
+            "url": "https://10.0.0.2/login.html",
+            "icon": "dns"
+          },
+          {
+            "name": "Nomad",
+            "displayURL": "Nomad-Cluster",
+            "url": "http://nomad:4646/",
+            "icon": "dns"
+          },
+          {
+            "name": "Consul",
+            "displayURL": "Consul-Cluster",
+            "url": "http://consul:8500/",
+            "icon": "dns"
+          },
+          {
+            "name": "Vault",
+            "displayURL": "Vault-Cluster",
+            "url": "http://vault:8200/",
+            "icon": "dns"
+          }
+        ]
+      },
+      {
+        "name": "Monitoring",
+        "items": [
+          {
+            "name": "Tautulli",
+            "displayURL": "Tautulli.Securitybits.local",
+            "url": "http://10.0.40.123:8181/home",
+            "icon": "bar_chart"
+          },
+          {
+            "name": "Grafana",
+            "displayURL": "Dash.Securitybits.io",
+            "url": "https://dash.securitybits.io",
+            "icon": "query_stats"
+          },
+          {
+            "name": "Wazuh",
+            "displayURL": "Wazuh.Securitybits.local",
+            "url": "https://10.0.40.6/",
+            "icon": "security"
+
+          }
+        ]
+      },
+      {
+        "name": "Media",
+        "items":[
+          {
+            "name": "Radarr",
+            "displayURL": "Radarr.Securitybits.local",
+            "url": "http://10.0.40.123:7878/",
+            "icon": "movie"
+          },
+          {
+            "name": "Sonarr",
+            "displayURL": "Sonarr.Securitybits.local",
+            "url": "http://10.0.40.123:8989/",
+            "icon": "movie"
+          },
+          {
+            "name": "Transmission",
+            "displayURL": "Transmission.Securitybits.local",
+            "url": "http://10.0.40.123:9091/",
+            "icon": "file_download"
+          },
+          {
+            "name": "Prowlarr",
+            "displayURL": "Prowlarr.Securitybits.local",
+            "url": "http://10.0.40.123:9696/",
+            "icon": "horizontal_distribute"
+          },
+          {
+            "name": "Readarr",
+            "displayURL": "Readarr.Securitybits.local",
+            "url": "http://10.0.40.123:8787/",
+            "icon": "auto_stories"
+          },
+          {
+            "name": "Bazarr",
+            "displayURL": "Bazarr.Securitybits.local",
+            "url": "http://10.0.40.123:6767/",
+            "icon": "subtitles"
+          },
+          {
+            "name": "Ombi",
+            "displayURL": "Ombi.Securitybits.io",
+            "url": "https://Ombi.Securitybits.io/",
+            "icon": "manage_search"
+          }
+        ]
+      }
+    ],
+    "apps": [
+      {
+        "name": "Plex",
+        "displayURL": "Plex.com",
+        "url": "https://app.plex.tv/",
+        "icon": "tv"
+      },
+      {
+        "name": "Immich",
+        "displayURL": "Immich.Securitybits.io",
+        "url": "https://Immich.Securitybits.io/",
+        "icon": "dashboard"
+      },
+      {
+        "name": "QNAP",
+        "displayURL": "Nidhoggr",
+        "url": "https://10.0.11.241",
+        "icon": "storage"
+      },      
+      {
+        "name": "Github",
+        "displayURL": "Github/Securitybits",
+        "url": "https://github.com/",
+        "icon": "code"
+      },
+      {
+        "name": "DockerHub",
+        "displayURL": "DockerHub/Securitybits",
+        "url": "https://hub.docker.com",
+        "icon": "code"
+      }
+    ]
+  }
