@@ -23,8 +23,8 @@ job "dashboard" {
 
       tags = [
         "traefik.enable=true",
-        "traefik.http.middlewares.dashboard-strip-prefix.stripPrefix.prefixes=/dashboard",
-        "traefik.http.routers.dashboard-router.rule=PathPrefix(`/dashboard`)",
+        "traefik.http.middlewares.dashboard-strip-prefix.stripPrefix.prefixes=/dashboard2",
+        "traefik.http.routers.dashboard-router.rule=PathPrefix(`/dashboard2`)",
         "traefik.http.routers.dashboard-router.middlewares=dashboard-strip-prefix@consulcatalog"
       ]
     }
