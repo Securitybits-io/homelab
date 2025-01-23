@@ -5,7 +5,8 @@ http:
       rule: Host(`immich.securitybits.io`)
       entrypoints: websecure
       service: service-immich
-      tls.certresolver: letsencrypt
+      tls:
+        certresolver: letsencrypt
   
   services:
     service-immich:
