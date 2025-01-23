@@ -52,9 +52,9 @@ job "traefik" {
       
 
       template {
-        source      = "config.yml"
+        data        = file("./config.yml")
         destination = "local/config.yml"
-        change_mode = "noop"
+        change_mode = "restart"
       }
 
       resources {
