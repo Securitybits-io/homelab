@@ -1,5 +1,18 @@
  
 http:
+  routers:
+    immich:
+      rule: Host(`immich.securitybits.io`)
+      entrypoints: websecure
+      service: service-immich
+      tls.certresolver: letsencrypt
+  
+  services:
+    service-immich:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.50.125:2283"
+
   middlewares:
     ip-whitelist:
       ipWhiteList:
