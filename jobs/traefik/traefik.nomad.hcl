@@ -48,43 +48,13 @@ job "traefik" {
           "--providers.file.filename=/local/config.yml",
           "--providers.file.watch=true"
         ]
-        # volumes = [
-        #   "/opt/jobs/traefik/config.yml:/local/config.yml",
-        # ]
       }
       
 
       template {
-      data =  <<-EOF
-http:
-  routers:
-    dashboard-router:
-      rule: "PathPrefix(`/dashboard`)"
-      service: dashboard-service
-      entryPoints:
-        - web
-        - websecure
-      middlewares:
-        - strip-prefix-dashboard
-        - ip-whitelist
-
-  services:
-    dashboard-service:
-      loadBalancer:
-        servers:
-          - url: "http://10.0.40.6:8080"
-
-  middlewares:
-    strip-prefix-dashboard:
-      stripPrefix:
-        prefixes:
-          - "/dashboard"
-    ip-whitelist:
-      ipWhiteList:
-        sourceRange:
-          - "10.0.0.0/8"
-              EOF
+        source      = "./config.yml"
         destination = "local/config.yml"
+        change_mode = "noop"
       }
 
       resources {
