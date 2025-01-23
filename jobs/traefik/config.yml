@@ -10,34 +10,17 @@ http:
         - strip-dashboard-prefix
         - ip-whitelist
 
-    microbin-router:
-      rule: "PathPrefix(`/microbin`)"
-      service: microbin-service
-      entryPoints:
-        - web
-        - websecure
-      middlewares:
-        - strip-microbin-prefix
-
   services:
     dashboard-service:
       loadBalancer:
         servers:
           - url: "http://10.0.40.6:8080"
-    microbin-service:
-      loadBalancer:
-        servers:
-          - url: "http://10.0.50.125:8080"
 
   middlewares:
     strip-dashboard-prefix:
       stripPrefix:
         prefixes:
           - "/dashboard"
-    strip-microbin-prefix:
-      stripPrefix:
-        prefixes:
-          - "/microbin"
     ip-whitelist:
       ipWhiteList:
         sourceRange:
