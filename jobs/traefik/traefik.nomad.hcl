@@ -6,15 +6,16 @@ job "traefik" {
    
   group "traefik" {
   
-  constraint {
-        attribute = "${meta.node_roles}"
-        value     = "ingress"
-        operator  = "set_contains_any"
-    }
-  service {
-      name 			= "traefik-http"
-      port 			= "http"
-      
+    constraint {
+          attribute = "${meta.node_roles}"
+          value     = "ingress"
+          operator  = "set_contains_any"
+      }
+
+    service {
+        name 			= "traefik-http"
+        port 			= "http"
+        
     } # Add healthcheck on 8080
 
     network {
@@ -30,7 +31,7 @@ job "traefik" {
       }
     }
 
-    task "server" {
+    task "proxy" {
       driver = "docker"
       config {
         image = "traefik:3.3.1"
@@ -49,7 +50,6 @@ job "traefik" {
           "--providers.file.watch=true"
         ]
       }
-      
 
       template {
         data        = file("./config.yml")
