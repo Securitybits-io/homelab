@@ -35,31 +35,34 @@ job "dashboard" {
       config {
         image = "phntxx/dashboard"
         ports = ["http"]
+        volumes = [
+          "local/data:/app/data"
+        ]
       }
 
       template {
         data        = file("data/apps.json")
-        destination = "/app/data/apps.json"
+        destination = "local/data/apps.json"
         change_mode = "restart"
       }
       template {
         data        = file("data/bookmarks.json")
-        destination = "/app/data/bookmarks.json"
+        destination = "local/data/bookmarks.json"
         change_mode = "restart"
       }
       template {
         data        = file("data/greeter.json")
-        destination = "/app/data/greeter.json"
+        destination = "local/data/greeter.json"
         change_mode = "restart"
       }
       template {
         data        = file("data/search.json")
-        destination = "/app/data/search.json"
+        destination = "local/data/search.json"
         change_mode = "restart"
       }
       template {
         data        = file("data/themes.json")
-        destination = "/app/data/themes.json"
+        destination = "local/data/themes.json"
         change_mode = "restart"
       }
     }
