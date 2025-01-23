@@ -1,4 +1,4 @@
-job "whoami" {
+job "microbin" {
   datacenters = ["*"]
   
   type = "service"
