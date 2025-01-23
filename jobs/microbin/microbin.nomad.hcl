@@ -24,8 +24,8 @@ job "whoami" {
       tags = [
         "traefik.enable=true",
         "traefik.http.routers.whoami-router.rule=Path(`/microbin`)",
-        "traefik.http.services.microbin.loadbalancer.server.port=8080"
-        "traefik.http.middlewares.microbin-strip-prefix.stripPrefix.prefixes=/microbin"
+        "traefik.http.services.microbin.loadbalancer.server.port=8080",
+        "traefik.http.middlewares.microbin-strip-prefix.stripPrefix.prefixes=/microbin",
       ]
     }
 
