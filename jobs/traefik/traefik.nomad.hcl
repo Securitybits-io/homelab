@@ -45,8 +45,6 @@ job "traefik" {
           "--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web",
           "--certificatesresolvers.letsencrypt.acme.email=christoffer.claesson@outlook.com",
           "--certificatesresolvers.letsencrypt.acme.storage=acme.json",
-          #"--providers.nomad=true",
-          #"--providers.nomad.endpoint.address=http://<nomad server ip>:4646" 
           "--providers.consulcatalog=true",
           "--providers.consulcatalog.endpoint.address=http://consul:8500",
           "--providers.file.filename=/local/config.yml",

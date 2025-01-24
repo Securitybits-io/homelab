@@ -7,6 +7,8 @@ http:
       service: service-immich
       tls:
         certresolver: letsencrypt
+      middlewares:
+        - limitBodySize@file
   
   services:
     service-immich:
@@ -15,6 +17,9 @@ http:
           - url: "http://10.0.50.125:2283"
 
   middlewares:
+    limitBodySize:
+      buffering:
+        maxRequestBodyBytes: 5000000000
     ip-whitelist:
       ipWhiteList:
         sourceRange:
