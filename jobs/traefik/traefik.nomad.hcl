@@ -35,7 +35,7 @@ job "traefik" {
       driver = "docker"
       config {
         image = "traefik:3.3.1"
-        ports = ["admin", "http"]
+        ports = ["admin", "http","https"]
         args = [
           "--api.dashboard=true",
           "--api.insecure=true", # not for production
