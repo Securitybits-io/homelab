@@ -3,7 +3,9 @@ http:
   routers:
     immich:
       rule: Host(`immich.securitybits.io`)
-      entrypoints: websecure
+      entrypoints: 
+      - web
+      - websecure
       service: service-immich
       tls:
         certresolver: letsencrypt

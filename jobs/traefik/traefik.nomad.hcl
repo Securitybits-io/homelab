@@ -42,7 +42,7 @@ job "traefik" {
           "--entrypoints.web.address=:${NOMAD_PORT_http}",
           "--entrypoints.websecure.address=:${NOMAD_PORT_https}",
           "--entrypoints.traefik.address=:${NOMAD_PORT_admin}",
-          "--certificatesresolvers.letsencrypt.acme.tlschallenge=true",
+          "--certificatesresolvers.letsencrypt.acme.httpchallenge.entrypoint=web",
           "--certificatesresolvers.letsencrypt.acme.email=christoffer.claesson@outlook.com",
           "--certificatesresolvers.letsencrypt.acme.storage=acme.json",
           #"--providers.nomad=true",
