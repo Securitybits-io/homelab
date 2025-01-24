@@ -6,11 +6,11 @@ job "whoami" {
   group "demo" {
     count = 3
 
-    constraint {
-      attribute = "${meta.node_roles}"
-      value     = "web"
-      operator  = "set_contains_any"
-    }
+    # constraint {
+    #   attribute = "${meta.node_roles}"
+    #   value     = "web"
+    #   operator  = "set_contains_any"
+    # }
 
     network {
        port "http" {
