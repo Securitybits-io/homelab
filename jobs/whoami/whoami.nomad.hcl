@@ -26,8 +26,10 @@ job "whoami" {
       tags = [
         "traefik.enable=true",
         "traefik.http.routers.whoami-router.rule=Host(`whoami.securitybits.io`)",
-        "traefik.http.routers.whoami-router.entrypoints=websecure",
-        "traefik.http.routers.whoami-router.tls.certresolver=letsencrypt",
+        "traefik.http.routers.whoami-router.entrypoints=web",
+        #"traefik.http.routers.whoami-router.entrypoints=websecure",
+        #"traefik.http.routers.whoami-router.tls.certresolver=letsencrypt",
+        "traefik.http.routers.whoami-router.middlewares=ip-whitelist@file",
       ]
     }
 
