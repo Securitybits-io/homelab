@@ -31,6 +31,12 @@ job "traefik" {
       }
     }
 
+    ephemeral_disk {
+      migrate = true
+      size    = 300
+      sticky  = true
+    }
+
     task "proxy" {
       driver = "docker"
       config {
@@ -44,7 +50,7 @@ job "traefik" {
           "--entrypoints.traefik.address=:${NOMAD_PORT_admin}",
           "--certificatesresolvers.letsencrypt.acme.tlschallenge=true",
           "--certificatesresolvers.letsencrypt.acme.email=christoffer.claesson@outlook.com",
-          "--certificatesresolvers.letsencrypt.acme.storage=acme.json",
+          "--certificatesresolvers.letsencrypt.acme.storage=/local/acme.json",
           "--providers.consulcatalog=true",
           "--providers.consulcatalog.endpoint.address=http://consul:8500",
           "--providers.file.filename=/local/config.yml",
