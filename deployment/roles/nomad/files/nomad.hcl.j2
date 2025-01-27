@@ -34,6 +34,14 @@ ui {
   enabled = false
 }
 
+plugin "docker" {
+  config {
+    volumes {
+      enabled = true
+    }
+  }
+}
+
 {% else %}
 server {
   enabled          = true
