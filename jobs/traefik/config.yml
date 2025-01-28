@@ -9,12 +9,24 @@ http:
         certresolver: letsencrypt
       middlewares:
         - limitBodySize@file
+    microbin:
+      rule: Host(`microbin.securitybits.io`)
+      entrypoints: websecure
+      service: service-microbin
+      tls:
+        certresolver: letsencrypt
   
   services:
     service-immich:
       loadBalancer:
         servers:
           - url: "http://10.0.50.125:2283"
+    
+    service-microbin:
+      loadBalancer:
+        servers:
+          servers:
+            - url: "http://10.0.50.125:8080"
 
   middlewares:
     limitBodySize:
