@@ -15,6 +15,14 @@ job "traefik" {
     service {
         name 			= "traefik-http"
         port 			= "http"
+        tags = [
+          "traefik.enable=true",
+          "traefik.http.routers.traefik-dashboard-router.rule=Host(`traefik.securitybits.io`)",
+          "traefik.http.routers.traefik-dashboard-router.entrypoints=websecure",
+          "traefik.http.routers.traefik-dashboard-router.tls.certresolver=letsencrypt",
+          "traefik.http.routers.traefik-dashboard-router.middlewares=ip-whitelist@file",
+          "traefik.http.services.traefik-dashboard-service.loadbalancer.server.port=8080"
+        ]
         
     } # Add healthcheck on 8080
 
