@@ -25,8 +25,7 @@ http:
     service-microbin:
       loadBalancer:
         servers:
-          servers:
-            - url: "http://10.0.50.125:8080"
+          - url: "http://10.0.50.125:8080"
 
   middlewares:
     limitBodySize:
