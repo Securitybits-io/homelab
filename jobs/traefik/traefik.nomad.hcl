@@ -1,5 +1,3 @@
-
-
 job "traefik" {
   datacenters = ["*"]
   type        = "service"

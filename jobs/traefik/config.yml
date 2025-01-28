@@ -1,4 +1,20 @@
- 
+entryPoints:
+  http:
+    address: :80
+    http:
+      redirections:
+        entryPoint:
+          scheme: https
+          to: https
+  https:
+    address: :443
+    asDefault: true
+    http3: {}
+    transport:
+      respondingTimeouts:
+        readTimeout: 300
+
+
 http:
   routers:
     immich:
