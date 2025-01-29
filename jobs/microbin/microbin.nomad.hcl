@@ -27,6 +27,14 @@ job "microbin" {
         "traefik.http.routers.microbin-router.entrypoints=websecure",
         "traefik.http.routers.microbin-router.tls.certresolver=letsencrypt",
       ]
+
+      check {
+        name     = "alive"
+        type     = "tcp"
+        port     = "http"
+        interval = "10s"
+        timeout  = "2s"
+      }
     }
 
     task "server" {

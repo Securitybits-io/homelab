@@ -28,6 +28,14 @@ job "dashboard" {
         "traefik.http.routers.dashboard-router.tls.certresolver=letsencrypt",
         "traefik.http.routers.dashboard-router.middlewares=ip-whitelist@file",
       ]
+      
+      check {
+        name     = "alive"
+        type     = "tcp"
+        port     = "http"
+        interval = "10s"
+        timeout  = "2s"
+      }
     }
 
     task "server" {
