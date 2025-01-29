@@ -5,24 +5,31 @@ job "traefik" {
   group "traefik" {
   
     constraint {
-          attribute = "${meta.node_roles}"
-          value     = "ingress"
-          operator  = "set_contains_any"
+        attribute = "${meta.node_roles}"
+        value     = "ingress"
+        operator  = "set_contains_any"
       }
 
     service {
-        name 			= "traefik-http"
-        port 			= "http"
-        tags = [
-          "traefik.enable=true",
-          "traefik.http.routers.traefik-dashboard-router.rule=Host(`traefik.securitybits.io`)",
-          "traefik.http.routers.traefik-dashboard-router.entrypoints=websecure",
-          "traefik.http.routers.traefik-dashboard-router.tls.certresolver=letsencrypt",
-          "traefik.http.routers.traefik-dashboard-router.middlewares=ip-whitelist@file",
-          "traefik.http.services.traefik-dashboard-service.loadbalancer.server.port=8080"
-        ]
+      name 			= "traefik-http"
+      port 			= "http"
+      tags = [
+        "traefik.enable=true",
+        "traefik.http.routers.traefik-dashboard-router.rule=Host(`traefik.securitybits.io`)",
+        "traefik.http.routers.traefik-dashboard-router.entrypoints=websecure",
+        "traefik.http.routers.traefik-dashboard-router.tls.certresolver=letsencrypt",
+        "traefik.http.routers.traefik-dashboard-router.middlewares=ip-whitelist@file",
+        "traefik.http.services.traefik-dashboard-service.loadbalancer.server.port=8080"
+      ]
         
-    } # Add healthcheck on 8080
+      check {
+        name     = "alive"
+        type     = "tcp"
+        port     = "admin"
+        interval = "10s"
+        timeout  = "2s"
+      }
+    }
 
     network {
       mode = "host"
