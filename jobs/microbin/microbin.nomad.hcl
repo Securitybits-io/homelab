@@ -23,7 +23,7 @@ job "microbin" {
 
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.microbin-router.rule=PathPrefix(`microbin.securitybits.io`)",
+        "traefik.http.routers.microbin-router.rule=Host(`microbin.securitybits.io`)",
         "traefik.http.routers.microbin-router.entrypoints=websecure",
         "traefik.http.routers.microbin-router.tls.certresolver=letsencrypt",
       ]
