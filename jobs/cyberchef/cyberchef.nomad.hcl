@@ -3,7 +3,7 @@ job "cyberchef" {
   
   type = "service"
 
-  group "microbin" {
+  group "cyberchef" {
     constraint {
       attribute = "${meta.node_roles}"
       value     = "web"

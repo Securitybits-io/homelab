@@ -3,7 +3,7 @@ job "spiderfoot" {
   
   type = "service"
 
-  group "microbin" {
+  group "spiderfoot" {
     constraint {
       attribute = "${meta.node_roles}"
       value     = "web"
