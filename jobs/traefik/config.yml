@@ -25,6 +25,7 @@ http:
         certresolver: letsencrypt
       middlewares:
         - limitBodySize@file
+
     microbin:
       rule: Host(`microbin.securitybits.io`)
       entrypoints: websecure
@@ -49,6 +50,7 @@ http:
         certresolver: letsencrypt
       middlewares:
         - ip-whitelist
+
     consul:
       rule: Host(`consul.securitybits.io`)
       entrypoints: websecure
@@ -57,6 +59,7 @@ http:
         certresolver: letsencrypt    
       middlewares:
         - ip-whitelist
+
 
   services:
     service-immich:
