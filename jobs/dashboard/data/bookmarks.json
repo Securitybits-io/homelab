@@ -14,11 +14,11 @@
         "items": [
             {
                 "name": "Cyberchef",
-                "url": "http://offsec-docker-01:8000/"
+                "url": "https://cyberchef.securitybits.io/"
             },
             {
                 "name": "Spiderfoot",
-                "url": "http://offsec-docker-01:5001/"
+                "url": "https://spiderfoot.securitybits.io/"
             }
         ]
       },
@@ -45,10 +45,6 @@
           {
             "name": "Spotify",
             "url": "https://open.spotify.com/"
-          },
-          {
-            "name": "Saltedge API",
-            "url": "https://www.saltedge.com/clients/dashboard"
           }
         ]
       },
