@@ -68,12 +68,6 @@
             "icon": "query_stats"
           },
           {
-            "name": "Wazuh",
-            "displayURL": "Wazuh.Securitybits.local",
-            "url": "https://10.0.40.6/",
-            "icon": "security"
-          },
-          {
             "name": "Traefik",
             "displayURL": "Traefik.Securitybits.io",
             "url": "https://traefik.securitybits.io/",
@@ -158,6 +152,12 @@
         "name": "DockerHub",
         "displayURL": "DockerHub/Securitybits",
         "url": "https://hub.docker.com",
+        "icon": "code"
+      },
+      {
+        "name": "Microbin",
+        "displayURL": "microbin.securityibits.io",
+        "url": "https://microbin.securitybits.io",
         "icon": "code"
       }
     ]

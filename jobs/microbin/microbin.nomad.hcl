@@ -31,9 +31,6 @@ job "microbin" {
 
     task "server" {
       driver = "docker"
-      env {
-        MICROBIN_PUBLIC_PATH = "/microbin"
-      }
       config {
         image = "danielszabo99/microbin"
         ports = ["http"]
