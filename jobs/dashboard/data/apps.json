@@ -41,7 +41,7 @@
           {
             "name": "Consul",
             "displayURL": "Consul-Cluster",
-            "url": "https://nomad.securitybits.io",
+            "url": "https://consul.securitybits.io",
             "icon": "dns"
           },
           {
@@ -80,45 +80,39 @@
         "items":[
           {
             "name": "Radarr",
-            "displayURL": "Radarr.Securitybits.local",
-            "url": "http://10.0.40.123:7878/",
+            "displayURL": "Radarr.Securitybits.io",
+            "url": "https://radarr.securitybits.io/",
             "icon": "movie"
           },
           {
             "name": "Sonarr",
-            "displayURL": "Sonarr.Securitybits.local",
-            "url": "http://10.0.40.123:8989/",
+            "displayURL": "Sonarr.Securitybits.io",
+            "url": "https://sonarr.securitybits.io/",
             "icon": "movie"
           },
           {
             "name": "Transmission",
-            "displayURL": "Transmission.Securitybits.local",
-            "url": "http://10.0.40.123:9091/",
+            "displayURL": "Transmission.Securitybits.io",
+            "url": "https://transmission.securitybits.io/",
             "icon": "file_download"
           },
           {
             "name": "Prowlarr",
-            "displayURL": "Prowlarr.Securitybits.local",
-            "url": "http://10.0.40.123:9696/",
+            "displayURL": "Prowlarr.Securitybits.io",
+            "url": "https://prowlarr.securitybits.io/",
             "icon": "horizontal_distribute"
           },
           {
             "name": "Readarr",
-            "displayURL": "Readarr.Securitybits.local",
-            "url": "http://10.0.40.123:8787/",
+            "displayURL": "Readarr.Securitybits.io",
+            "url": "https://readarr.securitybits.io/",
             "icon": "auto_stories"
           },
           {
             "name": "Bazarr",
-            "displayURL": "Bazarr.Securitybits.local",
-            "url": "http://10.0.40.123:6767/",
+            "displayURL": "Bazarr.Securitybits.io",
+            "url": "https://bazarr.securitybits.io/",
             "icon": "subtitles"
-          },
-          {
-            "name": "Ombi",
-            "displayURL": "Ombi.Securitybits.io",
-            "url": "https://Ombi.Securitybits.io/",
-            "icon": "manage_search"
           }
         ]
       }
