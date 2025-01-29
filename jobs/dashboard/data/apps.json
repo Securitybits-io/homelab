@@ -35,19 +35,19 @@
           {
             "name": "Nomad",
             "displayURL": "Nomad-Cluster",
-            "url": "http://nomad:4646/",
+            "url": "https://nomad.securitybits.io",
             "icon": "dns"
           },
           {
             "name": "Consul",
             "displayURL": "Consul-Cluster",
-            "url": "http://consul:8500/",
+            "url": "https://nomad.securitybits.io",
             "icon": "dns"
           },
           {
             "name": "Vault",
             "displayURL": "Vault-Cluster",
-            "url": "http://vault:8200/",
+            "url": "https://vault.securitybits.io",
             "icon": "dns"
           }
         ]
@@ -72,7 +72,12 @@
             "displayURL": "Wazuh.Securitybits.local",
             "url": "https://10.0.40.6/",
             "icon": "security"
-
+          },
+          {
+            "name": "Traefik",
+            "displayURL": "Traefik.Securitybits.io",
+            "url": "https://traefik.securitybits.io/",
+            "icon": "security"
           }
         ]
       },
