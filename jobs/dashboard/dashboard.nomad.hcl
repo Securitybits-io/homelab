@@ -24,9 +24,9 @@ job "dashboard" {
       tags = [
         "traefik.enable=true",
         "traefik.http.routers.dashboard-router.rule=Host(`dashboard.securitybits.io`)",
-        "traefik.http.routers.traefik-dashboard-router.entrypoints=websecure",
-        "traefik.http.routers.traefik-dashboard-router.tls.certresolver=letsencrypt",
-        "traefik.http.routers.traefik-dashboard-router.middlewares=ip-whitelist@file",
+        "traefik.http.routers.dashboard-router.entrypoints=websecure",
+        "traefik.http.routers.dashboard-router.tls.certresolver=letsencrypt",
+        "traefik.http.routers.dashboard-router.middlewares=ip-whitelist@file",
       ]
     }
 
