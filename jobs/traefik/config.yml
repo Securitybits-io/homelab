@@ -63,7 +63,7 @@ http:
     service-nomad:
       loadBalancer:
         servers:
-          - url: "http://noamd:4646"
+          - url: "http://nomad:4646"
 
     service-consul:
       loadBalancer:
