@@ -31,7 +31,24 @@ http:
       service: service-microbin
       tls:
         certresolver: letsencrypt
-  
+
+    nomad:
+      rule: Host(`nomad.securitybits.io`)
+      entrypoints: websecure
+      service: service-nomad
+      tls:
+        certresolver: letsencrypt
+      middlewares:
+        - ip-whitelist
+    consul:
+      rule: Host(`consul.securitybits.io`)
+      entrypoints: websecure
+      service: service-consul
+      tls:
+        certresolver: letsencrypt    
+      middlewares:
+        - ip-whitelist
+
   services:
     service-immich:
       loadBalancer:
@@ -42,6 +59,16 @@ http:
       loadBalancer:
         servers:
           - url: "http://10.0.50.125:8080"
+
+    service-nomad:
+      loadBalancer:
+        servers:
+          - url: "http://noamd:4646"
+
+    service-consul:
+      loadBalancer:
+        servers:
+          - url: "http://consul:8500"
 
   middlewares:
     limitBodySize:
