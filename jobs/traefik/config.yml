@@ -43,7 +43,61 @@ http:
         certresolver: letsencrypt    
       middlewares:
         - ip-whitelist
+    
+    radarr:
+      rule: Host(`radarr.securitybits.io`)
+      entrypoints: websecure
+      service: service-radarr
+      tls:
+        certresolver: letsencrypt    
+      middlewares:
+        - ip-whitelist
 
+    sonarr:
+      rule: Host(`sonarr.securitybits.io`)
+      entrypoints: websecure
+      service: service-sonarr
+      tls:
+        certresolver: letsencrypt    
+      middlewares:
+        - ip-whitelist
+
+    transmission:
+      rule: Host(`transmission.securitybits.io`)
+      entrypoints: websecure
+      service: service-transmission
+      tls:
+        certresolver: letsencrypt    
+      middlewares:
+        - ip-whitelist
+
+    prowlarr:
+      rule: Host(`prowlarr.securitybits.io`)
+      entrypoints: websecure
+      service: service-prowlarr
+      tls:
+        certresolver: letsencrypt    
+      middlewares:
+        - ip-whitelist
+
+    readarr:
+      rule: Host(`readarr.securitybits.io`)
+      entrypoints: websecure
+      service: service-readarr
+      tls:
+        certresolver: letsencrypt    
+      middlewares:
+        - ip-whitelist
+
+    bazarr:
+      rule: Host(`bazarr.securitybits.io`)
+      entrypoints: websecure
+      service: service-bazarr
+      tls:
+        certresolver: letsencrypt    
+      middlewares:
+        - ip-whitelist
+        
 
   services:
     service-immich:
@@ -60,6 +114,36 @@ http:
       loadBalancer:
         servers:
           - url: "http://consul:8500"
+          
+    service-radarr:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.40.123:7878/"
+          
+    service-sonarr:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.40.123:8989/"
+          
+    service-transmission:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.40.123:9091/" 
+          
+    service-prowlarr:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.40.123:9696/"
+          
+    service-readarr:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.40.123:8787/"
+          
+    service-bazarr:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.40.123:6767/"
 
 
   middlewares:
