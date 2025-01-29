@@ -32,6 +32,15 @@ http:
       tls:
         certresolver: letsencrypt
 
+    dashboard:
+      rule: Host(`nomad.securitybits.io`)
+      entrypoints: websecure
+      service: service-internal-dashboard
+      tls:
+        certresolver: letsencrypt
+      middlewares:
+        - ip-whitelist
+
     nomad:
       rule: Host(`nomad.securitybits.io`)
       entrypoints: websecure
@@ -60,6 +69,11 @@ http:
         servers:
           - url: "http://10.0.50.125:8080"
 
+    service-internal-dashboard:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.40.6:8080"
+
     service-nomad:
       loadBalancer:
         servers:
@@ -69,6 +83,7 @@ http:
       loadBalancer:
         servers:
           - url: "http://consul:8500"
+
 
   middlewares:
     limitBodySize:
