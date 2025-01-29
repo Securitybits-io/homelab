@@ -23,15 +23,17 @@ job "microbin" {
 
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.whoami-router.rule=Path(`/microbin`)",
-        "traefik.http.services.microbin.loadbalancer.server.port=8080",
-        "traefik.http.middlewares.microbin-strip-prefix.stripPrefix.prefixes=/microbin",
+        "traefik.http.routers.microbin-router.rule=PathPrefix(`microbin.securitybits.io`)",
+        "traefik.http.routers.microbin-router.entrypoints=websecure",
+        "traefik.http.routers.microbin-router.tls.certresolver=letsencrypt",
       ]
     }
 
     task "server" {
       driver = "docker"
-
+      env {
+        MICROBIN_PUBLIC_PATH = "/microbin"
+      }
       config {
         image = "danielszabo99/microbin"
         ports = ["http"]
