@@ -33,7 +33,7 @@ http:
         certresolver: letsencrypt
 
     dashboard:
-      rule: Host(`nomad.securitybits.io`)
+      rule: Host(`dashboard.securitybits.io`)
       entrypoints: websecure
       service: service-internal-dashboard
       tls:
