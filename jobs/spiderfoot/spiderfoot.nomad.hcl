@@ -1,4 +1,4 @@
-job "microbin" {
+job "spiderfoot" {
   datacenters = ["*"]
   
   type = "service"

@@ -1,4 +1,4 @@
-job "microbin" {
+job "cyberchef" {
   datacenters = ["*"]
   
   type = "service"
