@@ -33,14 +33,14 @@ http:
       tls:
         certresolver: letsencrypt
 
-    dashboard:
-      rule: Host(`dashboard.securitybits.io`)
-      entrypoints: websecure
-      service: service-internal-dashboard
-      tls:
-        certresolver: letsencrypt
-      middlewares:
-        - ip-whitelist
+    # dashboard:
+    #   rule: Host(`dashboard.securitybits.io`)
+    #   entrypoints: websecure
+    #   service: service-internal-dashboard
+    #   tls:
+    #     certresolver: letsencrypt
+    #   middlewares:
+    #     - ip-whitelist
 
     nomad:
       rule: Host(`nomad.securitybits.io`)
@@ -72,10 +72,10 @@ http:
         servers:
           - url: "http://10.0.50.125:8080"
 
-    service-internal-dashboard:
-      loadBalancer:
-        servers:
-          - url: "http://10.0.40.6:8080"
+    # service-internal-dashboard:
+    #   loadBalancer:
+    #     servers:
+    #       - url: "http://10.0.40.6:8080"
 
     service-nomad:
       loadBalancer:
