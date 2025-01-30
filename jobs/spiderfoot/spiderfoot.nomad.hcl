@@ -17,7 +17,7 @@ job "spiderfoot" {
     }
 
     service {
-      name = "spiderfoot-service"
+      name = "spiderfoot"
       port = "http"
       provider = "consul"
 
@@ -38,7 +38,7 @@ job "spiderfoot" {
       }
     }
 
-    task "server" {
+    task "spiderfoot" {
       driver = "docker"
       config {
         image = "ctdc/spiderfoot"

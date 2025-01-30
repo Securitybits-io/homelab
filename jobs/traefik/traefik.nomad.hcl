@@ -11,15 +11,15 @@ job "traefik" {
       }
 
     service {
-      name 			= "traefik-http"
+      name 			= "traefik"
       port 			= "http"
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.traefik-dashboard-router.rule=Host(`traefik.securitybits.io`)",
-        "traefik.http.routers.traefik-dashboard-router.entrypoints=websecure",
-        "traefik.http.routers.traefik-dashboard-router.tls.certresolver=letsencrypt",
-        "traefik.http.routers.traefik-dashboard-router.middlewares=ip-whitelist@file",
-        "traefik.http.services.traefik-dashboard-service.loadbalancer.server.port=8080"
+        "traefik.http.routers.traefik.rule=Host(`traefik.securitybits.io`)",
+        "traefik.http.routers.traefik.entrypoints=websecure",
+        "traefik.http.routers.traefik.tls.certresolver=letsencrypt",
+        "traefik.http.routers.traefik.middlewares=ip-whitelist@file",
+        "traefik.http.services.traefik.loadbalancer.server.port=8080"
       ]
         
       check {
@@ -50,7 +50,7 @@ job "traefik" {
       sticky  = true
     }
 
-    task "proxy" {
+    task "traefik" {
       driver = "docker"
       config {
         image = "traefik:3.3.1"

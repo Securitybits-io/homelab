@@ -100,47 +100,47 @@ http:
         
 
   services:
-    service-immich:
+    immich:
       loadBalancer:
         servers:
           - url: "http://10.0.50.125:2283"
 
-    service-nomad:
+    nomad:
       loadBalancer:
         servers:
           - url: "http://nomad:4646"
 
-    service-consul:
+    consul:
       loadBalancer:
         servers:
           - url: "http://consul:8500"
           
-    service-radarr:
+    radarr:
       loadBalancer:
         servers:
           - url: "http://10.0.40.123:7878/"
           
-    service-sonarr:
+    sonarr:
       loadBalancer:
         servers:
           - url: "http://10.0.40.123:8989/"
           
-    service-transmission:
+    transmission:
       loadBalancer:
         servers:
           - url: "http://10.0.40.123:9091/" 
           
-    service-prowlarr:
+    prowlarr:
       loadBalancer:
         servers:
           - url: "http://10.0.40.123:9696/"
           
-    service-readarr:
+    readarr:
       loadBalancer:
         servers:
           - url: "http://10.0.40.123:8787/"
           
-    service-bazarr:
+    bazarr:
       loadBalancer:
         servers:
           - url: "http://10.0.40.123:6767/"

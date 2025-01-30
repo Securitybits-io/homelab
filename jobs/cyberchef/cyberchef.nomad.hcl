@@ -17,7 +17,7 @@ job "cyberchef" {
     }
 
     service {
-      name = "cyberchef-service"
+      name = "cyberchef"
       port = "http"
       provider = "consul"
 
@@ -37,7 +37,7 @@ job "cyberchef" {
       }
     }
 
-    task "server" {
+    task "cyberchef" {
       driver = "docker"
       config {
         image = "mpepping/cyberchef"

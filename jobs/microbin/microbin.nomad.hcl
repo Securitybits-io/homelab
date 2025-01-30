@@ -17,7 +17,7 @@ job "microbin" {
     }
 
     service {
-      name = "microbin-service"
+      name = "microbin"
       port = "http"
       provider = "consul"
 
@@ -37,7 +37,7 @@ job "microbin" {
       }
     }
 
-    task "server" {
+    task "microbin" {
       driver = "docker"
       config {
         image = "danielszabo99/microbin"

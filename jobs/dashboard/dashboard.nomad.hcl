@@ -3,7 +3,7 @@ job "dashboard" {
   
   type = "service"
 
-  group "dashboard-internal" {
+  group "dashboard" {
     constraint {
       attribute = "${meta.node_roles}"
       value     = "management"
@@ -17,7 +17,7 @@ job "dashboard" {
     }
 
     service {
-      name = "dashboard-internal-service"
+      name = "dashboard"
       port = "http"
       provider = "consul"
 
@@ -38,7 +38,7 @@ job "dashboard" {
       }
     }
 
-    task "server" {
+    task "dashboard" {
       driver = "docker"
 
       config {
