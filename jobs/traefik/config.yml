@@ -20,7 +20,7 @@ http:
     immich:
       rule: Host(`immich.securitybits.io`)
       entrypoints: websecure
-      service: service-immich
+      service: immich
       tls:
         certresolver: letsencrypt
       middlewares:
@@ -29,7 +29,7 @@ http:
     nomad:
       rule: Host(`nomad.securitybits.io`)
       entrypoints: websecure
-      service: service-nomad
+      service: nomad
       tls:
         certresolver: letsencrypt
       middlewares:
@@ -38,7 +38,7 @@ http:
     consul:
       rule: Host(`consul.securitybits.io`)
       entrypoints: websecure
-      service: service-consul
+      service: consul
       tls:
         certresolver: letsencrypt    
       middlewares:
@@ -47,7 +47,7 @@ http:
     radarr:
       rule: Host(`radarr.securitybits.io`)
       entrypoints: websecure
-      service: service-radarr
+      service: radarr
       tls:
         certresolver: letsencrypt    
       middlewares:
@@ -56,7 +56,7 @@ http:
     sonarr:
       rule: Host(`sonarr.securitybits.io`)
       entrypoints: websecure
-      service: service-sonarr
+      service: sonarr
       tls:
         certresolver: letsencrypt    
       middlewares:
@@ -65,7 +65,7 @@ http:
     transmission:
       rule: Host(`transmission.securitybits.io`)
       entrypoints: websecure
-      service: service-transmission
+      service: transmission
       tls:
         certresolver: letsencrypt    
       middlewares:
@@ -74,7 +74,7 @@ http:
     prowlarr:
       rule: Host(`prowlarr.securitybits.io`)
       entrypoints: websecure
-      service: service-prowlarr
+      service: prowlarr
       tls:
         certresolver: letsencrypt    
       middlewares:
@@ -83,7 +83,7 @@ http:
     readarr:
       rule: Host(`readarr.securitybits.io`)
       entrypoints: websecure
-      service: service-readarr
+      service: readarr
       tls:
         certresolver: letsencrypt    
       middlewares:
@@ -92,7 +92,7 @@ http:
     bazarr:
       rule: Host(`bazarr.securitybits.io`)
       entrypoints: websecure
-      service: service-bazarr
+      service: bazarr
       tls:
         certresolver: letsencrypt    
       middlewares:
