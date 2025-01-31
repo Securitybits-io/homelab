@@ -23,10 +23,10 @@ job "spiderfoot" {
 
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.spiderfoot-router.rule=Host(`spiderfoot.securitybits.io`)",
-        "traefik.http.routers.spiderfoot-router.entrypoints=websecure",
-        "traefik.http.routers.spiderfoot-router.tls.certresolver=letsencrypt",
-        "traefik.http.routers.spiderfoot-dashboard-router.middlewares=ip-whitelist@file",
+        "traefik.http.routers.spiderfoot.rule=Host(`spiderfoot.securitybits.io`)",
+        "traefik.http.routers.spiderfoot.entrypoints=websecure",
+        "traefik.http.routers.spiderfoot.tls.certresolver=letsencrypt",
+        "traefik.http.routers.spiderfoot.middlewares=ip-whitelist@file",
       ]
 
       check {

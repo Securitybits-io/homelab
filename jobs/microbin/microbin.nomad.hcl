@@ -23,9 +23,9 @@ job "microbin" {
 
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.microbin-router.rule=Host(`microbin.securitybits.io`)",
-        "traefik.http.routers.microbin-router.entrypoints=websecure",
-        "traefik.http.routers.microbin-router.tls.certresolver=letsencrypt",
+        "traefik.http.routers.microbin.rule=Host(`microbin.securitybits.io`)",
+        "traefik.http.routers.microbin.entrypoints=websecure",
+        "traefik.http.routers.microbin.tls.certresolver=letsencrypt",
       ]
 
       check {

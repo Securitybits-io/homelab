@@ -23,9 +23,9 @@ job "cyberchef" {
 
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.cyberchef-router.rule=Host(`cyberchef.securitybits.io`)",
-        "traefik.http.routers.cyberchef-router.entrypoints=websecure",
-        "traefik.http.routers.cyberchef-router.tls.certresolver=letsencrypt",
+        "traefik.http.routers.cyberchef.rule=Host(`cyberchef.securitybits.io`)",
+        "traefik.http.routers.cyberchef.entrypoints=websecure",
+        "traefik.http.routers.cyberchef.tls.certresolver=letsencrypt",
       ]
 
       check {
