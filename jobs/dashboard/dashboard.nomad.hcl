@@ -23,10 +23,10 @@ job "dashboard" {
 
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.dashboard-internal.rule=Host(`dashboard.securitybits.io`)",
-        "traefik.http.routers.dashboard-internal.entrypoints=websecure",
-        "traefik.http.routers.dashboard-internal.tls.certresolver=letsencrypt",
-        "traefik.http.routers.dashboard-internal.middlewares=ip-whitelist@file",
+        "traefik.http.routers.dashboard.rule=Host(`dashboard.securitybits.io`)",
+        "traefik.http.routers.dashboard.entrypoints=websecure",
+        "traefik.http.routers.dashboard.tls.certresolver=letsencrypt",
+        "traefik.http.routers.dashboard.middlewares=ip-whitelist@file",
       ]
       
       check {
