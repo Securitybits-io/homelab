@@ -2,7 +2,7 @@
 # and will be used when writing the variable without specifying a
 # path in the command or when writing JSON directly to the `/var/`
 # HTTP API endpoint
-path = "nopmad/jobs/ytdl-youtube"
+path = "nomad/jobs/ytdl-youtube"
 
 # The Namespace to write the variable can be included in the specification. This
 # value can be overridden by specifying the "-namespace" flag on the "put"
