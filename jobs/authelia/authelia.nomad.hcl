@@ -18,7 +18,7 @@ job "authelia" {
       port = "authelia"
 
       # tags = [
-      #   "traefil.enable=true",
+      #   "traefik.enable=true",
       #   "traefik.http.routers.authelia.rule=Host(`auth.securitybits.io`)",
       #   "traefik.http.routers.authelia.tls.certResolver=letsencrypt",
       # ]
