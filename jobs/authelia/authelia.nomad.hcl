@@ -32,12 +32,18 @@ job "authelia" {
       }
     }
 
+    ephemeral_disk {
+      migrate = true
+      size    = 300
+      sticky  = true
+    }
+
     task "authelia" {
       driver = "docker"
 
       env {
         TZ    = "Europe/Stockholm"
-        X_AUTHELIA_CONFIG                    = "local/"
+        X_AUTHELIA_CONFIG = "/local/"
       }
 
       config {
@@ -60,7 +66,13 @@ job "authelia" {
 
       template {
         data        = file("./config.yml")
-        destination = "local/config.yml"
+        destination = "local/configuration.yml"
+        change_mode = "restart"
+      }
+
+      template {
+        data        = file("./users.yml")
+        destination = "local/users.yml"
         change_mode = "restart"
       }
     }
