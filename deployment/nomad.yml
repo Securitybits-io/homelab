@@ -43,9 +43,13 @@
           with_fileglob:
             - "host_vars/nomad/*.nomad-vars.yml"
 
+        - name: Debug var items
+          debug:
+            msg: "Item: {{ item }}"
+          with_items: "{{ nomad_data['nomad-vars']['vars'] }}"
+
         - name: Put vars into Nomad
-          command: >
-            nomad var put -force {{ nomad_data['nomad-vars']['path'] }} {{ item.key }}={{ item.value }}
+          command: nomad var put -force {{ nomad_data['nomad-vars']['path'] }} {{ item.key }}={{ item.value }}
           with_items: "{{ nomad_data['nomad-vars']['vars'] }}"
           when: nomad_data['nomad-vars'] is defined
 
