@@ -34,6 +34,7 @@
           find:
             paths: "{{ playbook_dir }}/host_vars/nomad/job-vars"
             patterns: "*.nv.hcl"
+          delegate_to: localhost
           register: job_var_files
 
         - name: Read the content of job-var files
