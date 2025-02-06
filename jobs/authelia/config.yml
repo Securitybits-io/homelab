@@ -1,0 +1,3 @@
+server:
+  address: 'tcp://:9091'
+  disable_healthcheck: false
