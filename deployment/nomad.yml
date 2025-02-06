@@ -46,7 +46,7 @@
         - name: Put vars into Nomad
           command: >
             nomad var put -force {{ nomad_data['nomad-vars']['path'] }} {{ item.key }}={{ item.value }}
-          with_dict: "{{ dict(nomad_data['nomad-vars']['vars'] | map(attribute='items') | list | flatten(1)) }}"
+          with_items: "{{ nomad_data['nomad-vars']['vars'] }}"
           when: nomad_data['nomad-vars'] is defined
 
 
