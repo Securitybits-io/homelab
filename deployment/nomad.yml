@@ -41,16 +41,12 @@
           file:
             path: /opt/jobs-vars
             state: directory
-            owner: nomad
-            group: nomad
             mode: "0600"
 
         - name: Copy job-var files to remote host
           copy:
             src: "{{ item.path }}"
             dest: "/opt/jobs-vars/{{ item.path | basename }}"
-            owner: nomad
-            group: nomad
             mode: "0700"
           with_items: "{{ job_var_files.files }}"
 
