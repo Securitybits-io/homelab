@@ -56,7 +56,7 @@
         - name: Apply Nomad var from files
           command: nomad var put -force @/opt/jobs-vars/{{ item.path | basename }}
           with_items: "{{ changed_files.results }}"
-          when: item.checksum != item.stat.checksum
+          when: item.changed
 
 
 - hosts: nomad_clients
