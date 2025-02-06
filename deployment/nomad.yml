@@ -33,7 +33,7 @@
         - name: Find all job-var files
           find:
             paths: host_vars/nomad/job-vars
-            patterns: "*.nv.yml"
+            patterns: "*.nv.hcl"
           register: job_var_files
 
         - name: Read the content of job-var files
