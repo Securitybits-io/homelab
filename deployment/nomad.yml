@@ -41,6 +41,7 @@
           slurp:
             src: "{{ item.path }}"
           with_items: "{{ job_var_files.files }}"
+          delegate_to: localhost
           register: slurped_files
 
         - name: Apply Nomad var from file content
