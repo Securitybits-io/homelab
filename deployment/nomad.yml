@@ -27,7 +27,6 @@
     
     - name: Push nomad variables and secrets
       tags:
-        - jobs
         - secrets
       block:
         - name: Find all job-var files
