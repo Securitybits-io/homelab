@@ -33,7 +33,7 @@
         - name: Find all job-var files
           find:
             paths: host_vars/nomad/jobs-vars
-            patterns: "*.yml"
+            patterns: "*.nv.hcl"
           delegate_to: localhost
           register: job_var_files
 
@@ -41,6 +41,8 @@
           file:
             path: /opt/jobs-vars
             state: directory
+            owner: root
+            group: root
             mode: "0600"
 
         - name: Copy job-var files to remote host
