@@ -1,4 +1,4 @@
-nomad-vars:
+nomad_vars:
   path: nomad/jobs/ytdl-youtube/channels
   vars: 
     - channel: test

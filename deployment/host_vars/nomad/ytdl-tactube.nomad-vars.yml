@@ -1,4 +1,4 @@
-nomad-vars:
+nomad_vars:
   path: nomad/jobs/ytdl-tactube/channels
   vars: 
     - channel: test
