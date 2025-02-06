@@ -60,11 +60,11 @@ job "authelia" {
         change_mode = "restart"
       }
 
-      template {
-        data        = file("./users.yml")
-        destination = "local/users.yml"
-        change_mode = "restart"
-      }
+      # template {
+      #   data        = file("./users.yml")
+      #   destination = "local/users.yml"
+      #   change_mode = "restart"
+      # }
       
       template {
         data    = <<EOH
