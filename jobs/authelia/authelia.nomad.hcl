@@ -68,14 +68,14 @@ job "authelia" {
       
       template {
         data    = <<EOH 
-        {{- with nomadVar "nomad/jobs/authelia/secrets" }}{{ .JWT_SECRET }}
+        {{ with nomadVar "nomad/jobs/authelia/secrets" }}{{ .JWT_SECRET }}
         EOH
         destination = "secrets/jwt.secret"
         change_mode = "restart"
       }
       template {
         data    = <<EOH 
-        {{- with nomadVar "nomad/jobs/authelia/secrets" }}{{ .STORAGE_SECRET }}
+        {{ with nomadVar "nomad/jobs/authelia/secrets" }}{{ .STORAGE_SECRET }}
         EOH
         destination = "secrets/storage.secret"
         change_mode = "restart"
@@ -83,7 +83,7 @@ job "authelia" {
 
       template {
         data    = <<EOH 
-        {{- with nomadVar "nomad/jobs/authelia/secrets" }}{{ .SESSION_SECRET }}
+        {{ with nomadVar "nomad/jobs/authelia/secrets" }}{{ .SESSION_SECRET }}
         EOH
         destination = "secrets/session.secret"
         change_mode = "restart"
