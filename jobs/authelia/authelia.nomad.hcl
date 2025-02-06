@@ -47,9 +47,11 @@ job "authelia" {
 
       template {
         data = <<EOH
-        AUTHELIA_JWT_SECRET_FILE             = "{{ with nomadVar "nomad/jobs/authelia/secrets"}}{{ .JWT_SECRET }}"
-        AUTHELIA_SESSION_SECRET_FILE         = "{{ with nomadVar "nomad/jobs/authelia/secrets"}}{{ .SESSION_SECRET }}"
-        AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE = "{{ with nomadVar "nomad/jobs/authelia/secrets"}}{{ .STORAGE_SECRET }}"
+        {{- with nomadVar "nomad/jobs/authelia/secrets" }}
+        AUTHELIA_JWT_SECRET_FILE             = {{ .JWT_SECRET }}
+        AUTHELIA_SESSION_SECRET_FILE         = {{ .SESSION_SECRET }}
+        AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE = {{ .STORAGE_SECRET }}
+        {{- end }}
         EOH
 
         destination = "secrets/.env"
