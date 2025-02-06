@@ -49,11 +49,12 @@ export SSH_PASS="pass"
 ## Roadmap
 
 ### Tasks
-#### Docker Apps to create
-- [ ] Firefly Management
+#### Nomad Apps to create
+- [ ] lunasea https://www.lunasea.app/
+- [ ] authelia
+- [ ] umami
 - [ ] Papertrail-ng
-- [ ] IPAM / Netbox
-- [ ] Reverse Proxy (Nginx/Traefik)
+- [X] Reverse Proxy (Traefik)
 - [x] Ombi
 - [ ] Guacamole
 - [ ] Kavitareader

@@ -17,12 +17,12 @@ job "authelia" {
       name = "authelia"
       port = "authelia"
 
-      tags = [
-        "traefil.enable=true",
-        "traefik.http.routers.authelia.rule=Host(`auth.securitybits.io`)",
-        "traefik.http.routers.authelia.tls.certResolver=letsencrypt",
-      ]
-      
+      # tags = [
+      #   "traefil.enable=true",
+      #   "traefik.http.routers.authelia.rule=Host(`auth.securitybits.io`)",
+      #   "traefik.http.routers.authelia.tls.certResolver=letsencrypt",
+      # ]
+
       check {
         name     = "alive"
         type     = "tcp"
@@ -47,5 +47,4 @@ job "authelia" {
       }
     }
   }
-
 }
