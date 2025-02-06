@@ -66,28 +66,29 @@ job "authelia" {
         change_mode = "restart"
       }
       
-      template {
-        data    = <<EOH 
-        {{ with nomadVar "nomad/jobs/authelia/secrets" }}{{ .JWT_SECRET }}
-        EOH
-        destination = "local/jwt.secret"
-        change_mode = "restart"
-      }
-      template {
-        data    = <<EOH 
-        {{ with nomadVar "nomad/jobs/authelia/secrets" }}{{ .STORAGE_SECRET }}
-        EOH
-        destination = "local/storage.secret"
-        change_mode = "restart"
-      }
+      # template {
+      #   data    = <<EOH 
+      #   {{ with nomadVar "nomad/jobs/authelia/secrets" }}{{ .JWT_SECRET }}
+      #   EOH
+      #   destination = "local/jwt.secret"
+      #   change_mode = "restart"
+      # }
 
-      template {
-        data    = <<EOH 
-        {{ with nomadVar "nomad/jobs/authelia/secrets" }}{{ .SESSION_SECRET }}
-        EOH
-        destination = "local/session.secret"
-        change_mode = "restart"
-      }
+      # template {
+      #   data    = <<EOH 
+      #   {{ with nomadVar "nomad/jobs/authelia/secrets" }}{{ .STORAGE_SECRET }}
+      #   EOH
+      #   destination = "local/storage.secret"
+      #   change_mode = "restart"
+      # }
+
+      # template {
+      #   data    = <<EOH 
+      #   {{ with nomadVar "nomad/jobs/authelia/secrets" }}{{ .SESSION_SECRET }}
+      #   EOH
+      #   destination = "local/session.secret"
+      #   change_mode = "restart"
+      # }
     }
   }
 }
