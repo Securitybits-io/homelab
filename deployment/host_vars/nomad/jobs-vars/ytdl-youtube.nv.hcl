@@ -21,4 +21,5 @@ path = "nomad/jobs/ytdl-youtube"
 items {
   channel1 = "value 1"
   channel2 = "value 2"
+  changed = "true"
 }

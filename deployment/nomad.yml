@@ -50,11 +50,14 @@
             src: "{{ item.path }}"
             dest: "/opt/jobs-vars/{{ item.path | basename }}"
             mode: "0700"
+            checksum: yes
           with_items: "{{ job_var_files.files }}"
+          register: changed_files
 
         - name: Apply Nomad var from files
           command: nomad var put -force @/opt/jobs-vars/{{ item.path | basename }}
-          with_items: "{{ job_var_files.files }}"
+          with_items: "{{ changed_files.results }}"
+          when: item.checksum != item.stat.checksum
 
 
 - hosts: nomad_clients
