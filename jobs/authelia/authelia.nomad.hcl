@@ -62,7 +62,7 @@ job "authelia" {
 
       template {
         data        = file("./users.yml")
-        destination = "local/users.yml"
+        destination = "local/users/users.yml"
         change_mode = "restart"
       }
       
