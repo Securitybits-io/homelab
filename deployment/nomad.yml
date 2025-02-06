@@ -32,7 +32,7 @@
       block:
         - name: Find all job-var files
           find:
-            paths: host_vars/nomad/job-vars
+            paths: "{{ playbook_dir }}/host_vars/nomad/job-vars"
             patterns: "*.nv.hcl"
           register: job_var_files
 
