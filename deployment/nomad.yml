@@ -24,6 +24,31 @@
         mode: '0755'
       tags:
         jobs
+    
+    - name: Push nomad variables and secrets
+      tags:
+        - jobs
+        - secrets
+      block:
+        - name: Load var files
+          include_vars:
+            file: "{{ item }}"
+            name: nomad_data
+          with_fileglob:
+            - "host_vars/nomad/*.nomad-vars.yml"
+
+        - name: Debug loaded file
+          debug:
+            msg: "Processing file: {{ item }}"
+          with_fileglob:
+            - "host_vars/nomad/*.nomad-vars.yml"
+
+        - name: Put vars into Nomad
+          command: >
+            nomad var put -force {{ nomad_data.nomad-vars.path }} {{ item.key }}={{ item.value }}
+          with_dict: "{{ dict(nomad_data.nomad-vars.vars | map(attribute='items') | list | flatten(1)) }}"
+          when: nomad_data.nomad-vars is defined
+
 
 
 - hosts: nomad_clients
