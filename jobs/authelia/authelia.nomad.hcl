@@ -44,9 +44,9 @@ job "authelia" {
       env {
         TZ    = "Europe/Stockholm"
         X_AUTHELIA_CONFIG = "/local/"
-        AUTHELIA_JWT_SECRET_FILE             = "/secrets/jwt.secret"
-        AUTHELIA_SESSION_SECRET_FILE         = "/secrets/session.secret"
-        AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE = "/secrets/storage.secret"
+        AUTHELIA_JWT_SECRET_FILE             = "/local/jwt.secret"
+        AUTHELIA_SESSION_SECRET_FILE         = "/local/session.secret"
+        AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE = "/local/storage.secret"
       }
 
       config {
