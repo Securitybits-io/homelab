@@ -44,24 +44,14 @@ job "authelia" {
       env {
         TZ    = "Europe/Stockholm"
         X_AUTHELIA_CONFIG = "/local/"
+        AUTHELIA_JWT_SECRET_FILE             = "/secrets/jwt.secret"
+        AUTHELIA_SESSION_SECRET_FILE         = "/secrets/session.secret"
+        AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE = "/secrets/storage.secret"
       }
 
       config {
         image = "authelia/authelia:latest"
         ports = ["authelia"]
-      }
-
-      template {
-        data = <<EOH
-        {{- with nomadVar "nomad/jobs/authelia/secrets" }}
-        AUTHELIA_JWT_SECRET_FILE             = {{ .JWT_SECRET }}
-        AUTHELIA_SESSION_SECRET_FILE         = {{ .SESSION_SECRET }}
-        AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE = {{ .STORAGE_SECRET }}
-        {{- end }}
-        EOH
-
-        destination = "secrets/.env"
-        env = true
       }
 
       template {
@@ -73,6 +63,29 @@ job "authelia" {
       template {
         data        = file("./users.yml")
         destination = "local/users.yml"
+        change_mode = "restart"
+      }
+      
+      template {
+        data    = <<EOH 
+        {{- with nomadVar "nomad/jobs/authelia/secrets" }}{{ .JWT_SECRET }}
+        EOH
+        destination = "secrets/jwt.secret"
+        change_mode = "restart"
+      }
+      template {
+        data    = <<EOH 
+        {{- with nomadVar "nomad/jobs/authelia/secrets" }}{{ .STORAGE_SECRET }}
+        EOH
+        destination = "secrets/storage.secret"
+        change_mode = "restart"
+      }
+
+      template {
+        data    = <<EOH 
+        {{- with nomadVar "nomad/jobs/authelia/secrets" }}{{ .SESSION_SECRET }}
+        EOH
+        destination = "secrets/session.secret"
         change_mode = "restart"
       }
     }
