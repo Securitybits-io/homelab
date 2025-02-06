@@ -32,24 +32,31 @@
       block:
         - name: Find all job-var files
           find:
-            paths: "{{ playbook_dir }}/host_vars/nomad/job-vars"
-            patterns: "*.nv.hcl"
+            paths: host_vars/nomad/jobs-vars
+            patterns: "*.yml"
           delegate_to: localhost
           register: job_var_files
 
-        - name: Read the content of job-var files
-          slurp:
-            src: "{{ item.path }}"
-          with_items: "{{ job_var_files.files }}"
-          delegate_to: localhost
-          register: slurped_files
+        - name: Create /opt/jobs-vars
+          file:
+            path: /opt/jobs-vars
+            state: directory
+            owner: nomad
+            group: nomad
+            mode: "0600"
 
-        - name: Apply Nomad var from file content
-          shell: |
-            nomad var put -force @- <<EOF
-            {{ (item.content | b64decode) }}
-            EOF
-          with_items: "{{ slurped_files.results }}"
+        - name: Copy job-var files to remote host
+          copy:
+            src: "{{ item.path }}"
+            dest: "/opt/jobs-vars/{{ item.path | basename }}"
+            owner: nomad
+            group: nomad
+            mode: "0700"
+          with_items: "{{ job_var_files.files }}"
+
+        - name: Apply Nomad var from files
+          command: nomad var put -force @/opt/jobs-vars/{{ item.path | basename }}
+          with_items: "{{ job_var_files.files }}"
 
 
 - hosts: nomad_clients
