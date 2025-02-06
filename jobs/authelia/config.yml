@@ -18,7 +18,7 @@ password_policy:
 
 authentication_backend:
   file:
-    path: '/config/users.yml'
+    path: '/local/users.yml'
     password:
       algorithm: 'argon2'
       argon2:
