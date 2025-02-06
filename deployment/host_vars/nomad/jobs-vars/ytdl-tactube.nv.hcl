@@ -22,4 +22,5 @@ path = "nomad/jobs/ytdl-tactube"
 items {
   channel1 = "value 1"
   channel2 = "value 2"
+  channel3 = "value 3"
 }
