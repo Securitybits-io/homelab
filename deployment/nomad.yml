@@ -30,29 +30,24 @@
         - jobs
         - secrets
       block:
-        - name: Load var files
-          include_vars:
-            file: "{{ item }}"
-            name: nomad_data
-          with_fileglob:
-            - "host_vars/nomad/*.nomad-vars.yml"
+        - name: Find all job-var files
+          find:
+            paths: host_vars/nomad/job-vars
+            patterns: "*.nv.yml"
+          register: job_var_files
 
-        - name: Debug loaded file
-          debug:
-            msg: "Processing file: {{ item }}"
-          with_fileglob:
-            - "host_vars/nomad/*.nomad-vars.yml"
+        - name: Read the content of job-var files
+          slurp:
+            src: "{{ item.path }}"
+          with_items: "{{ job_var_files.files }}"
+          register: slurped_files
 
-        - name: Debug var items
-          debug:
-            msg: "Item: {{ item }}"
-          with_items: "{{ nomad_data['nomad-vars']['vars'] }}"
-
-        - name: Put vars into Nomad
-          command: >
-            nomad var put -force {{ nomad_data['nomad-vars']['path'] }} {{ item.keys() | list | first }}={{ item.values() | list | first }}
-          with_items: "{{ nomad_data['nomad-vars']['vars'] }}"
-          when: nomad_data['nomad-vars'] is defined
+        - name: Apply Nomad var from file content
+          shell: |
+            nomad var put -force @- <<EOF
+            {{ (item.content | b64decode) }}
+            EOF
+          with_items: "{{ slurped_files.results }}"
 
 
 - hosts: nomad_clients
