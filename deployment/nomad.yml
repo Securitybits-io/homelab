@@ -49,7 +49,8 @@
           with_items: "{{ nomad_data['nomad-vars']['vars'] }}"
 
         - name: Put vars into Nomad
-          command: nomad var put -force {{ nomad_data['nomad-vars']['path'] }} {{ item.key }}={{ item.value }}
+          command: >
+            nomad var put -force {{ nomad_data['nomad-vars']['path'] }} {{ item.keys() | list | first }}={{ item.values() | list | first }}
           with_items: "{{ nomad_data['nomad-vars']['vars'] }}"
           when: nomad_data['nomad-vars'] is defined
 
