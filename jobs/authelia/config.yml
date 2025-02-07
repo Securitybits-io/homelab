@@ -1,12 +1,6 @@
 server:
   address: 'tcp4://:9091'
 
-administration:
-  enable_ui: true
-  address: 'tcp://:9002'
-  groups:
-    - 'admins'
-
 log:
   level: debug
   keep_stdout: true
