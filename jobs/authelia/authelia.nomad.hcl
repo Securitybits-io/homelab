@@ -11,6 +11,10 @@ job "authelia" {
         to = 9091
         static = 9091
       }
+      port "authelia-ui" {
+        to = 9092
+        static = 9092
+      }
     }
 
     service {
@@ -51,7 +55,7 @@ job "authelia" {
 
       config {
         image = "authelia/authelia:latest"
-        ports = ["authelia"]
+        ports = ["authelia","authelia-ui"]
       }
 
       template {
