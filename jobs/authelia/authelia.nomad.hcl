@@ -6,6 +6,12 @@ job "authelia" {
   group "authelia" {
     count = 1
 
+    constraint {
+      attribute = "${meta.node_roles}"
+      value     = "web"
+      operator  = "set_contains_any"
+    }
+
     network {
       port "authelia" {
         to = 9091
@@ -17,11 +23,11 @@ job "authelia" {
       name = "authelia"
       port = "authelia"
 
-      # tags = [
-      #   "traefik.enable=true",
-      #   "traefik.http.routers.authelia.rule=Host(`auth.securitybits.io`)",
-      #   "traefik.http.routers.authelia.tls.certResolver=letsencrypt",
-      # ]
+      tags = [
+        "traefik.enable=true",
+        "traefik.http.routers.authelia.rule=Host(`auth.securitybits.io`)",
+        "traefik.http.routers.authelia.tls.certResolver=letsencrypt",
+      ]
 
       check {
         name     = "alive"

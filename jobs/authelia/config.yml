@@ -32,8 +32,8 @@ authentication_backend:
 access_control:
   default_policy: 'deny'
   rules:
-    - domain: 'traefik.securitybits.io'
-      policy: 'one_factor'
+    # - domain: 'traefik.securitybits.io'
+    #   policy: 'one_factor'
     - domain: 'cyberchef.securitybits.io'
       policy: 'two_factor'
 
