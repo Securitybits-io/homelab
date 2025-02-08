@@ -26,7 +26,7 @@ job "cyberchef" {
         "traefik.http.routers.cyberchef.rule=Host(`cyberchef.securitybits.io`)",
         "traefik.http.routers.cyberchef.entrypoints=websecure",
         "traefik.http.routers.cyberchef.tls.certresolver=letsencrypt",
-        "traefik.http.routers.whoami-secure.middlewares=authelia@consulcatalog"
+        "traefik.http.routers.cyberchef.middlewares=authelia@consulcatalog"
 
       ]
 
