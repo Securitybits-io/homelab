@@ -27,7 +27,7 @@ job "authelia" {
         "traefik.enable=true",
         "traefik.http.routers.authelia.rule=Host(`auth.securitybits.io`)",
         "traefik.http.routers.authelia.tls.certResolver=letsencrypt",
-        "traefik.http.middlewares.authelia.forwardAuth.address=http://${NOMAD_TASK_ENV_SERVICE_IP}/api/authz/forward-auth",
+        "traefik.http.middlewares.authelia.forwardAuth.address=http://{{ with service 'authelia' }}{{ .Address }}:{{ .Port }}{{ end }}/api/authz/forward-auth",
         "traefik.http.middlewares.authelia.forwardAuth.trustForwardHeader=true",
         "traefik.http.middlewares.authelia.forwardAuth.authResponseHeaders=Remote-User,Remote-Groups,Remote-Name,Remote-Email"
       ]
@@ -61,13 +61,6 @@ job "authelia" {
       config {
         image = "authelia/authelia:latest"
         ports = ["authelia"]
-      }
-
-      template {
-        data = <<EOF
-        SERVICE_IP={{ with service "target-service" }}{{ .Address }}{{ .Port }}{{ end }}
-        EOF
-        env = true
       }
 
       template {
