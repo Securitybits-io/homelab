@@ -50,17 +50,32 @@ job "authelia" {
     task "authelia" {
       driver = "docker"
 
+      config {
+        image = "authelia/authelia:latest"
+        ports = ["authelia"]
+        mount {
+          target = "/authelia"
+          source = "authelia"
+          volume_options {
+            no_copy = "false"
+            driver_config  {
+              name = "local"
+              options {
+                type = "cifs"
+                device = "//10.0.11.241/Securitybits.Systems/Authelia"
+                o = "vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
+              }
+            }
+          }
+        }
+      }
+
       env {
         TZ    = "Europe/Stockholm"
         X_AUTHELIA_CONFIG = "/local/"
         AUTHELIA_JWT_SECRET_FILE             = "/local/jwt.secret"
         AUTHELIA_SESSION_SECRET_FILE         = "/local/session.secret"
         AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE = "/local/storage.secret"
-      }
-
-      config {
-        image = "authelia/authelia:latest"
-        ports = ["authelia"]
       }
 
       template {
