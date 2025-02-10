@@ -36,6 +36,8 @@ access_control:
     #   policy: 'one_factor'
     - domain: 'cyberchef.securitybits.io'
       policy: 'two_factor'
+    - domain: 'it-tools.securitybits.io'
+      policy: 'two_factor'
 
 session:
   name: 'authelia_session'

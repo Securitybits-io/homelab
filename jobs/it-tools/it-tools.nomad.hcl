@@ -26,6 +26,7 @@ job "it-tools" {
         "traefik.http.routers.it-tools.rule=Host(`it-tools.securitybits.io`)",
         "traefik.http.routers.it-tools.entrypoints=websecure",
         "traefik.http.routers.it-tools.tls.certresolver=letsencrypt",
+        "traefik.http.routers.it-tools.middlewares=authelia@consulcatalog"
       ]
 
       check {
