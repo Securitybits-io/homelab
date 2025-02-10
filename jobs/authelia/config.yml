@@ -38,12 +38,13 @@ access_control:
       networks:
         - 10.0.0.0/8
       policy: 'bypass'
+    - domain: 'cyberchef.securitybits.io'
+      policy: 'one_factor'
+    - domain: 'it-tools.securitybits.io'
+      policy: 'one_factor'
+      
     - domain: '*.securitybits.io'
       policy: 'two_factor'
-    - domain: 'it-tools.securitybits.io'
-      policy: 'one_factor'
-    - domain: 'it-tools.securitybits.io'
-      policy: 'one_factor'
 
 session:
   name: 'authelia_session'
