@@ -88,7 +88,7 @@ job "authelia" {
         data        = <<EOH
         users:
           christoffer:
-            {{ with nomadVar nomad/jobs/authelia/users/christoffer -}}
+            {{ with nomadVar "nomad/jobs/authelia/users/christoffer" -}}
             disabled: false
             displayname: 'Christoffer Claesson'
             password: '{{ .PASSWORD }}'
