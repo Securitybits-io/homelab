@@ -20,13 +20,10 @@ authentication_backend:
   file:
     path: '/local/users/users.yml'
     password:
-      algorithm: 'argon2'
-      argon2:
-        variant: 'argon2id'
-        iterations: 3
-        memory: 65535
-        parallelism: 4
-        key_length: 32
+      algorithm: 'pbkdf2'
+      pbkdf2:
+        variant: 'sha512'
+        iterations: 310000
         salt_length: 16
 
 access_control:
