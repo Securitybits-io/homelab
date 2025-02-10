@@ -1,3 +1,5 @@
+theme: 'dark'
+
 server:
   address: 'tcp4://:9091'
 
@@ -30,14 +32,18 @@ authentication_backend:
         salt_length: 16
 
 access_control:
-  default_policy: 'deny'
+  default_policy: 'two_factor'
   rules:
-    # - domain: 'traefik.securitybits.io'
-    #   policy: 'one_factor'
-    - domain: 'cyberchef.securitybits.io'
+    - domain: '*'
+      networks:
+        - 10.0.0.0/8
+      policy: 'bypass'
+    - domain: '*.securitybits.io'
       policy: 'two_factor'
     - domain: 'it-tools.securitybits.io'
-      policy: 'two_factor'
+      policy: 'one_factor'
+    - domain: 'it-tools.securitybits.io'
+      policy: 'one_factor'
 
 session:
   name: 'authelia_session'
