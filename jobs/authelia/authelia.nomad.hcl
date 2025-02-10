@@ -85,7 +85,19 @@ job "authelia" {
       }
 
       template {
-        data        = file("./users.yml")
+        data        = <<EOH
+        users:
+          christoffer:
+            {{ with nomadVar nomad/jobs/authelia/users/christoffer -}}
+            disabled: false
+            displayname: 'Christoffer Claesson'
+            password: '{{ .PASSWORD }}'
+            email: '{{ .EMAIL }}'
+            groups:
+              - 'admins'
+              - 'users'
+            {{ end -}}
+        EOH
         destination = "local/users/users.yml"
         change_mode = "restart"
       }
