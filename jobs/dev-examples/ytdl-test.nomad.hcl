@@ -18,17 +18,15 @@ job "ytdl-test" {
       
       config {
         image   = "jauderho/yt-dlp"
-        # command = "/bin/sh"
-        # args    = ["-c", "cat local/channels.txt && echo test > /youtube-dl/test.txt"]
         args    = [
-                "-i",
-                "-N 5",
+                "--ignore-errors",
+                "--concurrent-fragments=5",
                 "--playlist-reverse",
                 "--batch-file=/local/channels.txt",
-                "--download-archive=/youtube-dl/Test/downloaded.txt",
-                "-o '/youtube-dl/Test/%(uploader)s/%(playlist)s/%(upload_date>%Y)s/%(playlist)s - S%(upload_date>%Y)sE%(playlist_index)s - %(title)s.%(ext)s'",
-                "-f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]'",
-                "-S vcodec:h264",
+                "--download-archive=/youtube-dl/downloaded.txt",
+                "--output=/youtube-dl/%(uploader)s/%(playlist)s/%(upload_date>%Y)s/%(playlist)s - S%(upload_date>%Y)sE%(playlist_index)s - %(title)s.%(ext)s",
+                "--format=bestvideo[ext=mp4]+bestaudio[ext=m4a]",
+                "--format-sort=vcodec:h264",
                 "--merge-output-format=mkv",
                 "--add-metadata",
                 "--write-thumbnail",
