@@ -2,17 +2,13 @@ job "ytdl-test" {
   datacenters = ["*"]
   type = "batch"
 
-  parameterized {
-    meta_optional = ["MY_META_KEY"]
-  }
-
   group "ytdl-test" {
     task "ytdl-test" {
       driver = "docker"
       config {
         image   = "busybox:1"
         command = "/bin/sh"
-        args    = ["-c", "cat local/template.out", "local/payload.txt"]
+        args    = ["-c", "cat local/channels.txt && echo test > /youtube-dl/test.txt"]
 
         mount {
             target = "/youtube-dl"
@@ -32,15 +28,12 @@ job "ytdl-test" {
       }
 
       dispatch_payload {
-        file = "payload.txt"
+        file = "channels.txt"
       }
 
       template {
-        data = <<EOH
-MY_META_KEY: {{env "NOMAD_META_MY_META_KEY"}}
-  EOH
-
-        destination = "local/template.out"
+        data = file("channels.txt")
+        destination = "local/channels.txt"
       }
     }
   }

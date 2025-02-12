@@ -1,0 +1,6 @@
+{{- with nomadVar "nomad/jobs/ytdl-test/channels" }}
+{{- range $name, $url := . }}
+# {{ $name }}
+{{ $url }}
+{{ end }}
+{{- end }}
