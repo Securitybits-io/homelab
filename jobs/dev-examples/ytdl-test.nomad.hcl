@@ -32,7 +32,14 @@ job "ytdl-test" {
       }
 
       template {
-        data = file("channels.txt")
+        data = <<EOH
+        {{- with nomadVar "nomad/jobs/ytdl-test/channels" }}
+        {{- range $name, $url := . }}
+        # {{ $name }}
+        {{ $url }}
+        {{ end }}
+        {{- end }}
+        EOH
         destination = "local/channels.txt"
       }
     }
