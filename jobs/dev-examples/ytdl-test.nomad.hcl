@@ -1,10 +1,12 @@
 job "ytdl-test" {
   datacenters = ["*"]
   type = "batch"
-  # periodic {
-  #   cron = "2 0 * * *"
-  #   prohibit_overlap = true
-  # }
+  periodic {
+    crons = [
+        "2 0 * * *"
+      ]
+    prohibit_overlap = true
+  }
 
   group "ytdl-test" {
 
