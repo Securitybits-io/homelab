@@ -5,6 +5,7 @@ job "ytdl-test" {
     crons = [
         "2 0 * * *"
       ]
+    timezone = "Europe/Stockholm"
     prohibit_overlap = true
   }
 
