@@ -5,7 +5,7 @@ job "ytdl-youtube" {
     crons = [
         "2 0 * * *"
       ]
-    timezone = "Europe/Stockholm"
+    time_zone = "Europe/Stockholm"
     prohibit_overlap = true
   }
 
