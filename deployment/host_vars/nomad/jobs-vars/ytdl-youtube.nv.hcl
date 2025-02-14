@@ -34,7 +34,7 @@ items {
   IBMTechnology = "https://www.youtube.com/c/IBMTechnology/videos"
   HashiCorp = "https://www.youtube.com/c/HashiCorp/videos"
   MakeMeHack = "https://www.youtube.com/c/MakeMeHack/videos"
-  AlexisOutdoors = "https://www.youtube.com/@AlexisOutdoors/videos"
+  AlexisOutdoors = "https://www.youtube.com/@careenaalexis/videos"
   JohanGärtner = "https://www.youtube.com/@JohanGartner/videos"
   LowByteProductions = "https://www.youtube.com/@LowByteProductions/videos"
   FablesFells = "https://www.youtube.com/@FablesandFells/videos"
