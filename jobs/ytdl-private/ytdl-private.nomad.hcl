@@ -50,7 +50,7 @@ job "ytdl-private" {
               options {
                 type = "cifs"
                 device = "//10.0.11.241/PlexMedia/Youtube-DL/Test"
-                o = "vers=3.0,file_mode=0660,dir_mode=0660,username=private,password='{{- with nomadVar \"nomad/jobs/ytdl-private/secrets\" }}{{ .SMB_PASS }}{{ end }}'"
+                o = "vers=3.0,file_mode=0660,dir_mode=0660,username=private,password=$SMB_PASS"
               }
             }
           }
@@ -60,7 +60,16 @@ job "ytdl-private" {
       dispatch_payload {
         file = "channels.txt"
       }
-
+      
+      template {
+        data = <<EOH
+        SMB_PASS="{{ with nomadVar "nomad/jobs/ytdl-private/secrets" }}{{ .SMB_PASS }}{{ end }}"  
+        EOH
+        destination = "secrets/smb.env"
+        change_mode = "noop"
+        env = true
+      }
+      
       template {
         data = <<EOH
         {{- with nomadVar "nomad/jobs/ytdl-private/channels" }}
