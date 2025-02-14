@@ -23,14 +23,14 @@ job "whoami" {
       port = "http"
       provider = "consul"
 
-      tags = [
-        "traefik.enable=true",
-        "traefik.http.routers.whoami-router.rule=Host(`whoami.securitybits.io`)",
-        "traefik.http.routers.whoami-router.entrypoints=websecure",
-        "traefik.http.routers.whoami-router.entrypoints=websecure",
-        "traefik.http.routers.whoami-router.tls.certresolver=letsencrypt",
-        "traefik.http.routers.whoami-router.middlewares=ip-whitelist@file",
-      ]
+      # tags = [
+      #   "traefik.enable=true",
+      #   "traefik.http.routers.whoami-router.rule=Host(`whoami.securitybits.io`)",
+      #   "traefik.http.routers.whoami-router.entrypoints=websecure",
+      #   "traefik.http.routers.whoami-router.entrypoints=websecure",
+      #   "traefik.http.routers.whoami-router.tls.certresolver=letsencrypt",
+      #   "traefik.http.routers.whoami-router.middlewares=ip-whitelist@file",
+      # ]
     }
 
     task "server" {
@@ -44,6 +44,15 @@ job "whoami" {
         image = "traefik/whoami"
         ports = ["http"]
       }
+    }
+    
+    template {
+      data = <<EOH
+      SMB_PASS="{{ with nomadVar "nomad/jobs/ytdl-private/secrets" }}{{ .SMB_PASS }}{{ end }}"  
+      EOH
+      destination = "secrets/smb.env"
+      change_mode = "noop"
+      env = true
     }
   }
 }
