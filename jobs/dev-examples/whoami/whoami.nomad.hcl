@@ -44,14 +44,7 @@ job "whoami" {
         image = "traefik/whoami"
         ports = ["http"]
       }
-      template {
-        data = <<EOH
-        SMB_PASS="{{ with nomadVar "nomad/jobs/ytdl-private/secrets" }}{{ .SMB_PASS }}{{ end }}"  
-        EOH
-        destination = "secrets/smb.env"
-        change_mode = "noop"
-        env = true
-      }
+      
     }
   }
 }
