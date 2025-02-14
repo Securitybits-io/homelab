@@ -55,7 +55,7 @@ job "cifs-example" {
       #       }
       #     }
       #   }
-      # }
+      }
       template {
         data        = <<-EOF
                       <h1>Hello, Nomad!</h1>
@@ -69,6 +69,7 @@ job "cifs-example" {
                       EOF
         destination = "local/index.html"
       }
+
       template {
         data = <<EOH
         SMB_PASS="{{ with nomadVar "nomad/jobs/ytdl-private/secrets" }}{{ .SMB_PASS }}{{ end }}"  
