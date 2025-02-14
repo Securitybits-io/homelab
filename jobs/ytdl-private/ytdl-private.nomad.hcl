@@ -5,7 +5,7 @@ job "ytdl-private" {
     crons = [
         "2 2 * * *"
       ]
-    timezone = "Europe/Stockholm"
+    time_zone = "Europe/Stockholm"
     prohibit_overlap = true
   }
 
