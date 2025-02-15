@@ -40,21 +40,21 @@ job "ytdl-private" {
                 "--compat-options=playlist-index"
                 ]
 
-        # mount {
-        #   target = "/youtube-dl"
-        #   source = "ytdl-private"
-        #   volume_options {
-        #     no_copy = "false"
-        #     driver_config  {
-        #     name = "local"
-        #       options {
-        #         type = "cifs"
-        #         device = "//10.0.11.241/PlexMedia/Youtube-DL/Test"
-        #         o = "vers=3.0,file_mode=0660,dir_mode=0660,username=private,password=${SMB_PASS}"
-        #       }
-        #     }
-        #   }
-        # }
+        mount {
+          target = "/youtube-dl"
+          source = "ytdl-private"
+          volume_options {
+            no_copy = "false"
+            driver_config  {
+            name = "local"
+              options {
+                type = "cifs"
+                device = "//10.0.11.241/PlexMedia/Youtube-DL/Test"
+                o = "vers=3.0,file_mode=0660,dir_mode=0660,username=private,password=${SMB_PASS}"
+              }
+            }
+          }
+        }
       }
 
       dispatch_payload {
