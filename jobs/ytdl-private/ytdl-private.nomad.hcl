@@ -20,7 +20,7 @@ job "ytdl-private" {
       driver = "docker"
       
       config {
-        image   = "jauderho/yt-dlp"
+        image   = "securitybits/yt-dlp"
         args    = [
                 "--ignore-errors",
                 "--concurrent-fragments=10",

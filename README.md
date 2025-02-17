@@ -51,10 +51,11 @@ export SSH_PASS="pass"
 ### Tasks
 #### Nomad Apps to create
 - [ ] lunasea https://www.lunasea.app/
-- [ ] authelia
-- [ ] umami
+- [x] authelia
+- [ ] PiHole
+- [ ] umami https://umami.is/
 - [ ] Papertrail-ng
-- [X] Reverse Proxy (Traefik)
+- [x] Reverse Proxy (Traefik)
 - [x] Ombi
 - [ ] Guacamole
 - [ ] Kavitareader
