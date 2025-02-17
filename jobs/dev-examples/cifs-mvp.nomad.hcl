@@ -16,7 +16,7 @@ job "cifs-mvp" {
             name = "local"
               options {
                 type = "cifs"
-                device = "//10.0.11.241/Securitybits.Private"
+                device = "//qnap/test"
                 o = "vers=3.0,file_mode=0660,dir_mode=0660,username=private,password=$SMB_PASS"
               }
             }
@@ -26,7 +26,7 @@ job "cifs-mvp" {
       
       template {
         data = <<EOH
-        SMB_PASS="{{ with nomadVar "nomad/jobs/ytdl-private/secrets" }}{{ .SMB_PASS }}{{ end }}"  
+        SMB_PASS="{{ with nomadVar "nomad/jobs/cifs-mvp/secrets" }}{{ .SMB_PASS }}{{ end }}"  
         EOH
         destination = "secrets/smb.env"
         env = true
