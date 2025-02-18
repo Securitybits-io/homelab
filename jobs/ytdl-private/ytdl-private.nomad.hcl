@@ -50,7 +50,7 @@ job "ytdl-private" {
               options {
                 type = "cifs"
                 device = "//10.0.11.241/Securitybits.Private"
-                o = "vers=3.0,file_mode=0660,dir_mode=0660,username=private,password=${SMB_PASS}"
+                o = "vers=3.0,file_mode=0777,dir_mode=0777,username=private,password=${SMB_PASS}"
               }
             }
           }
