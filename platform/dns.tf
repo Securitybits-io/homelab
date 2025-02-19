@@ -43,4 +43,3 @@ resource "namecheap_domain_records" "securitybits" {
     address = "blog.securitybits.io"
   }
 }
-yes
