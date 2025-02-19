@@ -18,18 +18,6 @@ resource "namecheap_domain_records" "securitybits" {
     type = "A"
     address = "${chomp(data.http.public_ip.response_body)}"
   }
-
-  record {
-    hostname = "atak"
-    type = "A"
-    address = "${chomp(data.http.public_ip.response_body)}"
-  }
-
-  record {
-    hostname = "@"
-    type = "MX"
-    address = "mx1.privateemail.com"
-  }
   
   record {
     hostname = "@"
@@ -55,3 +43,4 @@ resource "namecheap_domain_records" "securitybits" {
     address = "blog.securitybits.io"
   }
 }
+yes
