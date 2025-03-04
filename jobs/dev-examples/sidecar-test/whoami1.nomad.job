@@ -1,9 +1,9 @@
-job "microbin" {
+job "microbin-sidecar" {
   datacenters = ["*"]
   
   type = "service"
 
-  group "microbin" {
+  group "microbin-sidecar" {
     network {
       mode = "bridge"
       port "http" {
@@ -28,7 +28,7 @@ job "microbin" {
       }
     }
 
-    task "microbin" {
+    task "microbin-sidecar" {
       driver = "docker"
       config {
         image = "danielszabo99/microbin"
