@@ -23,6 +23,14 @@ job "radarr" {
         timeout  = "2s"
         #expose   = true
       }
+
+      tags = [
+        "traefik.enable=true",
+        "traefik.http.routers.radarr.rule=Host(`radarr.securitybits.io`)",
+        "traefik.http.routers.radarr.entrypoints=websecure",
+        "traefik.http.routers.radarr.tls.certresolver=letsencrypt",
+        "traefik.http.routers.radarr.middlewares=ip-whitelist@file"
+      ]
     }
 
     task "radarr" {
