@@ -18,7 +18,7 @@ job "whoami-1" {
       provider = "consul"
 
       connect {
-        sidecar_Service {
+        sidecar_service {
           proxy {
             upstreams {
               destination_name  = "whoami-2-demo"
