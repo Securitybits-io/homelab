@@ -11,6 +11,8 @@ job "radarr" {
 
     service {
       name = "radarr"
+      port = "radarr"
+      provider = "consul"
 
       check {
         name     = "radarr"
