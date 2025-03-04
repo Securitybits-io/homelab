@@ -9,7 +9,7 @@ job "whoami-2" {
     network {
       mode = "bridge"
       port "http" {
-        to = 8082
+        to = 80
       }
     }
 
