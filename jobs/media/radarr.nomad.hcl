@@ -36,7 +36,7 @@ job "radarr" {
         }
 
         mount {       # Mount Backup Folder
-          target = "/backup"
+          target = "/backups"
           source = "radarr-backup"
 
           volume_options {
@@ -87,7 +87,7 @@ job "radarr" {
         }
 
         mount {     # Mount downloads folder
-          target = "/downlaods/complete"
+          target = "/downloads/complete"
           source = "downloads-complete"
 
           volume_options {
