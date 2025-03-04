@@ -1,20 +1,18 @@
-job "whoami-1" {
+job "microbin" {
   datacenters = ["*"]
   
   type = "service"
 
-  group "demo" {
-    count = 1
-
+  group "microbin" {
     network {
       mode = "bridge"
       port "http" {
-        to = 8081
+        to = 8080
       }
     }
 
     service {
-      name = "whoami-1-demo"
+      name = "microbin-sidecar"
       port = "http"
       provider = "consul"
 
@@ -28,17 +26,20 @@ job "whoami-1" {
           }
         }
       }
+
+      check {
+        name     = "alive"
+        type     = "tcp"
+        port     = "http"
+        interval = "10s"
+        timeout  = "2s"
+      }
     }
 
-    task "server" {
-      env {
-        WHOAMI_PORT_NUMBER = "${NOMAD_PORT_http}"
-      }
-
+    task "microbin" {
       driver = "docker"
-
       config {
-        image = "traefik/whoami"
+        image = "danielszabo99/microbin"
         ports = ["http"]
       }
     }
