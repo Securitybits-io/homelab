@@ -5,12 +5,11 @@ job "sidecar-countdash" {
     network {
       mode = "bridge"
 
-      network {
-        port "api" {
-          to = 9001
-        }
+      port "api" {
+        to = 9001
       }
     }
+    
 
     service {
       name = "count-api"
