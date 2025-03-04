@@ -1,0 +1,32 @@
+job "sidecar-countdash" {
+  datacenters = ["*"]
+
+  group "api" {
+    network {
+      mode = "bridge"
+
+      network {
+        port "api" {
+          to = 9001
+        }
+      }
+    }
+
+    service {
+      name = "count-api"
+      port = "api"
+
+      connect {
+        sidecar_service {}
+      }
+    }
+
+    task "web" {
+      driver = "docker"
+
+      config {
+        image = "hashicorpdev/counter-api:v3"
+      }
+    }
+  }
+}
