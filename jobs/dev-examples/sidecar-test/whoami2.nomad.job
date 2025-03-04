@@ -7,9 +7,10 @@ job "whoami-2" {
     count = 1
 
     network {
-       port "http" {
-         to = 8082
-       }
+      mode = "bridge"
+      port "http" {
+        to = 8082
+      }
     }
 
     service {
