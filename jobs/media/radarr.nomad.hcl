@@ -21,7 +21,7 @@ job "radarr" {
         path     = "/ping"
         interval = "30s"
         timeout  = "2s"
-        expose   = true
+        #expose   = true
       }
     }
 
