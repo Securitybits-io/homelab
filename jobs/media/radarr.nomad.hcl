@@ -29,21 +29,32 @@ job "radarr" {
         "traefik.http.routers.radarr.rule=Host(`radarr.securitybits.io`)",
         "traefik.http.routers.radarr.entrypoints=websecure",
         "traefik.http.routers.radarr.tls.certresolver=letsencrypt",
-        "traefik.http.routers.radarr.middlewares=ip-whitelist@file"
+        "traefik.http.routers.radarr.middlewares=ip-whitelist@file",
       ]
+
+      canary_tags = [
+        "traefik.enable=false",
+      ]
+    }
+
+    update {
+      max_parallel = 0
+      health_check = "checks"
+      auto_revert  = true
     }
 
     task "radarr" {
       driver = "docker"
 
+      env {
+        PUID = 1000
+        PGID = 1000
+        TZ = "Europe/Stockholm"
+      }
+
       config {
         image = "linuxserver/radarr:latest"
         ports = ["radarr"]
-        env {
-          PUID = 1000
-          PGID = 1000
-          TZ = "Europe/Stockholm"
-        }
 
         mount {       # Mount Backup Folder
           target = "/backups"
@@ -113,6 +124,20 @@ job "radarr" {
           }
         }
       }
+
+      resources {
+        cpu    = 300
+        memory = 1024
+      }
+
+      restart {
+        interval = "12h"
+        attempts = 720
+        delay    = "60s"
+        mode     = "delay"
+      }
+
+      kill_timeout = "20s"
     }
   }
 }
