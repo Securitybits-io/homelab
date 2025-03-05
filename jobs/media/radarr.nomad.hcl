@@ -43,6 +43,12 @@ job "radarr" {
       auto_revert  = true
     }
 
+    ephemeral_disk {    # Kan man använda ephemeral istället för SMB Share, så att den migrerar med containern? går det ändra /config location
+      migrate = true
+      size = 1000
+      sticky = true
+    }
+
     task "radarr" {
       driver = "docker"
 
@@ -73,7 +79,7 @@ job "radarr" {
           }
         }         
         
-        mount {     # Mount Config Folder
+        mount {     # Mount Config Folder, TODO: Radarr gnäller på att databasen är låst när man kör på SMB Share
           target = "/config"
           source = "radarr-config"
 
