@@ -73,7 +73,7 @@ job "radarr" {
               options {
                 type = "cifs"
                 device = "//10.0.11.241/Securitybits.systems/Radarr"
-                o = "vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
+                o = "rw,vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
               }
             }
           }
@@ -90,7 +90,7 @@ job "radarr" {
               options {
                 type = "cifs"
                 device = "//10.0.11.241/Securitybits.systems/Radarr/config"
-                o = "vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
+                o = "rw,vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
               }
             }
           }
@@ -107,7 +107,7 @@ job "radarr" {
               options {
                 type = "cifs"
                 device = "//10.0.11.241/PlexMedia/Movies"
-                o = "vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
+                o = "rw,vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
               }
             }
           }
@@ -124,7 +124,7 @@ job "radarr" {
               options {
                 type = "cifs"
                 device = "//10.0.11.241/PlexMedia/downloads/complete"
-                o = "vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
+                o = "rw,vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
               }
             }
           }
