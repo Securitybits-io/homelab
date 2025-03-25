@@ -3,6 +3,12 @@ job "radarr" {
   type = "service"
 
   group "radarr" {
+    constraint {
+      attribute = "${meta.node_roles}"
+      value     = "private"
+      operator  = "set_contains_any"
+    }
+
     network {
       port "radarr" { 
         to = 7878
