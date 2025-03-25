@@ -61,6 +61,7 @@ job "radarr" {
       config {
         image = "linuxserver/radarr:latest"
         ports = ["radarr"]
+        volumes = ["/docker/Radarr/config:/config"]
 
         # mount {       # Mount Backup Folder
         #   target = "/backups"
@@ -79,22 +80,22 @@ job "radarr" {
         #   }
         # }         
         
-        mount {     # Mount Config Folder, TODO: Radarr gnäller på att databasen är låst när man kör på SMB Share
-          target = "/config"
-          source = "radarr-config"
+        # mount {     # Mount Config Folder, TODO: Radarr gnäller på att databasen är låst när man kör på SMB Share
+        #   target = "/config"
+        #   source = "radarr-config"
 
-          volume_options {
-            no_copy = "false"
-            driver_config  {
-              name = "local"
-              options {
-                type = "cifs"
-                device = "//10.0.11.241/Securitybits.systems/Radarr/config"
-                o = "rw,vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
-              }
-            }
-          }
-        }
+        #   volume_options {
+        #     no_copy = "false"
+        #     driver_config  {
+        #       name = "local"
+        #       options {
+        #         type = "cifs"
+        #         device = "//10.0.11.241/Securitybits.systems/Radarr/config"
+        #         o = "rw,vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
+        #       }
+        #     }
+        #   }
+        # }
 
       #   mount {     # Mount Config Folder
       #     target = "/movies"
