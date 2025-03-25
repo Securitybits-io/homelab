@@ -4,9 +4,9 @@ job "radarr" {
 
   group "radarr" {
     constraint {
-      attribute = "${meta.node_roles}"
-      value     = "private"
-      operator  = "set_contains_any"
+      attribute = "${attr.unique.hostname}"
+      value     = "nomad-02"
+      operator  = "="
     }
 
     network {
