@@ -67,6 +67,7 @@
   roles:
     - common
     - cis
+    - smb-mount
     - ssh
     - consul
     - docker
