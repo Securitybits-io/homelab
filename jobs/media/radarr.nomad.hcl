@@ -67,7 +67,12 @@ job "radarr" {
       config {
         image = "linuxserver/radarr:latest"
         ports = ["radarr"]
-        volumes = ["/docker/Radarr/config:/config"]
+        mount {
+          type = "bind"
+          target = "/config"
+          source = "/docker/Radarr/config"
+          readonly = false
+        }
 
         # mount {       # Mount Backup Folder
         #   target = "/backups"
