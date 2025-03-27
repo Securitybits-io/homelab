@@ -24,23 +24,23 @@ job "bazarr" {
         name     = "bazarr"
         type     = "http"
         port     = "bazarr"
-        path     = "/ping"
+        path     = "/"
         interval = "30s"
         timeout  = "2s"
         #expose   = true
       }
 
-      # tags = [
-      #   "traefik.enable=true",
-      #   "traefik.http.routers.bazarr.rule=Host(`bazarr.securitybits.io`)",
-      #   "traefik.http.routers.bazarr.entrypoints=websecure",
-      #   "traefik.http.routers.bazarr.tls.certresolver=letsencrypt",
-      #   "traefik.http.routers.bazarr.middlewares=ip-whitelist@file",
-      # ]
+      tags = [
+        "traefik.enable=true",
+        "traefik.http.routers.bazarr.rule=Host(`bazarr.securitybits.io`)",
+        "traefik.http.routers.bazarr.entrypoints=websecure",
+        "traefik.http.routers.bazarr.tls.certresolver=letsencrypt",
+        "traefik.http.routers.bazarr.middlewares=ip-whitelist@file",
+      ]
 
-      # canary_tags = [
-      #   "traefik.enable=false",
-      # ]
+      canary_tags = [
+        "traefik.enable=false",
+      ]
     }
 
     update {

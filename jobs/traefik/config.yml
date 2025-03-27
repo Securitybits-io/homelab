@@ -88,15 +88,6 @@ http:
         certresolver: letsencrypt    
       middlewares:
         - ip-whitelist
-
-    bazarr:
-      rule: Host(`bazarr.securitybits.io`)
-      entrypoints: websecure
-      service: bazarr
-      tls:
-        certresolver: letsencrypt    
-      middlewares:
-        - ip-whitelist
         
 
   services:
