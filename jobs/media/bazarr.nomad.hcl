@@ -11,7 +11,7 @@ job "bazarr" {
 
     network {
       port "bazarr" { 
-        to = 7878
+        to = 6767
       }
     }
 
