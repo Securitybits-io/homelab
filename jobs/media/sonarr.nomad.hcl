@@ -25,7 +25,6 @@ job "sonarr" {
         type     = "http"
         port     = "sonarr"
         path     = "/ping"
-        path     = "/ping"
         interval = "30s"
         timeout  = "2s"
         #expose   = true
