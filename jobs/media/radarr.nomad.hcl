@@ -5,8 +5,8 @@ job "radarr" {
   group "radarr" {
     constraint {
       attribute = "${attr.unique.hostname}"
-      value     = "nomad-02"
       operator  = "="
+      value     = "nomad-02"
     }
 
     network {
@@ -30,17 +30,17 @@ job "radarr" {
         #expose   = true
       }
 
-      # tags = [
-      #   "traefik.enable=true",
-      #   "traefik.http.routers.radarr.rule=Host(`radarr.securitybits.io`)",
-      #   "traefik.http.routers.radarr.entrypoints=websecure",
-      #   "traefik.http.routers.radarr.tls.certresolver=letsencrypt",
-      #   "traefik.http.routers.radarr.middlewares=ip-whitelist@file",
-      # ]
+      tags = [
+        "traefik.enable=true",
+        "traefik.http.routers.radarr.rule=Host(`radarr.securitybits.io`)",
+        "traefik.http.routers.radarr.entrypoints=websecure",
+        "traefik.http.routers.radarr.tls.certresolver=letsencrypt",
+        "traefik.http.routers.radarr.middlewares=ip-whitelist@file",
+      ]
 
-      # canary_tags = [
-      #   "traefik.enable=false",
-      # ]
+      canary_tags = [
+        "traefik.enable=false",
+      ]
     }
 
     update {
@@ -67,85 +67,65 @@ job "radarr" {
       config {
         image = "linuxserver/radarr:latest"
         ports = ["radarr"]
-        mount {
-          type = "bind"
-          target = "/config"
-          source = "/docker/Radarr/config"
-          readonly = false
+        volumes = [
+            "local/config:/config"
+          ]
+
+        mount {       # Mount Backup Folder
+          target = "/backups"
+          source = "radarr-backup"
+
+          volume_options {
+            no_copy = "false"
+            driver_config  {
+              name = "local"
+              options {
+                type = "cifs"
+                device = "//10.0.11.241/Securitybits.systems/Radarr"
+                o = "rw,vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
+              }
+            }
+          }
         }
 
-        # mount {       # Mount Backup Folder
-        #   target = "/backups"
-        #   source = "radarr-backup"
+        mount { 
+          target = "/movies"
+          source = "plexmedia-movies"
 
-        #   volume_options {
-        #     no_copy = "false"
-        #     driver_config  {
-        #       name = "local"
-        #       options {
-        #         type = "cifs"
-        #         device = "//10.0.11.241/Securitybits.systems/Radarr"
-        #         o = "rw,vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
-        #       }
-        #     }
-        #   }
-        # }         
-        
-        # mount {     # Mount Config Folder, TODO: Radarr gnäller på att databasen är låst när man kör på SMB Share
-        #   target = "/config"
-        #   source = "radarr-config"
+          volume_options {
+            no_copy = "false"
+            driver_config  {
+              name = "local"
+              options {
+                type = "cifs"
+                device = "//10.0.11.241/PlexMedia/Movies"
+                o = "rw,vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
+              }
+            }
+          }
+        }
 
-        #   volume_options {
-        #     no_copy = "false"
-        #     driver_config  {
-        #       name = "local"
-        #       options {
-        #         type = "cifs"
-        #         device = "//10.0.11.241/Securitybits.systems/Radarr/config"
-        #         o = "rw,vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
-        #       }
-        #     }
-        #   }
-        # }
+        mount {     # Mount downloads folder
+          target = "/downloads/complete"
+          source = "downloads-complete"
 
-      #   mount {     # Mount Config Folder
-      #     target = "/movies"
-      #     source = "plexmedia-movies"
-
-      #     volume_options {
-      #       no_copy = "false"
-      #       driver_config  {
-      #         name = "local"
-      #         options {
-      #           type = "cifs"
-      #           device = "//10.0.11.241/PlexMedia/Movies"
-      #           o = "rw,vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
-      #         }
-      #       }
-      #     }
-      #   }
-
-      #   mount {     # Mount downloads folder
-      #     target = "/downloads/complete"
-      #     source = "downloads-complete"
-
-      #     volume_options {
-      #       no_copy = "false"
-      #       driver_config  {
-      #         name = "local"
-      #         options {
-      #           type = "cifs"
-      #           device = "//10.0.11.241/PlexMedia/downloads/complete"
-      #           o = "rw,vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
-      #         }
-      #       }
-      #     }
-      #   }
+          volume_options {
+            no_copy = "false"
+            driver_config  {
+              name = "local"
+              options {
+                type = "cifs"
+                device = "//10.0.11.241/PlexMedia/downloads/complete"
+                o = "rw,vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
+              }
+            }
+          }
+        }
       }
 
       resources {
         cpu    = 300
-        memory = 1024
+        memory = 512
       }
 
       restart {
