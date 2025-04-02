@@ -53,14 +53,14 @@ http:
     #   middlewares:
     #     - ip-whitelist
 
-    sonarr:
-      rule: Host(`sonarr.securitybits.io`)
-      entrypoints: websecure
-      service: sonarr
-      tls:
-        certresolver: letsencrypt    
-      middlewares:
-        - ip-whitelist
+    # sonarr:
+    #   rule: Host(`sonarr.securitybits.io`)
+    #   entrypoints: websecure
+    #   service: sonarr
+    #   tls:
+    #     certresolver: letsencrypt    
+    #   middlewares:
+    #     - ip-whitelist
 
     transmission:
       rule: Host(`transmission.securitybits.io`)
@@ -102,10 +102,10 @@ http:
     #     servers:
     #       - url: "http://10.0.40.123:7878/"
           
-    sonarr:
-      loadBalancer:
-        servers:
-          - url: "http://10.0.40.123:8989/"
+    # sonarr:
+    #   loadBalancer:
+    #     servers:
+    #       - url: "http://10.0.40.123:8989/"
           
     transmission:
       loadBalancer:
