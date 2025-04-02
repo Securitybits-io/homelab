@@ -1,4 +1,4 @@
-job "ytdl-private" {
+job "ytdl-private" { # In progress
   datacenters = ["*"]
   type = "batch"
   periodic {

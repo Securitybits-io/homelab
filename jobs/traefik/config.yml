@@ -44,23 +44,23 @@ http:
       middlewares:
         - ip-whitelist
     
-    # radarr:
-    #   rule: Host(`radarr.securitybits.io`)
-    #   entrypoints: websecure
-    #   service: radarr
-    #   tls:
-    #     certresolver: letsencrypt
-    #   middlewares:
-    #     - ip-whitelist
+    radarr:
+      rule: Host(`radarr.securitybits.io`)
+      entrypoints: websecure
+      service: radarr
+      tls:
+        certresolver: letsencrypt
+      middlewares:
+        - ip-whitelist
 
-    # sonarr:
-    #   rule: Host(`sonarr.securitybits.io`)
-    #   entrypoints: websecure
-    #   service: sonarr
-    #   tls:
-    #     certresolver: letsencrypt    
-    #   middlewares:
-    #     - ip-whitelist
+    sonarr:
+      rule: Host(`sonarr.securitybits.io`)
+      entrypoints: websecure
+      service: sonarr
+      tls:
+        certresolver: letsencrypt    
+      middlewares:
+        - ip-whitelist
 
     transmission:
       rule: Host(`transmission.securitybits.io`)
@@ -97,15 +97,15 @@ http:
         servers:
           - url: "http://consul:8500"
           
-    # radarr:
-    #   loadBalancer:
-    #     servers:
-    #       - url: "http://10.0.40.123:7878/"
+    radarr:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.40.123:7878/"
           
-    # sonarr:
-    #   loadBalancer:
-    #     servers:
-    #       - url: "http://10.0.40.123:8989/"
+    sonarr:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.40.123:8989/"
           
     transmission:
       loadBalancer:

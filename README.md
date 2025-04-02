@@ -52,6 +52,7 @@ export SSH_PASS="pass"
 #### Nomad Apps to create
 - [ ] lunasea https://www.lunasea.app/
 - [x] authelia
+- [ ] Kometa
 - [ ] PiHole
 - [ ] umami https://umami.is/
 - [ ] Papertrail-ng
@@ -68,7 +69,6 @@ export SSH_PASS="pass"
 - [ ] Taskwarrior
 - [ ] Activitywatch https://activitywatch.net/
 - [ ] uptime-kuma https://github.com/louislam/uptime-kuma
-- [ ] WGer Workout https://wger.de/en/software/features
 - [x] Microbin https://hub.docker.com/r/danielszabo99/microbin
 
 ### Links

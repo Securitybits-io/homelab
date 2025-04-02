@@ -90,19 +90,19 @@ services:
       - 8787:8787
     restart: unless-stopped
     
-  prowlarr:
-    image: linuxserver/prowlarr:develop
-    container_name: prowlarr
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Stockholm
-    volumes:
-      - /docker/conf/prowlarr/config:/config
-      - /docker/backup/prowlarr:/backup
-    ports:
-      - 9696:9696
-    restart: unless-stopped
+  # prowlarr:
+  #   image: linuxserver/prowlarr:develop
+  #   container_name: prowlarr
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Europe/Stockholm
+  #   volumes:
+  #     - /docker/conf/prowlarr/config:/config
+  #     - /docker/backup/prowlarr:/backup
+  #   ports:
+  #     - 9696:9696
+  #   restart: unless-stopped
 
   tautulli:
     container_name: tautulli
