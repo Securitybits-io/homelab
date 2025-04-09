@@ -14,7 +14,7 @@ Small Repo for my homelab consisting of Docker and Saltstack
 ### Apps
 Folder with all the Docker applications that are running in my homelab
 
-### Platform
+### Terraform
 ```bash
 export PM_API_URL="https://<Proxmox Host>:8006/api2/json"
 export PM_USER="ProxmoxUser@pam"
@@ -25,13 +25,6 @@ secbits:~/ terraform apply
 ```
 
 ### Provisioning
-#### Initial provision of the Salt Master
-```bash
-export SSH_USER="provision"
-export SSH_PASS="pass"
-salt-ssh salt --user=${SSH_USER} --passwd=${SSH_PASS} -i state.sls vm.salt
-```
-
 #### Initial provision of Ansible
 ```bash
 ansible-playbook -i production --limit=ansible playbooks/provision-ssh-key.yml --ask-vault-pass --user=provision --ask-pass
