@@ -4,7 +4,7 @@ job "whoami" {
   type = "service"
 
   group "demo" {
-    count = 20
+    count = 3
 
     # constraint {
     #   attribute = "${meta.node_roles}"
