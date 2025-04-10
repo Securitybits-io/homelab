@@ -1,7 +1,8 @@
 terraform {
-  backend "remote" { 
+  cloud { 
     organization = "Securitybits" 
     workspaces { 
+      project = "Homelab"
       name = "nomad" 
     } 
   }

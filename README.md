@@ -1,5 +1,5 @@
 # Securitybits Homelab
-Small Repo for my homelab consisting of Docker and Saltstack
+Small Repo for my homelab consisting of Docker/Nomad and Ansible
 
 ## Overview
 

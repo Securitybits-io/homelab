@@ -18,3 +18,9 @@ terraform/terraform.tfstate.backup
 terraform/terraform.tfstate
 terraform/.terraform*
 terraform/.terraform/*
+
+jobs/terraform-test/credentials.auto.tfvars
+jobs/terraform-test/terraform.tfstate.backup
+jobs/terraform-test/terraform.tfstate
+jobs/terraform-test/.terraform*
+jobs/terraform-test/.terraform/*
