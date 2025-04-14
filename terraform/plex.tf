@@ -7,7 +7,8 @@ resource "proxmox_vm_qemu" "plex" {
     tags = "terraform,linux"
 
     # VM Advanced General Settings
-    onboot = true 
+    onboot = true
+    skip_ipv6 = true
 
     # VM OS Settings
     clone = "Ubuntu-22.04-Template-250GB"

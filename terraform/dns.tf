@@ -5,7 +5,6 @@ data "http" "public_ip" {
 resource "namecheap_domain_records" "securitybits" {
   domain = "securitybits.io"
   mode = "OVERWRITE"
-  email_type = "MX"
 
   record {
     hostname = "*"
@@ -18,18 +17,6 @@ resource "namecheap_domain_records" "securitybits" {
     type = "A"
     address = "${chomp(data.http.public_ip.response_body)}"
   }
-  
-  record {
-    hostname = "@"
-    type = "MX"
-    address = "mx2.privateemail.com"
-  }
-
-  record {
-    hostname = "@"
-    type = "TXT"
-    address = "v=spf1 include:spf.privateemail.com ~all"
-  }
 
   record {
     hostname = "blog"
@@ -41,5 +28,11 @@ resource "namecheap_domain_records" "securitybits" {
     hostname = "www"
     type = "CNAME"
     address = "blog.securitybits.io"
+  }
+
+  record {
+    hostname = "_github-pages-challenge-securitybits-io"
+    type = "TXT"
+    address = "4a141843757159a1a45645a83e6895"
   }
 }

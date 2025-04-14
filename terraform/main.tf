@@ -1,6 +1,13 @@
 terraform {
-    required_version = ">= 0.13.0"
+    required_version = ">= 1.11.0"
 
+    cloud { 
+        organization = "Securitybits" 
+        workspaces { 
+            project = "Homelab"
+            name = "infrastructure" 
+        }
+    }
     required_providers {
         proxmox = {
             source = "telmate/proxmox"

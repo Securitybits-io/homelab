@@ -12,6 +12,7 @@ resource "proxmox_vm_qemu" "nomad" {
     sockets = 1
     cpu_type = "host"
     memory = 2048
+    skip_ipv6 = true
 
     network {
         id = 0
@@ -62,6 +63,7 @@ resource "proxmox_vm_qemu" "nomad-01" {
     sockets = 1
     cpu_type = "host"
     memory = 8192
+    skip_ipv6 = true
 
     network {
         id = 0
@@ -110,6 +112,7 @@ resource "proxmox_vm_qemu" "nomad-02" {
     sockets = 1
     cpu_type = "host"
     memory = 8192
+    skip_ipv6 = true
 
     network {
         id = 0
@@ -158,6 +161,7 @@ resource "proxmox_vm_qemu" "nomad-03" {
     sockets = 1
     cpu_type = "host"
     memory = 8192
+    skip_ipv6 = true
 
     network {
         id = 0

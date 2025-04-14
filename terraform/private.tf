@@ -12,6 +12,7 @@ resource "proxmox_vm_qemu" "private-docker-01" {
     sockets = 1
     cpu_type = "host"
     memory = 4096
+    skip_ipv6 = true
 
     network {
         id = 0
@@ -57,6 +58,7 @@ resource "proxmox_vm_qemu" "private-ytdl" {
 
     # VM Advanced General Settings
     onboot = true 
+    skip_ipv6 = true
 
     # VM OS Settings
     clone = "Ubuntu-22.04-Template-32GB"

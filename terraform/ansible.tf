@@ -11,6 +11,8 @@ resource "proxmox_vm_qemu" "ansible" {
     cpu_type = "host"
     memory = 2048
     tags = "terraform,linux"
+    args = "-vnc localhost:99"
+    skip_ipv6 = true
 
     network {
         id = 0
