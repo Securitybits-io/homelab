@@ -79,6 +79,15 @@ http:
         certresolver: letsencrypt    
       middlewares:
         - ip-whitelist
+
+    prowlarr:
+      rule: Host(`prowlarr.securitybits.io`)
+      entrypoints: websecure
+      service: prowlarr
+      tls:
+        certresolver: letsencrypt    
+      middlewares:
+        - ip-whitelist
         
 
   services:
@@ -116,6 +125,10 @@ http:
       loadBalancer:
         servers:
           - url: "http://10.0.40.123:8787/"
+    prowlarr:
+      loadBalancer:
+        servers:
+          - url: "http://10.0.40.123:9696/"
 
 
   middlewares:
