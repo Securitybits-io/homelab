@@ -73,6 +73,46 @@ services:
       - TRANSMISSION_DOWNLOAD_DIR=/downloads/complete
       - TRANSMISSION_INCOMPLETE_DIR=/downloads/incomplete
     restart: unless-stopped
+
+  # nzbgetvpn:
+  #   image: jshridha/docker-nzbgetvpn:latest
+  #   container_name: nzbgetvpn
+  #   ports:
+  #     - '6789:6789'
+  #   cap_add:
+  #     - NET_ADMIN
+  #   volumes:
+  #     - /docker/conf/openvpn/:/config/openvpn/
+  #     - /docker/conf/nzbgetvpn:/config
+  #     - /docker/mnt/downloads:/downloads
+  #     - /etc/localtime:/etc/localtime:ro
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - VPN_ENABLED=yes
+  #     - VPN_PROV=airvpn
+  #     - VPN_CLIENT=openvpn
+  #     - ENABLE_PRIVOXY=yes
+  #     - LAN_NETWORK=10.0.0.0/16
+  #     - NAME_SERVERS=209.222.18.222,84.200.69.80,37.235.1.174,1.1.1.1,209.222.18.218,37.235.1.177,84.200.70.40,1.0.0.1
+  #     - ADDITIONAL_PORTS=1234
+  #     - DEBUG=false
+  #     - UMASK=000
+
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /docker/conf/sabnzbd/config:/config
+      - /docker/mnt/Downlods/incomplete:/incomplete-downloads #optional
+      - /docker/mnt/Downlods/complete:/downloads #optional
+    ports:
+      - 8080:8080
+    restart: unless-stopped
         
   readarr:
     image: linuxserver/readarr:develop
