@@ -62,22 +62,10 @@ job "jellyfin" {
         image = "jellyfin/jellyfin:latest"
         ports = ["jellyfin"]
 
-        mount {       # Mount Backup Folder
-          target = "/config"
-          source = "jellyfin-config"
-
-          volume_options {
-            no_copy = "false"
-            driver_config  {
-              name = "local"
-              options {
-                type = "cifs"
-                device = "//10.0.11.241/Securitybits.systems/Jellyfin"
-                o = "rw,vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
-              }
-            }
-          }
-        }
+        volumes = [
+          "/docker/data/Jellyfin/config:/config",
+          "/docker/data/Jellyfin/cache:/cache"
+        ]
 
         mount {     # Mount Config Folder
           target = "/data/movies"
@@ -111,12 +99,29 @@ job "jellyfin" {
               }
             }
           }
+        }
+
+        mount {     # Mount Config Folder
+          target = "/data/youtube"
+          source = "plexmedia-youtube"
+
+          volume_options {
+            no_copy = "false"
+            driver_config  {
+              name = "local"
+              options {
+                type = "cifs"
+                device = "//10.0.11.241/PlexMedia/Youtube-DL"
+                o = "rw,vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
+              }
+            }
+          }
         }  
       }
 
       resources {
-        cpu    = 300
-        memory = 1024
+        cpu    = 4000
+        memory = 4096
       }
 
       restart {
