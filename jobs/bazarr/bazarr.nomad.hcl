@@ -67,9 +67,13 @@ job "bazarr" {
       config {
         image = "linuxserver/bazarr:latest"
         ports = ["bazarr"]
-        volumes = [
-            "local/config:/config"
-          ]
+
+        mount {
+          type = "bind"
+          target = "/config"
+          source = "/docker/data/Bazarr/config"
+          readonly = false
+        }
 
         mount {       # Mount Backup Folder
           target = "/backup"
