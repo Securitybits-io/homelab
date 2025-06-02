@@ -67,9 +67,13 @@ job "prowlarr" {
       config {
         image = "linuxserver/prowlarr:latest"
         ports = ["prowlarr"]
-        volumes = [
-            "local/config:/config"
-          ]
+        
+        mount {
+          type = "bind"
+          target = "/config"
+          source = "/docker/data/Prowlarr/config"
+          readonly = false
+        }
 
         mount {       # Mount Backup Folder
           target = "/backup"
