@@ -3,6 +3,12 @@ job "jellyfin" {
   type = "service"
 
   group "jellyfin" {
+    constraint {
+      attribute = "${attr.unique.hostname}"
+      operator  = "="
+      value     = "nomad-02"
+    }
+    
     network {
       port "jellyfin" { 
         to = 8096
@@ -18,7 +24,7 @@ job "jellyfin" {
         name     = "jellyfin"
         type     = "http"
         port     = "jellyfin"
-        path     = "/ping"
+        path     = "/web"
         interval = "30s"
         timeout  = "2s"
         #expose   = true
@@ -28,8 +34,7 @@ job "jellyfin" {
         "traefik.enable=true",
         "traefik.http.routers.jellyfin.rule=Host(`jellyfin.securitybits.io`)",
         "traefik.http.routers.jellyfin.entrypoints=websecure",
-        "traefik.http.routers.jellyfin.tls.certresolver=letsencrypt",
-        "traefik.http.routers.jellyfin.middlewares=ip-whitelist@file",
+        "traefik.http.routers.jellyfin.tls.certresolver=letsencrypt"
       ]
 
       canary_tags = [
@@ -43,7 +48,7 @@ job "jellyfin" {
       auto_revert  = true
     }
 
-    ephemeral_disk {    # Kan man använda ephemeral istället för SMB Share, så att den migrerar med containern? går det ändra /config location
+    ephemeral_disk {
       migrate = true
       size = 1000
       sticky = true
@@ -62,10 +67,19 @@ job "jellyfin" {
         image = "jellyfin/jellyfin:latest"
         ports = ["jellyfin"]
 
-        volumes = [
-          "/docker/data/Jellyfin/config:/config",
-          "/docker/data/Jellyfin/cache:/cache"
-        ]
+        mount {
+          type = "bind"
+          target = "/config"
+          source = "/docker/data/Jellyfin/config"
+          readonly = false
+        }
+
+        mount {
+          type = "bind"
+          target = "/cache"
+          source = "/docker/data/Jellyfin/cache"
+          readonly = false
+        }
 
         mount {     # Mount Config Folder
           target = "/data/movies"
