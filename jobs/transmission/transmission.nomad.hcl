@@ -49,7 +49,7 @@ job "transmission" {
       }
 
       env {
-        TZ=Europe/Stockholm
+        TZ="Europe/Stockholm"
         OPENVPN_PROVIDER=custom
         OPENVPN_CONFIG=airvpn
         # OPENVPN_USERNAME=${OPENVPN_USER}
@@ -60,8 +60,8 @@ job "transmission" {
         TRANSMISSION_RATIO_LIMIT=0
         TRANSMISSION_RATIO_LIMIT_ENABLED=True
         TRANSMISSION_DOWNLOAD_QUEUE_SIZE=200
-        TRANSMISSION_DOWNLOAD_DIR=/downloads/complete
-        TRANSMISSION_INCOMPLETE_DIR=/downloads/incomplete
+        TRANSMISSION_DOWNLOAD_DIR="/downloads/complete"
+        TRANSMISSION_INCOMPLETE_DIR="/downloads/incomplete"
       }
 
       template {
