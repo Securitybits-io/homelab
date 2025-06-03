@@ -32,11 +32,11 @@ job "transmission" {
       }
 
       tags = [
-        # "traefik.enable=true",
-        # "traefik.http.routers.transmission.rule=Host(`transmission.securitybits.io`)",
-        # "traefik.http.routers.transmission.entrypoints=websecure",
-        # "traefik.http.routers.transmission.tls.certresolver=letsencrypt",
-        # "traefik.http.routers.transmission.middlewares=ip-whitelist@file"
+        "traefik.enable=true",
+        "traefik.http.routers.transmission.rule=Host(`transmission.securitybits.io`)",
+        "traefik.http.routers.transmission.entrypoints=websecure",
+        "traefik.http.routers.transmission.tls.certresolver=letsencrypt",
+        "traefik.http.routers.transmission.middlewares=ip-whitelist@file"
       ]
 
       canary_tags = [
@@ -59,6 +59,23 @@ job "transmission" {
         volumes = [
           "local/vpn:/etc/openvpn/custom"
         ]
+
+        mount {
+          target = "/downloads"
+          source = "transmission-downloads"
+
+          volume_options {
+            no_copy = "false"
+            driver_config  {
+              name = "local"
+              options {
+                type = "cifs"
+                device = "//10.0.11.241/PlexMedia/Downloads"
+                o = "rw,vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
+              }
+            }
+          }
+        }
       }
 
       env {
@@ -97,10 +114,10 @@ job "transmission" {
         change_mode = "noop"
         env = true
       }
-      
+
       resources {
-        cpu    = 4000
-        memory = 4096
+        cpu    = 500
+        memory = 1024
       }
 
       restart {
