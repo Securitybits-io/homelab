@@ -47,7 +47,7 @@ job "transmission" {
         ports = [ "http" ]
         cap_add = [ "NET_ADMIN" ]
         volumes = [
-          "/local/vpn/airvpn.openvpn:/etc/openvpn/custom/airvpn.ovpn"
+          "local/vpn:/etc/openvpn/custom"
         ]
       }
 
