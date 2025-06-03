@@ -47,7 +47,7 @@ job "transmission" {
         ports = [ "http" ]
         cap_add = [ "NET_ADMIN" ]
         volumes = [
-          "local/vpn/airvpn.openvpn:/etc/openvpn/custom/airvpn.openvpn"
+          "/local/vpn/airvpn.openvpn:/etc/openvpn/custom/airvpn.ovpn"
         ]
       }
 
@@ -73,7 +73,7 @@ job "transmission" {
           {{ base64Decode .OPENVPN_FILE.Value }}
           {{- end }}
         EOF
-        destination = "local/vpn/airvpn.openvpn"
+        destination = "local/vpn/airvpn.ovpn"
         change_mode = "restart"
         env = false
       }
