@@ -44,25 +44,25 @@ job "transmission" {
       driver = "docker"
       config {
         image = "haugene/transmission-openvpn"
-        ports = ["http"]
-        cap_add = ["NET_ADMIN"]
+        ports = [ "http" ]
+        cap_add = [ "NET_ADMIN" ]
         volumes = [
-          "local/vpn/:/etc/openvpn/custom/"
+          "local/vpn/airvpn.openvpn:/etc/openvpn/custom/airvpn.openvpn"
         ]
       }
 
       env {
-        TZ="Europe/Stockholm"
-        OPENVPN_PROVIDER=custom
-        OPENVPN_CONFIG=airvpn
-        LOCAL_NETWORK="10.0.0.0/16"
-        TRANSMISSION_WEB_UI=flood-for-transmission
-        TRANSMISSION_PREALLOCATION=1
-        TRANSMISSION_RATIO_LIMIT=0
-        TRANSMISSION_RATIO_LIMIT_ENABLED=True
-        TRANSMISSION_DOWNLOAD_QUEUE_SIZE=200
-        TRANSMISSION_DOWNLOAD_DIR="/downloads/complete"
-        TRANSMISSION_INCOMPLETE_DIR="/downloads/incomplete"
+        TZ      = "Europe/Stockholm"
+        OPENVPN_PROVIDER  = "custom"
+        OPENVPN_CONFIG    = "airvpn"
+        LOCAL_NETWORK     = "10.0.0.0/16"
+        TRANSMISSION_WEB_UI = "flood-for-transmission"
+        TRANSMISSION_PREALLOCATION  = 1
+        TRANSMISSION_RATIO_LIMIT    = 0
+        TRANSMISSION_RATIO_LIMIT_ENABLED  = True
+        TRANSMISSION_DOWNLOAD_QUEUE_SIZE  = 200
+        TRANSMISSION_DOWNLOAD_DIR     = "/downloads/complete"
+        TRANSMISSION_INCOMPLETE_DIR   = "/downloads/incomplete"
       }
 
       
