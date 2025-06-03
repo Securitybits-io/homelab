@@ -47,32 +47,32 @@ services:
   #     - 6767:6767
   #   restart: unless-stopped
 
-  transmission-openvpn:
-    image: haugene/transmission-openvpn
-    container_name: transmission-openvpn
-    ports:
-      - '9091:9091'
-    cap_add:
-      - NET_ADMIN
-    volumes:
-      - /docker/conf/transmission-openvpn:/data
-      - /docker/mnt/downloads:/downloads
-      - /docker/conf/openvpn/:/etc/openvpn/custom/
-    environment:
-      - TZ=Europe/Stockholm
-      - OPENVPN_PROVIDER=custom
-      - OPENVPN_CONFIG=airvpn
-      - OPENVPN_USERNAME=${OPENVPN_USER}
-      - OPENVPN_PASSWORD=${OPENVPN_PASS}
-      - LOCAL_NETWORK=10.0.0.0/16
-      - TRANSMISSION_WEB_UI=flood-for-transmission
-      - TRANSMISSION_PREALLOCATION=1
-      - TRANSMISSION_RATIO_LIMIT=0
-      - TRANSMISSION_RATIO_LIMIT_ENABLED=True
-      - TRANSMISSION_DOWNLOAD_QUEUE_SIZE=200
-      - TRANSMISSION_DOWNLOAD_DIR=/downloads/complete
-      - TRANSMISSION_INCOMPLETE_DIR=/downloads/incomplete
-    restart: unless-stopped
+  # transmission-openvpn:
+  #   image: haugene/transmission-openvpn
+  #   container_name: transmission-openvpn
+  #   ports:
+  #     - '9091:9091'
+  #   cap_add:
+  #     - NET_ADMIN
+  #   volumes:
+  #     - /docker/conf/transmission-openvpn:/data
+  #     - /docker/mnt/downloads:/downloads
+  #     - /docker/conf/openvpn/:/etc/openvpn/custom/
+  #   environment:
+  #     - TZ=Europe/Stockholm
+  #     - OPENVPN_PROVIDER=custom
+  #     - OPENVPN_CONFIG=airvpn
+  #     - OPENVPN_USERNAME=${OPENVPN_USER}
+  #     - OPENVPN_PASSWORD=${OPENVPN_PASS}
+  #     - LOCAL_NETWORK=10.0.0.0/16
+  #     - TRANSMISSION_WEB_UI=flood-for-transmission
+  #     - TRANSMISSION_PREALLOCATION=1
+  #     - TRANSMISSION_RATIO_LIMIT=0
+  #     - TRANSMISSION_RATIO_LIMIT_ENABLED=True
+  #     - TRANSMISSION_DOWNLOAD_QUEUE_SIZE=200
+  #     - TRANSMISSION_DOWNLOAD_DIR=/downloads/complete
+  #     - TRANSMISSION_INCOMPLETE_DIR=/downloads/incomplete
+  #   restart: unless-stopped
 
   # nzbgetvpn:
   #   image: jshridha/docker-nzbgetvpn:latest
