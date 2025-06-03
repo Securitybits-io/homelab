@@ -54,7 +54,7 @@ job "transmission" {
         OPENVPN_CONFIG=airvpn
         # OPENVPN_USERNAME=${OPENVPN_USER}
         # OPENVPN_PASSWORD=${OPENVPN_PASS}
-        LOCAL_NETWORK=10.0.0.0/16
+        LOCAL_NETWORK="10.0.0.0/16"
         TRANSMISSION_WEB_UI=flood-for-transmission
         TRANSMISSION_PREALLOCATION=1
         TRANSMISSION_RATIO_LIMIT=0
