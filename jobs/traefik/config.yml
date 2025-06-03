@@ -62,15 +62,6 @@ http:
       middlewares:
         - ip-whitelist
 
-    # transmission:
-    #   rule: Host(`transmission.securitybits.io`)
-    #   entrypoints: websecure
-    #   service: transmission
-    #   tls:
-    #     certresolver: letsencrypt    
-    #   middlewares:
-    #     - ip-whitelist
-
     readarr:
       rule: Host(`readarr.securitybits.io`)
       entrypoints: websecure
@@ -79,15 +70,6 @@ http:
         certresolver: letsencrypt    
       middlewares:
         - ip-whitelist
-
-    # prowlarr:
-    #   rule: Host(`prowlarr.securitybits.io`)
-    #   entrypoints: websecure
-    #   service: prowlarr
-    #   tls:
-    #     certresolver: letsencrypt    
-    #   middlewares:
-    #     - ip-whitelist
         
 
   services:
@@ -116,19 +98,10 @@ http:
         servers:
           - url: "http://10.0.40.123:8989/"
           
-    # transmission:
-    #   loadBalancer:
-    #     servers:
-    #       - url: "http://10.0.40.123:9091/" 
-          
     readarr:
       loadBalancer:
         servers:
           - url: "http://10.0.40.123:8787/"
-    # prowlarr:
-    #   loadBalancer:
-    #     servers:
-    #       - url: "http://10.0.40.123:9696/"
 
 
   middlewares:
