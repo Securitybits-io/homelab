@@ -66,8 +66,9 @@ job "transmission" {
 
       template {
         data        = <<-EOT
-          {{- $airvpn_file := "nomad/jobs/transmission/secrets" }}
-          {{ base64Decode $airvpn_file.OPENVPN_FILE }}
+          {{- with nomadVar "nomad/jobs/transmission/secrets" }}
+          {{ base64Decode .OPENVPN_FILE }}
+          {{- end }}
         EOT
         destination = "/etc/openvpn/custom/airvpn.openvpn"
         change_mode = "restart"
@@ -75,18 +76,12 @@ job "transmission" {
 
        template {
         data = <<EOH
-        OPENVPN_PASSWORD="{{ with nomadVar "nomad/jobs/transmission/secrets" }}{{ .OPENVPN_PASS }}{{ end }}"  
+        {{- with nomadVar "nomad/jobs/transmission/secrets" }}
+        OPENVPN_USERNAME={{ .OPENVPN_USER }}
+        OPENVPN_PASSWORD={{ .OPENVPN_PASS }}
+        {{- end }}
         EOH
-        destination = "secrets/openvpn_pass.env"
-        change_mode = "noop"
-        env = true
-      }
-
-      template {
-        data = <<EOH
-        OPENVPN_USERNAME="{{ with nomadVar "nomad/jobs/transmission/secrets" }}{{ .OPENVPN_USER }}{{ end }}"  
-        EOH
-        destination = "secrets/openvpn_user.env"
+        destination = "secrets/openvpn_creds.env"
         change_mode = "noop"
         env = true
       }
