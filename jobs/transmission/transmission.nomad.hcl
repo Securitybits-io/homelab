@@ -21,14 +21,6 @@ job "transmission" {
       port = "http"
       provider = "consul"
 
-      tags = [
-        # "traefik.enable=true",
-        # "traefik.http.routers.transmission.rule=Host(`transmission.securitybits.io`)",
-        # "traefik.http.routers.transmission.entrypoints=websecure",
-        # "traefik.http.routers.transmission.tls.certresolver=letsencrypt",
-        # "traefik.http.routers.transmission.middlewares=ip-whitelist@file"
-      ]
-
       check {
         name     = "alive"
         type     = "tcp"
@@ -38,6 +30,24 @@ job "transmission" {
         timeout  = "2s"
         #expose   = true
       }
+
+      tags = [
+        # "traefik.enable=true",
+        # "traefik.http.routers.transmission.rule=Host(`transmission.securitybits.io`)",
+        # "traefik.http.routers.transmission.entrypoints=websecure",
+        # "traefik.http.routers.transmission.tls.certresolver=letsencrypt",
+        # "traefik.http.routers.transmission.middlewares=ip-whitelist@file"
+      ]
+
+      canary_tags = [
+        "traefik.enable=false",
+      ]
+    }
+
+    update {
+      max_parallel = 0
+      health_check = "checks"
+      auto_revert  = true
     }
 
     task "transmission" {
@@ -65,8 +75,6 @@ job "transmission" {
         TRANSMISSION_INCOMPLETE_DIR   = "/downloads/incomplete"
       }
 
-      
-
       template {
         data = <<EOF
           {{- with nomadVar "nomad/jobs/transmission/secrets" -}}
@@ -89,6 +97,20 @@ job "transmission" {
         change_mode = "noop"
         env = true
       }
+      
+      resources {
+        cpu    = 4000
+        memory = 4096
+      }
+
+      restart {
+        interval = "12h"
+        attempts = 720
+        delay    = "60s"
+        mode     = "delay"
+      }
+
+      kill_timeout = "20s"
     }
   }
 }
