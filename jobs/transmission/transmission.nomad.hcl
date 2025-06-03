@@ -5,9 +5,9 @@ job "transmission" {
 
   group "transmission" {
     constraint {
-      attribute = "${meta.node_roles}"
-      value     = "web"
-      operator  = "set_contains_any"
+      attribute = "${attr.unique.hostname}"
+      operator  = "="
+      value     = "nomad-02"
     }
 
     network {
@@ -74,7 +74,7 @@ job "transmission" {
         change_mode = "restart"
       }
 
-       template {
+      template {
         data = <<EOH
         {{- with nomadVar "nomad/jobs/transmission/secrets" }}
         OPENVPN_USERNAME={{ .OPENVPN_USER }}
