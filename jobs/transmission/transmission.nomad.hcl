@@ -75,7 +75,7 @@ job "transmission" {
 
        template {
         data = <<EOH
-        OPENVPN_PASS="{{ with nomadVar "nomad/jobs/transmission/secrets" }}{{ .OPENVPN_PASS }}{{ end }}"  
+        OPENVPN_PASSWORD="{{ with nomadVar "nomad/jobs/transmission/secrets" }}{{ .OPENVPN_PASS }}{{ end }}"  
         EOH
         destination = "secrets/openvpn_pass.env"
         change_mode = "noop"
@@ -84,7 +84,7 @@ job "transmission" {
 
       template {
         data = <<EOH
-        OPENVPN_USER="{{ with nomadVar "nomad/jobs/transmission/secrets" }}{{ .OPENVPN_USER }}{{ end }}"  
+        OPENVPN_USERNAME="{{ with nomadVar "nomad/jobs/transmission/secrets" }}{{ .OPENVPN_USER }}{{ end }}"  
         EOH
         destination = "secrets/openvpn_user.env"
         change_mode = "noop"
