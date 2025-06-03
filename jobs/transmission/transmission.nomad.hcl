@@ -52,8 +52,6 @@ job "transmission" {
         TZ="Europe/Stockholm"
         OPENVPN_PROVIDER=custom
         OPENVPN_CONFIG=airvpn
-        # OPENVPN_USERNAME=${OPENVPN_USER}
-        # OPENVPN_PASSWORD=${OPENVPN_PASS}
         LOCAL_NETWORK="10.0.0.0/16"
         TRANSMISSION_WEB_UI=flood-for-transmission
         TRANSMISSION_PREALLOCATION=1
@@ -64,14 +62,19 @@ job "transmission" {
         TRANSMISSION_INCOMPLETE_DIR="/downloads/incomplete"
       }
 
+      volumes = [
+        "secrets/airvpn.openvpn:/etc/openvpn/custom/airvpn.openvpn"
+      ]
+
       template {
-        data        = <<-EOT
-          {{- with nomadVar "nomad/jobs/transmission/secrets" }}
-          {{ base64Decode .OPENVPN_FILE }}
+        data = <<EOF
+          {{- with nomadVar "nomad/jobs/transmission/secrets" -}}
+          {{ base64Decode .OPENVPN_FILE.Value }}
           {{- end }}
-        EOT
-        destination = "/etc/openvpn/custom/airvpn.openvpn"
+        EOF
+        destination = "secrets/airvpn.openvpn"
         change_mode = "restart"
+        env = false
       }
 
       template {
