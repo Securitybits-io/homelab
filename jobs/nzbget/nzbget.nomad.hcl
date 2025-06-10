@@ -1,9 +1,9 @@
-job "sabnzbd" {
+job "nzbget" {
   datacenters = ["*"]
   
   type = "service"
 
-  group "sabnzbd" {
+  group "nzbget" {
     constraint {
       attribute = "${attr.unique.hostname}"
       operator  = "="
@@ -12,12 +12,12 @@ job "sabnzbd" {
 
     network {
       port "http" {
-        to = 8080
+        to = 6789
       }
     }
 
     service {
-      name = "sabnzbd"
+      name = "nzbget"
       port = "http"
       provider = "consul"
 
@@ -33,10 +33,10 @@ job "sabnzbd" {
 
       tags = [
         "traefik.enable=true",
-        "traefik.http.routers.sabnzbd.rule=Host(`sabnzbd.securitybits.io`)",
-        "traefik.http.routers.sabnzbd.entrypoints=websecure",
-        "traefik.http.routers.sabnzbd.tls.certresolver=letsencrypt",
-        "traefik.http.routers.sabnzbd.middlewares=ip-whitelist@file"
+        "traefik.http.routers.nzbget.rule=Host(`nzbget.securitybits.io`)",
+        "traefik.http.routers.nzbget.entrypoints=websecure",
+        "traefik.http.routers.nzbget.tls.certresolver=letsencrypt",
+        "traefik.http.routers.nzbget.middlewares=ip-whitelist@file"
       ]
 
       canary_tags = [
@@ -50,27 +50,27 @@ job "sabnzbd" {
       auto_revert  = true
     }
 
-    task "sabnzbd" {
+    task "nzbget" {
       driver = "docker"
       env {
-        PUID = 0
-        PGID = 0
+        PUID = 1000
+        PGID = 1000
         TZ   = "Europe/Stockholm"
       }
       config {
-        image = "linuxserver/sabnzbd"
+        image = "linuxserver/nzbget"
         ports = [ "http" ]
 
         mount {
           type = "bind"
           target = "/config"
-          source = "/docker/data/Sabnzbd/config"
+          source = "/docker/data/NZBGet/config"
           readonly = false
         }
 
         mount {
           target = "/downloads"
-          source = "sabnzb-downloads"
+          source = "nzbget-downloads"
 
           volume_options {
             no_copy = "false"
@@ -86,8 +86,8 @@ job "sabnzbd" {
         }
 
         mount {
-          target = "/incomplete-downloads"
-          source = "sabnzb-incomplete-downloads"
+          target = "/intermediate"
+          source = "nzbget-incomplete-downloads"
 
           volume_options {
             no_copy = "false"
