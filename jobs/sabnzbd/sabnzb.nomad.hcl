@@ -59,13 +59,7 @@ job "sabnzbd" {
         image = "linuxserver/sabnzbd"
         ports = [ "http" ]
         
-
-        mount {
-          type = "bind"
-          target = "/config"
-          source = "/docker/data/Sabnzbd/config"
-          readonly = false
-        }
+        volumes = [ "/docker/data/Sabnzbd/config":"/config" ]
 
         mount {
           target = "/downloads"
