@@ -53,8 +53,8 @@ job "nzbget" {
     task "nzbget" {
       driver = "docker"
       env {
-        PUID = 1000
-        PGID = 1000
+        PUID = 0
+        PGID = 0
         TZ   = "Europe/Stockholm"
       }
       config {
