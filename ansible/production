@@ -3,16 +3,16 @@
 ansible
 nginx
 plex
-# ytdl-tactube
-# ytdl-youtube
 mgmt-docker-01
-#media-docker-01
-# logging-docker-01 
-# offsec-docker-01
-# public-docker-01
-# atak-docker-01
+public-docker-01
 private-ytdl
 private-docker-01
+# ytdl-tactube
+# ytdl-youtube
+# media-docker-01
+# logging-docker-01 
+# offsec-docker-01
+# atak-docker-01
 # takserver
 # elastic-breachsearch-kibana-01
 # elastic-breachsearch-logstash
@@ -21,14 +21,14 @@ private-docker-01
 # elastic-breachsearch-hot-03
 
 [docker_hosts]
+public-docker-01
+private-docker-01
 # mgmt-docker-01
 # logging-docker-01
 # offsec-docker-01
-# public-docker-01
 # atak-docker-01
-#media-docker-01
-private-docker-01
-#takserver
+# media-docker-01
+# takserver
 
 # [elastic_breachsearch_kibana]
 # elastic-breachsearch-kibana-01
