@@ -67,9 +67,13 @@ job "sonarr" {
       config {
         image = "linuxserver/sonarr:latest"
         ports = ["sonarr"]
-        volumes = [
-            "local/config:/config"
-          ]
+
+        mount {
+          type = "bind"
+          target = "/config"
+          source = "/docker/data/Sadarr/config"
+          readonly = false
+        }
 
         mount {       # Mount Backup Folder
           target = "/backups"
