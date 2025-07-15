@@ -71,7 +71,7 @@ job "sonarr" {
         mount {
           type = "bind"
           target = "/config"
-          source = "/docker/data/Sadarr/config"
+          source = "/docker/data/Sonarr/config"
           readonly = false
         }
 
