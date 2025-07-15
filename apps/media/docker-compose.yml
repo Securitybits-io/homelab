@@ -15,21 +15,21 @@ services:
   #     - 7878:7878
   #   restart: unless-stopped
 
-  sonarr:
-    image: linuxserver/sonarr:latest
-    container_name: sonarr
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Stockholm
-    volumes:
-      - /docker/backup/sonarr:/backups
-      - /docker/conf/sonarr/data:/config
-      - /docker/mnt/Series:/tv 
-      - /docker/mnt/downloads/complete:/downloads/complete
-    ports:
-      - 8989:8989
-    restart: unless-stopped
+  # sonarr:
+  #   image: linuxserver/sonarr:latest
+  #   container_name: sonarr
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Europe/Stockholm
+  #   volumes:
+  #     - /docker/backup/sonarr:/backups
+  #     - /docker/conf/sonarr/data:/config
+  #     - /docker/mnt/Series:/tv 
+  #     - /docker/mnt/downloads/complete:/downloads/complete
+  #   ports:
+  #     - 8989:8989
+  #   restart: unless-stopped
 
   # bazarr:
   #   image: linuxserver/bazarr:latest
@@ -99,21 +99,21 @@ services:
   #     - DEBUG=false
   #     - UMASK=000
         
-  readarr:
-    image: linuxserver/readarr:develop
-    container_name: readarr
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Stockholm
-    volumes:
-      - /docker/backup/readarr:/backup
-      - /docker/conf/readarr/data:/config
-      - /docker/mnt/Books:/books 
-      - /docker/mnt/downloads/complete:/downloads/complete
-    ports:
-      - 8787:8787
-    restart: unless-stopped
+  # readarr:
+  #   image: linuxserver/readarr:develop
+  #   container_name: readarr
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Europe/Stockholm
+  #   volumes:
+  #     - /docker/backup/readarr:/backup
+  #     - /docker/conf/readarr/data:/config
+  #     - /docker/mnt/Books:/books 
+  #     - /docker/mnt/downloads/complete:/downloads/complete
+  #   ports:
+  #     - 8787:8787
+  #   restart: unless-stopped
     
   # prowlarr:
   #   image: linuxserver/prowlarr:develop
