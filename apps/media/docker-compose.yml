@@ -98,21 +98,6 @@ services:
   #     - ADDITIONAL_PORTS=1234
   #     - DEBUG=false
   #     - UMASK=000
-
-  sabnzbd:
-    image: lscr.io/linuxserver/sabnzbd:latest
-    container_name: sabnzbd
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Etc/UTC
-    volumes:
-      - /docker/conf/sabnzbd/config:/config
-      - /docker/mnt/Downlods/incomplete:/incomplete-downloads #optional
-      - /docker/mnt/Downlods/complete:/downloads #optional
-    ports:
-      - 8080:8080
-    restart: unless-stopped
         
   readarr:
     image: linuxserver/readarr:develop
@@ -130,19 +115,19 @@ services:
       - 8787:8787
     restart: unless-stopped
     
-  prowlarr:
-    image: linuxserver/prowlarr:develop
-    container_name: prowlarr
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Stockholm
-    volumes:
-      - /docker/conf/prowlarr/config:/config
-      - /docker/backup/prowlarr:/backup
-    ports:
-      - 9696:9696
-    restart: unless-stopped
+  # prowlarr:
+  #   image: linuxserver/prowlarr:develop
+  #   container_name: prowlarr
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - TZ=Europe/Stockholm
+  #   volumes:
+  #     - /docker/conf/prowlarr/config:/config
+  #     - /docker/backup/prowlarr:/backup
+  #   ports:
+  #     - 9696:9696
+  #   restart: unless-stopped
 
   tautulli:
     container_name: tautulli
