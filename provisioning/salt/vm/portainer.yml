@@ -1,4 +1,0 @@
-services:
-  hello-world:
-    image: hello-world
-    container_name: hello-world

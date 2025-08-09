@@ -1,8 +1,0 @@
-services:
-  paste:
-    image: danielszabo99/microbin
-    restart: unless-stopped
-    ports:
-     - "8080:8080"
-    volumes:
-     - /docker/data/microbin-data:/app/pasta_data

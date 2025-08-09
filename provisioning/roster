@@ -1,7 +1,0 @@
-salt:
-  host: salt.securitybits.local
-  user: provision
-  sudo: True
-  ssh_options:
-    - UserKnownHostsFile=/dev/null
-    - StrictHostKeyChecking=no
