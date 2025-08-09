@@ -43,25 +43,6 @@ http:
         certresolver: letsencrypt    
       middlewares:
         - ip-whitelist
-    
-    # sonarr:
-    #   rule: Host(`sonarr.securitybits.io`)
-    #   entrypoints: websecure
-    #   service: sonarr
-    #   tls:
-    #     certresolver: letsencrypt    
-    #   middlewares:
-    #     - ip-whitelist
-
-    readarr:
-      rule: Host(`readarr.securitybits.io`)
-      entrypoints: websecure
-      service: readarr
-      tls:
-        certresolver: letsencrypt    
-      middlewares:
-        - ip-whitelist
-        
 
   services:
     immich:
@@ -79,16 +60,6 @@ http:
         servers:
           - url: "http://consul:8500"
           
-    # sonarr:
-    #   loadBalancer:
-    #     servers:
-    #       - url: "http://10.0.40.123:8989/"
-          
-    readarr:
-      loadBalancer:
-        servers:
-          - url: "http://10.0.40.123:8787/"
-
 
   middlewares:
     limitBodySize:
