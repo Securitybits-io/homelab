@@ -1,5 +1,4 @@
 resource "proxmox_vm_qemu" "ansible" {
-    
     target_node = "pve-node-01"
     name = "ansible"
     desc = "Created with Terraform"
