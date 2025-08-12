@@ -6,22 +6,22 @@ public-docker-01
 private-ytdl
 private-docker-01
 
-elastic-breachsearch-kibana-01
-#elastic-breachsearch-logstash
-elastic-breachsearch-hot-01
-elastic-breachsearch-hot-02
-elastic-breachsearch-hot-03
+# elastic-breachsearch-kibana-01
+# elastic-breachsearch-logstash
+# elastic-breachsearch-hot-01
+# elastic-breachsearch-hot-02
+# elastic-breachsearch-hot-03
 
-[elastic_breachsearch_kibana]
-elastic-breachsearch-kibana-01
+# [elastic_breachsearch_kibana]
+# elastic-breachsearch-kibana-01
 
-#[elastic_breachsearch_logstash]
-#elastic-breachsearch-logstash
+# [elastic_breachsearch_logstash]
+# elastic-breachsearch-logstash
 
-[elastic_breachsearch]
-elastic-breachsearch-hot-01
-elastic-breachsearch-hot-02
-elastic-breachsearch-hot-03
+# [elastic_breachsearch]
+# elastic-breachsearch-hot-01
+# elastic-breachsearch-hot-02
+# elastic-breachsearch-hot-03
 
 [docker_hosts]
 public-docker-01
