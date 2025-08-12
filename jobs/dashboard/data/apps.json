@@ -91,6 +91,12 @@
             "icon": "movie"
           },
           {
+            "name": "Huntarr",
+            "displayURL": "Huntarr.Securitybits.io",
+            "url": "https://huntarr.securitybits.io/",
+            "icon": "movie"
+          },
+          {
             "name": "Transmission",
             "displayURL": "Transmission.Securitybits.io",
             "url": "https://transmission.securitybits.io/",
