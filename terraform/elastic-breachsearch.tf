@@ -22,8 +22,12 @@ resource "proxmox_vm_qemu" "elastic-breachsearch-hot-01" {
     # VM Memory Settings
     memory = 4096
     
+    tags = "terraform,linux"
+    skip_ipv6 = true
+
     # VM Network Settings
     network {
+        id = 0
         macaddr = "00:50:56:ab:dd:b1"
         bridge = "vmbr0"
         model  = "virtio"
@@ -32,10 +36,14 @@ resource "proxmox_vm_qemu" "elastic-breachsearch-hot-01" {
 
     # Set the disk size corresponding to the Template size
     disk {
+        backup = false
+        slot = "scsi0"
         storage = "vm"
-        type = "scsi"
+        type = "disk"
         size = "250G"
+        format = "raw"
     }
+
 
     # VM Cloud-Init Settings
     os_type = "cloud-init"
@@ -81,9 +89,13 @@ resource "proxmox_vm_qemu" "elastic-breachsearch-hot-02" {
     
     # VM Memory Settings
     memory = 4096
+        
+    tags = "terraform,linux"
     
+    skip_ipv6 = true
     # VM Network Settings
     network {
+        id = 0
         macaddr = "00:50:56:ab:dd:b2"
         bridge = "vmbr0"
         model  = "virtio"
@@ -92,9 +104,12 @@ resource "proxmox_vm_qemu" "elastic-breachsearch-hot-02" {
 
     # Set the disk size corresponding to the Template size
     disk {
+        backup = false
+        slot = "scsi0"
         storage = "vm"
-        type = "scsi"
+        type = "disk"
         size = "250G"
+        format = "raw"
     }
 
     # VM Cloud-Init Settings
@@ -141,9 +156,13 @@ resource "proxmox_vm_qemu" "elastic-breachsearch-hot-03" {
     
     # VM Memory Settings
     memory = 4096
+        
+    tags = "terraform,linux"
     
+    skip_ipv6 = true
     # VM Network Settings
     network {
+        id = 0
         macaddr = "00:50:56:ab:dd:b3"
         bridge = "vmbr0"
         model  = "virtio"
@@ -152,9 +171,12 @@ resource "proxmox_vm_qemu" "elastic-breachsearch-hot-03" {
 
     # Set the disk size corresponding to the Template size
     disk {
+        backup = false
+        slot = "scsi0"
         storage = "vm"
-        type = "scsi"
+        type = "disk"
         size = "250G"
+        format = "raw"
     }
 
     # VM Cloud-Init Settings
@@ -201,9 +223,13 @@ resource "proxmox_vm_qemu" "elastic-breachsearch-kibana-01" {
     
     # VM Memory Settings
     memory = 2048
+        
+    tags = "terraform,linux"
     
+    skip_ipv6 = true
     # VM Network Settings
     network {
+        id = 0
         macaddr = "00:50:56:ab:dd:b9"
         bridge = "vmbr0"
         model  = "virtio"
@@ -212,9 +238,12 @@ resource "proxmox_vm_qemu" "elastic-breachsearch-kibana-01" {
 
     # Set the disk size corresponding to the Template size
     disk {
+        backup = false
+        slot = "scsi0"
         storage = "vm"
-        type = "scsi"
+        type = "disk"
         size = "32G"
+        format = "raw"
     }
 
     # VM Cloud-Init Settings
@@ -238,62 +267,69 @@ resource "proxmox_vm_qemu" "elastic-breachsearch-kibana-01" {
     }
 }
 
-resource "proxmox_vm_qemu" "elastic-breachsearch-logstash" {
+# resource "proxmox_vm_qemu" "elastic-breachsearch-logstash" {
     
-    # VM General Settings
-    target_node = "pve-node-01"
-    name = "elastic-breachsearch-logstash"
-    desc = "Created with Terraform"
+#     # VM General Settings
+#     target_node = "pve-node-01"
+#     name = "elastic-breachsearch-logstash"
+#     desc = "Created with Terraform"
 
-    # VM Advanced General Settings
-    onboot = true 
+#     # VM Advanced General Settings
+#     onboot = true 
 
-    # VM OS Settings
-    clone = "Ubuntu-22.04-Template-32GB"
+#     # VM OS Settings
+#     clone = "Ubuntu-22.04-Template-32GB"
 
-    # VM System Settings
-    agent = 1
+#     # VM System Settings
+#     agent = 1
     
-    # VM CPU Settings
-    cores = 1
-    sockets = 2
-    cpu_type = "host"    
+#     # VM CPU Settings
+#     cores = 1
+#     sockets = 2
+#     cpu_type = "host"    
     
-    # VM Memory Settings
-    memory = 1024
+#     # VM Memory Settings
+#     memory = 1024
+        
+#     tags = "terraform,linux"
     
-    # VM Network Settings
-    network {
-        macaddr = "00:50:56:ab:dd:b8"
-        bridge = "vmbr0"
-        model  = "virtio"
-        tag = 40
-    }
+#     skip_ipv6 = true
+#     # VM Network Settings
+#     network {
+#         id = 0
+#         macaddr = "00:50:56:ab:dd:b8"
+#         bridge = "vmbr0"
+#         model  = "virtio"
+#         tag = 40
+#     }
 
-    # Set the disk size corresponding to the Template size
-    disk {
-        storage = "vm"
-        type = "scsi"
-        size = "32G"
-    }
+#     # Set the disk size corresponding to the Template size
+#     disk {
+#         backup = false
+#         slot = "scsi0"
+#         storage = "vm"
+#         type = "disk"
+#         size = "32G"
+#         format = "raw"
+#     }
 
-    # VM Cloud-Init Settings
-    os_type = "cloud-init"
+#     # VM Cloud-Init Settings
+#     os_type = "cloud-init"
 
-    connection {
-      type      = "ssh"
-      user      = var.SSH_USER
-      password  = var.SSH_PASS
-      host      = self.ssh_host
-      script_path = "/home/${var.SSH_USER}/provision_%RAND%.sh"
-    }
+#     connection {
+#       type      = "ssh"
+#       user      = var.SSH_USER
+#       password  = var.SSH_PASS
+#       host      = self.ssh_host
+#       script_path = "/home/${var.SSH_USER}/provision_%RAND%.sh"
+#     }
 
-    provisioner "remote-exec" {
-      inline = [
-          "sleep 20",
-          "sudo hostnamectl set-hostname ${self.name}",
-          "(sleep 5; sudo reboot) &",
-          "exit 0"
-      ]
-    }
-}
+#     provisioner "remote-exec" {
+#       inline = [
+#           "sleep 20",
+#           "sudo hostnamectl set-hostname ${self.name}",
+#           "(sleep 5; sudo reboot) &",
+#           "exit 0"
+#       ]
+#     }
+# }
