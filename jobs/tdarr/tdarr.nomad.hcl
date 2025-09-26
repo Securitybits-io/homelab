@@ -123,7 +123,7 @@ job "tdarr" {
         internalNode          = "true"
         inContainer           = "true"
         ffmpegVersion         = "7"
-        nodeName              = "TdarrNode"
+        nodeName              = "tdarr-server"
         auth                  = "false"
       }
 
