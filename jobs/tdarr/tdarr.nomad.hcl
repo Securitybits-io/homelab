@@ -18,8 +18,8 @@ job "tdarr" {
 
     service {
       name = "tdarr-server"
-      tags = ["tdarr", "server"]
       port = "web"
+      provider = "consul"
       check {
         type     = "http"
         path     = "/"
@@ -83,13 +83,15 @@ job "tdarr" {
       }
 
       env {
+        PUID                  = 1000
+        PGID                  = 1000
         TZ                    = "Europe/Stockholm"
         serverIP              = "0.0.0.0"
-        serverPort            = "8266"
-        webUIPort             = "8265"
-        internalNode          = true
-        inContainer           = true
-        ffmpegVersion         = 7
+        serverPort            = "${NOMAD_PORT_node}"
+        webUIPort             = "${NOMAD_PORT_web}"
+        internalNode          = "true"
+        inContainer           = "true"
+        ffmpegVersion         = "7"
         nodeName              = "TdarrNode"
         auth                  = false
       }
