@@ -26,7 +26,6 @@ job "tdarr-node" {
 
       config {
         image = "ghcr.io/haveagitgat/tdarr_node:latest"
-        ports = ["web", "node"]
 
         mount {
           type = "bind"
