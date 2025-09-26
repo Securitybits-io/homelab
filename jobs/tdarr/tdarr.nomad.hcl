@@ -55,8 +55,22 @@ job "tdarr" {
 
         mount {
           type = "bind"
-          target = "/app"
-          source = "/docker/data/Tdarr"
+          target = "/app/configs"
+          source = "/docker/data/Tdarr/configs"
+          readonly = false
+        }
+
+        mount {
+          type = "bind"
+          target = "/app/logs"
+          source = "/docker/data/Tdarr/logs"
+          readonly = false
+        }
+
+        mount {
+          type = "bind"
+          target = "/app/server"
+          source = "/docker/data/Tdarr/server"
           readonly = false
         }
         
@@ -77,9 +91,9 @@ job "tdarr" {
           }
         }
 
-        devices = [
-          "//dev/dri:/dev/dri", # Intel iGPU
-        ]
+        #devices = [
+        #  "//dev/dri:/dev/dri", # Intel iGPU
+        #]
       }
 
       env {
@@ -93,7 +107,7 @@ job "tdarr" {
         inContainer           = "true"
         ffmpegVersion         = "7"
         nodeName              = "TdarrNode"
-        auth                  = false
+        auth                  = "false"
       }
 
       resources {
