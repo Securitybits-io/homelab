@@ -1,4 +1,4 @@
-job "tdarr-node" {
+job "tdarr-nodes" {
   datacenters = ["*"]
 
   type        = "service"
@@ -17,7 +17,6 @@ job "tdarr-node" {
 
     update {
       max_parallel = 0
-      health_check = "checks"
       auto_revert  = true
     }
 
