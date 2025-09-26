@@ -75,7 +75,24 @@ job "tdarr" {
         }
         
         mount { 
-          target = "/media"
+          target = "/temp"
+          source = "tdarr-transcode-cache"
+
+          volume_options {
+            no_copy = "false"
+            driver_config  {
+              name = "local"
+              options {
+                type = "cifs"
+                device = "//10.0.11.241/PlexMedia/Tdarr/transcode_cache"
+                o = "rw,vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
+              }
+            }
+          }
+        }
+
+        mount { 
+          target = "/movies"
           source = "tdarr-movies"
 
           volume_options {
