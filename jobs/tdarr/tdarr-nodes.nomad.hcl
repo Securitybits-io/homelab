@@ -121,6 +121,7 @@ job "tdarr-nodes" {
         EOH
         destination = "secrets/file.env"
         env         = true
+        change_mode = "noop"
       }
 
       env {
