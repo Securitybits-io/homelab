@@ -6,6 +6,12 @@ job "tdarr" {
   group "tdarr-server" {
     count = 1
 
+    constraint {
+      attribute = "${meta.node_roles}"
+      value     = "management"
+      operator  = "set_contains_any"
+    }
+    
     network {
       mode = "host"
       port "web" {
