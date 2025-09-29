@@ -78,9 +78,9 @@ job "tdarr-nodes" {
           }
         }
 
-        #devices = [
-        #  "//dev/dri:/dev/dri", # Intel iGPU
-        #]
+        devices = [
+         "/dev/dri:/dev/dri", # Intel iGPU
+        ]
       }
 
       template {
