@@ -6,6 +6,11 @@ job "tdarr-nodes" {
   group "tdarr-node" {
     count = 3
 
+    constraint {
+      type = "distinct_host"
+      value = "true"
+    }
+    
     network {
       mode = "host"
     }
@@ -17,7 +22,6 @@ job "tdarr-nodes" {
 
     update {
       max_parallel = 0
-      auto_revert  = true
     }
 
     task "tdarr-node" {

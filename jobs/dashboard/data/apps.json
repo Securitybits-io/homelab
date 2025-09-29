@@ -97,6 +97,12 @@
             "icon": "movie"
           },
           {
+            "name": "Tdarr",
+            "displayURL": "Tdarr.Securitybits.io",
+            "url": "https://tdarr.securitybits.io/",
+            "icon": "horizontal_distribute"
+          },
+          {
             "name": "Transmission",
             "displayURL": "Transmission.Securitybits.io",
             "url": "https://transmission.securitybits.io/",
