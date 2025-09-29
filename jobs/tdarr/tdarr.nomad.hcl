@@ -108,9 +108,39 @@ job "tdarr" {
           }
         }
 
-        #devices = [
-        #  "//dev/dri:/dev/dri", # Intel iGPU
-        #]
+        mount { 
+          target = "/series"
+          source = "tdarr-series"
+
+          volume_options {
+            no_copy = "false"
+            driver_config  {
+              name = "local"
+              options {
+                type = "cifs"
+                device = "//10.0.11.241/PlexMedia/Series"
+                o = "rw,vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
+              }
+            }
+          }
+        }
+
+        mount { 
+          target = "/youtube-dl"
+          source = "tdarr-youtubedl"
+
+          volume_options {
+            no_copy = "false"
+            driver_config  {
+              name = "local"
+              options {
+                type = "cifs"
+                device = "//10.0.11.241/PlexMedia/Youtube-DL"
+                o = "rw,vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
+              }
+            }
+          }
+        }
       }
 
       env {
