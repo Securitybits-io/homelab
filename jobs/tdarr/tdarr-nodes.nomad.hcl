@@ -6,9 +6,9 @@ job "tdarr-nodes" {
   group "tdarr-node" {
     count = 3
 
-    constraint {
-      type = "distinct_host"
-      value = "true"
+    spread {
+      attribute = "${node.unique.id}"
+      weight = 100
     }
     
     network {
