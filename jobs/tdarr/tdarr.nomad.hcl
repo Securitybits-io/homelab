@@ -28,9 +28,9 @@ job "tdarr" {
       provider = "consul"
       check {
         type     = "http"
-        path     = "/"
+        path     = "/api/v2/status"
         interval = "10s"
-        timeout  = "2s"
+        timeout  = "5s"
       }
 
       tags = [
