@@ -67,13 +67,6 @@ job "tautulli" {
           source = "/docker/data/Tautulli/config"
           readonly = false
         }
-
-        mount {
-          type = "bind"
-          target = "/backup"
-          source = "/docker/data/Tautulli/backup"
-          readonly = false
-        }
       }
 
       env {
