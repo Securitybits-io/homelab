@@ -44,6 +44,15 @@ http:
       middlewares:
         - ip-whitelist
 
+    vault:
+      rule: Host(`vault.securitybits.io`)
+      entrypoints: websecure
+      service: vault
+      tls:
+        certresolver: letsencrypt
+      middlewares:
+        - ip-whitelist
+
   services:
     immich:
       loadBalancer:
@@ -59,6 +68,11 @@ http:
       loadBalancer:
         servers:
           - url: "http://consul:8500"
+    
+    vault:
+      loadBalancer:
+        servers:
+          - url: "http://vault:8200"
           
 
   middlewares:
