@@ -60,14 +60,15 @@ job "tautulli" {
       config {
         image = "tautulli/tautulli:latest"
         ports = ["http"]
+        
+        mount {
+          type = "bind"
+          target = "/config"
+          source = "/docker/data/Tautulli/config"
+          readonly = false
+        }
       }
 
-      mount {
-        type = "bind"
-        target = "/config"
-        source = "/docker/data/Tautulli/config"
-        readonly = false
-      }
 
       env {
         PUID = "1000"
