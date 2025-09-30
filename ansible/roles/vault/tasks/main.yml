@@ -1,2 +1,4 @@
 ---
 # tasks file for vault
+- import_tasks: install.yml
+- import_tasks: configure.yml

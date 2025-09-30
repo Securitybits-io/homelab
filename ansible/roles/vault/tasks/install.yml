@@ -1,0 +1,59 @@
+---
+- name: Install aptitude
+  apt:
+    name: aptitude
+    state: present
+    update_cache: true
+  tags:
+    install-vault
+
+- name: Install required system packages
+  apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - python3-pip
+      - virtualenv
+      - python3-setuptools
+      - wget
+      - coreutils
+      - gpg
+    state: latest
+    # update_cache: true
+  tags:
+    install-vault
+
+
+- name: Get Hashicorp GPG key
+  ansible.builtin.get_url:
+    url: https://apt.releases.hashicorp.com/gpg
+    dest: /etc/apt/keyrings/hashicorp-archive-keyring.asc
+    mode: '0644'
+    force: true    
+  tags:
+    - install-vault
+    - get-gpg-key
+    
+- name: Add Hashicorp vault repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/hashicorp-archive-keyring.asc] https://apt.releases.hashicorp.com jammy main"
+    state: present
+  tags:
+    - install-vault
+    - update-repository
+
+- name: Update packages
+  ansible.builtin.apt: update_cache=yes force_apt_get=yes 
+  tags: 
+    - install-vault
+    - update
+
+- name: Update Cache And Install vault packages
+  apt:
+    name: vault
+    state: latest
+  tags:
+    install-vault   
+    install-package 

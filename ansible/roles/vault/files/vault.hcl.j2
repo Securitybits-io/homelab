@@ -1,0 +1,39 @@
+# Default Vault configuration
+# See https://www.vaultproject.io/docs/configuration for more options
+
+# Disables memory locking. Not recommended for production.
+disable_mlock = {{ vault_disable_mlock | default(true) | lower }}
+
+# Enables the web UI
+ui = {{ vault_ui_enabled | default(true) | lower }}
+
+# Specifies the storage backend.
+# This example uses the integrated storage (Raft).
+storage "raft" {
+  path    = "{{ vault_storage_path | default('/opt/vault/data') }}"
+  node_id = "{{ vault_node_id | default(inventory_hostname) }}"
+
+  {% if vault_cluster_peers is defined %}
+  retry_join {
+    leader_api_addr = "{{ vault_cluster_peers[0] }}"
+  }
+  {% for peer in vault_cluster_peers[1:] %}
+  retry_join {
+    leader_api_addr = "{{ peer }}"
+  }
+  {% endfor %}
+  {% endif %}
+}
+
+# Specifies the network listeners for Vault.
+listener "tcp" {
+  address       = "0.0.0.0:8200"
+  # Set to false for production with proper TLS certificates
+  tls_disable   = {{ vault_tls_disable | default(true) | lower }}
+}
+
+# Specifies the address to advertise to other Vault servers in the cluster.
+api_addr = "http://{{ ansible_default_ipv4.address }}:8200"
+
+# Specifies the address to advertise for server-to-server communication.
+cluster_addr = "http://{{ ansible_default_ipv4.address }}:8201"
