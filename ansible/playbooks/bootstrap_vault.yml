@@ -1,0 +1,153 @@
+---
+- hosts: vault
+  gather_facts: yes
+  become: yes
+
+  vars:
+    # This is the local file where the unseal keys and root token will be stored.
+    # It is CRITICAL that you secure this file.
+    vault_keys_file: "{{ inventory_dir }}/../.secrets/vault-keys.json"
+    vault_api_addr: "http://127.0.0.1:8200"
+    vault_password_file: "{{ inventory_dir }}/../.vault_pass"
+
+    # Bitwarden Secrets Manager configuration
+    bws_project_id: "YOUR_BITWARDEN_PROJECT_ID" # <-- IMPORTANT: Change this
+    bws_access_token: "{{ lookup('env', 'BWS_ACCESS_TOKEN') }}"
+
+  roles:
+    # This assumes you have a role that installs and configures Vault.
+    # We will use the existing 'vault' role.
+    - vault
+
+  tasks:
+    - name: Wait for Vault to start
+      ansible.builtin.wait_for:
+        port: 8200
+        host: "{{ ansible_default_ipv4.address }}"
+        delay: 5
+        timeout: 60
+
+    - name: Check if Vault keys file exists locally
+      ansible.builtin.stat:
+        path: "{{ vault_keys_file }}"
+      delegate_to: localhost
+      register: vault_keys_stat
+
+    - name: Initialize Vault (only if keys file does not exist)
+      when: not vault_keys_stat.stat.exists
+      block:
+        - name: Initialize Vault and capture the output
+          ansible.builtin.command:
+            cmd: vault operator init -key-shares=5 -key-threshold=3 -format=json
+          environment:
+            VAULT_ADDR: "{{ vault_api_addr }}"
+          register: vault_init_output
+          changed_when: true
+
+        - name: Create .secrets directory locally
+          ansible.builtin.file:
+            path: "{{ inventory_dir }}/../.secrets"
+            state: directory
+            mode: '0700'
+          delegate_to: localhost
+
+        - name: Save unseal keys and root token to a local file
+          ansible.builtin.copy:
+            content: "{{ vault_init_output.stdout }}"
+            dest: "{{ vault_keys_file }}"
+            mode: '0600'
+          delegate_to: localhost
+
+        - name: Encrypt the local vault keys file using Ansible Vault
+          ansible.builtin.command:
+            cmd: "ansible-vault encrypt --vault-password-file {{ vault_password_file }} {{ vault_keys_file }}"
+          delegate_to: localhost
+          changed_when: true
+
+        - name: Display a critical warning about the keys file
+          ansible.builtin.debug:
+            msg:
+              - "!!!!!!!!!!!!!!!!!!!!!!!!!! CRITICAL !!!!!!!!!!!!!!!!!!!!!!!!!!"
+              - "Vault keys and root token have been saved and ENCRYPTED to:"
+              - "{{ vault_keys_file }}"
+              - "The file was encrypted using the password in: {{ vault_password_file }}"
+              - "To run this playbook again, you must use the --vault-password-file flag."
+              - "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+
+        - name: Push Unseal Keys to Bitwarden Secrets Manager
+          ansible.builtin.command:
+            cmd: "bws secret create --project-id {{ bws_project_id }} 'vault-unseal-key-{{ idx + 1 }}' '{{ item }}'"
+          environment:
+            BWS_ACCESS_TOKEN: "{{ bws_access_token }}"
+          loop: "{{ (vault_init_output.stdout | from_json).unseal_keys_b64 }}"
+          loop_control:
+            index_var: idx
+          delegate_to: localhost
+          changed_when: true
+          no_log: true # Prevents keys from being logged in Ansible output
+
+        - name: Push Root Token to Bitwarden Secrets Manager
+          ansible.builtin.command:
+            cmd: "bws secret create --project-id {{ bws_project_id }} 'vault-root-token' '{{ (vault_init_output.stdout | from_json).root_token }}'"
+          environment:
+            BWS_ACCESS_TOKEN: "{{ bws_access_token }}"
+          delegate_to: localhost
+          changed_when: true
+          no_log: true # Prevents token from being logged in Ansible output
+
+        - name: Display Bitwarden success message
+          ansible.builtin.debug:
+            msg: "Successfully pushed unseal keys and root token to Bitwarden project ID {{ bws_project_id }}."
+
+    - name: Load Vault keys and token from local file
+      ansible.builtin.include_vars:
+        file: "{{ vault_keys_file }}"
+        name: vault_credentials
+      delegate_to: localhost
+
+    - name: Check Vault seal status
+      ansible.builtin.command:
+        cmd: vault status -format=json
+      environment:
+        VAULT_ADDR: "{{ vault_api_addr }}"
+      register: vault_status_output
+      changed_when: false
+
+    - name: Unseal Vault (if sealed)
+      when: vault_status_output.stdout | from_json | json_query('sealed')
+      ansible.builtin.command:
+        cmd: "vault operator unseal {{ item }}"
+      environment:
+        VAULT_ADDR: "{{ vault_api_addr }}"
+      loop: "{{ vault_credentials.unseal_keys_b64 }}"
+      # We only need to loop through the threshold number of keys
+      loop_control:
+        index_var: idx
+      when: idx < (vault_status_output.stdout | from_json | json_query('t'))
+
+    - name: "--- All subsequent tasks will use the root token ---"
+      ansible.builtin.debug:
+        msg: "Using Vault root token to populate secrets."
+
+    - name: Populate Vault with an example secret
+      community.hashi_vault.vault_write:
+        url: "{{ vault_api_addr }}"
+        token: "{{ vault_credentials.root_token }}"
+        path: "secret/data/hello"
+        data:
+          foo: "world"
+          zip: "zap"
+      # This ensures the task runs on the controller, which has the token
+      delegate_to: localhost
+
+    - name: Read the secret back to verify
+      community.hashi_vault.vault_read:
+        url: "{{ vault_api_addr }}"
+        token: "{{ vault_credentials.root_token }}"
+        path: "secret/data/hello"
+      delegate_to: localhost
+      register: secret_output
+
+    - name: Display the secret we just wrote
+      ansible.builtin.debug:
+        var: secret_output.data.data
