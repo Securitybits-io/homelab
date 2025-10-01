@@ -1,12 +1,12 @@
 ---
-# - name: Add vault Server Configuration File
-#   template:
-#     src: "files/vault.hcl.j2"
-#     dest: "/etc/vault.d/vault.hcl"
-#     owner: vault
-#   tags:
-#     - install-vault
-#     - configure
+- name: Add vault Server Configuration File
+  template:
+    src: "files/vault.hcl.j2"
+    dest: "/etc/vault.d/vault.hcl"
+    owner: vault
+  tags:
+    - install-vault
+    - configure
 
 - name: Restart vault
   ansible.builtin.service:
