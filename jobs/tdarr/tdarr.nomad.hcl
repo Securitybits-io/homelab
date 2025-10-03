@@ -59,27 +59,18 @@ job "tdarr" {
         image = "ghcr.io/haveagitgat/tdarr:latest"
         ports = ["web", "node"]
 
+        # Use a Docker-managed local volume for configs, logs, and server data.
+        # This keeps the SQLite DBs on the host's local disk, preventing lock errors.
+        # The volume will be automatically created by Docker on the client node.
         mount {
-          type = "bind"
-          target = "/app/configs"
-          source = "/docker/data/Tdarr/configs"
-          readonly = false
+          type   = "volume"
+          target = "/app"
+          source = "tdarr-data"
         }
 
-        mount {
-          type = "bind"
-          target = "/app/logs"
-          source = "/docker/data/Tdarr/logs"
-          readonly = false
-        }
-
-        mount {
-          type = "bind"
-          target = "/app/server"
-          source = "/docker/data/Tdarr/server"
-          readonly = false
-        }
-        
+        # The following mounts use the 'local' driver to mount CIFS shares directly.
+        # This is perfect for your media and cache, as it keeps the definition
+        # inside the job file.
         mount { 
           target = "/temp"
           source = "tdarr-transcode-cache"
