@@ -25,36 +25,19 @@ job "cifs-example" {
         args    = ["-v", "-f", "-p", "${NOMAD_PORT_www}", "-h", "/local"]
         ports   = ["www"]
         mount {
-            target = "/Movies"
-            source = "Movies"
+            target = "/config"
+            source = "config"
             volume_options {
               no_copy = "false"
               driver_config  {
                 name = "local"
                 options {
-                  type = "cifs"
-                  device = "//10.0.11.241/PlexMedia/Movies"
-                  o = "vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
+                  type = "nfs"
+                  device = "//10.0.11.241/Securitybits.Systems/TestConfig"
                 }
               }
             }
           }
-       
-        mount {
-          target = "/Shows"
-          source = "Shows"
-          volume_options {
-            no_copy = "false"
-            driver_config  {
-              name = "local"
-              options {
-                type = "cifs"
-                device = "//10.0.11.241/PlexMedia/Series"
-                o = "vers=3.0,dir_mode=0777,file_mode=0777,username=guest,password=\"\""
-              }
-            }
-          }
-        }
       }
       template {
         data        = <<-EOF
