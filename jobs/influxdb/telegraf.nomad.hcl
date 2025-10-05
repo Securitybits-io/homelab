@@ -40,7 +40,7 @@ job "telegraf" {
             flush_interval = "10s"
             flush_jitter = "0s"
             precision = ""
-            hostname = "${NOMAD_NODE_NAME}" # Tag metrics with the Nomad node name
+            hostname = "{{ env "attr.unique.hostname" }}"
             omit_hostname = false
 
           # == OUTPUTS ==
