@@ -17,6 +17,7 @@ job "telegraf" {
           "local/telegraf.conf:/etc/telegraf/telegraf.conf:ro",
         ]
 
+        cap_add = ["SYS_ADMIN"]
         mount {
           type   = "bind"
           source = "/var/run/docker.sock"

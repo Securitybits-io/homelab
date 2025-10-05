@@ -45,18 +45,22 @@ job "influxdb-telegraf" {
         }
       }
 
-      # template {
-      #   data        = "CREATE DATABASE telegraf"
-      #   destination = "local/init.iql"
-      # }
+      template {
+        data        = "CREATE DATABASE telegraf"
+        destination = "local/init.iql"
+      }
 
       template {
         data        = <<EOH
+        {{ with nomadVar "nomad/jobs/influxdb-telegraf" }}
+          INFLUXDB_ADMIN_USER="admin"
+          INFLUXDB_ADMIN_PASSWORD="{{ .admin_password }}"
           INFLUXDB_HTTP_AUTH_ENABLED="true"
           INFLUXDB_DB="telegraf"
           INFLUXDB_USER="telegraf"
-          INFLUXDB_USER_PASSWORD="{{ with nomadVar "nomad/jobs/influxdb-telegraf" }}{{ .telegraf_password }}{{ end }}"
-          EOH
+          INFLUXDB_USER_PASSWORD="{{ .telegraf_password }}"
+        {{ end }}
+        EOH
         destination = "secrets/file.env"
         env         = true
       }
