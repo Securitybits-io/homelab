@@ -13,18 +13,18 @@ job "influxdb-telegraf" {
 
     network {
       mode = "host"
-      port "db" {
+      port "http" {
         static = 8086
       }
     }
 
     service {
       name     = "influxdb-telegraf"
-      port     = "db"
+      port     = "http"
       provider = "consul"
 
       check {
-        type     = "db"
+        type     = "http"
         path     = "/ping"
         interval = "10s"
         timeout  = "2s"
@@ -36,7 +36,7 @@ job "influxdb-telegraf" {
 
       config {
         image = "influxdb:1.8"
-        ports = ["db"]
+        ports = ["http"]
         
         mount {
           type = "bind"
