@@ -55,7 +55,7 @@ job "influxdb-telegraf" {
           INFLUXDB_HTTP_AUTH_ENABLED="true"
           INFLUXDB_DB="telegraf"
           INFLUXDB_USER="telegraf"
-          INFLUXDB_USER_PASSWORD="{{ with nomadVar "nomad/jobs/influxdb-telegraf" }}{{ .Data.telegraf_password }}{{ end }}"
+          INFLUXDB_USER_PASSWORD="{{ with nomadVar "nomad/jobs/influxdb-telegraf" }}{{ .telegraf_password }}{{ end }}"
           EOH
         destination = "secrets/file.env"
         env         = true
