@@ -27,7 +27,7 @@ job "influxdb-chronograf" {
         "traefik.enable=true",
         "traefik.http.routers.chronograf.rule=Host(`chronograf.securitybits.io`)",
         "traefik.http.routers.chronograf.entrypoints=websecure",
-        "traefik.http.routers.chronograf.tls.certresolver=letsencrypt"
+        "traefik.http.routers.chronograf.tls.certresolver=letsencrypt",
         "traefik.http.routers.chronograf.middlewares=ip-whitelist@file",
       ]
 
