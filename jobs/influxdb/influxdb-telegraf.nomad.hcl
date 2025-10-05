@@ -53,12 +53,12 @@ job "influxdb-telegraf" {
       template {
         data        = <<EOH
         {{ with nomadVar "nomad/jobs/influxdb-telegraf" }}
-          INFLUXDB_ADMIN_USER="admin"
-          INFLUXDB_ADMIN_PASSWORD="{{ .admin_password }}"
-          INFLUXDB_HTTP_AUTH_ENABLED="true"
-          INFLUXDB_DB="telegraf"
-          INFLUXDB_USER="telegraf"
-          INFLUXDB_USER_PASSWORD="{{ .telegraf_password }}"
+          DOCKER_INFLUXDB_ADMIN_USER="admin"
+          DOCKER_INFLUXDB_ADMIN_PASSWORD="{{ .admin_password }}"
+          DOCKER_INFLUXDB_HTTP_AUTH_ENABLED="true"
+          DOCKER_INFLUXDB_DB="telegraf"
+          DOCKER_INFLUXDB_USER="telegraf"
+          DOCKER_INFLUXDB_USER_PASSWORD="{{ .telegraf_password }}"
         {{ end }}
         EOH
         destination = "secrets/file.env"
