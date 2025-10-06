@@ -23,11 +23,11 @@ job "influxdb-telegraf" {
       port     = "db"
       provider = "consul"
 
-      check {
-        type     = "tcp"
-        interval = "10s"
-        timeout  = "2s"
-      }
+      # check {
+      #   type     = "tcp"
+      #   interval = "10s"
+      #   timeout  = "2s"
+      # }
     }
 
     task "influxdb-telegraf" {
