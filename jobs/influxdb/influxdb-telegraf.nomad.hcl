@@ -34,7 +34,7 @@ job "influxdb-telegraf" {
       driver = "docker"
 
       config {
-        image = "influxdb:1.8"
+        image = "influxdb:1.8" # Use InfluxDB 2.x image
         ports = ["http"]
         
         mount {
@@ -46,19 +46,14 @@ job "influxdb-telegraf" {
       }
 
       template {
-        data        = "CREATE DATABASE telegraf"
-        destination = "local/init.iql"
-      }
-
-      template {
         data        = <<EOH
         {{ with nomadVar "nomad/jobs/influxdb-telegraf" }}
-          DOCKER_INFLUXDB_HTTP_AUTH_ENABLED="true"
-          DOCKER_INFLUXDB_DB="telegraf"
-          DOCKER_INFLUXDB_ADMIN_USER="{{ .admin_user }}"
-          DOCKER_INFLUXDB_ADMIN_PASSWORD="{{ .admin_password }}"
-          DOCKER_INFLUXDB_USER="{{ .telegraf_user }}"
-          DOCKER_INFLUXDB_USER_PASSWORD="{{ .telegraf_password }}"
+          DOCKER_INFLUXDB_INIT_MODE=setup
+          DOCKER_INFLUXDB_INIT_USER="{{ .admin_user }}"
+          DOCKER_INFLUXDB_INIT_PASSWORD="{{ .admin_password }}"
+          DOCKER_INFLUXDB_INIT_ORG="{{ .org }}""
+          DOCKER_INFLUXDB_INIT_BUCKET="{{ .bucket }}""
+          DOCKER_INFLUXDB_INIT_ADMIN_TOKEN="{{ .admin_token }}"
         {{ end }}
         EOH
         destination = "secrets/file.env"

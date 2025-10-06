@@ -55,15 +55,14 @@ job "telegraf" {
             omit_hostname = false
 
           # == OUTPUTS ==
-          [[outputs.influxdb]]
+          [[outputs.influxdb_v2]]
             # Discover the InfluxDB service registered in Consul
             urls = ["http://{{ range service "influxdb-telegraf" }}{{ .Address }}:{{ .Port }}{{ end }}"]
-
+            
           {{ with nomadVar "nomad/jobs/influxdb-telegraf" }}
-            # Database and credentials
-            database = "telegraf"
-            username = "{{ .telegraf_user }}"
-            password = "{{ .telegraf_password }}"
+            organization = "{{ .org }}"
+            bucket = "{{ .bucket }}"
+            token = "{{ .admin_token }}"
           {{ end }}
 
           # == INPUTS ==
