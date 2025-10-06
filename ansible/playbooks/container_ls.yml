@@ -1,5 +1,7 @@
 ---
-  - hosts: docker_hosts
+  - hosts: 
+      - docker_hosts
+      - nomad_clients
     become: yes
     gather_facts: no
 
