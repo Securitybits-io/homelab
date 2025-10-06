@@ -34,7 +34,7 @@ job "influxdb-telegraf" {
       driver = "docker"
 
       config {
-        image = "influxdb:1.8" # Use InfluxDB 2.x image
+        image = "influxdb:2.7" # Use InfluxDB 2.x image
         ports = ["http"]
         
         mount {
@@ -52,8 +52,8 @@ job "influxdb-telegraf" {
           DOCKER_INFLUXDB_INIT_MODE=setup
           DOCKER_INFLUXDB_INIT_USER="{{ .admin_user }}"
           DOCKER_INFLUXDB_INIT_PASSWORD="{{ .admin_password }}"
-          DOCKER_INFLUXDB_INIT_ORG="{{ .org }}""
-          DOCKER_INFLUXDB_INIT_BUCKET="{{ .bucket }}""
+          DOCKER_INFLUXDB_INIT_ORG="{{ .org }}"
+          DOCKER_INFLUXDB_INIT_BUCKET="{{ .bucket }}"
           DOCKER_INFLUXDB_INIT_ADMIN_TOKEN="{{ .admin_token }}"
         {{ end }}
         EOH
