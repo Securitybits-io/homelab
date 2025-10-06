@@ -12,7 +12,6 @@ job "influxdb-telegraf" {
     }
 
     network {
-      mode = "host"
       port "http" {
         static = 8086
       }

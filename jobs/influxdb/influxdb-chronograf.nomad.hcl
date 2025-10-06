@@ -12,7 +12,6 @@ job "influxdb-chronograf" {
     }
 
     network {
-      mode = "host"
       port "http" {
         static = 8888
       }
