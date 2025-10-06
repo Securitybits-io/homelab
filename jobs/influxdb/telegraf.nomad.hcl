@@ -59,7 +59,7 @@ job "telegraf" {
             # Discover the InfluxDB service registered in Consul
             urls = ["http://{{ range service "influxdb-telegraf" }}{{ .Address }}:{{ .Port }}{{ end }}"]
             
-          {{ with nomadVar "nomad/jobs/influxdb-telegraf" }}
+          {{ with nomadVar "nomad/jobs/influxdb-telegraf/secrets" }}
             organization = "{{ .org }}"
             bucket = "{{ .bucket }}"
             token = "{{ .admin_token }}"

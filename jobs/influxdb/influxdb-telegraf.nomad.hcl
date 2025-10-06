@@ -47,7 +47,8 @@ job "influxdb-telegraf" {
 
       template {
         data        = <<EOH
-        {{ with nomadVar "nomad/jobs/influxdb-telegraf" }}
+        {{ with nomadVar "nomad/jobs/influxdb-telegraf/secrets" }}
+          DOCKER_INFLUXDB_REPORTING_DISABLED=false
           DOCKER_INFLUXDB_INIT_MODE=setup
           DOCKER_INFLUXDB_INIT_USER="{{ .admin_user }}"
           DOCKER_INFLUXDB_INIT_PASSWORD="{{ .admin_password }}"

@@ -57,7 +57,7 @@ job "influxdb-chronograf" {
       # It discovers the InfluxDB service and fetches the admin password securely.
       template {
         data = <<EOH
-        {{ with nomadVar "nomad/jobs/influxdb-telegraf" }}
+        {{ with nomadVar "nomad/jobs/influxdb-telegraf/secrets" }}
           INFLUXDB_URL=http://{{ range service "influxdb-telegraf" }}{{ .Address }}:{{ .Port }}{{ end }}
           INFLUXDB_USERNAME={{ .admin_user }}
           INFLUXDB_PASSWORD={{ .admin_password }}
