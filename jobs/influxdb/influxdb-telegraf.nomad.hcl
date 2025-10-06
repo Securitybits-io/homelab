@@ -26,7 +26,7 @@ job "influxdb-telegraf" {
       # in Consul when InfluxDB is actually ready to accept connections.
       check {
         type     = "http"
-        path     = "/health" # Use the built-in InfluxDB health check endpoint
+        path     = "/ping" # Use the built-in InfluxDB health check endpoint
         interval = "10s"
         timeout  = "2s"
       }
