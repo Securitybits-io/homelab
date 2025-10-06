@@ -50,7 +50,7 @@ job "influxdb-telegraf" {
         {{ with nomadVar "nomad/jobs/influxdb-telegraf/secrets" }}
           DOCKER_INFLUXDB_REPORTING_DISABLED=false
           DOCKER_INFLUXDB_INIT_MODE=setup
-          DOCKER_INFLUXDB_INIT_USER="{{ .admin_user }}"
+          DOCKER_INFLUXDB_INIT_USERNAME="{{ .admin_user }}"
           DOCKER_INFLUXDB_INIT_PASSWORD="{{ .admin_password }}"
           DOCKER_INFLUXDB_INIT_ORG="{{ .org }}"
           DOCKER_INFLUXDB_INIT_BUCKET="{{ .bucket }}"
