@@ -13,14 +13,14 @@ job "influxdb-telegraf" {
 
     network {
       mode = "host"
-      port "db" {
+      port "http" {
         static = 8086
       }
     }
 
     service {
       name     = "influxdb-telegraf"
-      port     = "db"
+      port     = "http"
       provider = "consul"
 
       # check {
@@ -28,6 +28,14 @@ job "influxdb-telegraf" {
       #   interval = "10s"
       #   timeout  = "2s"
       # }
+      # A health check is critical. It ensures the service is only marked as 'passing'
+      # in Consul when InfluxDB is actually ready to accept connections.
+      check {
+        type     = "http"
+        path     = "/health" # Use the built-in InfluxDB health check endpoint
+        interval = "10s"
+        timeout  = "2s"
+      }
     }
 
     task "influxdb-telegraf" {
@@ -35,7 +43,7 @@ job "influxdb-telegraf" {
 
       config {
         image = "influxdb:1.8"
-        ports = ["db"]
+        ports = ["http"]
         
         mount {
           type = "bind"
@@ -53,11 +61,11 @@ job "influxdb-telegraf" {
       template {
         data        = <<EOH
         {{ with nomadVar "nomad/jobs/influxdb-telegraf" }}
-          DOCKER_INFLUXDB_ADMIN_USER="admin"
-          DOCKER_INFLUXDB_ADMIN_PASSWORD="{{ .admin_password }}"
           DOCKER_INFLUXDB_HTTP_AUTH_ENABLED="true"
           DOCKER_INFLUXDB_DB="telegraf"
-          DOCKER_INFLUXDB_USER="telegraf"
+          DOCKER_INFLUXDB_ADMIN_USER="{{ .admin_user }}"
+          DOCKER_INFLUXDB_ADMIN_PASSWORD="{{ .admin_password }}"
+          DOCKER_INFLUXDB_USER="{{ .telegraf_user }}"
           DOCKER_INFLUXDB_USER_PASSWORD="{{ .telegraf_password }}"
         {{ end }}
         EOH
