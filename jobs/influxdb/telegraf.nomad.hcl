@@ -7,6 +7,11 @@ job "telegraf" {
       mode = "host"
     }
 
+    update {
+      max_parallel = 1
+      auto_revert  = true
+    }
+
     task "telegraf" {
       driver = "docker"
 
@@ -78,6 +83,15 @@ job "telegraf" {
         cpu    = 200 # 200 MHz
         memory = 256 # 256 MB
       }
+
+      restart {
+        interval = "12h"
+        attempts = 720
+        delay    = "60s"
+        mode     = "delay"
+      }
+
+      kill_timeout = "20s"
     }
   }
 }
