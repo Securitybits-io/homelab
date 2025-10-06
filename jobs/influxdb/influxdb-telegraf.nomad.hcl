@@ -23,11 +23,6 @@ job "influxdb-telegraf" {
       port     = "http"
       provider = "consul"
 
-      # check {
-      #   type     = "tcp"
-      #   interval = "10s"
-      #   timeout  = "2s"
-      # }
       # A health check is critical. It ensures the service is only marked as 'passing'
       # in Consul when InfluxDB is actually ready to accept connections.
       check {
