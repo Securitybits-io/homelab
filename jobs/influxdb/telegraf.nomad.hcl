@@ -32,7 +32,13 @@ job "telegraf" {
 
       template {
         destination = "local/telegraf.conf"
-        change_mode = "restart"
+        #change_mode = "restart"
+        change_mode = "signal"
+  			change_signal = "SIGHUP"
+        wait {
+          min = "15s"
+          max = "2m"
+        }
 
         data = <<EOF
           # Global Agent Configuration
@@ -52,7 +58,7 @@ job "telegraf" {
           [[outputs.influxdb]]
             # Discover the InfluxDB service registered in Consul
             urls = ["http://{{ range service "influxdb-telegraf" }}{{ .Address }}:{{ .Port }}{{ end }}"]
-            
+
           {{ with nomadVar "nomad/jobs/influxdb-telegraf" }}
             # Database and credentials
             database = "telegraf"
