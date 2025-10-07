@@ -69,7 +69,7 @@ job "grafana" {
           GF_USERS_ALLOW_SIGN_UP=false
           GF_AUTH_ANONYMOUS_ENABLED=true
           GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
-          GF_INSTALL_PLUGINS=grafana-worldmap-panel,grafana-piechart-panel,yesoreyeram-boomtable-panel,snuids-radar-panel,grafana-polystat-panel
+          GF_PLUGINS_PREINSTALL=grafana-worldmap-panel,grafana-piechart-panel,yesoreyeram-boomtable-panel,snuids-radar-panel,grafana-polystat-panel
         EOH
         destination = "secrets/file.env"
         env         = true
@@ -78,20 +78,18 @@ job "grafana" {
       template {
         destination = "local/provisioning/datasources/influxdb.yml"
         data = <<EOF
-          {{ with nomadVar "nomad/jobs/influxdb-telegraf/secrets" }}
           apiVersion: 1
           datasources:
             - name: InfluxDB - Telegraf
               type: influxdb
               access: proxy
               url: http://{{ range service "influxdb-telegraf" }}{{ .Address }}:{{ .Port }}{{ end }}
-              jsonData:
-                version: Flux
-                organization: {{ .org }}
-                defaultBucket: {{ .bucket }}
+              {{ with nomadVar "nomad/jobs/influxdb-telegraf/secrets" }}
+              database: "{{ .bucket }}"
+              user: "{{ .admin_user }}"
               secureJsonData:
-                token: {{ .admin_token }}
-            {{ end }}
+                password: "{{ .admin_password }}"
+              {{ end }}
           EOF
       }
 
