@@ -65,7 +65,7 @@ job "loki" {
           auth_enabled: false
 
           server:
-            http_listen_port: ${NOMAD_PORT_http}
+            http_listen_port: {{ env "NOMAD_PORT_http" }}
 
           common:
             path_prefix: /loki
@@ -75,7 +75,7 @@ job "loki" {
                 rules_directory: /loki/rules
             replication_factor: 1
             ring:
-              instance_addr: ${NOMAD_IP_http}
+              instance_addr: {{ env "NOMAD_IP_http" }}
               kvstore:
                 store: inmemory
 
