@@ -93,18 +93,18 @@ job "grafana" {
           EOF
       }
 
-      # # This template automatically provisions the Loki data source
-      # template {
-      #   destination = "local/provisioning/datasources/loki.yml"
-      #   data = <<EOF
-      #     apiVersion: 1
-      #     datasources:
-      #       - name: Loki
-      #         type: loki
-      #         access: proxy
-      #         url: http://{{ range service "loki" }}{{ .Address }}:{{ .Port }}{{ end }}
-      #     EOF
-      # }
+      # This template automatically provisions the Loki data source
+      template {
+        destination = "local/provisioning/datasources/loki.yml"
+        data = <<EOF
+          apiVersion: 1
+          datasources:
+            - name: Loki
+              type: loki
+              access: proxy
+              url: http://{{ range service "loki" }}{{ .Address }}:{{ .Port }}{{ end }}
+          EOF
+      }
 
       resources {
         cpu    = 500  # 500 MHz
