@@ -1,0 +1,113 @@
+job "loki" {
+  datacenters = ["*"]
+  type        = "service"
+
+  group "loki" {
+    count = 1
+
+    constraint {
+      attribute = "${meta.node_roles}"
+      value     = "management"
+      operator  = "set_contains_any"
+    }
+
+    network {
+      port "http" {
+        static = 3100
+      }
+    }
+
+    service {
+      name     = "loki"
+      port     = "http"
+      provider = "consul"
+
+      tags = [
+        "traefik.enable=true",
+        "traefik.http.routers.loki.rule=Host(`loki.securitybits.io`)",
+        "traefik.http.routers.loki.entrypoints=websecure",
+        "traefik.http.routers.loki.tls.certresolver=letsencrypt",
+        "traefik.http.routers.loki.middlewares=ip-whitelist@file",
+      ]
+
+      check {
+        type     = "http"
+        path     = "/ready"
+        interval = "10s"
+        timeout  = "2s"
+      }
+    }
+
+    task "loki" {
+      driver = "docker"
+
+      config {
+        image = "grafana/loki:2.9.5"
+        ports = ["http"]
+        args = [
+          "-config.file=/local/loki-config.yml",
+        ]
+
+        # Mount a persistent volume for Loki's data (indexes and chunks)
+        mount {
+          type   = "volume"
+          target = "/loki"
+          source = "loki-data"
+        }
+      }
+
+      # This template generates the Loki configuration file inside the allocation.
+      template {
+        destination = "local/loki-config.yml"
+        change_mode = "restart"
+
+        data = <<EOF
+          auth_enabled: false
+
+          server:
+            http_listen_port: ${NOMAD_PORT_http}
+
+          common:
+            path_prefix: /loki
+            storage:
+              filesystem:
+                chunks_directory: /loki/chunks
+                rules_directory: /loki/rules
+            replication_factor: 1
+            ring:
+              instance_addr: ${NOMAD_IP_http}
+              kvstore:
+                store: inmemory
+
+          schema_config:
+            configs:
+              - from: 2020-10-24
+                store: boltdb-shipper
+                object_store: filesystem
+                schema: v11
+                index:
+                  prefix: index_
+                  period: 24h
+
+          # ruler:
+          #   alertmanager_url: http://localhost:9093
+
+          EOF
+      }
+
+      resources {
+        cpu    = 500  # 500 MHz
+        memory = 1024 # 1 GB
+      }
+
+      restart {
+        interval = "12h"
+        attempts = 720
+        delay    = "60s"
+        mode     = "delay"
+      }
+
+      kill_timeout = "20s"
+    }
+  }
+}
