@@ -56,7 +56,7 @@ job "tdarr" {
       driver = "docker"
 
       config {
-        image = "ghcr.io/haveagitgat/tdarr:latest"
+        image = "ghcr.io/haveagitgat/tdarr:2.48.01"
         ports = ["web", "node"]
 
         # Use a Docker-managed local volume for configs, logs, and server data.

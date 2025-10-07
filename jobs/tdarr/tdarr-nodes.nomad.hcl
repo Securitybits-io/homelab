@@ -28,7 +28,7 @@ job "tdarr-nodes" {
       driver = "docker"
 
       config {
-        image = "ghcr.io/haveagitgat/tdarr_node:latest"
+        image = "ghcr.io/haveagitgat/tdarr_node:2.48.01"
 
         mount {
           type = "bind"
