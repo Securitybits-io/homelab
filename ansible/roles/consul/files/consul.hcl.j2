@@ -21,8 +21,11 @@ ui_config{
  enabled = true
 }
 {% endif %}
-
+{% if consul_type is defined and consul_type == 'client' %}
 client_addr = "127.0.0.1"
+{% else %}
+client_addr = "{{ ansible_default_ipv4.address }}"
+{% endif %}
 bind_addr = "{{ ansible_default_ipv4.address }}" #Local IP
 #advertise_addr = "127.0.0.1"
 
