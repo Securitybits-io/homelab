@@ -61,6 +61,9 @@ job "influxdb-chronograf" {
           INFLUXDB_URL=http://{{ range service "influxdb-telegraf" }}{{ .Address }}:{{ .Port }}{{ end }}
           INFLUXDB_USERNAME={{ .admin_user }}
           INFLUXDB_PASSWORD={{ .admin_password }}
+          INFLUXDB_ORG={{ .org }}
+          INFLUXDB_BUCKET={{ .bucket }}
+          INFLUXDB_TOKEN={{ .admin_token }}
         {{ end }}
         EOH
 
