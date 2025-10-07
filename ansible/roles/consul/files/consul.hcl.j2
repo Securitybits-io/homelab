@@ -9,7 +9,7 @@ log_level = "INFO"
 log_file = "/etc/consul.d/"
 
 
-{% if consul_type == 'client' %}
+{% if consul_type is defined and consul_type == 'client' %}
 server = false
 ui_config {
   enabled = false
