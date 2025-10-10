@@ -1,57 +1,139 @@
 # roles/grafana_alloy/templates/config.river.j2
-// Forward all logs to a remote Loki instance
+// -------- Send everything to Loki --------
 loki.write "default" {
   endpoint {
     url = "{{ loki_endpoint }}"
+    {% if loki_tenant_id is defined and loki_tenant_id %}
+    tenant_id = "{{ loki_tenant_id }}"
+    {% endif %}
+
+    {% if loki_basic_auth is defined and loki_basic_auth.username and loki_basic_auth.password %}
+    basic_auth {
+      username = "{{ loki_basic_auth.username }}"
+      password = "{{ loki_basic_auth.password }}"
+    }
+    {% endif %}
+
+    {% if loki_headers is defined %}
+    headers = {
+      {% for k, v in loki_headers.items() -%}
+      "{{ k }}" = "{{ v }}"{% if not loop.last %},{% endif %}
+      {%- endfor %}
+    }
+    {% endif %}
   }
 }
 
-// --- Base Log Collection (All Machines) ---
+{% set _host = inventory_hostname %}
+{% set _env  = alloy_env | default('prod') %}
+{% set _role = alloy_role | default('') %}
 
-// Scrape /var/log/*.log
+// ---------------- Base Log Collection (All Machines) ----------------
+
+// /var/log/*.log and /var/log/**/**/*.log
 loki.source.file "var_log" {
   targets = discovery.file(
-    paths = ["/var/log/*.log"],
+    paths = ["/var/log/*.log", "/var/log/**/*.log"]
   )
+
+  // Optional start position:
+  // start_at = "end"
+
+  // Add useful labels
+  relabel {
+    action        = "replace"
+    target_label  = "job"
+    replacement   = "varlogs"
+  }
+  relabel { action = "replace" target_label = "host" replacement = "{{ _host }}" }
+  relabel { action = "replace" target_label = "env"  replacement = "{{ _env }}" }
+  {% if _role %}relabel { action = "replace" target_label = "role" replacement = "{{ _role }}" }{% endif %}
+
   forward_to = [loki.write.default.receiver]
 }
 
-// WARNING: This can be very broad and collect many unwanted files.
-// Consider making this path more specific if you encounter issues.
-loki.source.file "var_all_log" {
+// /var/*/*.log except /var/log/*
+loki.source.file "var_other_log" {
   targets = discovery.file(
-    paths = ["/var/*/*.log"],
-    excluded_paths = ["/var/log/*"], // Avoid duplicating logs from the rule above
+    paths          = ["/var/*/*.log"],
+    excluded_paths = ["/var/log/*"]
   )
+
+  // Optional start position:
+  // start_at = "end"
+
+  relabel {
+    action        = "replace"
+    target_label  = "job"
+    replacement   = "varwild"
+  }
+  relabel { action = "replace" target_label = "host" replacement = "{{ _host }}" }
+  relabel { action = "replace" target_label = "env"  replacement = "{{ _env }}" }
+  {% if _role %}relabel { action = "replace" target_label = "role" replacement = "{{ _role }}" }{% endif %}
+
   forward_to = [loki.write.default.receiver]
 }
 
-// --- Conditional Log Collection ---
+// ---------------- Conditional Log Collection ----------------
 
 {% if 'nomad' in group_names %}
-// Scrape Nomad agent logs
+// Nomad agent logs
 loki.source.file "nomad_agent" {
-  targets = discovery.file(
-    paths = ["/etc/nomad.d/*.log"],
-  )
+  targets = discovery.file(paths = ["/etc/nomad.d/*.log"])
+
+  // start_at = "end"
+
+  relabel { action = "replace" target_label = "job"  replacement = "nomad" }
+  relabel { action = "replace" target_label = "host" replacement = "{{ _host }}" }
+  relabel { action = "replace" target_label = "env"  replacement = "{{ _env }}" }
+  {% if _role %}relabel { action = "replace" target_label = "role" replacement = "{{ _role }}" }{% endif %}
+
+  forward_to = [loki.write.default.receiver]
+}
+{% endif %}
+
+{% if 'vault' in group_names %}
+// Vault agent/server logs
+loki.source.file "vault_agent" {
+  targets = discovery.file(paths = ["/etc/vault.d/*.log"])
+  // start_at = "end"
+  relabel { action = "replace" target_label = "job"  replacement = "vault" }
+  relabel { action = "replace" target_label = "host" replacement = "{{ _host }}" }
+  relabel { action = "replace" target_label = "env"  replacement = "{{ _env }}" }
+  {% if _role %}relabel { action = "replace" target_label = "role" replacement = "{{ _role }}" }{% endif %}
   forward_to = [loki.write.default.receiver]
 }
 {% endif %}
 
 {% if 'consul' in group_names or 'nomad' in group_names %}
-// Scrape Consul agent logs
+// Consul agent logs
 loki.source.file "consul_agent" {
-  targets = discovery.file(
-    paths = ["/etc/consul.d/*.log"],
-  )
+  targets = discovery.file(paths = ["/etc/consul.d/*.log"])
+
+  // start_at = "end"
+
+  relabel { action = "replace" target_label = "job"  replacement = "consul" }
+  relabel { action = "replace" target_label = "host" replacement = "{{ _host }}" }
+  relabel { action = "replace" target_label = "env"  replacement = "{{ _env }}" }
+  {% if _role %}relabel { action = "replace" target_label = "role" replacement = "{{ _role }}" }{% endif %}
+
   forward_to = [loki.write.default.receiver]
 }
 {% endif %}
 
 {% if 'docker' in group_names or 'nomad-' in group_names %}
-// Scrape all Docker container logs
-loki.source.docker "docker_containers" {
-  host = "unix:///var/run/docker.sock"
+// Docker container logs via file tail (no socket perms needed)
+loki.source.file "docker_containers" {
+  targets = discovery.file(paths = ["/var/lib/docker/containers/*/*-json.log"])
+
+  // start_at = "end"
+
+  // Label as docker and tag host/env/role
+  relabel { action = "replace" target_label = "job"  replacement = "docker" }
+  relabel { action = "replace" target_label = "host" replacement = "{{ _host }}" }
+  relabel { action = "replace" target_label = "env"  replacement = "{{ _env }}" }
+  {% if _role %}relabel { action = "replace" target_label = "role" replacement = "{{ _role }}" }{% endif %}
+
   forward_to = [loki.write.default.receiver]
 }
 {% endif %}
