@@ -21,8 +21,8 @@
 
 - name: Template Alloy configuration file
   ansible.builtin.template:
-    src: config.river.j2
-    dest: "{{ alloy_config_dir }}/config.river"
+    src: config.alloy.j2
+    dest: "{{ alloy_config_dir }}/config.alloy"
     owner: alloy
     group: alloy
     mode: '0640'
