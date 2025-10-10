@@ -1,0 +1,36 @@
+---
+# roles/grafana_alloy/tasks/configure.yml
+
+- name: Create alloy user
+  ansible.builtin.user:
+    name: alloy
+    system: yes
+    shell: /bin/false
+    create_home: no
+
+- name: Create Alloy config and data directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: alloy
+    group: alloy
+    mode: '0750'
+  loop:
+    - "{{ alloy_config_dir }}"
+    - "{{ alloy_data_dir }}"
+
+- name: Template Alloy configuration file
+  ansible.builtin.template:
+    src: config.river.j2
+    dest: "{{ alloy_config_dir }}/config.river"
+    owner: alloy
+    group: alloy
+    mode: '0640'
+  notify: Restart alloy
+
+- name: Ensure alloy service is enabled and started
+  ansible.builtin.systemd:
+    name: alloy
+    state: started
+    enabled: yes
+    daemon_reload: yes

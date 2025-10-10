@@ -1,0 +1,8 @@
+---
+# roles/grafana_alloy/defaults/main.yml
+alloy_config_dir: "/etc/alloy"
+alloy_data_dir: "/var/lib/alloy"
+
+# Default Loki endpoint.
+# This is the push API endpoint for Loki.
+loki_endpoint: "https://loki.securitybits.io/loki/api/v1/push"

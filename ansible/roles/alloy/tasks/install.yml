@@ -1,0 +1,26 @@
+---
+# roles/grafana_alloy/tasks/install.yml
+- name: Ensure apt keyrings directory exists
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+
+- name: Add Grafana GPG key
+  ansible.builtin.shell:
+    cmd: wget -q -O - https://apt.grafana.com/gpg.key | gpg --dearmor > /etc/apt/keyrings/grafana.gpg
+    creates: /etc/apt/keyrings/grafana.gpg
+  changed_when: false
+
+- name: Add Grafana Alloy repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com stable main"
+    state: present
+    filename: grafana
+
+- name: Update apt cache and install alloy
+  ansible.builtin.apt:
+    name: alloy
+    update_cache: yes
+    state: present
+  notify: Restart alloy

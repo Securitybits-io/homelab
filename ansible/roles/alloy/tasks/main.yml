@@ -1,0 +1,8 @@
+---
+# roles/grafana_alloy/tasks/main.yml
+
+- name: Install Grafana Alloy
+  ansible.builtin.include_tasks: install.yml
+
+- name: Configure Grafana Alloy
+  ansible.builtin.include_tasks: configure.yml

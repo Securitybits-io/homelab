@@ -1,0 +1,57 @@
+# roles/grafana_alloy/templates/config.river.j2
+// Forward all logs to a remote Loki instance
+loki.write "default" {
+  endpoint {
+    url = "{{ loki_endpoint }}"
+  }
+}
+
+// --- Base Log Collection (All Machines) ---
+
+// Scrape /var/log/*.log
+loki.source.file "var_log" {
+  targets = discovery.file(
+    paths = ["/var/log/*.log"],
+  )
+  forward_to = [loki.write.default.receiver]
+}
+
+// WARNING: This can be very broad and collect many unwanted files.
+// Consider making this path more specific if you encounter issues.
+loki.source.file "var_all_log" {
+  targets = discovery.file(
+    paths = ["/var/*/*.log"],
+    excluded_paths = ["/var/log/*"], // Avoid duplicating logs from the rule above
+  )
+  forward_to = [loki.write.default.receiver]
+}
+
+// --- Conditional Log Collection ---
+
+{% if 'nomad' in group_names %}
+// Scrape Nomad agent logs
+loki.source.file "nomad_agent" {
+  targets = discovery.file(
+    paths = ["/etc/nomad.d/*.log"],
+  )
+  forward_to = [loki.write.default.receiver]
+}
+{% endif %}
+
+{% if 'consul' in group_names or 'nomad' in group_names %}
+// Scrape Consul agent logs
+loki.source.file "consul_agent" {
+  targets = discovery.file(
+    paths = ["/etc/consul.d/*.log"],
+  )
+  forward_to = [loki.write.default.receiver]
+}
+{% endif %}
+
+{% if 'docker' in group_names or 'nomad-' in group_names %}
+// Scrape all Docker container logs
+loki.source.docker "docker_containers" {
+  host = "unix:///var/run/docker.sock"
+  forward_to = [loki.write.default.receiver]
+}
+{% endif %}
