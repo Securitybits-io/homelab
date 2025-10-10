@@ -1,95 +1,25 @@
-// -------- Send everything to Loki --------
+// Send logs to Loki
 loki.write "default" {
   endpoint {
     url = "{{ loki_endpoint }}"
-    {% if loki_tenant_id is defined and loki_tenant_id %}
-    tenant_id = "{{ loki_tenant_id }}"
-    {% endif %}
-
     {% if loki_basic_auth is defined and loki_basic_auth.username and loki_basic_auth.password %}
     basic_auth {
       username = "{{ loki_basic_auth.username }}"
       password = "{{ loki_basic_auth.password }}"
     }
     {% endif %}
-
-    {% if loki_headers is defined %}
-    headers = {
-      {% for k, v in loki_headers.items() -%}
-      "{{ k }}" = "{{ v }}"{% if not loop.last %},{% endif %}
-      {%- endfor %}
-    }
-    {% endif %}
   }
 }
 
-{% set _host = inventory_hostname %}
-{% set _env  = alloy_env | default('prod') %}
-{% set _role = alloy_role | default('') %}
-
-// ---------------- Base Log Collection (All Machines) ----------------
-
-// /var/log/*.log and recursive **/*.log
+// Read local log files
 loki.source.file "var_log" {
   targets = [
-    { "__path__" = "/var/log/*.log",      "job" = "varlogs", "host" = "{{ _host }}", "env" = "{{ _env }}"{% if _role %}, "role" = "{{ _role }}"{% endif %} },
-    { "__path__" = "/var/log/**/*.log",   "job" = "varlogs", "host" = "{{ _host }}", "env" = "{{ _env }}"{% if _role %}, "role" = "{{ _role }}"{% endif %} },
+    { "__path__" = "/var/log/*.log", "job" = "linux", "host" = "{{ inventory_hostname }}" },
   ]
-  // Optional: start_at = "end"
+
+  // Optional: start reading at end of file to avoid backlog
+  start_at = "end"
+
+  // Send to Loki
   forward_to = [loki.write.default.receiver]
 }
-
-// /var/*/*.log  (note: this may overlap with /var/log; refine if needed)
-loki.source.file "var_other_log" {
-  targets = [
-    { "__path__" = "/var/*/*.log", "job" = "varwild", "host" = "{{ _host }}", "env" = "{{ _env }}"{% if _role %}, "role" = "{{ _role }}"{% endif %} },
-  ]
-  // Optional: start_at = "end"
-  forward_to = [loki.write.default.receiver]
-}
-
-// ---------------- Conditional Log Collection ----------------
-
-{% if 'nomad' in group_names %}
-// Nomad agent logs
-loki.source.file "nomad_agent" {
-  targets = [
-    { "__path__" = "/etc/nomad.d/*.log", "job" = "nomad", "host" = "{{ _host }}", "env" = "{{ _env }}"{% if _role %}, "role" = "{{ _role }}"{% endif %} },
-  ]
-  // start_at = "end"
-  forward_to = [loki.write.default.receiver]
-}
-{% endif %}
-
-{% if 'consul' in group_names %}
-// Consul agent logs
-loki.source.file "consul_agent" {
-  targets = [
-    { "__path__" = "/etc/consul.d/*.log", "job" = "consul", "host" = "{{ _host }}", "env" = "{{ _env }}"{% if _role %}, "role" = "{{ _role }}"{% endif %} },
-  ]
-  // start_at = "end"
-  forward_to = [loki.write.default.receiver]
-}
-{% endif %}
-
-{% if 'vault' in group_names %}
-// Vault server/agent logs
-loki.source.file "vault_agent" {
-  targets = [
-    { "__path__" = "/etc/vault.d/*.log", "job" = "vault", "host" = "{{ _host }}", "env" = "{{ _env }}"{% if _role %}, "role" = "{{ _role }}"{% endif %} },
-  ]
-  // start_at = "end"
-  forward_to = [loki.write.default.receiver]
-}
-{% endif %}
-
-{% if 'docker' in group_names or 'nomad' in group_names %}
-// Docker container logs (JSON files; avoids socket permissions)
-loki.source.file "docker_containers" {
-  targets = [
-    { "__path__" = "/var/lib/docker/containers/*/*-json.log", "job" = "docker", "host" = "{{ _host }}", "env" = "{{ _env }}"{% if _role %}, "role" = "{{ _role }}"{% endif %} },
-  ]
-  // start_at = "end"
-  forward_to = [loki.write.default.receiver]
-}
-{% endif %}
