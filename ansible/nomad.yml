@@ -13,6 +13,7 @@
     - consul
     - docker
     - nomad
+    - alloy
     - nomad_cni_plugins
   tasks:
     - name: Copy folder to /opt/jobs
@@ -72,4 +73,5 @@
     - consul
     - docker
     - nomad
+    - alloy
     - nomad_cni_plugins
