@@ -2,24 +2,130 @@
 loki.write "default" {
   endpoint {
     url = "{{ loki_endpoint }}"
-    {% if loki_basic_auth is defined and loki_basic_auth.username and loki_basic_auth.password %}
-    basic_auth {
-      username = "{{ loki_basic_auth.username }}"
-      password = "{{ loki_basic_auth.password }}"
-    }
-    {% endif %}
   }
 }
 
-// Read local log files
-loki.source.file "var_log" {
-  targets = [
-    { "__path__" = "/var/log/*.log", "job" = "linux", "host" = "{{ inventory_hostname }}" },
-  ]
 
-  // Optional: start reading at end of file to avoid backlog
-  start_at = "end"
+// Collect logs from systemd journal for node_exporter integration
+loki.source.journal "logs_integrations_integrations_node_exporter_journal_scrape" {
+  // Only collect logs from the last 24 hours
+  max_age       = "24h0m0s"
 
-  // Send to Loki
+  // Apply relabeling rules to the logs
+  relabel_rules = discovery.relabel.logs_integrations_integrations_node_exporter_journal_scrape.rules
+
+  // Send logs to the local Loki instance
+  forward_to    = [loki.write.default.receiver]
+}
+
+
+local.file_match "logs_integrations_integrations_node_exporter_direct_scrape" {
+  path_targets = [{
+    // Target localhost for log collection
+    __address__ = "localhost",
+
+    // Collect standard system logs
+    __path__    = "/var/log/{syslog,messages,*.log}",
+
+    // Add instance label with hostname
+    instance    = constants.hostname,
+
+    // Add job label for logs
+    job         = "integrations/node_exporter",
+  }]
+}
+
+// Define relabeling rules for systemd journal logs
+discovery.relabel "logs_integrations_integrations_node_exporter_journal_scrape" {
+  targets = []
+
+  rule {
+    // Extract systemd unit information into a label
+    source_labels = ["__journal__systemd_unit"]
+    target_label  = "unit"
+  }
+
+  rule {
+    // Extract boot ID information into a label
+    source_labels = ["__journal__boot_id"]
+    target_label  = "boot_id"
+  }
+
+  rule {
+    // Extract transport information into a label
+    source_labels = ["__journal__transport"]
+    target_label  = "transport"
+  }
+
+  rule {
+    // Extract log priority into a level label
+    source_labels = ["__journal_priority_keyword"]
+    target_label  = "level"
+  }
+}
+
+
+// Collect logs from files for node_exporter
+loki.source.file "logs_integrations_integrations_node_exporter_direct_scrape" {
+  // Use targets defined in local.file_match
+  targets    = local.file_match.logs_integrations_integrations_node_exporter_direct_scrape.targets
+
+  // Send logs to the local Loki instance
   forward_to = [loki.write.default.receiver]
 }
+
+{% if alloy_enable_nomad | default(false) | bool %}
+// Collect logs from Nomad
+local.file_match "logs_integrations_integrations_node_exporter_nomad_scrape" {
+  path_targets = [{
+    // Target localhost for log collection
+    __address__ = "localhost",
+
+    // Collect standard system logs
+    __path__    = "/etc/nomad.d/nomad.log",
+
+    // Add instance label with hostname
+    instance    = constants.hostname,
+
+    // Add job label for logs
+    job         = "job/nomad",
+  }]
+}
+
+// Collect logs from files for node_exporter
+loki.source.file "logs_integrations_integrations_node_exporter_nomad_scrape" {
+  // Use targets defined in local.file_match
+  targets    = local.file_match.logs_integrations_integrations_node_exporter_nomad_scrape.targets
+
+  // Send logs to the local Loki instance
+  forward_to = [loki.write.default.receiver]
+}
+{% endif %}
+
+{% if alloy_enable_consul | default(false) | bool %}
+// Collect logs from Consul
+local.file_match "logs_integrations_integrations_node_exporter_consul_scrape" {
+  path_targets = [{
+    // Target localhost for log collection
+    __address__ = "localhost",
+
+    // Collect standard system logs
+    __path__    = "/etc/consul.d/consul.log",
+
+    // Add instance label with hostname
+    instance    = constants.hostname,
+
+    // Add job label for logs
+    job         = "job/consul",
+  }]
+}
+
+// Collect logs from files for node_exporter
+loki.source.file "logs_integrations_integrations_node_exporter_consul_scrape" {
+  // Use targets defined in local.file_match
+  targets    = local.file_match.logs_integrations_integrations_node_exporter_consul_scrape.targets
+
+  // Send logs to the local Loki instance
+  forward_to = [loki.write.default.receiver]
+}
+{% endif %}

@@ -75,7 +75,6 @@ job "loki" {
                 rules_directory: /loki/rules
             replication_factor: 1
             ring:
-              instance_addr: {{ env "NOMAD_IP_http" }}
               kvstore:
                 store: inmemory
 
