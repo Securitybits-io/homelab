@@ -1,6 +1,3 @@
 node_metadata:
     - node_class: "private"
     - node_roles: "management"
-
-alloy_enable_nomad: true
-alloy_enable_consul: true
