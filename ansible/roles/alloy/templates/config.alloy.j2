@@ -88,5 +88,4 @@ loki.source.file "nomad_logs" {
   targets = local.file_match.nomad_logs.targets
   forward_to = [loki.write.default.receiver]
 }
-
 {% endif %}
