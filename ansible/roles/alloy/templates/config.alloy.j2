@@ -73,3 +73,20 @@ loki.source.file "logs_integrations_integrations_node_exporter_direct_scrape" {
   // Send logs to the local Loki instance
   forward_to = [loki.write.default.receiver]
 }
+
+{% if 'nomad_clients' in group_names %}
+// Fetch Nomad alloc 
+// https://github.com/grafana/alloy/issues/3584
+local.file_match "nomad_logs" {
+  path_targets = [
+    {__path__ = "/opt/nomad/data/alloc/*/alloc/logs/*.stdout.*", __path_exclude__="/opt/nomad/data/alloc/**/*.fifo"},
+    {__path__ = "/opt/nomad/data/alloc/*/alloc/logs/*.stderr.*", __path_exclude__="/opt/nomad/data/alloc/**/*.fifo"},
+  ]
+}
+
+loki.source.file "nomad_logs" {
+  targets = local.file_match.nomad_logs.targets
+  forward_to = [loki.write.default.receiver]
+}
+
+{% endif %}
