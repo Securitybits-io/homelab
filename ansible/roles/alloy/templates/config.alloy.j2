@@ -95,17 +95,17 @@ loki.source.file "nomad_alloc_logs" {
     // Extract alloc ID and the basename like "telegraf.stdout.0"
     {
       regex = {
-        expression = ".*/alloc/([^/]+)/alloc/logs/([^.]+)\\.(stdout|stderr)\\..*"
-      }
+        expression = ".*/alloc/([^/]+)/alloc/logs/([^.]+)\\.(stdout|stderr)\\..*",
+      },
     },
     {
       labels = {
-        job     = "${2}"
-        alloc   = "${1}"
-        stream  = "${3}"
-        source  = "nomad"
-      }
-    }
+        job     = "${2}",
+        alloc   = "${1}",
+        stream  = "${3}",
+        source  = "nomad",
+      },
+    },
   ]
   forward_to = [loki.write.default.receiver]
 }
