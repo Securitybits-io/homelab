@@ -6,4 +6,5 @@
     - common
     - cis
     - ssh
+    - alloy
     - ansible
