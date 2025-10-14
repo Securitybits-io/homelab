@@ -77,15 +77,38 @@ loki.source.file "logs_integrations_integrations_node_exporter_direct_scrape" {
 {% if 'nomad_clients' in group_names %}
 // Fetch Nomad alloc 
 // https://github.com/grafana/alloy/issues/3584
-local.file_match "nomad_logs" {
-  path_targets = [
-    {__path__ = "/opt/nomad/data/alloc/*/alloc/logs/*.stdout.*", __path_exclude__="/opt/nomad/data/alloc/**/*.fifo"},
-    {__path__ = "/opt/nomad/data/alloc/*/alloc/logs/*.stderr.*", __path_exclude__="/opt/nomad/data/alloc/**/*.fifo"},
+discovery.file "nomad_alloc_logs" {
+  paths = [
+    "/opt/nomad/data/alloc/*/alloc/logs/*.stdout.*",
+    "/opt/nomad/data/alloc/*/alloc/logs/*.stderr.*",
   ]
+  // Avoid named pipes if you have any in there
+  exclude_patterns = ["/opt/nomad/data/alloc/**/*.fifo"]
 }
 
-loki.source.file "nomad_logs" {
-  targets = local.file_match.nomad_logs.targets
+loki.source.file "nomad_alloc_logs" {
+  targets   = discovery.file.nomad_alloc_logs.targets
+  start_at  = "end"
+  // poll_frequency = "5s"
+
+  pipeline_stages = [
+    // Extract alloc ID and the basename like "telegraf.stdout.0"
+    {
+      regex = {
+        expression = ".*/alloc/([^/]+)/alloc/logs/([^.]+)\\.(stdout|stderr)\\..*"
+      }
+    },
+    {
+      labels = {
+        job     = "${2}"
+        alloc   = "${1}"
+        stream  = "${3}"
+        source  = "nomad"
+      }
+    }
+  ]
   forward_to = [loki.write.default.receiver]
 }
+
+
 {% endif %}
