@@ -20,7 +20,7 @@ resource "proxmox_vm_qemu" "elastic-breachsearch-hot-01" {
     cpu_type = "host"    
     
     # VM Memory Settings
-    memory = 4096
+    memory = 6192
     
     tags = "terraform,linux"
     skip_ipv6 = true
@@ -88,7 +88,7 @@ resource "proxmox_vm_qemu" "elastic-breachsearch-hot-02" {
     cpu_type = "host"    
     
     # VM Memory Settings
-    memory = 4096
+    memory = 6192
         
     tags = "terraform,linux"
     
@@ -155,7 +155,7 @@ resource "proxmox_vm_qemu" "elastic-breachsearch-hot-03" {
     cpu_type = "host"    
     
     # VM Memory Settings
-    memory = 4096
+    memory = 6192
         
     tags = "terraform,linux"
     
