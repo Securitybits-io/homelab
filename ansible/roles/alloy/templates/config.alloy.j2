@@ -82,18 +82,18 @@ local.file_match "logs_integrations_integrations_alloc_exporter_direct_scrape" {
     {
       __address__       = "localhost",
       __path__          = "/opt/nomad/data/alloc/*/alloc/logs/*.stdout.*", 
-      __path_exclude__  = "/opt/nomad/data/alloc/**/*.fifo"
+      __path_exclude__  = "/opt/nomad/data/alloc/**/*.fifo",
       instance          = constants.hostname,
-      stream            = "stdout"
+      stream            = "stdout",
       job               = "integrations/alloc_exporter",
 
     },
     {
       __address__       = "localhost",
       __path__          = "/opt/nomad/data/alloc/*/alloc/logs/*.stderr.*", 
-      __path_exclude__  = "/opt/nomad/data/alloc/**/*.fifo"
+      __path_exclude__  = "/opt/nomad/data/alloc/**/*.fifo",
       instance          = constants.hostname,
-      stream            = "stderr"
+      stream            = "stderr",
       job               = "integrations/alloc_exporter",
     },
   ]
