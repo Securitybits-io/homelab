@@ -3,6 +3,10 @@
 
 - name: Install Grafana Alloy
   ansible.builtin.include_tasks: install.yml
+  tags:
+    - install-alloy
 
 - name: Configure Grafana Alloy
   ansible.builtin.include_tasks: configure.yml
+  tags:
+    - configure

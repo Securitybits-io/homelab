@@ -10,10 +10,10 @@
     - common
     - cis
     - ssh
+    - alloy
     - consul
     - docker
     - nomad
-    - alloy
     - nomad_cni_plugins
   tasks:
     - name: Copy folder to /opt/jobs
@@ -70,8 +70,8 @@
     - cis
     - smb-mount
     - ssh
+    - alloy
     - consul
     - docker
     - nomad
-    - alloy
     - nomad_cni_plugins

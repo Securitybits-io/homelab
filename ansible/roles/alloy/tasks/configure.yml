@@ -46,4 +46,5 @@
     daemon_reload: yes
   tags: 
     - install-alloy
+    - configure
     
