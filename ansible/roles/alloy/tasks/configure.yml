@@ -7,6 +7,9 @@
     system: yes
     shell: /bin/false
     create_home: no
+  tags: 
+    - install-alloy
+    
 
 - name: Create Alloy config and data directories
   ansible.builtin.file:
@@ -18,6 +21,9 @@
   loop:
     - "{{ alloy_config_dir }}"
     - "{{ alloy_data_dir }}"
+  tags: 
+    - install-alloy
+    
 
 - name: Template Alloy configuration file
   ansible.builtin.template:
@@ -27,6 +33,10 @@
     group: alloy
     mode: '0640'
   notify: Restart alloy
+  tags: 
+    - install-alloy
+    - configure
+    
 
 - name: Ensure alloy service is enabled and started
   ansible.builtin.systemd:
@@ -34,3 +44,6 @@
     state: started
     enabled: yes
     daemon_reload: yes
+  tags: 
+    - install-alloy
+    

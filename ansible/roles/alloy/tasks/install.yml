@@ -5,18 +5,26 @@
     path: /etc/apt/keyrings
     state: directory
     mode: '0755'
+  tags: 
+    - install-alloy
 
 - name: Add Grafana GPG key
   ansible.builtin.shell:
     cmd: wget -q -O - https://apt.grafana.com/gpg.key | gpg --dearmor > /etc/apt/keyrings/grafana.gpg
     creates: /etc/apt/keyrings/grafana.gpg
   changed_when: false
+  tags: 
+    - install-alloy
+    
 
 - name: Add Grafana Alloy repository
   ansible.builtin.apt_repository:
     repo: "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com stable main"
     state: present
     filename: grafana
+  tags: 
+    - install-alloy
+    
 
 - name: Update apt cache and install alloy
   ansible.builtin.apt:
@@ -24,3 +32,6 @@
     update_cache: yes
     state: present
   notify: Restart alloy
+  tags: 
+    - install-alloy
+    
