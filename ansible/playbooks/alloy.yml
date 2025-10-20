@@ -3,8 +3,3 @@
   become: yes
   roles:
     - alloy
-  handlers:
-    - name: Restart alloy
-      ansible.builtin.systemd:
-        name: alloy
-        state: restarted
