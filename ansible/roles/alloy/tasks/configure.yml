@@ -9,7 +9,15 @@
     create_home: no
   tags: 
     - install-alloy
-    
+
+- name: Add alloy to docker group
+  ansible.builtin.group:
+    name: docker
+    state: present
+    users: alloy
+  tags: 
+    - install-alloy
+  when: "'docker_hosts' in group_names or 'nomad_clients' in group_names"
 
 - name: Create Alloy config and data directories
   ansible.builtin.file:
