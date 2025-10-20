@@ -11,10 +11,11 @@
     - install-alloy
 
 - name: Add alloy to docker group
-  ansible.builtin.group:
-    name: docker
+  ansible.builtin.user:
+    name: alloy
     state: present
-    users: alloy
+    groups: docker
+    append: yes
   tags: 
     - install-alloy
   when: "'docker_hosts' in group_names or 'nomad_clients' in group_names"
