@@ -99,7 +99,6 @@ compactor:
 limits_config:
   retention_period: 30d
   
-
 # ruler:
 #   alertmanager_url: http://localhost:9093
           EOF
