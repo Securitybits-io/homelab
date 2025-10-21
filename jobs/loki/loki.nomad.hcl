@@ -88,6 +88,14 @@ job "loki" {
                   prefix: index_
                   period: 24h
 
+          compactor:
+            working_directory: /loki/compactor
+            shared_store: filesystem
+            retention_enabled: true
+            retention_delete_delay: 1h
+            retention_delete_worker_count: 2
+            retention_period: 30d
+
           # ruler:
           #   alertmanager_url: http://localhost:9093
 
