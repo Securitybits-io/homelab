@@ -62,43 +62,42 @@ job "loki" {
         change_mode = "restart"
 
         data = <<EOF
-          auth_enabled: false
+auth_enabled: false
 
-          server:
-            http_listen_port: {{ env "NOMAD_PORT_http" }}
+server:
+  http_listen_port: {{ env "NOMAD_PORT_http" }}
 
-          common:
-            path_prefix: /loki
-            storage:
-              filesystem:
-                chunks_directory: /loki/chunks
-                rules_directory: /loki/rules
-            replication_factor: 1
-            ring:
-              kvstore:
-                store: inmemory
+common:
+  path_prefix: /loki
+  storage:
+    filesystem:
+      chunks_directory: /loki/chunks
+      rules_directory: /loki/rules
+  replication_factor: 1
+  ring:
+    kvstore:
+      store: inmemory
 
-          schema_config:
-            configs:
-              - from: 2020-10-24
-                store: boltdb-shipper
-                object_store: filesystem
-                schema: v11
-                index:
-                  prefix: index_
-                  period: 24h
+schema_config:
+  configs:
+    - from: 2020-10-24
+      store: boltdb-shipper
+      object_store: filesystem
+      schema: v11
+      index:
+        prefix: index_
+        period: 24h
 
-          compactor:
-            working_directory: /loki/compactor
-            shared_store: filesystem
-            retention_enabled: true
-            retention_delete_delay: 1h
-            retention_delete_worker_count: 2
-            retention_period: 30d
+compactor:
+  working_directory: /loki/compactor
+  shared_store: filesystem
+  retention_enabled: true
+  retention_delete_delay: 1h
+  retention_delete_worker_count: 2
+  retention_period: 30d
 
-          # ruler:
-          #   alertmanager_url: http://localhost:9093
-
+# ruler:
+#   alertmanager_url: http://localhost:9093
           EOF
       }
 
