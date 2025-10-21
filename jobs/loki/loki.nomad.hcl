@@ -92,7 +92,7 @@ compactor:
   working_directory: /loki/compactor
   compaction_interval: 24h
   retention_enabled: true
-  retention_delete_worked_count: 20
+  retention_delete_worker_count: 20
   retention_delete_delay: 1h
   delete_request_store: filesystem
   
