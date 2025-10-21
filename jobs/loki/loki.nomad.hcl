@@ -90,11 +90,15 @@ schema_config:
 
 compactor:
   working_directory: /loki/compactor
-  shared_store: filesystem
+  compaction_interval: 24h
   retention_enabled: true
+  retention_delete_worked_count: 20
   retention_delete_delay: 1h
-  retention_delete_worker_count: 2
+  delete_request_store: filesystem
+  
+limits_config:
   retention_period: 30d
+  
 
 # ruler:
 #   alertmanager_url: http://localhost:9093
