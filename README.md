@@ -43,7 +43,6 @@ export SSH_PASS="pass"
 
 ### Tasks
 #### Nomad Apps to create
-- [ ] lunasea https://www.lunasea.app/
 - [x] authelia
 - [ ] Kometa
 - [ ] PiHole

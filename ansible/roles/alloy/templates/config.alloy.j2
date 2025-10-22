@@ -113,13 +113,32 @@ discovery.docker "linux" {
 // Define a relabeling rule to create a service name from the container name.
 discovery.relabel "logs_integrations_docker" {
   targets = []
-
+  {% if 'docker_hosts' in group_names %}
   rule {
       source_labels = ["__meta_docker_container_name"]
       regex = "/(.*)"
       target_label = "container_name"
   }
+  {% endif %}
+  {% if 'nomad_clients' in group_names %}
+  // 1) Strip leading slash from docker's container name
+  rule {
+    source_labels = ["__meta_docker_container_name"]
+    regex         = "/(.*)"
+    target_label  = "container_name"
+    replacement   = "$1"
+  }
 
+  // 2) If the name ends with "-<UUID>", drop that suffix
+  //    Matches 8-4-4-4-12 hex UUID at the very end of the string.
+  rule {
+    source_labels = ["container_name"]
+    regex         = "^(.*)-([0-9A-Fa-f]{8}(?:-[0-9A-Fa-f]{4}){3}-[0-9A-Fa-f]{12})$"
+    target_label  = "container_name"
+    replacement   = "$1"
+  }
+  {% endif %}
+  
   rule {
     target_label = "instance"
     replacement  = constants.hostname
