@@ -43,7 +43,7 @@ access_control:
       policy: 'one_factor'
     - domain: 'it-tools.securitybits.io'
       policy: 'one_factor'
-    - domain: 'microbin.securityits.io'
+    - domain: 'microbin.securitybits.io'
       policy: 'one_factor'
       
     - domain: '*.securitybits.io'

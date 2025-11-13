@@ -1,0 +1,40 @@
+#cloud-config
+autoinstall:
+  version: 1
+  early-commands:
+      # Stop ssh for packer
+      - sudo systemctl stop ssh
+  locale: en_US
+  keyboard:
+      layout: se
+  packages:
+      - qemu-guest-agent
+      - sudo
+      - apt-transport-https
+  identity:
+      hostname: ubuntu-server
+      username: provision
+      password: '$6$/pNTtyqwNs$sTaHjmQEP2Iprmeae9yEOBYkODxEf2EKU/SFBNuBlH3SVUpnmQOBGXBhwfikS9hoL343vUwWFgctN/Prw/0Oo.'
+  ssh:
+      install-server: yes
+      allow-pw: yes
+  storage:
+      layout:
+          name: direct
+  apt:
+      primary: 
+          - arches: [i386, amd64]
+            uri: "http://ro.archive.ubuntu.com/ubuntu/"
+  user-data:
+      package_upgrade: true
+      disable_root: false
+      timezone: Europe/London
+  late-commands:
+    - sed -i -e 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /target/etc/ssh/sshd_config
+    - sed -i -e 's/^#\?PermitRootLogin.*/PermitRootLogin yes/g' /target/etc/ssh/sshd_config
+    - sed -i -e 's/^#\?DefaultTimeoutStopSec.*/DefaultTimeoutStopSec=30s/g' /target/etc/systemd/system.conf
+    - echo 'provision ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/provision
+    - curtin in-target --target=/target -- chmod 440 /etc/sudoers.d/provision
+    - curtin in-target --target=/target -- apt-get update
+    - curtin in-target --target=/target -- apt-get upgrade --yes
+    - curtin in-target --target=/target -- systemctl enable qemu-guest-agent

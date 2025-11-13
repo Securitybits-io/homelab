@@ -13,6 +13,12 @@ provisioning/var
 .NOTES.md
 deployment/.vault_pass
 
+templates/credentials.auto.tfvars
+templates/terraform.tfstate.backup
+templates/terraform.tfstate
+templates/.terraform*
+templates/.terraform/*
+
 terraform/credentials.auto.tfvars
 terraform/terraform.tfstate.backup
 terraform/terraform.tfstate
