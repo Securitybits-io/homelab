@@ -1,4 +1,4 @@
-resource "proxmox_virtual_environment_file" "cloud_image" {
+resource "proxmox_virtual_environment_file" "ubuntu_2404_cloud_image" {
   # Downloads the image directly to the Proxmox host
   content_type = "import" 
   # Use your storage ID (e.g., 'local' for ISO storage)
@@ -6,16 +6,16 @@ resource "proxmox_virtual_environment_file" "cloud_image" {
   node_name    = var.PVE_NODE
 
   source_file {
-    path      = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
+    path      = "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img"
     # Ensure the downloaded file is named with the correct extension for import
-    file_name = "ubuntu-jammy-cloudinit.qcow2" 
+    file_name = "ubuntu-24.04-cloudinit.qcow2" 
   }
 }
 
-resource "proxmox_virtual_environment_vm" "cloud_template_base" {
+resource "proxmox_virtual_environment_vm" "ubuntu_2404_cloud_template_base" {
   node_name   = var.PVE_NODE
-  vm_id       = 9000
-  name        = "ci-ubuntu-jammy-server-template"
+  vm_id       = 9001
+  name        = "ubuntu-24.04-server-template"
   description = "Base Cloud-init Template for Terraform"
   template    = true
 
@@ -28,7 +28,7 @@ resource "proxmox_virtual_environment_vm" "cloud_template_base" {
     interface    = "scsi0"
     size         = 30
     
-    file_id = proxmox_virtual_environment_file.cloud_image.id 
+    file_id = proxmox_virtual_environment_file.ubuntu_2404_cloud_image.id 
   }
 
   initialization {
@@ -45,5 +45,5 @@ resource "proxmox_virtual_environment_vm" "cloud_template_base" {
     model  = "virtio"
   }
   
-  depends_on = [proxmox_virtual_environment_file.cloud_image]
+  depends_on = [proxmox_virtual_environment_file.ubuntu_2404_cloud_image]
 }
