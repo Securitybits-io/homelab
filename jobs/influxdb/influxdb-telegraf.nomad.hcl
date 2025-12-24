@@ -61,8 +61,8 @@ job "influxdb-telegraf" {
       }
 
       resources {
-        cpu    = 500  # 500 MHz
-        memory = 1024 # 1 GB
+        cpu    = 1000  # 500 MHz
+        memory = 2048 # 1 GB
       }
     }
   }
