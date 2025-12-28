@@ -22,6 +22,7 @@ job "ytdl-youtube" {
       config {
         image   = "jauderho/yt-dlp"
         args    = [
+                "--cookies=/local/youtube-cookies.txt",
                 "--ignore-errors",
                 "--concurrent-fragments=5",
                 "--playlist-reverse",
@@ -59,6 +60,15 @@ job "ytdl-youtube" {
 
       dispatch_payload {
         file = "channels.txt"
+      }
+      
+      template {
+        data = <<EOH
+        {{- with nomadVar "nomad/jobs/ytdl-youtube/auth" -}}
+        {{ .cookies }}
+        {{- end -}}
+        EOH
+        destination = "local/youtube-cookies.txt"
       }
 
       template {

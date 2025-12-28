@@ -22,6 +22,7 @@ job "ytdl-tactube" {
       config {
         image   = "jauderho/yt-dlp"
         args    = [
+                "--cookies=/local/youtube-cookies.txt",
                 "--ignore-errors",
                 "--concurrent-fragments=5",
                 "--playlist-reverse",
@@ -61,6 +62,15 @@ job "ytdl-tactube" {
         file = "channels.txt"
       }
 
+      template {
+        data = <<EOH
+        {{- with nomadVar "nomad/jobs/ytdl-youtube/auth" -}}
+        {{ .cookies }}
+        {{- end -}}
+        EOH
+        destination = "local/youtube-cookies.txt"
+      }
+      
       template {
         data = <<EOH
         {{- with nomadVar "nomad/jobs/ytdl-tactube/channels" }}
