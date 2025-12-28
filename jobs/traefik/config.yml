@@ -13,8 +13,6 @@ entryPoints:
     transport:
       respondingTimeouts:
         readTimeout: 300
-  mqtt:
-    address: 1883
 
 
 http:
