@@ -44,6 +44,12 @@ plugin "docker" {
   }
 }
 
+plugin "raw_exec" {
+  config {
+    enabled = true
+  }
+}
+
 {% else %}
 server {
   enabled          = true
@@ -63,7 +69,14 @@ ui {
   enabled = true
 }
 
+plugin "raw_exec" {
+  config {
+    enabled = true
+  }
+}
+
 {% endif %}
+
 
 {% if use_consul %}
 consul {
