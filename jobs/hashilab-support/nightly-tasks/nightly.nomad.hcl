@@ -1,4 +1,4 @@
-job "nightly-maintenance" {
+job "nightly-tasks" {
   datacenters = ["*"]
   type        = "batch"
 
