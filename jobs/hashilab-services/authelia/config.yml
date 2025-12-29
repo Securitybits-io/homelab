@@ -1,0 +1,70 @@
+theme: 'dark'
+
+server:
+  address: 'tcp4://:9091'
+
+log:
+  level: debug
+  keep_stdout: true
+
+identity_validation:
+  elevated_session:
+    require_second_factor: true
+  reset_password:
+    jwt_lifespan: '5 minutes'
+
+password_policy:
+  zxcvbn:
+    enabled: true
+    min_score: 4
+
+authentication_backend:
+  file:
+    path: '/local/users/users.yml'
+    password:
+      algorithm: 'argon2'
+      argon2:
+        variant: 'argon2id'
+        iterations: 3
+        memory: 65535
+        parallelism: 4
+        key_length: 32
+        salt_length: 16
+
+access_control:
+  default_policy: 'two_factor'
+  rules:
+    - domain: '*'
+      networks:
+        - 10.0.0.0/8
+      policy: 'bypass'
+      
+    - domain: 'cyberchef.securitybits.io'
+      policy: 'one_factor'
+    - domain: 'it-tools.securitybits.io'
+      policy: 'one_factor'
+    - domain: 'microbin.securitybits.io'
+      policy: 'one_factor'
+      
+    - domain: '*.securitybits.io'
+      policy: 'two_factor'
+
+session:
+  name: 'authelia_session'
+  cookies:
+    - domain: 'securitybits.io'
+      authelia_url: 'https://auth.securitybits.io'
+
+regulation:
+  max_retries: 4
+  find_time: 120
+  ban_time: 300
+
+storage:
+  local:
+    path: '/local/db.sqlite3'
+
+notifier:
+  disable_startup_check: false
+  filesystem:
+    filename: '/local/notification.txt'

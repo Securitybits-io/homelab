@@ -1,0 +1,9 @@
+users:
+  christoffer:
+    disabled: false
+    displayname: 'Christoffer Claesson'
+    password: '{{ with nomadVar "nomad/jobs/authelia/users/christoffer" }}{{ .PASSWORD }}{{ end }}'
+    email: '{{ with nomadVar "nomad/jobs/authelia/users/christoffer" }}{{ .EMAIL }}{{ end }}'
+    groups:
+      - 'admins'
+      - 'users'
