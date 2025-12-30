@@ -31,8 +31,8 @@ job "diun" {
 
       template {
         change_mode = "restart"
-        left_delimeter = "[["
-        right_delimeter = "]]"
+        left_delimiter = "[["
+        right_delimiter = "]]"
         destination = "/secrets/diun.yaml"
         data = <<EOH
 
