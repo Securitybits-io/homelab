@@ -42,7 +42,7 @@ job "grafana" {
       driver = "docker"
 
       config {
-        image = "grafana/grafana:main"
+        image = "grafana/grafana:latest"
         ports = ["http"]
 
 
