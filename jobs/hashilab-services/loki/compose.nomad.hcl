@@ -42,7 +42,7 @@ job "loki" {
       driver = "docker"
 
       config {
-        image = "grafana/loki:{{ with nomadVar \"nomad/jobs/loki\" }}{{ .version }}{{ end }}"
+        image = "grafana/loki:${IMAGE_TAG}"
         ports = ["http"]
         args = [
           "-config.file=/local/loki-config.yml",
@@ -55,7 +55,14 @@ job "loki" {
           source = "loki-data"
         }
       }
+      template {
+        data = <<EOH
+      IMAGE_TAG="{{ with nomadVar "nomad/jobs/loki" }}{{ .version }}{{ end }}"
+        EOH
 
+        destination = "local/run.env"
+        env         = true
+      }
       # This template generates the Loki configuration file inside the allocation.
       template {
         destination = "local/loki-config.yml"
