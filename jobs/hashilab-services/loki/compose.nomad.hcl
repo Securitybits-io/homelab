@@ -57,7 +57,7 @@ job "loki" {
       }
       template {
         data = <<EOH
-      IMAGE_TAG="{{ with nomadVar "nomad/jobs/loki" }}{{ .version }}{{ end }}"
+          IMAGE_TAG="{{ with nomadVar "nomad/jobs/loki" }}{{ .version }}{{ end }}"
         EOH
 
         destination = "local/run.env"
