@@ -42,7 +42,7 @@ job "loki" {
       driver = "docker"
 
       config {
-        image = "grafana/loki:2.9.5"
+        image = "grafana/loki:{{ with nomadVar \"nomad/jobs/loki\" }}{{ .version }}{{ end }}"
         ports = ["http"]
         args = [
           "-config.file=/local/loki-config.yml",
