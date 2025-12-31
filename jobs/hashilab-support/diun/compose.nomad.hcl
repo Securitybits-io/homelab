@@ -14,7 +14,7 @@ job "diun" {
       config {
         image = "crazymax/diun:latest"
 
-        args = ["server",
+        args = ["serve",
                 "--config", "/secrets/diun.yaml"
         ]
       }
@@ -56,7 +56,7 @@ watch:
 
 
 notif:
-  discord: #CHANGE BEFORE COMMIT
+  discord:
     webhookURL: [[ .webhookURL ]]
     renderEmbeds: true
     renderFields: true
