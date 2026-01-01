@@ -56,7 +56,6 @@ job "cyberchef" {
         destination = "local/.env"
         env         = true
       }
-
     }
   }
 }
