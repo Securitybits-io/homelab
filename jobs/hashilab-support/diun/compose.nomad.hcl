@@ -12,7 +12,7 @@ job "diun" {
       driver = "docker"
 
       config {
-        image = "crazymax/diun:latest"
+        image = "crazymax/diun:${IMAGE_TAG}"
 
         args = ["serve",
                 "--config", "/secrets/diun.yaml"
@@ -27,6 +27,17 @@ job "diun" {
       resources {
         memory = 64
         cpu    = 100
+      }
+
+      template {
+        data = <<EOH
+        {{ with nomadVar "nomad/jobs/diun" }}
+          IMAGE_TAG="{{ .IMAGE_TAG }}"
+        {{ end }}
+        EOH
+
+        destination = "local/.env"
+        env         = true
       }
 
       template {
