@@ -8,7 +8,7 @@ job "csi-nfs" {
       driver = "docker"
 
       config {
-        image = "registry.k8s.io/sig-storage/nfsplugin:v4.11.0"
+        image = "registry.k8s.io/sig-storage/nfsplugin:v${IMAGE_TAG}"
         args = [
           "--v=5",
           "--nodeid=${attr.unique.hostname}",
@@ -17,15 +17,23 @@ job "csi-nfs" {
         ]
         privileged = true
       }
-      
-      env {
-        TZ = "Europe/Stockholm"
-      }
 
       csi_plugin {
         id        = "nfs"
         type      = "node"
         mount_dir = "/csi"
+      }
+      
+      template {
+        data = <<EOH
+        {{ with nomadVar "nomad/jobs/csi-nfs" }}
+          IMAGE_TAG="{{ .plugin-version }}"
+          TZ = "Europe/Stockholm"
+        {{ end }}
+        EOH
+
+        destination = "local/run.env"
+        env         = true
       }
 
       resources {
@@ -46,7 +54,7 @@ job "csi-nfs" {
       driver = "docker"
 
       config {
-        image = "registry.k8s.io/sig-storage/nfsplugin:v4.11.0"
+        image = "registry.k8s.io/sig-storage/nfsplugin:vv${IMAGE_TAG}"
         args = [
           "--v=5",
           "--nodeid=${attr.unique.hostname}",
@@ -55,8 +63,16 @@ job "csi-nfs" {
         ]
       }
       
-      env {
-        TZ = "Europe/Stockholm"
+      template {
+        data = <<EOH
+        {{ with nomadVar "nomad/jobs/csi-nfs" }}
+          IMAGE_TAG="{{ .controller-version }}"
+          TZ = "Europe/Stockholm"
+        {{ end }}
+        EOH
+
+        destination = "local/run.env"
+        env         = true
       }
 
       csi_plugin {
