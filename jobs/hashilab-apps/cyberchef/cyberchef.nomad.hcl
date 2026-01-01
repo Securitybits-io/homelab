@@ -42,9 +42,21 @@ job "cyberchef" {
     task "cyberchef" {
       driver = "docker"
       config {
-        image = "mpepping/cyberchef"
+        image = "mpepping/cyberchef:v${IMAGE_TAG}"
         ports = ["http"]
       }
+
+      template {
+        data = <<EOH
+        {{ with nomadVar "nomad/jobs/cyberchef/env" }}
+          IMAGE_TAG="{{ .IMAGE_TAG }}"
+        {{ end }}
+        EOH
+
+        destination = "local/.env"
+        env         = true
+      }
+
     }
   }
 }
