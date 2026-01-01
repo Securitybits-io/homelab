@@ -53,7 +53,7 @@ job "traefik" {
     task "traefik" {
       driver = "docker"
       config {
-        image = "traefik:${IMAGE_TAG}"
+        image = "traefik:v${IMAGE_TAG}"
         ports = ["admin", "http","https"]
         args = [
           "--api.dashboard=true",
