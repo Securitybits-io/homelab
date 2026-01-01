@@ -53,7 +53,7 @@ job "traefik" {
     task "traefik" {
       driver = "docker"
       config {
-        image = "traefik:3.3.1"
+        image = "traefik:${IMAGE_TAG}"
         ports = ["admin", "http","https"]
         args = [
           "--api.dashboard=true",
@@ -69,6 +69,16 @@ job "traefik" {
           "--providers.file.filename=/local/config.yml",
           "--providers.file.watch=true"
         ]
+      }
+
+      template {
+        data = <<EOH
+          IMAGE_TAG="{{ with nomadVar "nomad/jobs/traefik/env" }}{{ .IMAGE_TAG }}{{ end }}"
+        EOH
+
+        destination = "local/.env"
+        change_mode = "restart"
+        env         = true
       }
 
       template {
