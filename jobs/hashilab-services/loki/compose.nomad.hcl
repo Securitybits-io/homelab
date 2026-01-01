@@ -62,8 +62,6 @@ job "loki" {
 
         destination = "local/run.env"
         env         = true
-        change_mode = "signal"
-        change_signal = "SIGHUP"
       }
       # This template generates the Loki configuration file inside the allocation.
       template {
