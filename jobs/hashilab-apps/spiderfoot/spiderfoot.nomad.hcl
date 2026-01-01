@@ -41,8 +41,19 @@ job "spiderfoot" {
     task "spiderfoot" {
       driver = "docker"
       config {
-        image = "ctdc/spiderfoot"
+        image = "ctdc/spiderfoot:v${IMAGE_TAG}"
         ports = ["http"]
+      }
+
+            template {
+        data = <<EOH
+        {{ with nomadVar "nomad/jobs/spiderfoot/env" }}
+          IMAGE_TAG="{{ .IMAGE_TAG }}"
+        {{ end }}
+        EOH
+
+        destination = "local/.env"
+        env         = true
       }
     }
   }

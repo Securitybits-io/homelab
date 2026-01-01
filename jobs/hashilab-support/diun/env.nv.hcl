@@ -1,5 +1,5 @@
 
-path = "nomad/jobs/diun"
+path = "nomad/jobs/diun/env"
 namespace = "default"
 
 items {

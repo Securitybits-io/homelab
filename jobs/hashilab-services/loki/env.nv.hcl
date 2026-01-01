@@ -1,5 +1,5 @@
 
-path = "nomad/jobs/loki"
+path = "nomad/jobs/loki/env"
 namespace = "default"
 
 items {

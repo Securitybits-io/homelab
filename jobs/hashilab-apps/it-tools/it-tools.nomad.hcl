@@ -41,8 +41,19 @@ job "it-tools" {
     task "it-tools" {
       driver = "docker"
       config {
-        image = "corentinth/it-tools"
+        image = "corentinth/it-tools:${IMAGE_TAG}"
         ports = ["http"]
+      }
+
+      template {
+        data = <<EOH
+        {{ with nomadVar "nomad/jobs/it-tools/env" }}
+          IMAGE_TAG="{{ .IMAGE_TAG }}"
+        {{ end }}
+        EOH
+
+        destination = "local/.env"
+        env         = true
       }
     }
   }

@@ -31,7 +31,7 @@ job "diun" {
 
       template {
         data = <<EOH
-        {{ with nomadVar "nomad/jobs/diun" }}
+        {{ with nomadVar "nomad/jobs/diun/env" }}
           IMAGE_TAG="{{ .IMAGE_TAG }}"
         {{ end }}
         EOH

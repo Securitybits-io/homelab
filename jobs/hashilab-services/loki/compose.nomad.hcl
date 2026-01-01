@@ -57,10 +57,10 @@ job "loki" {
       }
       template {
         data = <<EOH
-          IMAGE_TAG="{{ with nomadVar "nomad/jobs/loki" }}{{ .version }}{{ end }}"
+          IMAGE_TAG="{{ with nomadVar "nomad/jobs/loki/env" }}{{ .version }}{{ end }}"
         EOH
 
-        destination = "local/run.env"
+        destination = "local/.env"
         env         = true
       }
       # This template generates the Loki configuration file inside the allocation.

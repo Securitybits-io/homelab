@@ -41,8 +41,19 @@ job "microbin" {
     task "microbin" {
       driver = "docker"
       config {
-        image = "danielszabo99/microbin"
+        image = "danielszabo99/microbin:${IMAGE_TAG}"
         ports = ["http"]
+      }
+
+      template {
+        data = <<EOH
+        {{ with nomadVar "nomad/jobs/microbin/env" }}
+          IMAGE_TAG="{{ .IMAGE_TAG }}"
+        {{ end }}
+        EOH
+
+        destination = "local/.env"
+        env         = true
       }
     }
   }
