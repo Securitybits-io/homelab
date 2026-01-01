@@ -54,7 +54,7 @@ job "csi-nfs" {
       driver = "docker"
 
       config {
-        image = "registry.k8s.io/sig-storage/nfsplugin:vv${IMAGE_TAG}"
+        image = "registry.k8s.io/sig-storage/nfsplugin:v${IMAGE_TAG}"
         args = [
           "--v=5",
           "--nodeid=${attr.unique.hostname}",
