@@ -2,5 +2,5 @@ path = "nomad/jobs/tdarr/env"
 namespace = "default"
 
 items {
-  IMAGE_TAG = "2.58.02"
+  IMAGE_TAG = "2.48.01"
 }
