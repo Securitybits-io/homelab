@@ -53,7 +53,7 @@ job "transmission" {
     task "transmission" {
       driver = "docker"
       config {
-        image = "haugene/transmission-openvpn"
+        image = "haugene/transmission-openvpn:${IMAGE_TAG}"
         ports = [ "http" ]
         cap_add = [ "NET_ADMIN" ]
         volumes = [
@@ -90,6 +90,16 @@ job "transmission" {
         TRANSMISSION_DOWNLOAD_QUEUE_SIZE  = 200
         TRANSMISSION_DOWNLOAD_DIR     = "/downloads/complete"
         TRANSMISSION_INCOMPLETE_DIR   = "/downloads/incomplete"
+      }
+
+      template {
+        data = <<EOH
+        {{- with nomadVar "nomad/jobs/transmission/env" }}
+        IMAGE_TAG={{ .IMAGE_TAG }}
+        {{- end }}
+        EOH
+        destination = "local/.env"
+        env = true
       }
 
       template {

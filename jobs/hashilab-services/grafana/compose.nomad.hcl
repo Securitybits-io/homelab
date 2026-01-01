@@ -42,7 +42,7 @@ job "grafana" {
       driver = "docker"
 
       config {
-        image = "grafana/grafana:latest"
+        image = "grafana/grafana:${IMAGE_TAG}"
         ports = ["http"]
 
 
@@ -55,6 +55,16 @@ job "grafana" {
         volumes = [
           "local/provisioning:/etc/grafana/provisioning",
         ]
+      }
+
+      template {
+        data = <<EOH
+        {{ with nomadVar "nomad/jobs/grafana/env" }}
+          IMAGE_TAG={{ .IMAGE_TAG }}
+        {{ end }}
+        EOH
+        destination = "local/.env"
+        env         = true
       }
 
       # This template fetches secrets and sets Grafana's main configuration

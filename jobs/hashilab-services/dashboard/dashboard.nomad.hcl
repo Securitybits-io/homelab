@@ -42,7 +42,7 @@ job "dashboard" {
       driver = "docker"
 
       config {
-        image = "phntxx/dashboard"
+        image = "phntxx/dashboard:latest"
         ports = ["http"]
         volumes = [
           "local/data:/app/data"

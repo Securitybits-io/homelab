@@ -135,6 +135,16 @@ job "tdarr-nodes" {
         nodeName              = "tdarr-node-${NOMAD_ALLOC_INDEX}"
         auth                  = "false"
       }
+      
+      template {
+        data = <<EOH
+        {{- with nomadVar "nomad/jobs/tdarr-nodes/env" }}
+        IMAGE_TAG={{ .IMAGE_TAG }}
+        {{- end }}
+        EOH
+        destination = "local/.env"
+        env = true
+      }
 
       resources {
         cpu    = 1000

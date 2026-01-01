@@ -56,7 +56,7 @@ job "tdarr" {
       driver = "docker"
 
       config {
-        image = "ghcr.io/haveagitgat/tdarr:2.48.01"
+        image = "ghcr.io/haveagitgat/tdarr:${IMAGE_TAG}"
         ports = ["web", "node"]
 
         # Use a Docker-managed local volume for configs, logs, and server data.
@@ -152,6 +152,16 @@ job "tdarr" {
         ffmpegVersion         = "7"
         nodeName              = "tdarr-server"
         auth                  = "false"
+      }
+      
+      template {
+        data = <<EOH
+        {{- with nomadVar "nomad/jobs/tdarr/env" }}
+        IMAGE_TAG={{ .IMAGE_TAG }}
+        {{- end }}
+        EOH
+        destination = "local/.env"
+        env = true
       }
 
       resources {

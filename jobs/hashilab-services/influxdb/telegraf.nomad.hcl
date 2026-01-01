@@ -16,7 +16,7 @@ job "telegraf" {
       driver = "docker"
 
       config {
-        image = "telegraf:1.29"
+        image = "telegraf:${IMAGE_TAG}"
 
         volumes = [
           "local/telegraf.conf:/etc/telegraf/telegraf.conf:ro",
@@ -28,6 +28,16 @@ job "telegraf" {
           source = "/var/run/docker.sock"
           target = "/var/run/docker.sock"
         }
+      }
+
+      template {
+        data = <<EOH
+          IMAGE_TAG="{{ with nomadVar "nomad/jobs/telegraf/env" }}{{ .IMAGE_TAG }}{{ end }}"
+        EOH
+
+        destination = "local/.env"
+        change_mode = "restart"
+        env         = true
       }
 
       template {
