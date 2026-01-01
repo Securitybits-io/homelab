@@ -26,8 +26,8 @@ job "csi-nfs" {
       
       template {
         data = <<EOH
-        {{ with nomadVar "nomad/jobs/csi-nfs" }}
-          IMAGE_TAG="{{ .plugin-version }}"
+        {{ with nomadVar "nomad/jobs/csi-nfs/plugin" }}
+          IMAGE_TAG="{{ .IMAGE_TAG }}"
           TZ = "Europe/Stockholm"
         {{ end }}
         EOH
@@ -65,8 +65,8 @@ job "csi-nfs" {
       
       template {
         data = <<EOH
-        {{ with nomadVar "nomad/jobs/csi-nfs" }}
-          IMAGE_TAG="{{ .controller-version }}"
+        {{ with nomadVar "nomad/jobs/csi-nfs/controller" }}
+          IMAGE_TAG="{{ .IMAGE_TAG }}"
           TZ = "Europe/Stockholm"
         {{ end }}
         EOH
