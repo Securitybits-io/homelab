@@ -51,7 +51,7 @@ job "authelia" {
       driver = "docker"
 
       config {
-        image = "authelia/authelia:latest"
+        image = "authelia/authelia:${IMAGE_TAG}"
         ports = ["authelia"]
         # mount {
         #   target = "/authelia"
@@ -76,6 +76,16 @@ job "authelia" {
         AUTHELIA_JWT_SECRET_FILE             = "/local/jwt.secret"
         AUTHELIA_SESSION_SECRET_FILE         = "/local/session.secret"
         AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE = "/local/storage.secret"
+      }
+
+      template {
+        data = <<EOH
+          IMAGE_TAG="{{ with nomadVar "nomad/jobs/authelia/env" }}{{ .IMAGE_TAG }}{{ end }}"
+        EOH
+
+        destination = "local/.env"
+        change_mode = "restart"
+        env         = true
       }
 
       template {
