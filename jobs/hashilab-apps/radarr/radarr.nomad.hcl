@@ -65,7 +65,7 @@ job "radarr" {
       }
 
       config {
-        image = "linuxserver/radarr:latest"
+        image = "linuxserver/radarr:${IMAGE_TAG}"
         ports = ["radarr"]
         
         mount {
@@ -125,6 +125,16 @@ job "radarr" {
             }
           }
         }
+      }
+
+      template {
+        data        = <<-EOH
+        {{- with nomadVar "nomad/jobs/radarr/env" }}
+        IMAGE_TAG="{{ .IMAGE_TAG }}"
+        {{- end }}
+        EOH
+        destination = "local/.env"
+        env         = true
       }
 
       resources {

@@ -65,7 +65,7 @@ job "sonarr" {
       }
 
       config {
-        image = "linuxserver/sonarr:latest"
+        image = "linuxserver/sonarr:${IMAGE_TAG}"
         ports = ["sonarr"]
 
         mount {
@@ -125,6 +125,16 @@ job "sonarr" {
             }
           }
         }
+      }
+      
+      template {
+        data        = <<-EOH
+        {{- with nomadVar "nomad/jobs/sonarr/env" }}
+        IMAGE_TAG="{{ .IMAGE_TAG }}"
+        {{- end }}
+        EOH
+        destination = "local/.env"
+        env         = true
       }
 
       resources {
