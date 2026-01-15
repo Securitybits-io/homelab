@@ -17,14 +17,14 @@ entryPoints:
 
 http:
   routers:
-    immich:
-      rule: Host(`immich.securitybits.io`)
-      entrypoints: websecure
-      service: immich
-      tls:
-        certresolver: letsencrypt
-      middlewares:
-        - limitBodySize@file
+    # immich:
+    #   rule: Host(`immich.securitybits.io`)
+    #   entrypoints: websecure
+    #   service: immich
+    #   tls:
+    #     certresolver: letsencrypt
+    #   middlewares:
+    #     - limitBodySize@file
 
     nomad:
       rule: Host(`nomad.securitybits.io`)
@@ -54,10 +54,10 @@ http:
         - ip-whitelist
 
   services:
-    immich:
-      loadBalancer:
-        servers:
-          - url: "http://10.0.50.125:2283"
+    # immich:
+    #   loadBalancer:
+    #     servers:
+    #       - url: "http://10.0.50.125:2283"
 
     nomad:
       loadBalancer:
