@@ -1,0 +1,19 @@
+plugin_id   = "nfs"
+type        = "csi"
+id          = "immich-cache"
+name        = "Immich Cache"
+
+capability {
+	access_mode = "single-node-writer"
+  attachment_mode = "file-system"
+}
+
+context {
+  server = "10.0.11.241"
+  share = "/Securitybits.Systems/Immich/cache"
+}
+
+mount_options {
+  fs_type = "nfs"
+  mount_flags = ["hard", "nolock", "nfsvers=3"]
+}

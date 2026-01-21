@@ -1,0 +1,20 @@
+plugin_id   = "nfs"
+type        = "csi"
+id          = "immich-db"
+name        = "Immich DB"
+
+capability {
+	access_mode = "single-node-writer"
+	attachment_mode = "file-system"
+}
+
+context {
+  server = "10.0.11.241"
+  share = "/Securitybits.Systems/Immich/postgres"
+  mountPermissions = "755"
+}
+
+mount_options {
+  fs_type = "nfs"
+  mount_flags = [ "nolock", "hard", "sync" ]
+}
