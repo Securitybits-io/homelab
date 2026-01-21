@@ -58,13 +58,13 @@
           {
             "name": "Tautulli",
             "displayURL": "Tautulli.Securitybits.local",
-            "url": "http://10.0.40.123:8181/home",
+            "url": "Tautulli.Securitybits.io",
             "icon": "bar_chart"
           },
           {
             "name": "Grafana",
-            "displayURL": "Dash.Securitybits.io",
-            "url": "https://dash.securitybits.io",
+            "displayURL": "Grafana.Securitybits.io",
+            "url": "https://grafana.securitybits.io",
             "icon": "query_stats"
           },
           {
@@ -164,6 +164,12 @@
         "name": "Microbin",
         "displayURL": "microbin.securityibits.io",
         "url": "https://microbin.securitybits.io",
+        "icon": "code"
+      },
+      {
+        "name": "Omnitools",
+        "displayURL": "omnitools.securityibits.io",
+        "url": "https://omnitools.securitybits.io",
         "icon": "code"
       }
     ]
