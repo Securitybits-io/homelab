@@ -34,17 +34,18 @@ authentication_backend:
 access_control:
   default_policy: 'two_factor'
   rules:
+      
+    - domain: 
+        - 'cyberchef.securitybits.io'
+        - 'it-tools.securitybits.io'
+        - 'microbin.securitybits.io'
+        - 'omnitools.securitybits.io'
+      policy: 'one_factor'
+      
     - domain: '*'
       networks:
         - 10.0.0.0/8
       policy: 'bypass'
-      
-    - domain: 'cyberchef.securitybits.io'
-      policy: 'one_factor'
-    - domain: 'it-tools.securitybits.io'
-      policy: 'one_factor'
-    - domain: 'microbin.securitybits.io'
-      policy: 'one_factor'
       
     - domain: '*.securitybits.io'
       policy: 'two_factor'
