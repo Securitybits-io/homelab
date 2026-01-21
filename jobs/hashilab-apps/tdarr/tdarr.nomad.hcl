@@ -57,6 +57,7 @@ job "tdarr" {
 
       config {
         image = "ghcr.io/haveagitgat/tdarr:${IMAGE_TAG}"
+        image_pull_timeout = "15m"
         ports = ["web", "node"]
 
         # Use a Docker-managed local volume for configs, logs, and server data.

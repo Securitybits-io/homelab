@@ -29,6 +29,7 @@ job "tdarr-nodes" {
 
       config {
         image = "ghcr.io/haveagitgat/tdarr_node:2.47.01"
+        image_pull_timeout = "15m"
 
         mount {
           type = "bind"
