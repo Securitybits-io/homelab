@@ -5,6 +5,12 @@ job "immich" {
   group "server" {
     count = 1
 
+    constraint {
+      attribute = "${meta.node_roles}"
+      value     = "web"
+      operator  = "set_contains_any"
+    }
+
     network {
       mode = "bridge"
 
@@ -145,6 +151,11 @@ job "immich" {
     }
 
     task "immich-machine-learning" {
+      # lifecycle {
+      #   hook = "prestart"
+      #   sidecar = true
+      # }
+
       driver = "docker"
       config {
         image  = "ghcr.io/immich-app/immich-machine-learning:release"
@@ -158,7 +169,7 @@ job "immich" {
         TZ = "Europe/Stockholm"
         MACHINE_LEARNING_CACHE_FOLDER    = "${NOMAD_ALLOC_DIR}/data/cache"
         MACHINE_LEARNING_MODEL_TTL       = 0 # don't unload the model cache, re-fetching slows down queries a lot
-        MACHINE_LEARNING_REQUEST_THREADS = 4
+        MACHINE_LEARNING_REQUEST_THREADS = 2
         # add your models from Settings -> Machine Learning here
         MACHINE_LEARNING_PRELOAD__CLIP   = "ViT-B-16-SigLIP-256__webli"
         MACHINE_LEARNING_PRELOAD__FACIAL_RECOGNITION = "buffalo_l"
@@ -185,6 +196,13 @@ job "immich" {
   }
 
   group "backend" {
+
+    # constraint {
+    #   attribute = "${meta.node_class}"
+    #   value     = "private"
+    #   operator  = "set_contains_any"
+    # }
+
     ephemeral_disk {
       size = 300
       migrate = true
@@ -264,9 +282,14 @@ job "immich" {
           EOH
       }
 
+      # lifecycle {
+      #   hook = "prestart"
+      #   sidecar = true
+      # }
+
       resources {
-        memory = 200
-        cpu    = 300
+        memory = 1024
+        cpu    = 1024
       } 
     }
 
@@ -312,9 +335,14 @@ job "immich" {
         perms = 400
       }
 
+      # lifecycle {
+      #   hook = "prestart"
+      #   sidecar = true
+      # }
+
       resources {
-        cpu    = 2000
-        memory = 1024
+        cpu    = 2048
+        memory = 2048
       }
     }
 

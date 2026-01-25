@@ -39,7 +39,6 @@ items {
   LowByteProductions = "https://www.youtube.com/@LowByteProductions/videos"
   FablesFells = "https://www.youtube.com/@FablesandFells/videos"
   HarmenHoek = "https://www.youtube.com/@HarmenHoek/videos"
-  DEFCONConference = "https://www.youtube.com/@DEFCONConference/videos"
   OlleNilsson = "https://www.youtube.com/@ollenilssonen/videos"
   TheNorthFace = "https://www.youtube.com/@TheNorthFace/videos"
   CourtneyEveWhite = "https://www.youtube.com/@courtneyevewhite/videos"
