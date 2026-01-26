@@ -44,6 +44,7 @@ job "grafana" {
       config {
         image = "grafana/grafana:${IMAGE_TAG}"
         ports = ["http"]
+        image_pull_timeout = "15m"
 
 
         mount {
