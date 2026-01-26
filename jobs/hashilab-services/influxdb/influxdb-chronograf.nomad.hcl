@@ -1,4 +1,4 @@
-job "influxdb-chronograf" {
+job "chronograf" {
   datacenters = ["*"]
   type        = "service"
 
@@ -18,7 +18,7 @@ job "influxdb-chronograf" {
     }
 
     service {
-      name     = "influxdb-chronograf"
+      name     = "chronograf"
       port     = "http"
       provider = "consul"
 
