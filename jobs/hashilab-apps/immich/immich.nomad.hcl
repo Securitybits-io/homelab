@@ -129,8 +129,9 @@ job "immich" {
 
     service {
       name = "immich-ml"
+      task = "immich-machine-learning"
       port = 3003
-      
+
       check {
         type     = "http"
         path     = "/ping"
@@ -141,6 +142,7 @@ job "immich" {
 
       connect {
         sidecar_service {}
+
         sidecar_task {
           resources {
             cpu    = 48
@@ -151,11 +153,7 @@ job "immich" {
     }
 
     task "immich-machine-learning" {
-      # lifecycle {
-      #   hook = "prestart"
-      #   sidecar = true
-      # }
-
+      
       driver = "docker"
       config {
         image  = "ghcr.io/immich-app/immich-machine-learning:release"
@@ -218,13 +216,13 @@ job "immich" {
       task = "valkey"
       port = 6379
 
-      # check {
-      #   type     = "script"
-      #   command  = "sh"
-      #   args     = ["-c", "redis-cli ping || exit 1"]
-      #   interval = "10s"
-      #   timeout  = "2s"
-      # }
+      check {
+        type     = "script"
+        command  = "sh"
+        args     = ["-c", "valkey-cli ping || exit 1"]
+        interval = "10s"
+        timeout  = "2s"
+      }
 
       connect {
         sidecar_service {}
@@ -243,13 +241,13 @@ job "immich" {
       task = "database"
       port = 5432
       
-      # check {
-      #   type     = "script"
-      #   command  = "sh"
-      #   args     = ["-c", "psql -U $POSTGRES_USER -d immich  -c 'SELECT 1' || exit 1"]
-      #   interval = "10s"
-      #   timeout  = "2s"
-      # }
+      check {
+        type     = "script"
+        command  = "sh"
+        args     = ["-c", "psql -U $POSTGRES_USER -d $POSTGRES_DB  -c 'SELECT 1' || exit 1"]
+        interval = "10s"
+        timeout  = "2s"
+      }
 
       connect {
         sidecar_service {}
@@ -354,7 +352,3 @@ job "immich" {
     }
   }
 }
-
-
-
-    
