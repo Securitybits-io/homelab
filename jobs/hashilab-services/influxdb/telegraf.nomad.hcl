@@ -17,6 +17,7 @@ job "telegraf" {
 
       config {
         image = "telegraf:${IMAGE_TAG}"
+        image_pull_timeout = "10m"
 
         volumes = [
           "local/telegraf.conf:/etc/telegraf/telegraf.conf:ro",
