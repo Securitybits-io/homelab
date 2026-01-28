@@ -55,8 +55,8 @@ job "immich" {
 
         sidecar_task {
           resources {
-            cpu = 48
-            memory = 50
+            cpu = 64
+            memory = 128
           }
         }
       }
@@ -68,9 +68,9 @@ job "immich" {
       driver = "docker"
       
       config {
-        image  = "ghcr.io/immich-app/immich-server:release"
+        image  = "ghcr.io/immich-app/immich-server:v${IMAGE_TAG}"
         ports = ["http"]
-        image_pull_timeout = "15m"
+        image_pull_timeout = "30m"
       }
 
       env {
@@ -86,8 +86,18 @@ job "immich" {
       }
 
       resources {
-        cpu    = 2048
-        memory = 2048
+        cpu    = 3072
+        memory = 3072
+      }
+
+      template {
+        data = <<EOH
+          IMAGE_TAG="{{ with nomadVar "nomad/jobs/immich/env" }}{{ .IMMICH_SERVER_IMAGE }}{{ end }}"
+        EOH
+
+        destination = "local/.env"
+        change_mode = "restart"
+        env         = true
       }
 
       template {
@@ -145,8 +155,8 @@ job "immich" {
 
         sidecar_task {
           resources {
-            cpu    = 48
-            memory = 50
+            cpu    = 64
+            memory = 128
           }
         }
       }
@@ -156,8 +166,8 @@ job "immich" {
       
       driver = "docker"
       config {
-        image  = "ghcr.io/immich-app/immich-machine-learning:release"
-        image_pull_timeout = "15m"
+        image  = "ghcr.io/immich-app/immich-machine-learning:v${IMAGE_TAG}"
+        image_pull_timeout = "30m"
         #force_pull = true
       }
 
@@ -165,7 +175,8 @@ job "immich" {
         TMPDIR       = "/tmp"
         MPLCONFIGDIR = "/local/mplconfig"
         TZ = "Europe/Stockholm"
-        MACHINE_LEARNING_CACHE_FOLDER    = "${NOMAD_ALLOC_DIR}/data/cache"
+        #MACHINE_LEARNING_CACHE_FOLDER    = "${NOMAD_ALLOC_DIR}/data/cache"
+        MACHINE_LEARNING_CACHE_FOLDER    = "/cache"
         MACHINE_LEARNING_MODEL_TTL       = 0 # don't unload the model cache, re-fetching slows down queries a lot
         MACHINE_LEARNING_REQUEST_THREADS = 2
         # add your models from Settings -> Machine Learning here
@@ -173,9 +184,19 @@ job "immich" {
         MACHINE_LEARNING_PRELOAD__FACIAL_RECOGNITION = "buffalo_l"
       }
       
+      template {
+        data = <<EOH
+          IMAGE_TAG="{{ with nomadVar "nomad/jobs/immich/env" }}{{ .IMMICH_MACHINE_LEARNING_IMAGE }}{{ end }}"
+        EOH
+
+        destination = "local/.env"
+        change_mode = "restart"
+        env         = true
+      }
+
       resources {
-        memory = 2048
-        cpu    = 2048
+        memory = 3072
+        cpu    = 3072
       }
 
       volume_mount{
@@ -221,7 +242,7 @@ job "immich" {
         command  = "sh"
         args     = ["-c", "valkey-cli ping || exit 1"]
         interval = "10s"
-        timeout  = "2s"
+        timeout  = "5s"
       }
 
       connect {
@@ -229,7 +250,7 @@ job "immich" {
         sidecar_task {
           resources {
             cpu    = 256
-            memory = 50
+            memory = 256
           }
         }
       }
@@ -246,15 +267,15 @@ job "immich" {
         command  = "sh"
         args     = ["-c", "psql -U $POSTGRES_USER -d $POSTGRES_DB  -c 'SELECT 1' || exit 1"]
         interval = "10s"
-        timeout  = "2s"
+        timeout  = "5s"
       }
 
       connect {
         sidecar_service {}
         sidecar_task {
           resources {
-            cpu    = 48
-            memory = 50
+            cpu    = 64
+            memory = 128
           }
         }
       }
@@ -264,12 +285,22 @@ job "immich" {
       driver = "docker"
       
       config {
-        image  = "valkey/valkey:8.1"
+        image  = "valkey/valkey:${IMAGE_TAG}"
         image_pull_timeout = "15m"
         #force_pull = true
         args = ["/local/valkey.conf"]
       }
 
+      template {
+        data = <<EOH
+          IMAGE_TAG="{{ with nomadVar "nomad/jobs/immich/env" }}{{ .VALKEY_IMAGE }}{{ end }}"
+        EOH
+
+        destination = "local/.env"
+        change_mode = "restart"
+        env         = true
+      }
+      
       template {
         destination = "local/valkey.conf"
         data = <<EOH
@@ -305,7 +336,7 @@ job "immich" {
       }
 
       config {
-        image  = "ghcr.io/immich-app/postgres:14-vectorchord0.4.3"
+        image  = "ghcr.io/immich-app/postgres:${IMAGE_TAG}"
         image_pull_timeout = "15m"
         #force_pull = true
       }
@@ -317,6 +348,16 @@ job "immich" {
 
       env {
         TZ = "Europe/Stockholm"
+      }
+
+      template {
+        data = <<EOH
+          IMAGE_TAG="{{ with nomadVar "nomad/jobs/immich/env" }}{{ .POSTGRES_IMAGE }}{{ end }}"
+        EOH
+
+        destination = "local/.env"
+        change_mode = "restart"
+        env         = true
       }
 
       template {
