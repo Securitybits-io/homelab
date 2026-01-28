@@ -7,7 +7,7 @@ job "grafana" {
 
     constraint {
       attribute = "${meta.node_roles}"
-      value     = "management"
+      value     = "web"
       operator  = "set_contains_any"
     }
 
