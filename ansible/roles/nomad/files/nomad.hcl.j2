@@ -87,3 +87,10 @@ consul {
   checks_use_advertise  = true
 }
 {% endif %}
+
+telemetry {
+  publish_allocation_metrics = true
+  publish_node_metrics       = true
+  prometheus_metrics         = true
+  collection_interval        = "1s"
+}
