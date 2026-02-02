@@ -117,6 +117,18 @@ job "grafana" {
           EOF
       }
 
+      template {
+        destination = "local/provisioning/datasources/prometheus.yml"
+        data = <<EOF
+          apiVersion: 1
+          datasources:
+            - name: Prometheus
+              type: prometheus
+              access: proxy
+              url: http://{{ range service "prometheus" }}{{ .Address }}:{{ .Port }}{{ end }}
+          EOF
+      }
+
       resources {
         cpu    = 500  # 500 MHz
         memory = 512 # 512 MB
