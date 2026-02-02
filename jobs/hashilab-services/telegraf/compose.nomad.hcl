@@ -1,12 +1,8 @@
 job "telegraf" {
   datacenters = ["*"]
-  type = "system"
+  type = "service"
 
   group "telegraf" {
-    network {
-      mode = "host"
-    }
-
     update {
       max_parallel = 1
       auto_revert  = true
@@ -77,22 +73,7 @@ job "telegraf" {
           {{ end }}
 
           # == INPUTS ==
-          # CPU metrics
-          [[inputs.cpu]]
-            percpu = true
-            totalcpu = true
-            collect_cpu_time = false
-            report_active = false
-
-          # System memory metrics
-          [[inputs.mem]]
-
-          # Disk I/O metrics
-          [[inputs.diskio]]
-
-          # Docker container metrics
-          [[inputs.docker]]
-            endpoint = "unix:///var/run/docker.sock"
+          
         EOF
       }
 
