@@ -1,0 +1,21 @@
+plugin_id   = "nfs"
+type        = "csi"
+id          = "prometheus-data"
+name        = "Prometheus Data"
+
+capability {
+	access_mode = "multi-node-multi-writer" # multi-node, both api server and worker tasks
+	attachment_mode = "file-system"
+}
+
+context {
+  server = "10.0.11.241"
+  share = "/Securitybits.Systems/Prometheus"
+  subDir = "data"
+  mountPermissions = "777"
+}
+
+mount_options {
+  fs_type = "nfs"
+  mount_flags = [ "nolock", "soft", "async", "nfsvers=3" ]
+}
