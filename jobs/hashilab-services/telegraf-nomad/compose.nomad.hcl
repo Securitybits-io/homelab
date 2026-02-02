@@ -1,4 +1,4 @@
-job "telegraf" {
+job "telegraf-nomad" {
   datacenters = ["*"]
   type = "system"
 
