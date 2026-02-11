@@ -95,23 +95,26 @@ job "telegraf" {
 
             [inputs.ping.tags]
               geohash="u660ug94"
+          
+          [[inputs.internet_speed]]
+            interval = "10m"
 
-          [[inputs.openweathermap]]
-              app_id = "${TELEGRAF_OPENWEATHER_TOKEN}"
-              city_id =[
-                      "2702979",        # Jonkoping
-                      "2673730",        # Stockholm
-                      "2711537",        # Gothenburg
-                      "2720501",        # Boras
-                      "2690170",        # Nassjo
-                      "2677234"         # Skovde
-              ]
-              fetch = [
-                  "weather",
-                  "forecast"
-              ]
-              units = "metric"
-              interval = "10m"
+          # [[inputs.openweathermap]]
+          #     app_id = "${TELEGRAF_OPENWEATHER_TOKEN}"
+          #     city_id =[
+          #       "2702979"        # Jonkoping
+          #       # "2673730",        # Stockholm
+          #       # "2711537",        # Gothenburg
+          #       # "2720501",        # Boras
+          #       # "2690170",        # Nassjo
+          #       # "2677234"         # Skovde
+          #     ]
+          #     fetch = [
+          #         "weather",
+          #         "forecast"
+          #     ]
+          #     units = "metric"
+          #     interval = "10m"
         EOF
       }
 

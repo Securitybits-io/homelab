@@ -9,7 +9,6 @@ job "nightly-tasks" {
   }
 
   group "nightly" {
-    
     task "runner" {
       driver = "exec"
 
