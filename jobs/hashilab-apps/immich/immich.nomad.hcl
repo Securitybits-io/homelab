@@ -328,9 +328,10 @@ job "immich" {
       action "backup-postgres" {
         command = "/bin/sh"
         args    = ["-c", <<EOF
-          pg_dumpall -U "$POSTGRES_USER" | gzip --rsyncable > /var/lib/postgresql/data/backup/backup.$(date +"%Y%m%d%H%M").sql.gz
+          FILENAME="backup_$(date +%Y%m%d_%H%M).gz"
+          pg_dumpall -U "$POSTGRES_USER" | gzip --rsyncable > "/var/lib/postgresql/data/backup/$FILENAME"
           echo "cleaning up backup files older than 3 days ..."
-          find /var/lib/postgresql/data/backup -maxdepth 1 -type f -printf '%T@ %p\n' | sort -nr | tail -n +4 | cut -d' ' -f2- | xargs -r rm --
+          find /var/lib/postgresql/data/backup -name "backup_*" -mtime +14 -delete
           EOF
         ]
       }
