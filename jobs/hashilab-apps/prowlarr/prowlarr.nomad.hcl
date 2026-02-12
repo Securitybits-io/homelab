@@ -65,7 +65,7 @@ job "prowlarr" {
       }
 
       config {
-        image = "linuxserver/prowlarr:latest"
+        image = "linuxserver/prowlarr:${IMAGE_TAG}"
         ports = ["prowlarr"]
         
         mount {
@@ -91,6 +91,16 @@ job "prowlarr" {
             }
           }
         }
+      }
+      
+      template {
+        data        = <<-EOH
+        {{- with nomadVar "nomad/jobs/prowlarr/env" }}
+        IMAGE_TAG="{{ .IMAGE_TAG }}"
+        {{- end }}
+        EOH
+        destination = "local/.env"
+        env         = true
       }
 
       resources {
