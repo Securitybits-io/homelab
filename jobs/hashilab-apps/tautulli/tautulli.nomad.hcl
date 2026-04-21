@@ -58,7 +58,7 @@ job "tautulli" {
       driver = "docker"
 
       config {
-        image = "tautulli/tautulli:latest"
+        image = "tautulli/tautulli:v${IMAGE_TAG}"
         ports = ["http"]
         
         mount {
@@ -67,6 +67,17 @@ job "tautulli" {
           source = "/docker/data/Tautulli/config"
           readonly = false
         }
+      }
+
+      template {
+        data = <<EOH
+        {{ with nomadVar "nomad/jobs/tautulli/env" }}
+          IMAGE_TAG="{{ .IMAGE_TAG }}"
+        {{ end }}
+        EOH
+
+        destination = "local/.env"
+        env         = true
       }
 
       env {
