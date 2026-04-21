@@ -330,7 +330,7 @@ job "immich" {
         args    = ["-c", <<EOF
           FILENAME="backup_$(date +%Y%m%d_%H%M).gz"
           pg_dumpall -U "$POSTGRES_USER" | gzip --rsyncable > "/var/lib/postgresql/data/backup/$FILENAME"
-          echo "cleaning up backup files older than 3 days ..."
+          echo "cleaning up backup files older than 14 days ..."
           find /var/lib/postgresql/data/backup -name "backup_*" -mtime +14 -delete
           EOF
         ]
