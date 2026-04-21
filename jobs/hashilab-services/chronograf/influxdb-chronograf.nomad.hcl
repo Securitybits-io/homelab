@@ -42,7 +42,7 @@ job "chronograf" {
       driver = "docker"
 
       config {
-        image = "chronograf:1.10"
+        image = "chronograf:${IMAGE_TAG}"
         ports = ["http"]
 
         # Use a Docker-managed volume for Chronograf's own data (dashboards, etc.)
@@ -51,6 +51,17 @@ job "chronograf" {
           target = "/var/lib/chronograf"
           source = "chronograf-data"
         }
+      }
+
+      template {
+        data = <<EOH
+        {{ with nomadVar "nomad/jobs/chronograph/env" }}
+          IMAGE_TAG="{{ .IMAGE_TAG }}"
+        {{ end }}
+        EOH
+
+        destination = "local/.env"
+        env         = true
       }
 
       # This template configures Chronograf by creating an environment file.
