@@ -65,7 +65,7 @@ job "bazarr" {
       }
 
       config {
-        image = "linuxserver/bazarr:latest"
+        image = "linuxserver/bazarr:v${IMAGE_TAG}"
         ports = ["bazarr"]
 
         mount {
@@ -125,6 +125,17 @@ job "bazarr" {
             }
           }
         }
+      }
+
+      template {
+        data = <<EOH
+        {{ with nomadVar "nomad/jobs/bazarr/env" }}
+          IMAGE_TAG="{{ .IMAGE_TAG }}"
+        {{ end }}
+        EOH
+
+        destination = "local/.env"
+        env         = true
       }
 
       resources {
