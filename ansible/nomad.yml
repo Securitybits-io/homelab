@@ -10,10 +10,10 @@
     - common
     - cis
     - ssh
-    - alloy
-    - consul
     - docker
+    - consul
     - nomad
+    - alloy
   tasks:
     - name: Copy folder to /opt/jobs
       ansible.builtin.copy:
@@ -69,7 +69,7 @@
     - cis
     - smb-mount
     - ssh
-    - alloy
-    - consul
     - docker
+    - consul
     - nomad
+    - alloy
