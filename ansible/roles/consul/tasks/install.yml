@@ -59,7 +59,8 @@
     install-package 
 
 - name: Install Additional Python Libraries
-  pip:
-    name: python-consul
+  apt:
+    pkg:
+      - python-consul
   tags:
     install-consul
