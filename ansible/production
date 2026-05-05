@@ -23,6 +23,8 @@ private-docker-01
 # elastic-breachsearch-hot-02
 # elastic-breachsearch-hot-03
 
+
+
 [docker_hosts]
 public-docker-01
 private-docker-01
@@ -34,6 +36,8 @@ nomad
 nomad-01
 nomad-02
 nomad-03
+nomad-dev
+
 
 [consul_servers]
 consul
