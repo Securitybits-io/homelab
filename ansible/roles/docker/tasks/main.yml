@@ -31,9 +31,11 @@
       update_cache: true
 
   - name: Install Docker Module for Python
-    pip:
-      name: docker
+    apt:
+      pkg: 
+        - python3-docker
 
   - name: Install Docker-Compose Module for Python
-    pip:
-      name: docker-compose
+    apt:
+      pkg: 
+        - python3-compose
