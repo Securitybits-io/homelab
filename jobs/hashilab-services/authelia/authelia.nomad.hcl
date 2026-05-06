@@ -41,6 +41,13 @@ job "authelia" {
       }
     }
 
+    volume "authelia-data" {
+      type            = "csi"
+      source          = "authelia-data"
+      access_mode     = "multi-node-multi-writer"
+      attachment_mode = "file-system"
+    }
+
     ephemeral_disk {
       migrate = true
       size    = 300
@@ -68,6 +75,12 @@ job "authelia" {
         #     }
         #   }
         # }
+      }
+
+      volume_mount {
+        volume        = "authelia-data"
+        destination   = "/authelia"
+        read_only     = false
       }
 
       env {
