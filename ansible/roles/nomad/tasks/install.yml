@@ -61,6 +61,6 @@
 - name: Install Additional Python Libraries
   apt:
     pkg: 
-      - python-nomad
+      - python3-nomad
   tags:
     install-nomad

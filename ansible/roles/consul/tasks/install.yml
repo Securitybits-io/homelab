@@ -61,6 +61,6 @@
 - name: Install Additional Python Libraries
   apt:
     pkg:
-      - python-consul
+      - python3-consul
   tags:
     install-consul
