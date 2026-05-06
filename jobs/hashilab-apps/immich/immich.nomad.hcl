@@ -86,8 +86,8 @@ job "immich" {
       }
 
       resources {
-        cpu    = 3072
-        memory = 3072
+        cpu    = 2048
+        memory = 2048
       }
 
       template {
@@ -217,7 +217,7 @@ job "immich" {
   group "backend" {
 
     constraint {
-      attribute = "${meta.node_role}"
+      attribute = "${meta.node_roles}"
       value     = "backend"
       operator  = "set_contains_any"
     }
