@@ -59,8 +59,7 @@
     install-package 
 
 - name: Install Additional Python Libraries
-  apt:
-    pkg: 
-      - python3-nomad
+  pip:
+    name: python-nomad
   tags:
     install-nomad
