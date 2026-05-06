@@ -58,8 +58,8 @@
     install-nomad   
     install-package 
 
-- name: Install Additional Python Libraries
-  pip:
-    name: python-nomad
-  tags:
-    install-nomad
+# - name: Install Additional Python Libraries
+#   pip:
+#     name: python-nomad
+#   tags:
+#     install-nomad
