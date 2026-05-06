@@ -1,11 +1,11 @@
 terraform {
-  cloud { 
-    organization = "Securitybits" 
-    workspaces { 
-      project = "Homelab"
-      name = "nomad" 
-    } 
-  }
+  # cloud { 
+  #   organization = "Securitybits" 
+  #   workspaces { 
+  #     project = "Homelab"
+  #     name = "nomad" 
+  #   } 
+  # }
 
   required_providers {
     nomad = {

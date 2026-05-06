@@ -30,3 +30,7 @@ jobs/terraform.tfstate.backup
 jobs/terraform.tfstate
 jobs/.terraform*
 jobs/.terraform/*
+
+jobs/hashilab-dev/terraform-test/*
+
+
