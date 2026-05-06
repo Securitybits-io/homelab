@@ -216,11 +216,11 @@ job "immich" {
 
   group "backend" {
 
-    # constraint {
-    #   attribute = "${meta.node_class}"
-    #   value     = "private"
-    #   operator  = "set_contains_any"
-    # }
+    constraint {
+      attribute = "${meta.node_role}"
+      value     = "backend"
+      operator  = "set_contains_any"
+    }
 
     ephemeral_disk {
       size = 300

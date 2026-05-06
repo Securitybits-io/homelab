@@ -1,2 +1,3 @@
 node_metadata:
     - node_class: "private"
+    - node_roles: "backend"
