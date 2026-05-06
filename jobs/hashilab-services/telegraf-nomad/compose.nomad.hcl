@@ -14,6 +14,7 @@ job "telegraf-nomad" {
 
     task "telegraf" {
       driver = "docker"
+      user = "root"
 
       config {
         image = "telegraf:${IMAGE_TAG}"
