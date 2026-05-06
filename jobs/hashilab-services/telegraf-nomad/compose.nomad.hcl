@@ -3,6 +3,13 @@ job "telegraf-nomad" {
   type = "system"
 
   group "telegraf" {
+
+    constraint {
+      attribute = "${meta.node_roles}"
+      operator  = "!="
+      value     = "dev"
+    }
+    
     network {
       mode = "host"
     }
@@ -14,7 +21,6 @@ job "telegraf-nomad" {
 
     task "telegraf" {
       driver = "docker"
-      user = "root"
 
       config {
         image = "telegraf:${IMAGE_TAG}"
