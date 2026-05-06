@@ -30,6 +30,12 @@
       state: latest
       update_cache: true
 
+  - name: Ensure docker group exists with a fixed GID
+    ansible.builtin.group:
+      name: docker
+      gid: 999
+      state: present
+
   - name: Install Docker Module for Python
     apt:
       pkg: 
