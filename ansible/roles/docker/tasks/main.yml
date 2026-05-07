@@ -35,7 +35,7 @@
       pkg: 
         - python3-docker
 
-  - name: Install Docker-Compose Module for Python
-    apt:
-      pkg: 
-        - python3-compose
+  # - name: Install Docker-Compose Module for Python
+  #   apt:
+  #     pkg: 
+  #       - python3-compose
