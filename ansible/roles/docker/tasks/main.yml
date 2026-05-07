@@ -15,9 +15,9 @@
       lock_timeout: 180
 
   - name: Add Docker GPG apt Key
-    apt_key:
+    get_url:
       url: https://download.docker.com/linux/ubuntu/gpg
-      state: present
+      dest: /etc/apt/trusted.gpg.d/docker.asc
 
   - name: Add Docker Repository
     apt_repository:
