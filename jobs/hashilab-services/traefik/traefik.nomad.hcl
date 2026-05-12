@@ -65,6 +65,9 @@ job "traefik" {
           "--certificatesresolvers.letsencrypt.acme.email=christoffer.claesson@outlook.com",
           "--certificatesresolvers.letsencrypt.acme.storage=/local/acme.json",
           "--providers.consulcatalog=true",
+          "--providers.consulcatalog.connectAware=true",
+          "--providers.consulcatalog.connectByDefault=false",
+          "--providers.consulcatalog.exposedByDefault=false",
           "--providers.consulcatalog.endpoint.address=http://consul:8500",
           "--providers.file.filename=/local/config.yml",
           "--providers.file.watch=true"
