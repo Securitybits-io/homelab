@@ -14,6 +14,9 @@ job "ytdl-tactube" {
     service {
       name = "ytdl-tactube"
       provider = "consul"
+      tags = [
+        "diun.enable=false",
+      ]
     }
 
     task "ytdl-tactube" {

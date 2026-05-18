@@ -14,6 +14,9 @@ job "ytdl-youtube" {
     service {
       name = "ytdl-youtube"
       provider = "consul"
+      tags = [
+        "diun.enable=false",
+      ]
     }
 
     task "ytdl-youtube" {
