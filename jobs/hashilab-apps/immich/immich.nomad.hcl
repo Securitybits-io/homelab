@@ -195,8 +195,8 @@ job "immich" {
       }
 
       resources {
-        memory = 3072
-        cpu    = 3072
+        memory = 2048
+        cpu    = 2048
       }
 
       volume_mount{
@@ -381,8 +381,8 @@ job "immich" {
       # }
 
       resources {
-        cpu    = 2048
-        memory = 2048
+        cpu    = 1024
+        memory = 1024
       }
     }
 
