@@ -4,3 +4,4 @@ ansible_dependencies:
 - ansible
 - ssh
 - sshpass
+- git
