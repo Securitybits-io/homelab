@@ -1,5 +1,7 @@
 ---
-- hosts: ansible
+- hosts: 
+    - ansible
+    - ansible-01
   gather_facts: no
   
   roles:

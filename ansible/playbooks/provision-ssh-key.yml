@@ -2,7 +2,9 @@
 # ansible-playbook -i production playbooks/provision-ssh-key.yml --ask-vault-pass --user=provision --ask-pass
 
 ---
-- hosts: ansible
+- hosts: 
+    - ansible
+    - ansible-01
   become: true
   gather_facts: false
   vars:

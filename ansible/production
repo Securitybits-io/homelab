@@ -23,7 +23,7 @@ private-docker-01
 # elastic-breachsearch-hot-02
 # elastic-breachsearch-hot-03
 
-
+ansible-01
 
 [docker_hosts]
 public-docker-01
