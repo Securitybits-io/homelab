@@ -7,15 +7,6 @@
   tags:
     - install-consul
 
-- name: Remove legacy Hashicorp consul repository
-  ansible.builtin.apt_repository:
-    repo: "deb [signed-by=/etc/apt/keyrings/hashicorp-archive-keyring.asc] https://apt.releases.hashicorp.com jammy main"
-    state: absent
-    update_cache: false
-  tags:
-    - install-consul
-    - update-repository
-
 - name: Install required system packages
   ansible.builtin.apt:
     name:
@@ -48,6 +39,15 @@
   tags:
     - install-consul
     - get-gpg-key
+
+- name: Remove legacy Hashicorp consul repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/hashicorp-archive-keyring.asc] https://apt.releases.hashicorp.com jammy main"
+    state: absent
+    update_cache: false
+  tags:
+    - install-consul
+    - update-repository
 
 - name: Add Hashicorp consul repository
   ansible.builtin.apt_repository:

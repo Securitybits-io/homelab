@@ -6,22 +6,12 @@
       - '!all'
       - min
 
-- name: Remove legacy Ubuntu Docker repository
-  ansible.builtin.apt_repository:
-    repo: deb https://download.docker.com/linux/ubuntu jammy stable
-    state: absent
-    update_cache: false
-
-- name: Remove legacy Docker trusted key
-  ansible.builtin.file:
-    path: /etc/apt/trusted.gpg.d/docker.asc
-    state: absent
-
 - name: Install Docker repository prerequisites
   ansible.builtin.apt:
     name:
       - ca-certificates
       - curl
+      - gpg
     state: present
     update_cache: true
     lock_timeout: 180
@@ -38,6 +28,17 @@
     dest: /etc/apt/keyrings/docker.asc
     mode: '0644'
     force: true
+
+- name: Remove legacy Ubuntu Docker repository
+  ansible.builtin.apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu jammy stable
+    state: absent
+    update_cache: false
+
+- name: Remove legacy Docker trusted key
+  ansible.builtin.file:
+    path: /etc/apt/trusted.gpg.d/docker.asc
+    state: absent
 
 - name: Add Docker repository
   ansible.builtin.apt_repository:

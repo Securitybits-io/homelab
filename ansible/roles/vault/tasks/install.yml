@@ -7,15 +7,6 @@
   tags:
     - install-vault
 
-- name: Remove legacy Hashicorp vault repository
-  ansible.builtin.apt_repository:
-    repo: "deb [signed-by=/etc/apt/keyrings/hashicorp-archive-keyring.asc] https://apt.releases.hashicorp.com jammy main"
-    state: absent
-    update_cache: false
-  tags:
-    - install-vault
-    - update-repository
-
 - name: Install required system packages
   ansible.builtin.apt:
     name:
@@ -48,6 +39,15 @@
   tags:
     - install-vault
     - get-gpg-key
+
+- name: Remove legacy Hashicorp vault repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/hashicorp-archive-keyring.asc] https://apt.releases.hashicorp.com jammy main"
+    state: absent
+    update_cache: false
+  tags:
+    - install-vault
+    - update-repository
 
 - name: Add Hashicorp vault repository
   ansible.builtin.apt_repository:
