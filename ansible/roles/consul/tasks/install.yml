@@ -1,66 +1,78 @@
 ---
-- name: Install aptitude
-  apt:
-    name: aptitude
-    state: present
-    update_cache: true
+- name: Gather Consul repository facts
+  ansible.builtin.setup:
+    gather_subset:
+      - '!all'
+      - min
   tags:
-    install-consul
+    - install-consul
+
+- name: Remove legacy Hashicorp consul repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/hashicorp-archive-keyring.asc] https://apt.releases.hashicorp.com jammy main"
+    state: absent
+    update_cache: false
+  tags:
+    - install-consul
+    - update-repository
 
 - name: Install required system packages
-  apt:
-    pkg:
+  ansible.builtin.apt:
+    name:
       - apt-transport-https
       - ca-certificates
       - curl
-      - software-properties-common
-      - python3-pip
-      - virtualenv
-      - python3-setuptools
       - wget
       - coreutils
       - gpg
-    state: latest
-    # update_cache: true
+    state: present
+    update_cache: true
+    lock_timeout: 180
   tags:
-    install-consul
+    - install-consul
 
+- name: Ensure apt keyrings directory exists
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+  tags:
+    - install-consul
 
 - name: Get Hashicorp GPG key
   ansible.builtin.get_url:
     url: https://apt.releases.hashicorp.com/gpg
     dest: /etc/apt/keyrings/hashicorp-archive-keyring.asc
     mode: '0644'
-    force: true    
+    force: true
   tags:
     - install-consul
     - get-gpg-key
-    
+
 - name: Add Hashicorp consul repository
   ansible.builtin.apt_repository:
-    repo: "deb [signed-by=/etc/apt/keyrings/hashicorp-archive-keyring.asc] https://apt.releases.hashicorp.com jammy main"
+    repo: "deb [signed-by=/etc/apt/keyrings/hashicorp-archive-keyring.asc] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
     state: present
+    update_cache: false
   tags:
     - install-consul
     - update-repository
 
-- name: Update packages
-  ansible.builtin.apt: update_cache=yes force_apt_get=yes 
-  tags: 
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    force_apt_get: true
+  tags:
     - install-consul
     - update
 
-- name: Update Cache And Install consul packages
-  apt:
-    name: consul
-    state: latest
-  tags:
-    install-consul   
-    install-package 
-
-- name: Install Additional Python Libraries
-  apt:
-    pkg:
+- name: Install Consul packages
+  ansible.builtin.apt:
+    name:
+      - consul
       - python3-consul
+    state: present
+    lock_timeout: 180
   tags:
-    install-consul
+    - install-consul
+    - install-package

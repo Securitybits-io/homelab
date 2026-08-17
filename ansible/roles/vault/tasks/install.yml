@@ -1,59 +1,76 @@
 ---
-- name: Install aptitude
-  apt:
-    name: aptitude
-    state: present
-    update_cache: true
+- name: Gather Vault repository facts
+  ansible.builtin.setup:
+    gather_subset:
+      - '!all'
+      - min
   tags:
-    install-vault
+    - install-vault
+
+- name: Remove legacy Hashicorp vault repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/hashicorp-archive-keyring.asc] https://apt.releases.hashicorp.com jammy main"
+    state: absent
+    update_cache: false
+  tags:
+    - install-vault
+    - update-repository
 
 - name: Install required system packages
-  apt:
-    pkg:
+  ansible.builtin.apt:
+    name:
       - apt-transport-https
       - ca-certificates
       - curl
-      - software-properties-common
-      - python3-pip
-      - virtualenv
-      - python3-setuptools
       - wget
       - coreutils
       - gpg
-    state: latest
-    # update_cache: true
+    state: present
+    update_cache: true
+    lock_timeout: 180
   tags:
-    install-vault
+    - install-vault
 
+- name: Ensure apt keyrings directory exists
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+  tags:
+    - install-vault
 
 - name: Get Hashicorp GPG key
   ansible.builtin.get_url:
     url: https://apt.releases.hashicorp.com/gpg
     dest: /etc/apt/keyrings/hashicorp-archive-keyring.asc
     mode: '0644'
-    force: true    
+    force: true
   tags:
     - install-vault
     - get-gpg-key
-    
+
 - name: Add Hashicorp vault repository
   ansible.builtin.apt_repository:
-    repo: "deb [signed-by=/etc/apt/keyrings/hashicorp-archive-keyring.asc] https://apt.releases.hashicorp.com jammy main"
+    repo: "deb [signed-by=/etc/apt/keyrings/hashicorp-archive-keyring.asc] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
     state: present
+    update_cache: false
   tags:
     - install-vault
     - update-repository
 
-- name: Update packages
-  ansible.builtin.apt: update_cache=yes force_apt_get=yes 
-  tags: 
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    force_apt_get: true
+  tags:
     - install-vault
     - update
 
-- name: Update Cache And Install vault packages
-  apt:
+- name: Install Vault packages
+  ansible.builtin.apt:
     name: vault
-    state: latest
+    state: present
+    lock_timeout: 180
   tags:
-    install-vault   
-    install-package 
+    - install-vault
+    - install-package

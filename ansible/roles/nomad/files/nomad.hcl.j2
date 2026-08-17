@@ -40,6 +40,10 @@ plugin "docker" {
     volumes {
       enabled = true
     }
+    gc {
+      image = true
+      image_delay = "24h"
+    }
     allow_privileged = true
     allow_caps = ["all"]
   }
