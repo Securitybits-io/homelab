@@ -1,48 +1,50 @@
-resource "proxmox_vm_qemu" "consul" {
-    
-    # VM General Settings
-    target_node = "pve-node-01"
-    name = "consul"
-    desc = "Created with Terraform"
-    tags = "terraform,linux,hashistack"
-    onboot = true
-    clone = "Ubuntu-22.04-Template-32GB"
-    agent = 1
-    cores = 2
-    sockets = 1
-    cpu_type = "host"
-    memory = 2048
-    skip_ipv6 = true
+locals {
+  consul = {
+    name        = "consul"
+    cpu_cores   = 2
+    memory_mb   = 2048
+    disk_size   = 40
+    vlan_id     = 40
+    mac_address = "00:50:56:d9:ef:59"
+    description = "Hashistack Consul Server"
+  }
+}
 
-    network {
-        id = 0
-        macaddr = "00:50:56:d9:ef:59"
-        bridge = "vmbr0"
-        model  = "virtio"
-        tag = 40
-    }
+resource "proxmox_virtual_environment_vm" "consul" {
+  provider    = bpg-proxmox
+  name        = local.consul.name
+  description = local.consul.description
+  node_name   = var.PVE_NODE
+  started     = true
+  tags        = [ "terraform","debian","hashistack" ]
 
-    disk {
-        storage = "vm"
-        slot = "scsi0"
-        type = "disk"
-        size = "32G"
-        format = "raw"
-    }
+  clone {
+    vm_id = 9000
+  }
 
-    #os_type = "cloud-init"
-    connection {
-      type      = "ssh"
-      user      = var.SSH_USER
-      password  = var.SSH_PASS
-      host      = self.ssh_host
-      script_path = "/home/${var.SSH_USER}/provision_%RAND%.sh"
-    }
+  cpu {
+    cores = local.consul.cpu_cores
+  }
 
-    provisioner "remote-exec" {
-      inline = [
-          "sleep 10",
-          "sudo hostnamectl set-hostname ${self.name}"
-        ]
-    }
+  memory {
+    dedicated = local.consul.memory_mb
+  }
+
+  disk {
+    datastore_id = var.STORAGE_POOL
+    interface    = "scsi0"
+    size         = local.consul.disk_size
+  }
+
+  agent {
+    enabled = true
+    timeout = "5m"
+  }
+
+  network_device {
+    bridge      = var.VM_BRIDGE
+    mac_address = local.consul.mac_address
+    model       = "virtio"
+    vlan_id     = local.consul.vlan_id
+  }
 }

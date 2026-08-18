@@ -1,6 +1,6 @@
 locals {
   test_vm = {
-    name        = "nomad-05"
+    name        = "test_vm"
     cpu_cores   = 1
     memory_mb   = 1024
     disk_size   = 40
@@ -10,12 +10,13 @@ locals {
   }
 }
 
-resource "proxmox_virtual_environment_vm" "debian_test_01" {
+resource "proxmox_virtual_environment_vm" "test_vm" {
   provider    = bpg-proxmox
   name        = local.test_vm.name
   description = local.test_vm.description
   node_name   = var.PVE_NODE
   started     = true
+  tags        = [ "terraform","debian","hashistack" ]
 
   clone {
     vm_id = 9000

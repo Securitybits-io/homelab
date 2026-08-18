@@ -1,7 +1,9 @@
+#Remove
 variable "SSH_USER" {
     type = string
 }
 
+#Remove
 variable "SSH_PASS" {
     type = string
 }
