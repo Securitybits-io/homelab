@@ -9,11 +9,11 @@ terraform {
         }
     }
     required_providers {
-        # bgp-proxmox = {
-        #     source = "bpg/proxmox"
-        #     version = ">= 0.50.0"
-        # }
-        
+        bpg-proxmox = {
+            source  = "bpg/proxmox"
+            version = ">= 0.50.0"
+        }
+  
         proxmox = {
             source = "telmate/proxmox"
             version = "3.0.2-rc01" # https://github.com/Telmate/terraform-provider-proxmox/issues/702
@@ -26,9 +26,10 @@ terraform {
     }
 }
 
-# provider "bgp-proxmox" {
-#     insecure = true
-# }
+provider "bpg-proxmox" {
+  insecure = true
+}
+
 
 provider "proxmox" {
     pm_tls_insecure = true

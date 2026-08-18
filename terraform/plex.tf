@@ -38,7 +38,7 @@ resource "proxmox_vm_qemu" "plex" {
         storage = "vm"
         slot = "scsi0"
         type = "disk"
-        size = "250G"
+        size = "300G"
         format = "raw"
     }
 

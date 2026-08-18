@@ -6,6 +6,18 @@ variable "SSH_PASS" {
     type = string
 }
 
+variable "PVE_NODE" {
+  default = "pve-node-01"
+}
+
+variable "STORAGE_POOL" {
+  default = "local-lvm"
+}
+
+variable "VM_BRIDGE" {
+  default = "vmbr0"
+}
+
 variable "namecheap_username" {
   type = string
 }
