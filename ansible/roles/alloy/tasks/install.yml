@@ -1,5 +1,14 @@
 ---
 # roles/grafana_alloy/tasks/install.yml
+- name: Install Grafana repository prerequisites
+  ansible.builtin.apt:
+    name:
+      - gpg
+    state: present
+    update_cache: true
+  tags:
+    - install-alloy
+    
 - name: Ensure apt keyrings directory exists
   ansible.builtin.file:
     path: /etc/apt/keyrings
@@ -24,14 +33,6 @@
   tags:
     - install-alloy
 
-- name: Install Grafana repository prerequisites
-  ansible.builtin.apt:
-    name:
-      - gpg
-    state: present
-    update_cache: true
-  tags:
-    - install-alloy
 
 - name: Add Grafana GPG key
   ansible.builtin.get_url:
