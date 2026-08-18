@@ -29,6 +29,21 @@ packages:
   - sudo
   - qemu-guest-agent
 
+write_files:
+  - path: /etc/netplan/99-dhcp-domains.yaml
+    owner: root:root
+    permissions: '0644'
+    content: |
+      network:
+        version: 2
+        ethernets:
+          ${netplan_interface}:
+            dhcp4: true
+            dhcp4-overrides:
+              use-dns: true
+              use-domains: true
+
 runcmd:
+  - netplan apply
   - systemctl enable --now ssh
   - systemctl enable --now qemu-guest-agent
