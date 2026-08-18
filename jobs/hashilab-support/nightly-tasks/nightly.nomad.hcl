@@ -36,6 +36,7 @@ job "nightly-tasks" {
                 "-mindepth", "1",
                 "-depth",
                 "-mtime", "+3",
+                "-print",
                 "-delete"]
 
         mount {
