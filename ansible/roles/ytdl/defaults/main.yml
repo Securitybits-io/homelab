@@ -3,5 +3,4 @@
 ytdl_dependencies:
   - python3-pip
   - ffmpeg
-  - mlocate
 
