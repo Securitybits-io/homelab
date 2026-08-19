@@ -1,2 +1,15 @@
 ---
 # defaults file for nomad
+nomad_cni_plugin_version: "v1.9.1"
+nomad_cni_plugin_checksum: ""
+nomad_cni_bin_dir: /opt/cni/bin
+nomad_cni_config_dir: /opt/cni/config
+nomad_cni_archive_dir: /tmp
+
+nomad_cni_plugin_arch_map:
+  x86_64: amd64
+  amd64: amd64
+  aarch64: arm64
+  arm64: arm64
+  armv7l: arm
+  armv6l: arm

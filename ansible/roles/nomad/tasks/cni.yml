@@ -1,0 +1,150 @@
+---
+- name: Gather Nomad CNI facts
+  ansible.builtin.setup:
+    gather_subset:
+      - '!all'
+      - min
+  when: nomad_type == 'client'
+  tags:
+    - install-nomad
+    - cni
+
+- name: Resolve Nomad CNI plugin architecture
+  ansible.builtin.set_fact:
+    nomad_cni_plugin_arch: "{{ nomad_cni_plugin_arch_map.get(ansible_architecture, '') }}"
+  when: nomad_type == 'client'
+  tags:
+    - install-nomad
+    - cni
+
+- name: Validate Nomad CNI plugin architecture
+  ansible.builtin.assert:
+    that:
+      - nomad_cni_plugin_arch | length > 0
+    fail_msg: "Unsupported CNI plugin architecture: {{ ansible_architecture }}"
+  when: nomad_type == 'client'
+  tags:
+    - install-nomad
+    - cni
+
+- name: Install Nomad CNI prerequisites
+  ansible.builtin.apt:
+    name:
+      - ca-certificates
+      - curl
+      - gzip
+      - iproute2
+      - iptables
+      - kmod
+      - tar
+    state: present
+    update_cache: true
+    lock_timeout: 180
+  when: nomad_type == 'client'
+  tags:
+    - install-nomad
+    - cni
+
+- name: Ensure Nomad CNI directories exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  loop:
+    - "{{ nomad_cni_bin_dir }}"
+    - "{{ nomad_cni_config_dir }}"
+  when: nomad_type == 'client'
+  tags:
+    - install-nomad
+    - cni
+
+- name: Check installed Nomad CNI plugin version
+  ansible.builtin.stat:
+    path: "{{ nomad_cni_bin_dir }}/.cni-plugins-{{ nomad_cni_plugin_version }}"
+  register: nomad_cni_plugin_marker
+  when: nomad_type == 'client'
+  tags:
+    - install-nomad
+    - cni
+
+- name: Download Nomad CNI plugins
+  ansible.builtin.get_url:
+    url: "https://github.com/containernetworking/plugins/releases/download/{{ nomad_cni_plugin_version }}/cni-plugins-linux-{{ nomad_cni_plugin_arch }}-{{ nomad_cni_plugin_version }}.tgz"
+    dest: "{{ nomad_cni_archive_dir }}/cni-plugins-linux-{{ nomad_cni_plugin_arch }}-{{ nomad_cni_plugin_version }}.tgz"
+    mode: '0644'
+    checksum: "{{ nomad_cni_plugin_checksum if nomad_cni_plugin_checksum | length > 0 else omit }}"
+  when:
+    - nomad_type == 'client'
+    - not nomad_cni_plugin_marker.stat.exists
+  tags:
+    - install-nomad
+    - cni
+
+- name: Install Nomad CNI plugins
+  ansible.builtin.unarchive:
+    src: "{{ nomad_cni_archive_dir }}/cni-plugins-linux-{{ nomad_cni_plugin_arch }}-{{ nomad_cni_plugin_version }}.tgz"
+    dest: "{{ nomad_cni_bin_dir }}"
+    remote_src: true
+    owner: root
+    group: root
+    mode: '0755'
+  when:
+    - nomad_type == 'client'
+    - not nomad_cni_plugin_marker.stat.exists
+  notify: Restart Nomad
+  tags:
+    - install-nomad
+    - cni
+
+- name: Record installed Nomad CNI plugin version
+  ansible.builtin.file:
+    path: "{{ nomad_cni_bin_dir }}/.cni-plugins-{{ nomad_cni_plugin_version }}"
+    state: touch
+    owner: root
+    group: root
+    mode: '0644'
+  when:
+    - nomad_type == 'client'
+    - not nomad_cni_plugin_marker.stat.exists
+  tags:
+    - install-nomad
+    - cni
+
+- name: Persist br_netfilter module
+  ansible.builtin.copy:
+    dest: /etc/modules-load.d/nomad-cni.conf
+    content: "br_netfilter\n"
+    owner: root
+    group: root
+    mode: '0644'
+  when: nomad_type == 'client'
+  tags:
+    - install-nomad
+    - cni
+
+- name: Load br_netfilter module
+  ansible.builtin.command: modprobe br_netfilter
+  changed_when: false
+  when: nomad_type == 'client'
+  tags:
+    - install-nomad
+    - cni
+
+- name: Configure Nomad bridge networking sysctls
+  ansible.builtin.sysctl:
+    name: "{{ item }}"
+    value: '1'
+    state: present
+    sysctl_set: true
+    reload: true
+  loop:
+    - net.bridge.bridge-nf-call-arptables
+    - net.bridge.bridge-nf-call-ip6tables
+    - net.bridge.bridge-nf-call-iptables
+    - net.ipv4.ip_forward
+  when: nomad_type == 'client'
+  tags:
+    - install-nomad
+    - cni

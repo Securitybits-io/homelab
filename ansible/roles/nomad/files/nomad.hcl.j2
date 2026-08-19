@@ -19,6 +19,8 @@ server {
 client {
   enabled = true
   servers = ["nomad"]
+  cni_path = "{{ nomad_cni_bin_dir }}"
+  cni_config_dir = "{{ nomad_cni_config_dir }}"
   
   {% if node_metadata is defined %}
   meta {
