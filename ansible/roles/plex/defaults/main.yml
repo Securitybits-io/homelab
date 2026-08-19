@@ -1,2 +1,15 @@
 ---
 # defaults file for plex
+plex_apt_key_url: https://downloads.plex.tv/plex-keys/PlexSign.v2.key
+plex_apt_keyring_dir: /etc/apt/keyrings
+plex_apt_key_src: "{{ plex_apt_keyring_dir }}/plexmediaserver.v2.key"
+plex_apt_keyring: "{{ plex_apt_keyring_dir }}/plexmediaserver.v2.gpg"
+plex_apt_repository_file: /etc/apt/sources.list.d/plex.list
+plex_apt_repository: >-
+  deb [signed-by={{ plex_apt_keyring }}] https://repo.plex.tv/deb/ public main
+plex_package_name: plexmediaserver
+plex_service_name: plexmediaserver
+plex_legacy_apt_sources:
+  - /etc/apt/sources.list.d/plexmediaserver.list
+  - /etc/apt/sources.list.d/plexmediaserver.sources
+  - /etc/apt/sources.list.d/plex.sources

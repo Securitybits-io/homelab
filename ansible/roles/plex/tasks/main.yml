@@ -1,24 +1,100 @@
 ---
 # tasks file for plex
-  - name: Add Plex Repo Key
-    apt_key:
-      url: https://downloads.plex.tv/plex-keys/PlexSign.key
-      state: present
+- name: Ensure Plex apt keyring directory exists
+  ansible.builtin.file:
+    path: "{{ plex_apt_keyring_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
 
-  - name: Add repo for PlexMediaServer
-    apt_repository:
-      repo: deb https://downloads.plex.tv/repo/deb public main
-      state: present
-      filename: plex
+- name: Check Plex apt keyring
+  ansible.builtin.stat:
+    path: "{{ plex_apt_keyring }}"
+  register: plex_apt_keyring_stat
 
-  - name: install PlexMediaServer
-    apt:
-      name: plexmediaserver
-      state: present
-      update_cache: True
+- name: Check managed Plex apt source
+  ansible.builtin.stat:
+    path: "{{ plex_apt_repository_file }}"
+  register: plex_apt_repository_stat
 
-  - name: Enable PlexMediaServer
-    service:
-      name: plexmediaserver
-      state: started
-      enabled: true
+- name: Read managed Plex apt source
+  ansible.builtin.slurp:
+    path: "{{ plex_apt_repository_file }}"
+  register: plex_apt_repository_current
+  when: plex_apt_repository_stat.stat.exists
+
+- name: Remove stale managed Plex apt source before apt cache refresh
+  ansible.builtin.file:
+    path: "{{ plex_apt_repository_file }}"
+    state: absent
+  when:
+    - plex_apt_repository_stat.stat.exists
+    - >-
+      not plex_apt_keyring_stat.stat.exists
+      or (plex_apt_repository_current.content | b64decode | trim) != plex_apt_repository
+
+- name: Remove legacy Plex apt sources
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop: "{{ plex_legacy_apt_sources }}"
+
+- name: Install Plex repository prerequisites
+  ansible.builtin.apt:
+    name:
+      - ca-certificates
+      - curl
+      - gnupg
+    state: present
+    update_cache: true
+    lock_timeout: 180
+
+- name: Download Plex v2 repository key
+  ansible.builtin.get_url:
+    url: "{{ plex_apt_key_url }}"
+    dest: "{{ plex_apt_key_src }}"
+    owner: root
+    group: root
+    mode: '0644'
+  register: plex_apt_key_download
+
+- name: Install Plex v2 repository keyring
+  ansible.builtin.command:
+    argv:
+      - gpg
+      - --yes
+      - --dearmor
+      - -o
+      - "{{ plex_apt_keyring }}"
+      - "{{ plex_apt_key_src }}"
+  when: plex_apt_key_download.changed or not plex_apt_keyring_stat.stat.exists
+  changed_when: true
+
+- name: Ensure Plex v2 repository keyring permissions
+  ansible.builtin.file:
+    path: "{{ plex_apt_keyring }}"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Configure Plex Media Server repository
+  ansible.builtin.copy:
+    dest: "{{ plex_apt_repository_file }}"
+    content: "{{ plex_apt_repository }}\n"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Install Plex Media Server
+  ansible.builtin.apt:
+    name: "{{ plex_package_name }}"
+    state: present
+    update_cache: true
+    lock_timeout: 180
+
+- name: Enable Plex Media Server
+  ansible.builtin.service:
+    name: "{{ plex_service_name }}"
+    state: started
+    enabled: true
