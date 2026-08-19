@@ -1,197 +1,91 @@
-resource "proxmox_vm_qemu" "nomad" {
+
+
+locals {
+  nomad_vms = {
+    nomad = {
+        name        = "nomad"
+        cpu_cores   = 2
+        memory_mb   = 2048
+        disk_size   = 40
+        vlan_id     = 40
+        mac_address = "00:50:56:d9:ef:55"
+        description = "Hashistack Nomad Server"
+        tags        = ["terraform", "debian", "hashistack"]
+    }
+
+    nomad-01 = {
+        name        = "nomad-01"
+        cpu_cores   = 4
+        memory_mb   = 12288
+        disk_size   = 100
+        vlan_id     = 40
+        mac_address = "00:50:56:d9:ef:57"
+        description = "Hashistack Nomad Server"
+        tags        = ["terraform", "debian", "hashistack"]
+    }
     
-    # VM General Settings
-    target_node = "pve-node-01"
-    name = "nomad"
-    desc = "Created with Terraform"
-    tags = "terraform,linux,hashistack"
-    onboot = true
-    clone = "Ubuntu-22.04-Template-100GB"
-    agent = 1
-    cores = 2
-    sockets = 1
-    cpu_type = "host"
-    memory = 2048
-    skip_ipv6 = true
-
-    network {
-        id = 0
-        macaddr = "00:50:56:d9:ef:55"
-        bridge = "vmbr0"
-        model  = "virtio"
-        tag = 40
+    nomad-02 = {
+        name        = "nomad-02"
+        cpu_cores   = 4
+        memory_mb   = 12288
+        disk_size   = 100
+        vlan_id     = 40
+        mac_address = "00:50:56:3F:62:B4"
+        description = "Hashistack Nomad Server"
+        tags        = ["terraform", "debian", "hashistack"]
     }
-
-    disk {
-        storage = "vm"
-        slot = "scsi0"
-        type = "disk"
-        size = "100G"
-        format = "raw"
+    
+    nomad-03 = {
+        name        = "nomad-03"
+        cpu_cores   = 4
+        memory_mb   = 12288
+        disk_size   = 100
+        vlan_id     = 50
+        mac_address = "00:50:56:6D:C7:88"
+        description = "Hashistack Nomad Server"
+        tags        = ["terraform", "debian", "hashistack", "public"]
     }
-
-    #os_type = "cloud-init"
-    connection {
-      type      = "ssh"
-      user      = var.SSH_USER
-      password  = var.SSH_PASS
-      host      = self.ssh_host
-      script_path = "/home/${var.SSH_USER}/provision_%RAND%.sh"
-    }
-
-    provisioner "remote-exec" {
-      inline = [
-          "sleep 10",
-          "sudo hostnamectl set-hostname ${self.name}",
-          "sleep 5"
-        ]
-    }
+  }
 }
 
+resource "proxmox_virtual_environment_vm" "nomad" {
+  provider = bpg-proxmox
+  for_each = local.nomad_vms
 
-resource "proxmox_vm_qemu" "nomad-01" {
-    
-    # VM General Settings
-    target_node = "pve-node-01"
-    name = "nomad-01"
-    desc = "Created with Terraform"
-    tags = "terraform,linux,hashistack"
-    onboot = true
-    clone = "Ubuntu-22.04-Template-100GB"
-    agent = 1
-    cores = 4
-    sockets = 1
-    cpu_type = "host"
-    memory = 12289
-    skip_ipv6 = true
+  name        = each.key
+  description = each.value.description
+  node_name   = var.PVE_NODE
+  started     = true
+  tags        = each.value.tags
 
-    network {
-        id = 0
-        macaddr = "00:50:56:d9:ef:57"
-        bridge = "vmbr0"
-        model  = "virtio"
-        tag = 40
-    }
+  clone {
+    vm_id = 9000
+  }
 
-    disk {
-        storage = "vm"
-        slot = "scsi0"
-        type = "disk"
-        size = "100G"
-        format = "raw"
-    }
+  cpu {
+    cores = each.value.cpu_cores
+  }
 
-    #os_type = "cloud-init"
-    connection {
-      type      = "ssh"
-      user      = var.SSH_USER
-      password  = var.SSH_PASS
-      host      = self.ssh_host
-      script_path = "/home/${var.SSH_USER}/provision_%RAND%.sh"
-    }
+  memory {
+    dedicated = each.value.memory_mb
+  }
 
-    provisioner "remote-exec" {
-      inline = [
-          "sleep 10",
-          "sudo hostnamectl set-hostname ${self.name}"
-        ]
-    }
+  disk {
+    datastore_id = var.STORAGE_POOL
+    interface    = "scsi0"
+    size         = each.value.disk_size
+  }
+
+  agent {
+    enabled = true
+    timeout = "5m"
+  }
+
+  network_device {
+    bridge      = var.VM_BRIDGE
+    mac_address = each.value.mac_address
+    model       = "virtio"
+    vlan_id     = each.value.vlan_id
+  }
 }
 
-resource "proxmox_vm_qemu" "nomad-02" {
-    
-    # VM General Settings
-    target_node = "pve-node-01"
-    name = "nomad-02"
-    desc = "Created with Terraform"
-    tags = "terraform,linux,hashistack"
-    onboot = true
-    clone = "Ubuntu-22.04-Template-100GB"
-    agent = 1
-    cores = 4
-    sockets = 1
-    cpu_type = "host"
-    memory = 12288
-    skip_ipv6 = true
-
-    network {
-        id = 0
-        macaddr = "00:50:56:3F:62:B4"
-        bridge = "vmbr0"
-        model  = "virtio"
-        tag = 40
-    }
-
-    disk {
-        storage = "vm"
-        slot = "scsi0"
-        type = "disk"
-        size = "100G"
-        format = "raw"
-    }
-
-    #os_type = "cloud-init"
-    connection {
-      type      = "ssh"
-      user      = var.SSH_USER
-      password  = var.SSH_PASS
-      host      = self.ssh_host
-      script_path = "/home/${var.SSH_USER}/provision_%RAND%.sh"
-    }
-
-    provisioner "remote-exec" {
-      inline = [
-          "sleep 10",
-          "sudo hostnamectl set-hostname ${self.name}"
-        ]
-    }
-}
-
-resource "proxmox_vm_qemu" "nomad-03" {
-    
-    # VM General Settings
-    target_node = "pve-node-01"
-    name = "nomad-03"
-    desc = "Created with Terraform"
-    tags = "terraform,linux,hashistack,public"
-    onboot = true
-    clone = "Ubuntu-22.04-Template-100GB"
-    agent = 1
-    cores = 4
-    sockets = 1
-    cpu_type = "host"
-    memory = 12288
-    skip_ipv6 = true
-
-    network {
-        id = 0
-        macaddr = "00:50:56:6D:C7:88"
-        bridge = "vmbr0"
-        model  = "virtio"
-        tag = 50
-    }
-
-    disk {
-        storage = "vm"
-        slot = "scsi0"
-        type = "disk"
-        size = "100G"
-        format = "raw"
-    }
-
-    #os_type = "cloud-init"
-    connection {
-      type      = "ssh"
-      user      = var.SSH_USER
-      password  = var.SSH_PASS
-      host      = self.ssh_host
-      script_path = "/home/${var.SSH_USER}/provision_%RAND%.sh"
-    }
-
-    provisioner "remote-exec" {
-      inline = [
-          "sleep 10",
-          "sudo hostnamectl set-hostname ${self.name}"
-        ]
-    }
-}
