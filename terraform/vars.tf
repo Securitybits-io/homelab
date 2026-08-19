@@ -13,7 +13,7 @@ variable "PVE_NODE" {
 }
 
 variable "STORAGE_POOL" {
-  default = "local-lvm"
+  default = "vm"
 }
 
 variable "VM_BRIDGE" {
