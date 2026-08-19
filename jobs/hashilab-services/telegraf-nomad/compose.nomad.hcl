@@ -25,6 +25,7 @@ job "telegraf-nomad" {
       config {
         image = "telegraf:${IMAGE_TAG}"
         image_pull_timeout = "10m"
+        user = "root"
 
         volumes = [
           "local/telegraf.conf:/etc/telegraf/telegraf.conf:ro",
