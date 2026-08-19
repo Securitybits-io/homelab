@@ -14,6 +14,9 @@ job "ytdl-private" { # In progress
     service {
       name = "ytdl-private"
       provider = "consul"
+      tags = [
+        "diun.enable=false",
+      ]
     }
 
     task "ytdl-private" {
