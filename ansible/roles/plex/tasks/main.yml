@@ -46,6 +46,8 @@
       - ca-certificates
       - curl
       - gnupg
+      - vainfo
+      - intel-media-va-driver
     state: present
     update_cache: true
     lock_timeout: 180
