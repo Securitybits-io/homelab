@@ -1,5 +1,17 @@
 ---
 # defaults file for nomad
+nomad_hashicorp_apt_key_url: https://apt.releases.hashicorp.com/gpg
+nomad_hashicorp_apt_keyring_dir: /usr/share/keyrings
+nomad_hashicorp_apt_key_src: "{{ nomad_hashicorp_apt_keyring_dir }}/hashicorp-archive-keyring.asc"
+nomad_hashicorp_apt_keyring: "{{ nomad_hashicorp_apt_keyring_dir }}/hashicorp-archive-keyring.gpg"
+nomad_hashicorp_apt_key_fingerprint: D55C0D1AC78A8D8126CB631CFC9CA96ACA026560
+nomad_hashicorp_apt_repository_file: /etc/apt/sources.list.d/hashicorp.list
+nomad_hashicorp_apt_repository: >-
+  deb [signed-by={{ nomad_hashicorp_apt_keyring }}] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
+nomad_hashicorp_legacy_apt_sources:
+  - /etc/apt/sources.list.d/archive_uri-https_apt_releases_hashicorp_com-jammy.list
+  - /etc/apt/sources.list.d/apt_releases_hashicorp_com.list
+  - /etc/apt/sources.list.d/hashicorp.sources
 nomad_cni_plugin_version: "v1.9.1"
 nomad_cni_plugin_checksum: ""
 nomad_cni_bin_dir: /opt/cni/bin

@@ -7,6 +7,64 @@
   tags:
     - install-nomad
 
+- name: Ensure Hashicorp apt keyring directory exists
+  ansible.builtin.file:
+    path: "{{ nomad_hashicorp_apt_keyring_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  tags:
+    - install-nomad
+    - update-repository
+
+- name: Check Hashicorp apt keyring
+  ansible.builtin.stat:
+    path: "{{ nomad_hashicorp_apt_keyring }}"
+  register: nomad_hashicorp_apt_keyring_stat
+  tags:
+    - install-nomad
+    - update-repository
+
+- name: Check managed Hashicorp apt source
+  ansible.builtin.stat:
+    path: "{{ nomad_hashicorp_apt_repository_file }}"
+  register: nomad_hashicorp_apt_repository_stat
+  tags:
+    - install-nomad
+    - update-repository
+
+- name: Read managed Hashicorp apt source
+  ansible.builtin.slurp:
+    path: "{{ nomad_hashicorp_apt_repository_file }}"
+  register: nomad_hashicorp_apt_repository_current
+  when: nomad_hashicorp_apt_repository_stat.stat.exists
+  tags:
+    - install-nomad
+    - update-repository
+
+- name: Remove stale managed Hashicorp apt source before apt cache refresh
+  ansible.builtin.file:
+    path: "{{ nomad_hashicorp_apt_repository_file }}"
+    state: absent
+  when:
+    - nomad_hashicorp_apt_repository_stat.stat.exists
+    - >-
+      not nomad_hashicorp_apt_keyring_stat.stat.exists
+      or (nomad_hashicorp_apt_repository_current.content | default('') | b64decode | trim) != nomad_hashicorp_apt_repository
+  tags:
+    - install-nomad
+    - update-repository
+
+- name: Remove legacy Hashicorp apt sources before apt cache refresh
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop: "{{ nomad_hashicorp_legacy_apt_sources }}"
+  tags:
+    - install-nomad
+    - update-repository
+
 - name: Install required system packages
   ansible.builtin.apt:
     name:
@@ -17,43 +75,73 @@
       - coreutils
       - gpg
     state: present
-    update_cache: true
+    update_cache: false
     lock_timeout: 180
   tags:
     - install-nomad
 
-- name: Ensure apt keyrings directory exists
-  ansible.builtin.file:
-    path: /etc/apt/keyrings
-    state: directory
-    mode: '0755'
-  tags:
-    - install-nomad
-
-- name: Get Hashicorp GPG key
+- name: Download Hashicorp GPG key
   ansible.builtin.get_url:
-    url: https://apt.releases.hashicorp.com/gpg
-    dest: /etc/apt/keyrings/hashicorp-archive-keyring.asc
+    url: "{{ nomad_hashicorp_apt_key_url }}"
+    dest: "{{ nomad_hashicorp_apt_key_src }}"
+    owner: root
+    group: root
     mode: '0644'
-    force: true
+  register: nomad_hashicorp_apt_key_download
   tags:
     - install-nomad
     - get-gpg-key
 
-- name: Remove legacy Hashicorp Nomad repository
-  ansible.builtin.apt_repository:
-    repo: "deb [signed-by=/etc/apt/keyrings/hashicorp-archive-keyring.asc] https://apt.releases.hashicorp.com jammy main"
-    state: absent
-    update_cache: false
+- name: Install Hashicorp repository keyring
+  ansible.builtin.command:
+    argv:
+      - gpg
+      - --yes
+      - --dearmor
+      - -o
+      - "{{ nomad_hashicorp_apt_keyring }}"
+      - "{{ nomad_hashicorp_apt_key_src }}"
+  when: nomad_hashicorp_apt_key_download.changed or not nomad_hashicorp_apt_keyring_stat.stat.exists
+  changed_when: true
   tags:
     - install-nomad
-    - update-repository
+    - get-gpg-key
+
+- name: Verify Hashicorp repository key fingerprint
+  ansible.builtin.command:
+    argv:
+      - gpg
+      - --no-default-keyring
+      - --keyring
+      - "{{ nomad_hashicorp_apt_keyring }}"
+      - --fingerprint
+      - --with-colons
+  register: nomad_hashicorp_apt_key_fingerprint_check
+  changed_when: false
+  failed_when: >-
+    nomad_hashicorp_apt_key_fingerprint
+    not in nomad_hashicorp_apt_key_fingerprint_check.stdout
+  tags:
+    - install-nomad
+    - get-gpg-key
+
+- name: Ensure Hashicorp repository keyring permissions
+  ansible.builtin.file:
+    path: "{{ nomad_hashicorp_apt_keyring }}"
+    owner: root
+    group: root
+    mode: '0644'
+  tags:
+    - install-nomad
+    - get-gpg-key
 
 - name: Add Hashicorp Nomad repository
-  ansible.builtin.apt_repository:
-    repo: "deb [signed-by=/etc/apt/keyrings/hashicorp-archive-keyring.asc] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
-    state: present
-    update_cache: false
+  ansible.builtin.copy:
+    dest: "{{ nomad_hashicorp_apt_repository_file }}"
+    content: "{{ nomad_hashicorp_apt_repository }}\n"
+    owner: root
+    group: root
+    mode: '0644'
   tags:
     - install-nomad
     - update-repository
