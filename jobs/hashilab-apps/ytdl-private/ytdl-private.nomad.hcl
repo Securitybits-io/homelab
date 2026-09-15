@@ -31,16 +31,14 @@ job "ytdl-private" { # In progress
                 "--batch-file=/local/channels.txt",
                 "--download-archive=/youtube-dl/videos/downloaded.txt",
                 "--output=/youtube-dl/videos/%(webpage_url_domain)s/%(playlist)s/%(title)s.%(ext)s",
-                "--format=bestvideo[ext=mp4]+bestaudio[ext=m4a]",
-                "--format-sort=vcodec:h264",
                 "--merge-output-format=mkv",
                 "--add-metadata",
                 "--write-thumbnail",
                 "--write-description",
-                "--write-auto-subs",
-                "--sub-langs=en,sv,-live_chat",
-                "--convert-subs=srt",
-                "--compat-options=playlist-index"
+                "--compat-options playlist-index",
+                "--write-info-json",
+                "--embed-metadata",
+                "--embed-thumbnail"
                 ]
 
         mount {
