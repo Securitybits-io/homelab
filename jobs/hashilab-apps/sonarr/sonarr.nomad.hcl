@@ -68,12 +68,12 @@ job "sonarr" {
         image = "linuxserver/sonarr:${IMAGE_TAG}"
         ports = ["sonarr"]
 
-        mount {
-          type = "bind"
-          target = "/config"
-          source = "/docker/data/Sonarr/config"
-          readonly = false
-        }
+        # mount {
+        #   type = "bind"
+        #   target = "/config"
+        #   source = "/docker/data/Sonarr/config"
+        #   readonly = false
+        # }
 
         mount {       # Mount Backup Folder
           target = "/backups"
@@ -150,6 +150,19 @@ job "sonarr" {
       }
 
       kill_timeout = "20s"
+
+      volume_mount {
+        volume      = "sonarr-config"
+        destination = "/config"
+        read_only   = false
+      }
+    }
+    
+    volume "sonarr-config" {
+      type            = "csi"
+      source          = "sonarr-config"
+      access_mode     = "multi-node-multi-writer"
+      attachment_mode = "file-system"
     }
   }
 }

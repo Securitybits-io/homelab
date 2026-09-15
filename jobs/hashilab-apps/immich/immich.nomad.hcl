@@ -128,6 +128,12 @@ job "immich" {
 
   group "machine-learning" {
 
+    constraint {
+      attribute = "${meta.node_roles}"
+      value     = "backend"
+      operator  = "set_contains_any"
+    }
+
     network {
       mode = "bridge"
     }
