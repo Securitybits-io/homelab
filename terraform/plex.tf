@@ -1,63 +1,50 @@
-resource "proxmox_vm_qemu" "plex" {
-    
-    # VM General Settings
-    target_node = "pve-node-01"
-    name = "plex"
-    desc = "Created with Terraform"
-    tags = "terraform,linux"
+locals {
+  plex = {
+    name        = "plex"
+    cpu_cores   = 4
+    memory_mb   = 4096
+    disk_size   = 350
+    vlan_id     = 40
+    mac_address = "00:50:56:ab:dd:d1"
+    description = "Plex Media Server"
+  }
+}
 
-    # VM Advanced General Settings
-    onboot = true
-    skip_ipv6 = true
+resource "proxmox_virtual_environment_vm" "plex" {
+  provider    = bpg-proxmox
+  name        = local.plex.name
+  description = local.plex.description
+  node_name   = var.PVE_NODE
+  started     = true
+  tags        = [ "terraform","debian" ]
 
-    # VM OS Settings
-    clone = "Ubuntu-22.04-Template-250GB"
+  clone {
+    vm_id = 9000
+  }
 
-    # VM System Settings
-    agent = 1
-    
-    # VM CPU Settings
-    cores = 4
-    sockets = 1
-    cpu_type = "host"    
-    
-    # VM Memory Settings
-    memory = 4096
-    
-    # VM Network Settings
-    network {
-        id = 0
-        macaddr = "00:50:56:ab:dd:d1"
-        bridge = "vmbr0"
-        model  = "virtio"
-        tag = 40
-    }
+  cpu {
+    cores = local.plex.cpu_cores
+  }
 
-    # Set the disk size corresponding to the Template size
-    disk {
-        storage = "vm"
-        slot = "scsi0"
-        type = "disk"
-        size = "300G"
-        format = "raw"
-    }
+  memory {
+    dedicated = local.plex.memory_mb
+  }
 
-    # VM Cloud-Init Settings
-    os_type = "cloud-init"
+  disk {
+    datastore_id = var.STORAGE_POOL
+    interface    = "scsi0"
+    size         = local.plex.disk_size
+  }
 
-    #os_type = "cloud-init"
-    connection {
-      type      = "ssh"
-      user      = var.SSH_USER
-      password  = var.SSH_PASS
-      host      = self.ssh_host
-      script_path = "/home/${var.SSH_USER}/provision_%RAND%.sh"
-    }
-    
-    provisioner "remote-exec" {
-      inline = [
-          "sleep 10",
-          "sudo hostnamectl set-hostname ${self.name}"
-        ]
-    }
+  agent {
+    enabled = true
+    timeout = "5m"
+  }
+
+  network_device {
+    bridge      = var.VM_BRIDGE
+    mac_address = local.plex.mac_address
+    model       = "virtio"
+    vlan_id     = local.plex.vlan_id
+  }
 }
